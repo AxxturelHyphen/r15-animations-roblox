@@ -1,0 +1,19 @@
+$ python src/main.py --src "C:\Samples\unsorted" --dst "C:\Samples\sorted" --dry-run
+PLAN: C:\Samples\unsorted\photo.jpg -> C:\Samples\sorted\Images\photo.jpg [ok]
+PLAN: C:\Samples\unsorted\budget.xlsx -> C:\Samples\sorted\Sheets\budget.xlsx [ok]
+PLAN: C:\Samples\unsorted\archive.zip -> C:\Samples\sorted\Archives\archive.zip [ok]
+Working directory: C:\Projects\Folder_File_Sorter
+Source: C:\Samples\unsorted
+Destination: C:\Samples\sorted
+Log CSV: C:\Projects\Folder_File_Sorter\exports\sort_log_20250101_120000.csv
+Files processed: 3
+Moved: 0 | Planned: 3 | Skipped: 0 | Errors: 0
+Per-category counts:
+  - Images: 1
+  - Documents: 0
+  - Sheets: 1
+  - Audio: 0
+  - Video: 0
+  - Archives: 1
+  - Other: 0
+[OK] Sorted 3 files. Log: C:\Projects\Folder_File_Sorter\exports\sort_log_20250101_120000.csv

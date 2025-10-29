@@ -1,0 +1,4 @@
+v1.0.0 - 2025-10-29
+- Initial release featuring GUI and CLI modes
+- Categorized sorting with duplicate-safe moves and CSV logging
+- Dry-run planning mode and per-category summaries
