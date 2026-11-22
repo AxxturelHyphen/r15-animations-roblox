@@ -1,0 +1,102 @@
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 0, "value": -5.8}
+set_pose LeftUpperLeg.rz @ 0: 0.00 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 0, "value": 5.8}
+set_pose LeftFoot.rz @ 0: 0.00 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 0, "value": -5.8}
+set_pose RightUpperLeg.rz @ 0: 0.00 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 0, "value": 5.8}
+set_pose RightFoot.rz @ 0: 0.00 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 16, "value": 5.8}
+set_pose LeftUpperLeg.rz @ 16: -5.80 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 16, "value": -5.8}
+set_pose LeftFoot.rz @ 16: 5.80 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 16, "value": 5.8}
+set_pose RightUpperLeg.rz @ 16: -5.80 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 16, "value": -5.8}
+set_pose RightFoot.rz @ 16: 5.80 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 32, "value": -5.8}
+set_pose LeftUpperLeg.rz @ 32: 2.79 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 32, "value": 5.8}
+set_pose LeftFoot.rz @ 32: -2.79 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 32, "value": -5.8}
+set_pose RightUpperLeg.rz @ 32: 2.79 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 32, "value": 5.8}
+set_pose RightFoot.rz @ 32: -2.79 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 48, "value": 5.8}
+set_pose LeftUpperLeg.rz @ 48: -5.80 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 48, "value": -5.8}
+set_pose LeftFoot.rz @ 48: 5.80 -> -5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 48, "value": 5.8}
+set_pose RightUpperLeg.rz @ 48: -5.80 -> 5.80
+[dance-feet-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 48, "value": -5.8}
+set_pose RightFoot.rz @ 48: 5.80 -> -5.80
+[dance-foot-penetration-weak-bounce] {"op": "scale_amplitude", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": "rx", "range": [0, 64], "factor": 1.4, "pivot": "rest"}
+scale_amplitude LeftUpperLeg.rx [0,64] x1.4 about rest
+scale_amplitude LeftLowerLeg.rx [0,64] x1.4 about rest
+scale_amplitude LeftFoot.rx [0,64] x1.4 about rest
+scale_amplitude RightUpperLeg.rx [0,64] x1.4 about rest
+scale_amplitude RightLowerLeg.rx [0,64] x1.4 about rest
+scale_amplitude RightFoot.rx [0,64] x1.4 about rest
+[dance-twinned-legs-plank-torso] {"op": "scale_amplitude", "bones": ["RightUpperLeg", "RightLowerLeg"], "ch": "rx", "range": [0, 0], "factor": 1.2, "pivot": "rest"}
+scale_amplitude RightUpperLeg.rx [0,0] x1.2 about rest
+scale_amplitude RightLowerLeg.rx [0,0] x1.2 about rest
+[dance-twinned-legs-plank-torso] {"op": "scale_amplitude", "bones": ["RightUpperLeg", "RightLowerLeg"], "ch": "rx", "range": [32, 32], "factor": 1.2, "pivot": "rest"}
+scale_amplitude RightUpperLeg.rx [32,32] x1.2 about rest
+scale_amplitude RightLowerLeg.rx [32,32] x1.2 about rest
+[dance-twinned-legs-plank-torso] {"op": "scale_amplitude", "bones": ["RightUpperLeg", "RightLowerLeg"], "ch": "rx", "range": [64, 64], "factor": 1.2, "pivot": "rest"}
+scale_amplitude RightUpperLeg.rx [64,64] x1.2 about rest
+scale_amplitude RightLowerLeg.rx [64,64] x1.2 about rest
+[dance-twinned-legs-plank-torso] {"op": "scale_amplitude", "bones": ["LeftUpperLeg", "LeftLowerLeg"], "ch": "rx", "range": [16, 16], "factor": 1.2, "pivot": "rest"}
+scale_amplitude LeftUpperLeg.rx [16,16] x1.2 about rest
+scale_amplitude LeftLowerLeg.rx [16,16] x1.2 about rest
+[dance-twinned-legs-plank-torso] {"op": "scale_amplitude", "bones": ["LeftUpperLeg", "LeftLowerLeg"], "ch": "rx", "range": [48, 48], "factor": 1.2, "pivot": "rest"}
+scale_amplitude LeftUpperLeg.rx [48,48] x1.2 about rest
+scale_amplitude LeftLowerLeg.rx [48,48] x1.2 about rest
+[dance-twinned-legs-plank-torso] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "rz", "factor": -0.8, "pivot": "rest"}
+scale_amplitude UpperTorso.rz [0,64] x-0.8 about rest
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 16, "value": -65}
+set_pose LeftLowerArm.rx @ 16: -90.00 -> -65.00
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 32, "value": -90}
+set_pose LeftLowerArm.rx @ 32: -71.48 -> -90.00
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 48, "value": -65}
+set_pose LeftLowerArm.rx @ 48: -90.00 -> -65.00
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 0, "value": -65}
+set_pose RightLowerArm.rx @ 0: -90.00 -> -65.00
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 16, "value": -95}
+set_pose RightLowerArm.rx @ 16: -65.00 -> -95.00
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 32, "value": -65}
+set_pose RightLowerArm.rx @ 32: -87.22 -> -65.00
+[dance-lockstep-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 48, "value": -95}
+set_pose RightLowerArm.rx @ 48: -65.00 -> -95.00
+[dance-lockstep-frozen-forearms] {"op": "offset_overlap", "bones": "UpperTorso", "offset": 2}
+offset_overlap UpperTorso.rz by +2 frames
+[dance-lockstep-frozen-forearms] {"op": "offset_overlap", "bones": "Head", "offset": 3}
+offset_overlap Head.rx by +3 frames
+[dance-lockstep-frozen-forearms] {"op": "offset_overlap", "bones": ["LeftUpperArm", "RightUpperArm"], "offset": 1}
+offset_overlap LeftUpperArm.rx by +1 frames
+offset_overlap RightUpperArm.rx by +1 frames
+[dance-lockstep-frozen-forearms] {"op": "offset_overlap", "bones": ["LeftLowerArm", "RightLowerArm"], "offset": 3}
+offset_overlap LeftLowerArm.rx by +3 frames
+offset_overlap RightLowerArm.rx by +3 frames
+[dance-lockstep-frozen-forearms] {"op": "smooth_transition", "bones": "all", "mode": "loop_seam"}
+loop_seam LowerTorso.lx: closed + cyclic handles
+loop_seam LowerTorso.ly: closed + cyclic handles
+loop_seam UpperTorso.rz: closed + cyclic handles
+loop_seam Head.rx: closed + cyclic handles
+loop_seam LeftUpperArm.rx: closed + cyclic handles
+loop_seam LeftLowerArm.rx: closed + cyclic handles
+loop_seam RightUpperArm.rx: closed + cyclic handles
+loop_seam RightLowerArm.rx: closed + cyclic handles
+loop_seam LeftUpperLeg.rx: closed + cyclic handles
+loop_seam LeftUpperLeg.rz: closed + cyclic handles
+loop_seam LeftLowerLeg.rx: closed + cyclic handles
+loop_seam LeftFoot.rx: closed + cyclic handles
+loop_seam LeftFoot.rz: closed + cyclic handles
+loop_seam RightUpperLeg.rx: closed + cyclic handles
+loop_seam RightUpperLeg.rz: closed + cyclic handles
+loop_seam RightLowerLeg.rx: closed + cyclic handles
+loop_seam RightFoot.rx: closed + cyclic handles
+loop_seam RightFoot.rz: closed + cyclic handles
+[dance-foot-penetration-weak-bounce] {"op": "plant_feet", "mode": "all", "step": 2}
+plant_feet [0,64] step 2 mode all: 33 keys, max correction 0.016 studs
+applied 36 ops, skipped 0; saved work/dance/iter_1.blend

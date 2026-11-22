@@ -1,0 +1,212 @@
+{
+ "animation": "hit_react",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 5,
+  "timing": 6,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "The 3-frame snap back and the long settle are the right shape, but the body moves as one rigid block: every bone is keyed on frames 3 and 8 (overlap 0.0), arms and legs are perfectly mirrored, and both feet dig 0.3 studs into the floor and skate backwards at the impact.",
+ "findings": [
+  {
+   "id": "hit-feet-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    1,
+    12
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftLowerLeg",
+    "RightLowerLeg",
+    "LowerTorso"
+   ],
+   "observation": "Both feet penetrate the floor from f1 to f12, worst -0.30 at f3 (side view f2-f5: toes below the floor line). At f3 the thighs swing BACK (rx +10) with knees +10, tilting the shins 20 deg so the toes stab down, while the root slides back 0.25 studs: the feet skate backwards with the hips (moves_backward true). When the hips are knocked back the feet should stay put, i.e. thighs angle forward (rx < 0) and the shins stay vertical. Values differ left/right to break the mirror.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": 14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": -8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": 8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": -9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": 7
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      20
+     ],
+     "step": 1,
+     "mode": "all",
+     "smooth": 0.3
+    }
+   ]
+  },
+  {
+   "id": "hit-twin-02",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm",
+    "UpperTorso"
+   ],
+   "observation": "Five channel pairs are mirror-identical (twinning: UpperArm rx/rz, LowerArm rx, UpperLeg rx, LowerLeg rx) and the torso only pitches, so f2-f5 read as a symmetric 'surprise' pose rather than a hit. Make the blow land off-centre: twist the chest, throw the left arm wider and keep the right arm tighter.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 0,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 3,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 8,
+     "value": -4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 20,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 3,
+     "value": 44
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 3,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -45
+    }
+   ]
+  },
+  {
+   "id": "hit-lockstep-03",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    10
+   ],
+   "bones": [
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "overlap_score 0.0: all 11 bones are keyed on f3 and f8, so head, chest and arms hit their extremes on the same frame and reverse together. The head should whip a frame after the chest and the arms should drag behind, forearms last.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "offset": 3
+    }
+   ]
+  }
+ ]
+}

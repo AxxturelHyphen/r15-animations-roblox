@@ -1,0 +1,211 @@
+{
+ "animation": "punch",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 4,
+  "timing": 6,
+  "transitions": 6,
+  "appeal": 5
+ },
+ "summary": "The 3-frame strike (5-8) reads, but the rear foot is buried in the floor for the whole clip, the wind-up is too small to sell the cross, the extended pose freezes dead for frames 8-12 and lands at chest height, and everything arrives on frame 8 with no hip-shoulder-fist sequencing. Legs are completely static (range 0).",
+ "findings": [
+  {
+   "id": "punch-feet-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    24
+   ],
+   "bones": [
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "Rear (right) foot is under the floor on every frame: metrics lowest z -0.31 at f0, -0.44 at f8, visible in every side view as the blue toe below the floor line. Cause: RightUpperLeg rx 15 + RightLowerLeg rx 10 tilt the shin 25 deg back and RightFoot rx is 0 (15 at f8), so the toe points 25-40 deg into the ground. Left foot also sinks 0.07 (root ly -0.1).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": -17
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -25
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      24
+     ],
+     "step": 2,
+     "mode": "all",
+     "smooth": 0.5
+    }
+   ]
+  },
+  {
+   "id": "punch-antic-02",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    5
+   ],
+   "bones": [
+    "UpperTorso",
+    "LowerTorso",
+    "RightUpperArm"
+   ],
+   "observation": "Wind-up is barely visible: frames 0-5 look almost identical in both views (shoulder only 10 deg back, torso -15, hips -10). The cross has no coil to unwind from, so the 146 deg/frame burst at f6 reads as a pop rather than a release.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 5,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ry",
+     "frame": 5,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 5,
+     "value": -25
+    }
+   ]
+  },
+  {
+   "id": "punch-impact-03",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    8,
+    12
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "UpperTorso"
+   ],
+   "observation": "Frames 8-12 are a dead freeze (whole-body speed 0.39-2.2 deg/frame; f8-f11 cells are identical), and the fist lands at chest height (arm exactly horizontal, rx -90) with a nearly upright torso. Needs a snap past the target and a settle, a higher fist and more commitment in the spine.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 8,
+     "value": -100
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 12,
+     "value": -96
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 8,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 12,
+     "value": -12
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 8,
+     "value": 16
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "key_frame": 8,
+     "overshoot": 6,
+     "settle_frames": 3
+    }
+   ]
+  },
+  {
+   "id": "punch-overlap-04",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    4,
+    13
+   ],
+   "bones": [
+    "LowerTorso",
+    "RightLowerArm",
+    "Head",
+    "LeftUpperArm",
+    "LeftLowerArm"
+   ],
+   "observation": "overlap_score 0.556, 8 of 12 bones keyed on frame 8: hips, shoulders, elbow and head all start and stop on the same frames, so there is no kinetic chain. The left guard arm moves only 5 deg and does not counter the punch.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "LowerTorso",
+     "ch": "ry",
+     "offset": -1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 8,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 8,
+     "value": -125
+    }
+   ]
+  }
+ ]
+}

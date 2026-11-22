@@ -1,0 +1,57 @@
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 8, "value": -125}
+set_pose RightUpperArm.rz @ 8: -150.00 -> -125.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 38, "value": -125}
+set_pose RightUpperArm.rz @ 38: -150.00 -> -125.00
+[wave-forearm-pose] {"op": "smooth_transition", "bones": ["RightLowerArm", "RightHand"], "ch": "rz", "mode": "remove_interior", "range": [8, 38]}
+remove_interior RightLowerArm.rz (8,38): removed 4 keys
+remove_interior RightHand.rz (8,38): removed 4 keys
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 8, "value": -40}
+set_pose RightLowerArm.rz @ 8: 30.00 -> -40.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 13, "value": -20}
+set_pose RightLowerArm.rz @ 13: -34.81 -> -20.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 18, "value": -60}
+set_pose RightLowerArm.rz @ 18: 2.80 -> -60.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 23, "value": -20}
+set_pose RightLowerArm.rz @ 23: -45.94 -> -20.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 28, "value": -60}
+set_pose RightLowerArm.rz @ 28: 15.19 -> -60.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 33, "value": -20}
+set_pose RightLowerArm.rz @ 33: -15.00 -> -20.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 38, "value": -40}
+set_pose RightLowerArm.rz @ 38: 30.00 -> -40.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 13, "value": 12}
+set_pose RightHand.rz @ 13: 0.00 -> 12.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 18, "value": -15}
+set_pose RightHand.rz @ 18: 10.75 -> -15.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 23, "value": 12}
+set_pose RightHand.rz @ 23: -12.66 -> 12.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 28, "value": -15}
+set_pose RightHand.rz @ 28: 8.89 -> -15.00
+[wave-forearm-pose] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 33, "value": 12}
+set_pose RightHand.rz @ 33: -7.50 -> 12.00
+[wave-lockstep-dead-body] {"op": "add_breakdown", "bone": "RightUpperArm", "ch": "rz", "key_frame": 8, "overshoot": 8, "settle_frames": 4}
+overshoot RightUpperArm.rz @ 8: -125.00 -> -133.00, settles by 12
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 8, "value": -5}
+set_pose UpperTorso.ry @ 8: 0.00 -> -5.00
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 38, "value": -5}
+set_pose UpperTorso.ry @ 38: -0.78 -> -5.00
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 23, "value": 6.5}
+set_pose UpperTorso.rz @ 23: 4.00 -> 6.50
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 12, "value": 12}
+set_pose LeftUpperArm.rz @ 12: 6.00 -> 12.00
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 36, "value": 10}
+set_pose LeftUpperArm.rz @ 36: 7.56 -> 10.00
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 12, "value": -14}
+set_pose LeftLowerArm.rx @ 12: 0.00 -> -14.00
+[wave-lockstep-dead-body] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 36, "value": -10}
+set_pose LeftLowerArm.rx @ 36: -3.63 -> -10.00
+[wave-lockstep-dead-body] {"op": "offset_overlap", "bones": "Head", "offset": -2}
+offset_overlap Head.ry by -2 frames
+offset_overlap Head.rz by -2 frames
+[wave-lockstep-dead-body] {"op": "offset_overlap", "bones": "RightLowerArm", "offset": 1}
+offset_overlap RightLowerArm.rz by +1 frames
+[wave-lockstep-dead-body] {"op": "offset_overlap", "bones": "RightHand", "offset": 2}
+offset_overlap RightHand.rz by +2 frames
+clamp RightLowerArm.rz @ 19: -60.0 -> -60.0 (limit (-60, 60))
+clamp RightLowerArm.rz @ 29: -60.0 -> -60.0 (limit (-60, 60))
+applied 26 ops, skipped 0; saved work/wave/iter_1.blend

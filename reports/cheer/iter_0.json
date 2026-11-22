@@ -1,0 +1,238 @@
+{
+ "animation": "cheer",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 6,
+  "transitions": 5,
+  "appeal": 5
+ },
+ "summary": "Good crouch-to-burst structure, but the two fist pumps fold both forearms 60 deg inward from near-vertical upper arms, so the fists close over the top corners of the head, and the toes dip up to 0.21 studs through the floor on both pumps (0.09 in the crouch). All 13 bones are keyed together on 6 and 12, left and right are mirror-identical on 7 channels, and the head and chest freeze from 12 to 40. Note: the clip ends in the V pose as the spec asks ('then a hold'), so it relies on the engine fade-out to return to idle.",
+ "findings": [
+  {
+   "id": "cheer-forearms-into-head",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    15,
+    33
+   ],
+   "bones": [
+    "LeftLowerArm",
+    "RightLowerArm",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "Head"
+   ],
+   "observation": "F016-F020 and F028-F033 (3/4 view): with UpperArm.rz at +-165 (15 deg off vertical) the pump is done purely with LowerArm.rz +-60, which swings each forearm 45 deg past vertical toward the midline; the forearms and fists cover and intersect the upper corners of the head (head half-width 0.6 studs, hand inner edge reaches about 0.35) and the V collapses into a diamond over the face. The upper arms do not move at all during the pumps (rz 165 -> 160 drift). Fix: make it a real pump: the elbows drop out to +-135 on each pump while the forearms fold only +-45, which leaves them vertical outside the head ('goalpost'), then punch back up to the +-165 V.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rz",
+     "factor": 0.75,
+     "pivot": "rest"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 18,
+     "value": 135
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 24,
+     "value": 165
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 30,
+     "value": 135
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 18,
+     "value": -135
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 24,
+     "value": -165
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 30,
+     "value": -135
+    }
+   ]
+  },
+  {
+   "id": "cheer-feet-through-floor",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    2,
+    39
+   ],
+   "bones": [
+    "LeftFoot",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "metrics: 52 penetration frames; lowest foot z -0.09 in the crouch (F002-F009) and -0.21 on both pumps (F015-F021, F027-F039). Side view F016-F020 and F028-F034: the toes point down through the floor line. Cause: on the pumps the thigh is -10 and the knee +20, tilting the shin 10 deg, but Foot.rx stays 0 (keys only at 0/6/12/40) so the foot pitches toe-down 10 deg; the root also drops 0.1 studs, more than the legs shorten. The burst frames F011-F013 and F023-F025 float 0.03-0.05 studs instead. Fix: counter-rotate the feet on the pump keys so the soles stay flat, then re-plant the root on the floor for the whole clip.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -10
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2
+    }
+   ]
+  },
+  {
+   "id": "cheer-lockstep-twinning",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    6,
+    40
+   ],
+   "bones": [
+    "Head",
+    "UpperTorso",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "metrics: lockstep at frames 6 and 12 with 13 of 13 bones keyed, overlap_score 0.447, twinning on 7 channels (both arms rx/rz, both legs). The arms, chest, head and legs all hit the top of the burst on F012 and stop together (accel spikes 15 on UpperArm.rz at F011-F012, no settle), the two arms are perfect mirrors on every frame, and Head.rx (-15) and UpperTorso.rx are frozen from F012 to F040 while the arms pump (curves.png: flat lines). Fix: let the chest arch overshoot and settle after the burst, nod the head with each pump, add a small alternating chest twist so the pumps are not symmetric, and drag the arms behind the body (right arm 1 frame, left arm 2; forearms 2 more) with the head 2 frames late.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "key_frame": 12,
+     "overshoot": 6,
+     "settle_frames": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 18,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 24,
+     "value": -16
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 30,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 18,
+     "value": 6
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 30,
+     "value": -6
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "offset": 4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "offset": 2
+    }
+   ]
+  }
+ ]
+}

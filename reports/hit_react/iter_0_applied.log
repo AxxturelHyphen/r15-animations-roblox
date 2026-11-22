@@ -1,0 +1,45 @@
+[hit-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 3, "value": -14}
+set_pose LeftUpperLeg.rx @ 3: 10.00 -> -14.00
+[hit-feet-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 3, "value": 14}
+set_pose LeftLowerLeg.rx @ 3: 10.00 -> 14.00
+[hit-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 3, "value": -8}
+set_pose RightUpperLeg.rx @ 3: 10.00 -> -8.00
+[hit-feet-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 3, "value": 8}
+set_pose RightLowerLeg.rx @ 3: 10.00 -> 8.00
+[hit-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 8, "value": -9}
+set_pose LeftUpperLeg.rx @ 8: -5.00 -> -9.00
+[hit-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 8, "value": -7}
+set_pose RightUpperLeg.rx @ 8: -5.00 -> -7.00
+[hit-feet-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 8, "value": 7}
+set_pose RightLowerLeg.rx @ 8: 10.00 -> 7.00
+[hit-twin-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 0, "value": 0}
+set_pose UpperTorso.ry @ 0: 0.00 -> 0.00
+[hit-twin-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 3, "value": 12}
+set_pose UpperTorso.ry @ 3: 0.00 -> 12.00
+[hit-twin-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 8, "value": -4}
+set_pose UpperTorso.ry @ 8: 9.50 -> -4.00
+[hit-twin-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 20, "value": 0}
+set_pose UpperTorso.ry @ 20: 0.00 -> 0.00
+[hit-twin-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 3, "value": 44}
+set_pose LeftUpperArm.rz @ 3: 35.00 -> 44.00
+[hit-twin-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 3, "value": -22}
+set_pose RightUpperArm.rz @ 3: -35.00 -> -22.00
+[hit-twin-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 3, "value": -18}
+set_pose RightUpperArm.rx @ 3: -30.00 -> -18.00
+[hit-twin-02] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 3, "value": -45}
+set_pose RightLowerArm.rx @ 3: -30.00 -> -45.00
+[hit-lockstep-03] {"op": "offset_overlap", "bones": "Head", "offset": 1}
+offset_overlap Head.rx by +1 frames
+[hit-lockstep-03] {"op": "offset_overlap", "bones": "LeftUpperArm", "offset": 1}
+offset_overlap LeftUpperArm.rx by +1 frames
+offset_overlap LeftUpperArm.rz by +1 frames
+[hit-lockstep-03] {"op": "offset_overlap", "bones": "RightUpperArm", "offset": 2}
+offset_overlap RightUpperArm.rx by +2 frames
+offset_overlap RightUpperArm.rz by +2 frames
+[hit-lockstep-03] {"op": "offset_overlap", "bones": "LeftLowerArm", "offset": 2}
+offset_overlap LeftLowerArm.rx by +2 frames
+[hit-lockstep-03] {"op": "offset_overlap", "bones": "RightLowerArm", "offset": 3}
+offset_overlap RightLowerArm.rx by +3 frames
+[hit-feet-01] {"op": "plant_feet", "range": [0, 20], "step": 1, "mode": "all", "smooth": 0.3}
+plant_feet [0,20] step 1 mode all: 21 keys, max correction 0.089 studs
+applied 21 ops, skipped 0; saved work/hit_react/iter_1.blend

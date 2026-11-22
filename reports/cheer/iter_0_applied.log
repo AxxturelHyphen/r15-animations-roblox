@@ -1,0 +1,56 @@
+[cheer-forearms-into-head] {"op": "scale_amplitude", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rz", "factor": 0.75, "pivot": "rest"}
+scale_amplitude LeftLowerArm.rz [0,40] x0.75 about rest
+scale_amplitude RightLowerArm.rz [0,40] x0.75 about rest
+[cheer-forearms-into-head] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 18, "value": 135}
+set_pose LeftUpperArm.rz @ 18: 164.41 -> 135.00
+[cheer-forearms-into-head] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 24, "value": 165}
+set_pose LeftUpperArm.rz @ 24: 139.56 -> 165.00
+[cheer-forearms-into-head] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 30, "value": 135}
+set_pose LeftUpperArm.rz @ 30: 163.42 -> 135.00
+[cheer-forearms-into-head] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 18, "value": -135}
+set_pose RightUpperArm.rz @ 18: -164.41 -> -135.00
+[cheer-forearms-into-head] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 24, "value": -165}
+set_pose RightUpperArm.rz @ 24: -139.56 -> -165.00
+[cheer-forearms-into-head] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 30, "value": -135}
+set_pose RightUpperArm.rz @ 30: -163.42 -> -135.00
+[cheer-feet-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 18, "value": -10}
+set_pose LeftFoot.rx @ 18: 0.00 -> -10.00
+[cheer-feet-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 24, "value": 0}
+set_pose LeftFoot.rx @ 24: -8.17 -> 0.00
+[cheer-feet-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 30, "value": -10}
+set_pose LeftFoot.rx @ 30: 0.00 -> -10.00
+[cheer-feet-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 18, "value": -10}
+set_pose RightFoot.rx @ 18: 0.00 -> -10.00
+[cheer-feet-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": 0}
+set_pose RightFoot.rx @ 24: -8.17 -> 0.00
+[cheer-feet-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 30, "value": -10}
+set_pose RightFoot.rx @ 30: 0.00 -> -10.00
+[cheer-lockstep-twinning] {"op": "add_breakdown", "bone": "UpperTorso", "ch": "rx", "key_frame": 12, "overshoot": 6, "settle_frames": 4}
+overshoot UpperTorso.rx @ 12: -10.00 -> -16.00, settles by 16
+[cheer-lockstep-twinning] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 18, "value": -5}
+set_pose Head.rx @ 18: -15.00 -> -5.00
+[cheer-lockstep-twinning] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 24, "value": -16}
+set_pose Head.rx @ 24: -6.83 -> -16.00
+[cheer-lockstep-twinning] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 30, "value": -5}
+set_pose Head.rx @ 30: -15.68 -> -5.00
+[cheer-lockstep-twinning] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 18, "value": 6}
+set_pose UpperTorso.ry @ 18: 0.00 -> 6.00
+[cheer-lockstep-twinning] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 30, "value": -6}
+set_pose UpperTorso.ry @ 30: 2.59 -> -6.00
+[cheer-lockstep-twinning] {"op": "offset_overlap", "bones": "RightUpperArm", "offset": 1}
+offset_overlap RightUpperArm.rx by +1 frames
+offset_overlap RightUpperArm.rz by +1 frames
+[cheer-lockstep-twinning] {"op": "offset_overlap", "bones": "LeftUpperArm", "offset": 2}
+offset_overlap LeftUpperArm.rx by +2 frames
+offset_overlap LeftUpperArm.rz by +2 frames
+[cheer-lockstep-twinning] {"op": "offset_overlap", "bones": "RightLowerArm", "offset": 3}
+offset_overlap RightLowerArm.rx by +3 frames
+offset_overlap RightLowerArm.rz by +3 frames
+[cheer-lockstep-twinning] {"op": "offset_overlap", "bones": "LeftLowerArm", "offset": 4}
+offset_overlap LeftLowerArm.rx by +4 frames
+offset_overlap LeftLowerArm.rz by +4 frames
+[cheer-lockstep-twinning] {"op": "offset_overlap", "bones": "Head", "offset": 2}
+offset_overlap Head.rx by +2 frames
+[cheer-feet-through-floor] {"op": "plant_feet", "mode": "all", "step": 2}
+plant_feet [0,40] step 2 mode all: 21 keys, max correction 0.093 studs
+applied 25 ops, skipped 0; saved work/cheer/iter_1.blend
