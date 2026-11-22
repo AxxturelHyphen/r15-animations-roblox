@@ -1,0 +1,51 @@
+{
+ "animation": "swim_idle",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The mechanical regularity is gone: the right arm now trails the left by 2 frames, the shins trail the thighs, and the feet point and relax after each knee (Foot.rx 16-34, opposite on the two sides). Metrics report 0 twinned channels, 0 lockstep frames, overlap 1.0 and no pops. Re-checked on the rig at iteration 2: the scull is still symmetric in shape (hands at x +2.78/-2.70 on F000, about +1.9/-1.8 on F015), no parts intersect on any frame and the seam is closed. Sheets F000-F060 read as treading water: hands scull in and out, knees circle, body bobs. One low polish item remains.",
+ "findings": [
+  {
+   "id": "swimidle-1-head-fixed-pitch",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "Head.rx is a flat -12 for all 60 frames (curves.png); only the slow 10 deg turn on ry moves the head, so it does not react to the bob. A 2-3 deg nod trailing the bob would add life, but it is not visible at game distance.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 19,
+     "value": -9.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 34,
+     "value": -12
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 49,
+     "value": -9.5
+    }
+   ]
+  }
+ ]
+}

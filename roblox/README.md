@@ -35,7 +35,7 @@ This folder syncs the whole animation pack into Roblox Studio with [Rojo](https:
 - Uses idle, walk or run depending on speed. Run starts at 8.5 studs/s. Walk and run playback is scaled to the ground speed they were animated for, up to 3.5×.
 - Plays jump, then blends into fall.
 - Plays climb (frozen when you hang still), swim or swim_idle, sit, and death.
-- **C** or **Left Ctrl** toggles crouch. It halves WalkSpeed and uses crouch_idle and crouch_walk.
+- **C** or **Left Ctrl** toggles crouch and uses crouch_idle and crouch_walk. Crouch WalkSpeed is set from the speed crouch_walk was animated for (×3), about 2.7 studs/s, so the feet don't slide. It's a slow sneak; raise `CROUCH_CYCLE_RATE` if you want it faster.
 - Chat emotes: `/e wave`, `dance`, `cheer`, `point`, `laugh`, `clap`, `salute`, or `/emote …`. Under TextChatService, the built-in `RBXEmoteCommand` is replaced locally so the pack's own emotes work. Moving or crouching cancels them.
 - Another script can trigger an emote by invoking the `PlayEmote` BindableFunction under the Animate script.
 

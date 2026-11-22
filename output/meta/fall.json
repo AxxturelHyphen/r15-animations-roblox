@@ -1,0 +1,9 @@
+{
+ "name": "fall",
+ "iteration": 1,
+ "looped": true,
+ "priority": "Movement",
+ "length": 0.8,
+ "authoredSpeed": null,
+ "markers": []
+}

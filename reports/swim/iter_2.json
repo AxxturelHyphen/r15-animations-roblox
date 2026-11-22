@@ -1,0 +1,73 @@
+{
+ "animation": "swim",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The shoulder-twist snap is gone: UpperArm.ry now ramps through a pre-loaded +/-35 (curves.png shows a rounded rise instead of the square step) and metrics report 0 accel spikes, 0 corners, overlap 1.0. Re-checked on the rig at iteration 2: the recovery arc is intact (left hand 1.93 at the hip on F020, 2.62 on F025, 3.78 above the back on F030, 3.43 on F035, entry about 3.2), the pull still passes under the body (hand x +0.90, height 0.30 on F010), no parts intersect on any frame and the seam is closed. Sheets F000-F040 read as an alternating front crawl with roll and a held breath to the left. One low polish item remains.",
+ "findings": [
+  {
+   "id": "swim-1-rigid-feet",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "Foot.rx is a flat 40 on both feet for the whole loop (curves.png), so the flutter kick ends in rigid pointed feet with no flick. With a 10-frame kick and feet this small it is not noticeable at game distance. A small amplitude on the foot, following the shin, would finish the whip.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": 48
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": 34
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": 48
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": 34
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": 48
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": 34
+    }
+   ]
+  }
+ ]
+}

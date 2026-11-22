@@ -1,0 +1,9 @@
+{
+ "name": "swim_idle",
+ "iteration": 2,
+ "looped": true,
+ "priority": "Movement",
+ "length": 2.0,
+ "authoredSpeed": null,
+ "markers": []
+}

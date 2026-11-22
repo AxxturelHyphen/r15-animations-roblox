@@ -31,7 +31,10 @@ local MOVE_THRESHOLD = 0.75 -- studs/s; below this the character counts as stand
 -- 6.0 (run) studs/s; playback is scaled to the real speed, within MAX_CYCLE_RATE.
 local RUN_THRESHOLD = 8.5
 local MAX_CYCLE_RATE = 3.5
-local CROUCH_SPEED_FACTOR = 0.5
+-- Crouch movement speed is derived from the speed crouch_walk was animated for, so the sneak cycle
+-- plays at CROUCH_CYCLE_RATE x without foot sliding (about 2.7 studs/s for the current clip).
+local CROUCH_CYCLE_RATE = 3
+local CROUCH_FALLBACK_FACTOR = 0.35
 
 type Mode = "ground" | "air" | "climb" | "swim" | "seated" | "dead"
 local mode: Mode = "ground"
@@ -83,6 +86,14 @@ local function setMode(newMode: Mode)
 	end
 end
 
+local function crouchWalkSpeed(): number
+	local meta = AnimationMeta.crouch_walk
+	if meta and meta.authoredSpeed and meta.authoredSpeed > 0 then
+		return meta.authoredSpeed * CROUCH_CYCLE_RATE
+	end
+	return standingWalkSpeed * CROUCH_FALLBACK_FACTOR
+end
+
 local function setCrouching(on: boolean)
 	if on and mode ~= "ground" then
 		return
@@ -91,7 +102,7 @@ local function setCrouching(on: boolean)
 	if on then
 		stopEmote()
 	end
-	humanoid.WalkSpeed = if on then standingWalkSpeed * CROUCH_SPEED_FACTOR else standingWalkSpeed
+	humanoid.WalkSpeed = if on then crouchWalkSpeed() else standingWalkSpeed
 	updateGround()
 end
 
