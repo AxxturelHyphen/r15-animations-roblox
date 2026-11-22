@@ -1,0 +1,35 @@
+[death-hover-01] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 28, "value": 6}
+set_pose UpperTorso.rx @ 28: 12.00 -> 6.00
+[death-hover-01] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 32, "value": 4}
+set_pose UpperTorso.rx @ 32: -3.00 -> 4.00
+[death-hover-01] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 33, "value": -4}
+set_pose Head.rx @ 33: -7.00 -> -4.00
+[death-hover-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 27, "value": -88}
+set_pose LeftUpperLeg.rx @ 27: -78.00 -> -88.00
+[death-hover-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 27, "value": 102}
+set_pose LeftLowerLeg.rx @ 27: 105.00 -> 102.00
+[death-hover-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 27, "value": 30}
+set_pose LeftFoot.rx @ 27: 21.00 -> 30.00
+[death-hover-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 28, "value": -84}
+set_pose RightUpperLeg.rx @ 28: -85.00 -> -84.00
+[death-hover-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 28, "value": 105}
+set_pose RightLowerLeg.rx @ 28: 106.00 -> 105.00
+[death-hover-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 28, "value": 27}
+set_pose RightFoot.rx @ 28: 20.00 -> 27.00
+[death-hover-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 31, "value": -75}
+set_pose LeftUpperLeg.rx @ 31: -40.00 -> -75.00
+[death-hover-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 31, "value": 92}
+set_pose LeftLowerLeg.rx @ 31: 100.00 -> 92.00
+[death-hover-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 31, "value": 10}
+set_pose LeftFoot.rx @ 31: 30.00 -> 10.00
+[death-hover-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 32, "value": -82}
+set_pose RightUpperLeg.rx @ 32: -48.00 -> -82.00
+[death-hover-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 32, "value": 98}
+set_pose RightLowerLeg.rx @ 32: 100.00 -> 98.00
+[death-hover-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 32, "value": 8}
+set_pose RightFoot.rx @ 32: 22.00 -> 8.00
+[death-hover-01] {"op": "plant_feet", "mode": "all", "step": 1, "parts": "all"}
+plant_feet [0,50] step 1 mode all: 51 keys, max correction 0.316 studs
+clamp LeftFoot.rx @ 21: -45.0 -> -45.0 (limit (-45, 55))
+clamp RightFoot.rx @ 22: -45.0 -> -45.0 (limit (-45, 55))
+applied 16 ops, skipped 0; saved work/death/iter_3.blend

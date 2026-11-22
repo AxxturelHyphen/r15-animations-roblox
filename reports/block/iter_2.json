@@ -1,0 +1,14 @@
+{
+ "animation": "block",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 9,
+  "appeal": 7
+ },
+ "summary": "Approved, no findings. Guard clearance verified on iter_2: a box-overlap check over all 31 frames finds no contact between either hand or forearm and the head (round 1 had the hands 0.25-0.27 studs inside it), and the side view f0-f30 now shows clear air between the face and the forearms. The hands sit about 0.3 studs in front of the face at mouth-to-eye height (hand centres z 4.0 / 4.16, head centre 4.4), so the 3/4 cells read as a raised forearm guard with the eyes just over it, and the two arms are deliberately not mirror images. The hold still breathes (chest leads, forearms and head trail by 1-4 frames; no dead hold, no lockstep, overlap_score 1.0), both feet stay planted with 0 penetration and 0 slide, and the loop seam is clean (frame 0 = frame 30, no seam issues, no velocity corners). Residual, below reporting level: the forearms brush the chest by 0.06-0.09 studs and the upper arms overlap the torso at the shoulder joint by 0.13-0.18, about the same as the 0.12 of the original spec pose and normal for this blocky rig with the arms brought across the body.",
+ "findings": []
+}
