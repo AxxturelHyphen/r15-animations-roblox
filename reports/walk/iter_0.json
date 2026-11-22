@@ -4,15 +4,15 @@
  "verdict": "needs_work",
  "scores": {
   "fluidity": 5,
-  "posing": 4,
+  "posing": 3,
   "timing": 5,
-  "transitions": 6,
+  "transitions": 5,
   "appeal": 4
  },
- "summary": "x",
+ "summary": "The beats and the arm/leg opposition are right and the loop seam is clean, but the lower body is broken: both feet are under the floor for the whole cycle, the ankles roll the wrong way, the swing leg drags instead of clearing, and the planted foot skates. The upper body is one sine wave keyed on frame 16 with no weight shift. Fixes: rebuilt heel-to-toe roll, higher swing, linear stance thigh, hip sway with pelvis and chest tilt, staggered arms/head, root re-planted.",
  "findings": [
   {
-   "id": "W1",
+   "id": "walk-1-foot-roll",
    "category": "awkward_pose",
    "severity": "high",
    "frames": [
@@ -21,10 +21,227 @@
    ],
    "bones": [
     "LeftFoot",
-    "RightFoot",
-    "LowerTorso"
+    "RightFoot"
    ],
-   "observation": "x",
+   "observation": "Both feet are under the floor for 31 of 32 frames (metrics: 62 penetration frames, down to -0.355 studs at frame 18). In the side view the heel of the front foot and the toe of the back foot are cut off by the floor line in every cell of F000-F004 and F014-F020. The cause is the ankle curve, which adds to the leg angle instead of countering it: at contact (F000/F016) the front foot is pitched 35 deg toes-up (thigh -25 + knee 5 + foot -15) and the back foot 47 deg toes-down (22 + 10 + 15), and at mid-stance (F008) the supporting foot is still 12 deg toes-down. Fix: a proper heel-to-toe roll. Heel strike at -20 deg, flat from frame 3 to 11, heel peeling off to +22 deg at the opposite contact, and the ankle flexed (not pointed) through the swing so the long R15 toe can clear the ground.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 12,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": -28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 12,
+     "value": -18
+    }
+   ]
+  },
+  {
+   "id": "walk-2-swing-clearance",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    16,
+    32
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "RightUpperLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "The swing leg never gets off the ground. With knee flexion of only 40-50 deg and the thigh still at -10 at the passing pose (F008 right leg, F024 left leg), the swing foot hangs lower than the supporting foot for the whole swing (F002-F009: right toe at -0.35 to -0.11 while the stance foot is at -0.13 to -0.06), so it reads as a shuffle and the passing pose has no silhouette. Fix: fold the swing leg properly (knee 68 at 4 frames after toe-off, 75 at passing, still 52 on the reach), bring the thigh through to -30 at passing, and start the knee break at toe-off (20 deg instead of 10) so the knee does not snap.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": 68
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 75
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 28,
+     "value": 52
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 68
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": 75
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 12,
+     "value": 52
+    }
+   ]
+  },
+  {
+   "id": "walk-3-foot-slide",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    0,
+    16
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "RightUpperLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "The planted foot does not travel back at a steady speed, so it will skate on the ground in game (metrics: contact speed std 0.065-0.067 studs/frame against a mean of 0.11). The thigh eases in and out of the contact and toe-off extremes (curves.png: S-shaped UpperLeg.rx), which makes the foot crawl for the first and last 3 frames of each stance and rush through the middle. The 15 deg knee bump at frame 4 adds to it. Fix: constant-speed (linear) thigh through each stance phase, a thigh key at the down pose that compensates for the knee flex, a softer down-pose knee, and cyclic handles on the leg curves so the swing still eases through the loop seam.",
    "fix": [
     {
      "op": "set_pose",
@@ -35,104 +252,6 @@
     },
     {
      "op": "set_pose",
-     "bone": "LeftUpperLeg",
-     "ch": "rx",
-     "frame": 24,
-     "value": -30
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftLowerLeg",
-     "ch": "rx",
-     "frame": 4,
-     "value": 12
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftLowerLeg",
-     "ch": "rx",
-     "frame": 16,
-     "value": 20
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftLowerLeg",
-     "ch": "rx",
-     "frame": 20,
-     "value": 68
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftLowerLeg",
-     "ch": "rx",
-     "frame": 24,
-     "value": 75
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftLowerLeg",
-     "ch": "rx",
-     "frame": 28,
-     "value": 52
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 0,
-     "value": 0
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 4,
-     "value": 0
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 8,
-     "value": -5
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 12,
-     "value": -14
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 16,
-     "value": -20
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 20,
-     "value": -30
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 24,
-     "value": -28
-    },
-    {
-     "op": "set_pose",
-     "bone": "LeftFoot",
-     "ch": "rx",
-     "frame": 28,
-     "value": -18
-    },
-    {
-     "op": "set_pose",
      "bone": "RightUpperLeg",
      "ch": "rx",
      "frame": 20,
@@ -140,10 +259,10 @@
     },
     {
      "op": "set_pose",
-     "bone": "RightUpperLeg",
+     "bone": "LeftLowerLeg",
      "ch": "rx",
-     "frame": 8,
-     "value": -30
+     "frame": 4,
+     "value": 12
     },
     {
      "op": "set_pose",
@@ -151,90 +270,6 @@
      "ch": "rx",
      "frame": 20,
      "value": 12
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightLowerLeg",
-     "ch": "rx",
-     "frame": 0,
-     "value": 20
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightLowerLeg",
-     "ch": "rx",
-     "frame": 4,
-     "value": 68
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightLowerLeg",
-     "ch": "rx",
-     "frame": 8,
-     "value": 75
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightLowerLeg",
-     "ch": "rx",
-     "frame": 12,
-     "value": 52
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 16,
-     "value": 0
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 20,
-     "value": 0
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 24,
-     "value": -5
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 28,
-     "value": -14
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 0,
-     "value": -20
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 4,
-     "value": -30
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 8,
-     "value": -28
-    },
-    {
-     "op": "set_pose",
-     "bone": "RightFoot",
-     "ch": "rx",
-     "frame": 12,
-     "value": -18
     },
     {
      "op": "smooth_transition",
@@ -274,7 +309,7 @@
    ]
   },
   {
-   "id": "W2",
+   "id": "walk-4-no-weight-shift",
    "category": "stiff",
    "severity": "medium",
    "frames": [
@@ -282,9 +317,12 @@
     32
    ],
    "bones": [
-    "LowerTorso"
+    "LowerTorso",
+    "UpperTorso",
+    "LeftUpperLeg",
+    "RightUpperLeg"
    ],
-   "observation": "x",
+   "observation": "In the 3/4 view the hips and shoulders only twist (ry); there is no side-to-side weight transfer and no pelvis or shoulder tilt on any frame, so the walk looks like it runs on rails. Compare F008 and F024: the torso is in the identical place although the weight is on opposite legs. Fix: shift the hips 0.07 studs over the supporting leg at each passing pose, drop the swing-side hip 2.5 deg, counter-tilt the chest (2 frames late), and counter-rotate both legs 5 deg so the planted foot does not slide sideways.",
    "fix": [
     {
      "op": "set_pose",
@@ -373,7 +411,7 @@
    ]
   },
   {
-   "id": "W3",
+   "id": "walk-5-lockstep",
    "category": "stiff",
    "severity": "medium",
    "frames": [
@@ -381,9 +419,14 @@
     32
    ],
    "bones": [
-    "LowerTorso"
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
    ],
-   "observation": "x",
+   "observation": "All 13 animated bones are keyed on frame 16 and every upper-body curve is a single sine that peaks exactly on the contact frames (lockstep 13 of 13, overlap_score 0.63). Arms, forearms, chest twist and head all reverse on the same frame as the legs, the forearm just rides the upper arm, and the chest lean (UpperTorso.rx 4) and head pitch never change. Fix: let the chest twist and upper arms trail the legs by 1 frame, the forearms by 3 and the head by 2, and give the chest a small nod into each step (6 deg just after contact, 3 deg at the high point).",
    "fix": [
     {
      "op": "smooth_transition",
@@ -462,7 +505,7 @@
    ]
   },
   {
-   "id": "W4",
+   "id": "walk-6-root-height",
    "category": "awkward_pose",
    "severity": "high",
    "frames": [
@@ -472,20 +515,8 @@
    "bones": [
     "LowerTorso"
    ],
-   "observation": "x",
+   "observation": "The root bob (LowerTorso.ly, -0.08 to +0.05) was authored without regard to the leg poses, so the body is 0.06-0.35 studs too low on every frame; this is the other half of the floor penetration in walk-1. After the leg and foot corrections above, re-key the root on every frame so the supporting foot sits exactly on the floor.",
    "fix": [
-    {
-     "op": "smooth_transition",
-     "bones": "LowerTorso",
-     "ch": "ly",
-     "range": [
-      0,
-      32
-     ],
-     "mode": "smooth",
-     "strength": 0,
-     "step": 1
-    },
     {
      "op": "plant_feet",
      "range": [

@@ -1,0 +1,295 @@
+{
+ "animation": "idle",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 4,
+  "timing": 4,
+  "transitions": 7,
+  "appeal": 3
+ },
+ "summary": "Technically clean (no pops, seamless loop) but lifeless: the motion is too small to see, everything is keyed on frame 48 and the stance is a symmetric straight-legged pose. Fixes: larger breathing and look-around, a real weight shift onto the left leg with a relaxed right knee, staggered timing for chest, head and arms, and the root re-planted so the feet stop sinking.",
+ "findings": [
+  {
+   "id": "idle-1-frozen",
+   "category": "stiff",
+   "severity": "high",
+   "frames": [
+    0,
+    96
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "The idle is almost a still image. On the sheets F000, F024 and F048 cannot be told apart, and the onion skin is a single silhouette. metrics: whole-body speed peaks at 0.62 deg/frame, three dead holds (frames 0-8, 40-56, 88-96), and the ranges are tiny (UpperTorso.rx 2 deg, arms 2 deg, Head.rx 2 deg, Head.ry 8 deg). The breathing and the look-around do not read at game camera distance.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "factor": 1.8,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": [
+      "rx",
+      "ry"
+     ],
+     "factor": 1.5,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rz",
+     "factor": 2.5,
+     "pivot": "mean"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "factor": 2.5,
+     "pivot": "mean"
+    }
+   ]
+  },
+  {
+   "id": "idle-2-weight-shift",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    0,
+    96
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso",
+    "Head",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "The spec asks for a slight weight shift, but LowerTorso.lx only moves 0.04 studs and the legs stay locked at rz +/-2 for the whole clip, so in the front view the hips never move and the stance is a symmetric, straight-legged A-pose (no line of action). Because the legs do not compensate, the small shift that exists slides both feet sideways. Fix: a real shift onto the left leg at frame 48 (hips 0.14 studs left, pelvis rolled 2 deg so the right hip drops, both legs counter-rotated -7 deg so the feet stay where they are), the free right leg relaxes with a soft knee (thigh -14, knee 28, ankle -14), and the chest and head counter-tilt to stay balanced.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 48,
+     "value": 0.14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rz",
+     "frame": 48,
+     "value": 2.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 48,
+     "delta": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 48,
+     "delta": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 48,
+     "value": -3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 48,
+     "value": 1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 48,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 48,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 48,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 72,
+     "value": -11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 72,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 72,
+     "value": -11
+    }
+   ]
+  },
+  {
+   "id": "idle-3-lockstep",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    96
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "Every channel has exactly one interior key, at frame 48 (lockstep 7 of 9 bones, overlap_score 0.0). curves.png shows nine copies of the same half-sine: chest, head, both arms and both elbows all reach their extreme on the same frame and all stop together, which is what produces the 16-frame dead hold around frame 48. Left and right arms are also mirror images. Fix: stagger the parts so nothing peaks together. The look-around leads, the chest follows the hips, and the arms and forearms drag behind by different amounts on each side.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "offset": 6
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "rz",
+     "offset": 4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": -12
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": [
+      "rx",
+      "rz"
+     ],
+     "offset": 8
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "ch": "rz",
+     "offset": 8
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "ch": "rz",
+     "offset": 12
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "ch": "rx",
+     "offset": 14
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "offset": 18
+    }
+   ]
+  },
+  {
+   "id": "idle-4-feet-sink",
+   "category": "awkward_pose",
+   "severity": "low",
+   "frames": [
+    0,
+    96
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "The breathing is done by dropping the root 0.03 studs while the legs stay straight, so both feet sink into the floor: lowest foot z goes from -0.015 at frame 0 to -0.045 at frame 48 (just under the 0.05 penetration threshold, but the feet are below the floor on all 97 frames). Re-plant the root after the weight shift so the supporting foot sits on the floor.",
+   "fix": [
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      96
+     ],
+     "step": 4,
+     "mode": "all"
+    }
+   ]
+  }
+ ]
+}

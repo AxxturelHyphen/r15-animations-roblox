@@ -1,0 +1,311 @@
+{
+ "animation": "jump",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 4,
+  "timing": 4,
+  "transitions": 5,
+  "appeal": 5
+ },
+ "summary": "Clear phases and a good arm swing, but the feet are below the floor on 28 of 31 frames, the 'airborne' frames look like standing on bent legs, the landing absorbs in 2 frames, the take-off pops in 3, and left and right are perfect mirrors with everything keyed on frames 6, 9 and 23. Fixes: flat feet in both crouches, hips over the toes at take-off, a higher uneven tuck, arms leading with staggered forearms, chest and head, a 4-frame landing and 4-frame take-off, and the root re-planted wherever a foot touches the floor.",
+ "findings": [
+  {
+   "id": "jump-1-crouch-feet",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftFoot",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "The feet are not flat in either crouch. At the anticipation (F006) and the landing absorb (F023) the foot is pitched 10 deg toes-down (thigh -70/-60 + knee 110/100 + foot -30), so the toes are pushed through the floor (-0.12 to -0.24 on F002-F006 and F022-F028). At take-off the ankle snaps to +40 while the ankle joint stays in place, so the toes swing 0.5 studs backwards under the floor instead of the heel lifting (F007-F009, down to -0.50). Fix: -40 on the ankle at the bottom of both crouches so the foot is flat, a less extreme toe point at take-off (28), and move the hips with the feet: slightly further back in the crouches and 0.2 studs forward over the toes at take-off so the feet do not slide.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 9,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 23,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 9,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 23,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 6,
+     "value": -0.36
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 9,
+     "value": 0.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 23,
+     "value": -0.38
+    }
+   ]
+  },
+  {
+   "id": "jump-2-tuck",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    10,
+    21
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "The airborne section does not read as airborne. The root returns to standing height by frame 14 while the feet are pointed 50-60 deg down, so the toes hang below the floor line for the whole 'flight' (F010-F021: -0.15 to -0.40) and in the side view the character seems to stand on bent legs. The tuck is also weak and perfectly symmetric (both legs thigh -40, knee 80). Fix: carry the take-off extension through the air (root +0.35 at the apex), tuck harder and unevenly (left thigh -52 / knee 96, right -42 / 84) and relax the toe point so the feet clear the floor.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": -52
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 96
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": 8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": -42
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 84
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 14,
+     "value": 0.35
+    }
+   ]
+  },
+  {
+   "id": "jump-3-twinning-lockstep",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm",
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "Left and right sides are mirror-identical on all six limb channel pairs (twinning: UpperLeg, LowerLeg, Foot, UpperArm rx and rz, LowerArm), and all 13 bones are keyed together at the crouch (frame 6) and the landing (frame 23), 8 of 13 at take-off (overlap_score 0.43). The arms hit their back-swing on the same frame the legs bottom out, so they do not drive the jump, and the forearms, chest and head have no follow-through. Fix: the arms lead the legs by 1 frame, the right arm swings slightly smaller than the left, the forearms drag 1 and 2 frames behind, the chest unfolds 1 frame after the hips and the head settles 2 frames late.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": [
+      "rx",
+      "rz"
+     ],
+     "offset": -1
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": [
+      "rx",
+      "rz"
+     ],
+     "factor": 0.92,
+     "pivot": "rest"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 2
+    }
+   ]
+  },
+  {
+   "id": "jump-4-landing-too-fast",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    21,
+    30
+   ],
+   "bones": [
+    "LeftLowerLeg",
+    "RightLowerLeg",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LowerTorso"
+   ],
+   "observation": "The landing absorbs in 2 frames: between F021 and F023 the knees go from 20 to 100 deg, the hips drop 0.65 studs and the chest folds 15 deg (accel spikes of 46-48 deg/frame^2 on both knees at 21 and 23, the largest in the clip; whole-body speed 190 deg/frame). It reads as the character being teleported into the squat with no weight. Fix: stretch contact-to-bottom to 4 frames; later keys ripple, so the clip becomes 2 frames longer and the 7-frame recovery is kept.",
+   "fix": [
+    {
+     "op": "retime",
+     "bones": "all",
+     "range": [
+      21,
+      23
+     ],
+     "scale": 2,
+     "ripple": true
+    }
+   ]
+  },
+  {
+   "id": "jump-5-takeoff-pop",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    6,
+    10
+   ],
+   "bones": [
+    "LeftLowerLeg",
+    "RightLowerLeg",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftUpperArm",
+    "RightUpperArm"
+   ],
+   "observation": "Take-off goes from the deepest crouch to full extension in 3 frames (F006-F009): knees 110 to 5, arms 50 to -150 in 4 frames, whole-body speed 410 deg/frame at frame 7, with accel spikes of 35-39 on knees and upper arms and velocity corners of 10-12 deg/frame at frames 6 and 9. There is no slow-out of the crouch, so the extension reads as a pop, not a push. Fix: give the push one more frame (keys on frames 8-9 and everything after move 1 frame later; the clip ends at frame 33 after both retimes).",
+   "fix": [
+    {
+     "op": "retime",
+     "bones": "all",
+     "range": [
+      8,
+      9
+     ],
+     "shift": 1,
+     "ripple": true
+    }
+   ]
+  },
+  {
+   "id": "jump-6-plant",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "Root height does not follow the legs: 56 foot-penetration frames in total (28 per foot, every frame except the first and last). After the pose and timing changes above, lift the root on every frame where a foot is at or below the floor (crouch, take-off on the toes, landing and recovery) and leave the airborne frames alone.",
+   "fix": [
+    {
+     "op": "plant_feet",
+     "step": 1,
+     "mode": "contact",
+     "tolerance": 0.05
+    }
+   ]
+  }
+ ]
+}
