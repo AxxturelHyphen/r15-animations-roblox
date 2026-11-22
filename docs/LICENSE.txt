@@ -1,7 +1,0 @@
-Folder File Sorter License
-
-Permission is granted to install and use this software for internal evaluation and day-to-day operational purposes. You may modify the source code for personal or in-house use only.
-
-Redistribution, sublicensing, selling, or otherwise making the software or derivative works available to third parties is strictly prohibited without written consent from the author.
-
-THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
