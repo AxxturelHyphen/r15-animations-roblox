@@ -1,0 +1,46 @@
+{
+ "animation": "jump",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 6,
+  "appeal": 7
+ },
+ "summary": "The fixes worked: feet are flat in both crouches and never below the floor (0 penetration frames, from 56), the take-off rolls onto the toes with the hips over them (F008-F011), the tuck is clearly airborne and uneven (F013-F018), the arms lead the legs, the landing absorbs over 4 frames (F022-F026) and nothing is mirrored any more. One medium problem is left, the feet creeping forward through the landing. The lockstep at F010 (arms and legs fully extended together) is the intended take-off extreme, and the remaining accel spikes belong to the take-off and landing impacts.",
+ "findings": [
+  {
+   "id": "jump-7-landing-slide",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    20,
+    30
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "After touchdown the planted feet slide forward about 0.2 studs: the toe contact point moves from +0.46 at F020 to +0.71 at F025 and the foot keeps creeping until F030 (metrics: contact drift 0.19 left / 0.20 right on frames 20-33, both flagged as slide segments). The hips are still travelling back towards the crouch offset (LowerTorso.lz -0.38 at F026) while the feet are already down, so the feet land 0.17 studs behind where they end up. Fix: have the hips almost over the feet at touchdown and sit back less at the bottom of the absorb.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 22,
+     "value": -0.08
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 26,
+     "value": -0.3
+    }
+   ]
+  }
+ ]
+}

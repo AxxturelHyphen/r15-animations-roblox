@@ -1,0 +1,14 @@
+{
+ "animation": "walk",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. Feet are on the floor for the whole cycle (0 penetration frames, from 62), the heel-to-toe roll reads in the side view (heel strike F000/F016, flat F003-F011, heel-off F012-F016), the swing leg now folds and clears with a clear passing pose (F008, F024), and the hips shift over the supporting leg with staggered chest, arms and head (no lockstep, overlap 1.0). The supporting foot's contact point moves back at 0.09-0.14 studs/frame through the stance. The 3 foot_slide_segments left in the metrics come from the swing foot skimming within 0.06 of the floor being counted as contact (stance-only std is 0.02), not from visible skating. Remaining polish only: toe clearance is tight at F004-F005 and F020-F021, the toe-off thigh has a 3.4 deg/frame corner at F016, and the root bob is small (0.04 studs).",
+ "findings": []
+}
