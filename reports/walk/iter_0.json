@@ -1,0 +1,501 @@
+{
+ "animation": "walk",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 4,
+  "timing": 5,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "x",
+ "findings": [
+  {
+   "id": "W1",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    32
+   ],
+   "bones": [
+    "LeftFoot",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": -15.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": 68
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 75
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 28,
+     "value": 52
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 12,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": -15.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 68
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 8,
+     "value": 75
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 12,
+     "value": 52
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": -28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 12,
+     "value": -18
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    },
+    {
+     "op": "set_easing",
+     "bones": "LeftUpperLeg",
+     "ch": "rx",
+     "range": [
+      0,
+      15
+     ],
+     "interpolation": "LINEAR",
+     "handle": "VECTOR"
+    },
+    {
+     "op": "set_easing",
+     "bones": "RightUpperLeg",
+     "ch": "rx",
+     "range": [
+      16,
+      31
+     ],
+     "interpolation": "LINEAR",
+     "handle": "VECTOR"
+    }
+   ]
+  },
+  {
+   "id": "W2",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    32
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 8,
+     "value": 0.07
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 24,
+     "value": -0.07
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rz",
+     "frame": 8,
+     "value": 2.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rz",
+     "frame": 24,
+     "value": -2.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 10,
+     "value": -2.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 26,
+     "value": 2.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 8,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 24,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 8,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 24,
+     "value": 5
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LowerTorso",
+      "UpperTorso",
+      "LeftUpperLeg",
+      "RightUpperLeg"
+     ],
+     "ch": [
+      "lx",
+      "rz"
+     ],
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "W3",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    32
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "range": [
+      0,
+      32
+     ],
+     "mode": "remove_interior"
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 5,
+     "value": 6
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 13,
+     "value": 3
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 21,
+     "value": 6
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 29,
+     "value": 3
+    },
+    {
+     "op": "smooth_transition",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "mode": "loop_seam"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 2
+    }
+   ]
+  },
+  {
+   "id": "W4",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    32
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "range": [
+      0,
+      32
+     ],
+     "mode": "smooth",
+     "strength": 0,
+     "step": 1
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      32
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  }
+ ]
+}
