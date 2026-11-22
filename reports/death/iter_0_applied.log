@@ -1,0 +1,133 @@
+[death-floor-01] {"op": "scale_amplitude", "bones": "Head", "ch": "ry", "factor": 0, "pivot": "rest"}
+scale_amplitude Head.ry [0,50] x0 about rest
+[death-floor-01] {"op": "set_pose", "bone": "Head", "ch": "rz", "frame": 38, "value": 0}
+set_pose Head.rz @ 38: 0.00 -> 0.00
+[death-floor-01] {"op": "set_pose", "bone": "Head", "ch": "rz", "frame": 45, "value": 22}
+set_pose Head.rz @ 45: 0.00 -> 22.00
+[death-floor-01] {"op": "set_pose", "bone": "Head", "ch": "rz", "frame": 50, "value": 22}
+set_pose Head.rz @ 50: 0.00 -> 22.00
+[death-floor-01] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 38, "value": 4}
+set_pose UpperTorso.rx @ 38: 0.00 -> 4.00
+[death-floor-01] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 50, "value": 4}
+set_pose UpperTorso.rx @ 50: 0.00 -> 4.00
+[death-floor-01] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 40, "value": -3.5}
+set_pose Head.rx @ 40: -0.99 -> -3.50
+[death-floor-01] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 50, "value": -3.5}
+set_pose Head.rx @ 50: -5.00 -> -3.50
+[death-floor-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 18, "value": -45}
+set_pose LeftFoot.rx @ 18: 0.00 -> -45.00
+[death-floor-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 28, "value": -30}
+set_pose LeftFoot.rx @ 28: -34.56 -> -30.00
+[death-floor-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 34, "value": 0}
+set_pose LeftFoot.rx @ 34: -17.59 -> 0.00
+[death-floor-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 18, "value": -45}
+set_pose RightFoot.rx @ 18: 0.00 -> -45.00
+[death-floor-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 28, "value": -30}
+set_pose RightFoot.rx @ 28: -34.56 -> -30.00
+[death-floor-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 34, "value": 0}
+set_pose RightFoot.rx @ 34: -17.59 -> 0.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 34, "value": 5}
+set_pose LeftUpperArm.rx @ 34: -10.00 -> 5.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 50, "value": 5}
+set_pose LeftUpperArm.rx @ 50: -10.00 -> 5.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 34, "value": 62}
+set_pose LeftUpperArm.rz @ 34: 70.00 -> 62.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 50, "value": 62}
+set_pose LeftUpperArm.rz @ 50: 70.00 -> 62.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 34, "value": -3}
+set_pose LeftLowerArm.rx @ 34: -20.00 -> -3.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 50, "value": -3}
+set_pose LeftLowerArm.rx @ 50: -20.00 -> -3.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rz", "frame": 34, "value": 28}
+set_pose LeftLowerArm.rz @ 34: 0.00 -> 28.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rz", "frame": 50, "value": 28}
+set_pose LeftLowerArm.rz @ 50: 0.00 -> 28.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 34, "value": 3.5}
+set_pose RightUpperArm.rx @ 34: -10.00 -> 3.50
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 50, "value": 3.5}
+set_pose RightUpperArm.rx @ 50: -10.00 -> 3.50
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 34, "value": -38}
+set_pose RightUpperArm.rz @ 34: -60.00 -> -38.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 50, "value": -38}
+set_pose RightUpperArm.rz @ 50: -60.00 -> -38.00
+[death-limp-02] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 34, "value": -3}
+set_pose RightLowerArm.rx @ 34: -35.00 -> -3.00
+[death-limp-02] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 50, "value": -3}
+set_pose RightLowerArm.rx @ 50: -35.00 -> -3.00
+[death-limp-02] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 34, "value": -14}
+set_pose RightLowerArm.rz @ 34: 0.00 -> -14.00
+[death-limp-02] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 50, "value": -14}
+set_pose RightLowerArm.rz @ 50: 0.00 -> -14.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 34, "value": -2}
+set_pose LeftUpperLeg.rx @ 34: -5.00 -> -2.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 50, "value": -2}
+set_pose LeftUpperLeg.rx @ 50: -5.00 -> -2.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 34, "value": 4}
+set_pose LeftLowerLeg.rx @ 34: 10.00 -> 4.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 50, "value": 4}
+set_pose LeftLowerLeg.rx @ 50: 10.00 -> 4.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 28, "value": 0}
+set_pose LeftUpperLeg.rz @ 28: 0.00 -> 0.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 34, "value": 7}
+set_pose LeftUpperLeg.rz @ 34: 0.00 -> 7.00
+[death-limp-02] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 50, "value": 7}
+set_pose LeftUpperLeg.rz @ 50: 0.00 -> 7.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 34, "value": -6}
+set_pose RightUpperLeg.rx @ 34: -15.00 -> -6.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 50, "value": -6}
+set_pose RightUpperLeg.rx @ 50: -15.00 -> -6.00
+[death-limp-02] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 34, "value": 12}
+set_pose RightLowerLeg.rx @ 34: 30.00 -> 12.00
+[death-limp-02] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 50, "value": 12}
+set_pose RightLowerLeg.rx @ 50: 30.00 -> 12.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 28, "value": 0}
+set_pose RightUpperLeg.rz @ 28: -9.18 -> 0.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 34, "value": -14}
+set_pose RightUpperLeg.rz @ 34: -10.00 -> -14.00
+[death-limp-02] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 50, "value": -14}
+set_pose RightUpperLeg.rz @ 50: -10.00 -> -14.00
+[death-impact-03] {"op": "set_pose", "bone": "LowerTorso", "ch": "rx", "frame": 28, "value": -48, "interpolation": "LINEAR"}
+set_pose LowerTorso.rx @ 28: -60.00 -> -48.00
+[death-impact-03] {"op": "set_pose", "bone": "LowerTorso", "ch": "rx", "frame": 32, "value": -90}
+set_pose LowerTorso.rx @ 32: -76.00 -> -90.00
+[death-impact-03] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 32, "value": -0.6}
+set_pose LowerTorso.lz @ 32: -0.58 -> -0.60
+[death-impact-03] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 28, "value": 12}
+set_pose UpperTorso.rx @ 28: -10.00 -> 12.00
+[death-impact-03] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 32, "value": -3}
+set_pose UpperTorso.rx @ 32: 2.08 -> -3.00
+[death-impact-03] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 34, "value": 9}
+set_pose UpperTorso.rx @ 34: 0.00 -> 9.00
+[death-impact-03] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 30, "value": 18}
+set_pose Head.rx @ 30: -20.00 -> 18.00
+[death-impact-03] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 33, "value": -7}
+set_pose Head.rx @ 33: 10.49 -> -7.00
+[death-impact-03] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 36, "value": 7}
+set_pose Head.rx @ 36: 0.00 -> 7.00
+[death-overlap-04] {"op": "offset_overlap", "bones": "LeftUpperArm", "offset": 2}
+offset_overlap LeftUpperArm.rx by +2 frames
+offset_overlap LeftUpperArm.rz by +2 frames
+[death-overlap-04] {"op": "offset_overlap", "bones": "LeftLowerArm", "offset": 4}
+offset_overlap LeftLowerArm.rx by +4 frames
+offset_overlap LeftLowerArm.rz by +4 frames
+[death-overlap-04] {"op": "offset_overlap", "bones": "RightUpperArm", "offset": 3}
+offset_overlap RightUpperArm.rx by +3 frames
+offset_overlap RightUpperArm.rz by +3 frames
+[death-overlap-04] {"op": "offset_overlap", "bones": "RightLowerArm", "offset": 5}
+offset_overlap RightLowerArm.rx by +5 frames
+offset_overlap RightLowerArm.rz by +5 frames
+[death-overlap-04] {"op": "offset_overlap", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot"], "offset": 3}
+offset_overlap LeftUpperLeg.rx by +3 frames
+offset_overlap LeftUpperLeg.rz by +3 frames
+offset_overlap LeftLowerLeg.rx by +3 frames
+offset_overlap LeftFoot.rx by +3 frames
+[death-overlap-04] {"op": "offset_overlap", "bones": ["RightUpperLeg", "RightLowerLeg", "RightFoot"], "offset": 4}
+offset_overlap RightUpperLeg.rx by +4 frames
+offset_overlap RightUpperLeg.rz by +4 frames
+offset_overlap RightLowerLeg.rx by +4 frames
+offset_overlap RightFoot.rx by +4 frames
+[death-floor-01] {"op": "plant_feet", "mode": "all", "step": 1, "parts": "all"}
+plant_feet [0,50] step 1 mode all: 51 keys, max correction 0.580 studs
+clamp LeftFoot.rx @ 21: -45.0 -> -45.0 (limit (-45, 55))
+clamp RightFoot.rx @ 22: -45.0 -> -45.0 (limit (-45, 55))
+applied 60 ops, skipped 0; saved work/death/iter_1.blend
