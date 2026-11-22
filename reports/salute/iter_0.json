@@ -1,25 +1,198 @@
 {
-  "animation": "salute",
-  "iteration": 0,
-  "verdict": "needs_work",
-  "scores": {"fluidity": 4, "posing": 3, "timing": 5, "transitions": 6, "appeal": 4},
-  "summary": "The salute does not read as a salute: the hand never reaches the brow. Forward kinematics on the F006-F032 hold puts the right hand centre at (x -0.87, y -0.41, z 4.23), i.e. jaw/cheek height (brow is z ~4.8), buried 0.11-0.15 studs in the head and 0.18 in the top of the chest, with the forearm 0.18 inside the chest as well. The clip is also fully lockstep (every bone keyed on F006 and F032, overlap_score 0.0) and frozen solid for 26 frames. Fixes: re-pose the arm so the fingertips rest against the right temple at brow height with the elbow out and forward (verified collision-free by FK), stagger the body so it comes to attention before the hand lands and relaxes after the arm starts down, add an elbow settle on arrival, and let the chest breathe through the hold.",
-  "findings": [
+ "animation": "salute",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 3,
+  "timing": 5,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "The salute does not read as a salute: the hand never reaches the brow. Forward kinematics on the F006-F032 hold puts the right hand centre at (x -0.87, y -0.41, z 4.23), i.e. jaw/cheek height (brow is z ~4.8), buried 0.11-0.15 studs in the head and 0.18 in the top of the chest, with the forearm 0.18 inside the chest as well. The clip is also fully lockstep (every bone keyed on F006 and F032, overlap_score 0.0) and frozen solid for 26 frames. Fixes: re-pose the arm so the fingertips rest against the right temple at brow height with the elbow out and forward (verified collision-free by FK), stagger the body so it comes to attention before the hand lands and relaxes after the arm starts down, add an elbow settle on arrival, and let the chest breathe through the hold.",
+ "findings": [
+  {
+   "id": "salute-hand-inside-head-below-brow",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    5,
+    33
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "Head",
+    "UpperTorso"
+   ],
+   "observation": "F005-F033 (both views): with RightUpperArm rx -70 / rz -55 and the elbow folded to -130 the hand box sits at world (-0.87, -0.41, 4.23): the head spans x +-0.6 and z 3.95-5.15, so the hand is at jaw height, a full 0.55 studs below the brow, and it overlaps the head by 0.11-0.15 studs (SAT depth) and the top of the chest by 0.18; the forearm is 0.18 inside the chest too. In the side view the blue hand covers the lower face; in the 3/4 view the forearm merges into the shoulder/neck. RightHand rx +20 bends the hand back off the forearm line, which further breaks the straight forearm-to-fingertip line a salute needs. Fix (solved with FK, torso/head at their -5/-5 hold): upper arm rx -89, ry -54 (new channel: swings the raised arm outward so the elbow is out to the right), rz -49, elbow -110, hand rx -7. That puts the elbow at (-2.0, -0.4, 4.35) and the hand centre at (-1.0, -0.14, 4.81): fingertips against the right temple at brow height, 0.02 studs clear of the head, forearm and hand clear of the chest by more than 0.2. The scale ops only move the F006/F032 hold keys (F000/F040 stay at the neutral values): rx -70 -> -89, rz -55 -> -49 (pivot -5), elbow -130 -> -110 (pivot -8), hand +20 -> -7.",
+   "fix": [
     {
-      "id": "salute-hand-inside-head-below-brow",
-      "category": "awkward_pose",
-      "severity": "high",
-      "frames": [5, 33],
-      "bones": ["RightUpperArm", "RightLowerArm", "RightHand", "Head", "UpperTorso"],
-      "observation": "F005-F033 (both views): with RightUpperArm rx -70 / rz -55 and the elbow folded to -130 the hand box sits at world (-0.87, -0.41, 4.23): the head spans x +-0.6 and z 3.95-5.15, so the hand is at jaw height, a full 0.55 studs below the brow, and it overlaps the head by 0.11-0.15 studs (SAT depth) and the top of the chest by 0.18; the forearm is 0.18 inside the chest too. In the side view the blue hand covers the lower face; in the 3/4 view the forearm merges into the shoulder/neck. RightHand rx +20 bends the hand back off the forearm line, which further breaks the straight forearm-to-fingertip line a salute needs. Fix (solved with FK, torso/head at their -5/-5 hold): upper arm rx -89, ry -54 (new channel: swings the raised arm outward so the elbow is out to the right), rz -49, elbow -110, hand rx -7. That puts the elbow at (-2.0, -0.4, 4.35) and the hand centre at (-1.0, -0.14, 4.81): fingertips against the right temple at brow height, 0.02 studs clear of the head, forearm and hand clear of the chest by more than 0.2. The scale ops only move the F006/F032 hold keys (F000/F040 stay at the neutral values): rx -70 -> -89, rz -55 -> -49 (pivot -5), elbow -130 -> -110 (pivot -8), hand +20 -> -7.",
-      "fix": [
-        {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rx", "factor": 1.2714, "pivot": "rest"},
-        {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rz", "factor": 0.88, "pivot": -5},
-        {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 6, "value": -54},
-        {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 32, "value": -54},
-        {"op": "scale_amplitude", "bones": "RightLowerArm", "ch": "rx", "factor": 0.8361, "pivot": -8},
-        {"op": "scale_amplitude", "bones": "RightHand", "ch": "rx", "factor": -0.35, "pivot": "rest"}
-      ]
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": "rx",
+     "factor": 1.2714,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": "rz",
+     "factor": 0.88,
+     "pivot": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 6,
+     "value": -54
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 32,
+     "value": -54
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "factor": 0.8361,
+     "pivot": -8
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightHand",
+     "ch": "rx",
+     "factor": -0.35,
+     "pivot": "rest"
     }
-  ]
+   ]
+  },
+  {
+   "id": "salute-lockstep-no-settle",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "RightLowerArm"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "retime",
+     "bones": [
+      "LeftUpperLeg",
+      "RightUpperLeg",
+      "LeftUpperArm"
+     ],
+     "range": [
+      6,
+      6
+     ],
+     "shift": -3,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "UpperTorso",
+      "Head"
+     ],
+     "range": [
+      6,
+      6
+     ],
+     "shift": -2,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "RightLowerArm"
+     ],
+     "range": [
+      6,
+      6
+     ],
+     "shift": 1,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "UpperTorso",
+      "Head",
+      "LeftUpperLeg",
+      "RightUpperLeg",
+      "LeftUpperArm"
+     ],
+     "range": [
+      32,
+      32
+     ],
+     "shift": 2,
+     "ripple": false
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "key_frame": 6,
+     "overshoot": 4,
+     "settle_frames": 4
+    }
+   ]
+  },
+  {
+   "id": "salute-frozen-hold",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    6,
+    32
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 17,
+     "value": -7.5
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 20,
+     "value": -3.5
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 22,
+     "value": 3.5
+    }
+   ]
+  }
+ ]
 }
