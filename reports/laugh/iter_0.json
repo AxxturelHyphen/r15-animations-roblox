@@ -1,0 +1,267 @@
+{
+ "animation": "laugh",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 4,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "",
+ "findings": [
+  {
+   "id": "laugh-hand-not-on-belly-forearm-in-chest",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    3,
+    39
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "UpperTorso"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -68
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -68
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 6,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 6,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 34,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -117
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -117
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "ry",
+     "frame": 6,
+     "value": 60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "ry",
+     "frame": 34,
+     "value": 60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 6,
+     "value": -51
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -51
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 6,
+     "value": 19
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 34,
+     "value": 19
+    }
+   ]
+  },
+  {
+   "id": "laugh-metronome-bounce",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "range": [
+      6,
+      14
+     ],
+     "factor": 1.25,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "range": [
+      22,
+      34
+     ],
+     "factor": 0.7,
+     "pivot": -9
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "rx",
+     "range": [
+      6,
+      14
+     ],
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "rx",
+     "range": [
+      22,
+      34
+     ],
+     "factor": 0.7,
+     "pivot": -17
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 2,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 2,
+     "value": 6
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm",
+      "RightHand"
+     ],
+     "offset": 2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 12,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 20,
+     "value": 13
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 28,
+     "value": 18
+    }
+   ]
+  },
+  {
+   "id": "laugh-root-bob-sinks-feet",
+   "category": "awkward_pose",
+   "severity": "low",
+   "frames": [
+    1,
+    39
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 4
+    }
+   ]
+  }
+ ]
+}
