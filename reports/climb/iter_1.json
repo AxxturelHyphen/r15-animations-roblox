@@ -1,0 +1,44 @@
+{
+ "animation": "climb",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. Verified on the rig: both hands stay 1.22-1.47 studs in front of the root through the whole cycle (1.22-1.28 at the top and bottom of each stroke) and travel 1.1 studs vertically (4.47 to 5.57); feet stay 0.79-0.88 in front. The reach now lands by about frame 10/25 and holds on the rung, the feet follow 3 frames later, and the chest turns the reaching shoulder toward the truss. Metrics all 0, overlap 1.0, no intersections, seam closed. Side view F000-F030 reads clearly as hand-over-hand on a truss in front. One low polish item remains.",
+ "findings": [
+  {
+   "id": "climb-1-head-fixed-pitch",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "Head.rx is still a flat -15 for the whole loop; only the small counter-turn on ry moves the head. A slight extra look-up as each hand lands would add life, but it is not noticeable at game distance.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 10,
+     "value": -19
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 25,
+     "value": -19
+    }
+   ]
+  }
+ ]
+}
