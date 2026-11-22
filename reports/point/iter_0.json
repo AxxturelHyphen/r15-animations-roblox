@@ -9,7 +9,7 @@
   "transitions": 6,
   "appeal": 4
  },
- "summary": "",
+ "summary": "Clean curves (no pops, feet planted, hands clear of the body) but it is a blocked-in pose-to-pose move, not an animation: every bone is keyed on F008 and F030 only (overlap_score 0.0), the arm swings up as one rigid rod with no anticipation, drag or settle, the whole body is frozen for 22 frames (F008-F030, whole-body speed 0.0), and the chest turns AWAY from the pointing arm, so the gesture has no commitment. Fixes: turn and lean the chest into the point, add a small wind-up, elbow/wrist drag and an overshoot-settle on arrival, let the head lead and trail the arm, and put one emphasis beat in the hold.",
  "findings": [
   {
    "id": "point-torso-turns-away",
@@ -23,7 +23,7 @@
     "UpperTorso",
     "Head"
    ],
-   "observation": "",
+   "observation": "F008-F030: UpperTorso.ry is -10 (twist to the character's RIGHT), which pulls the pointing (right) shoulder back and away from the target. The spec asks to 'turn slightly into' the point, i.e. the right shoulder should come forward (ry > 0). Because the arm is a child of the chest, the -10 twist also aims the arm 10 deg off to the right: FK puts the hand at x -1.75, outside the shoulder line (x -1.5), while Head.ry +5 leaves the face looking somewhere else (net -5). In the 3/4 view the chest opens away from the arm and the pose reads as a stiff signpost. The spine is also dead vertical (no rx at all). Fix: flip the twist to +8 (factor -0.8 on the F008/F030 keys), counter the head to -5 so the face stays on the target (net +3), and lean the chest 4 deg into the gesture (UpperTorso.rx > 0 = forward). After the fix the hand sits at x -1.1, converging on the target in front of the character, 6 deg above horizontal.",
    "fix": [
     {
      "op": "scale_amplitude",
@@ -68,30 +68,31 @@
     "RightLowerArm",
     "RightHand",
     "Head",
+    "UpperTorso",
     "LeftUpperArm"
    ],
-   "observation": "",
+   "observation": "F000-F008: the arm is raised by a single RightUpperArm.rx curve 0 -> -100 with one ease-in/ease-out; the elbow moves 3 deg (-8 -> -5) and RightHand.rx is 0 on every key, so the arm rotates about the shoulder like a rigid bar (side view F002-F007: forearm and hand stay perfectly collinear). There is no anticipation before F001, and at F008 everything (6 of 6 bones, lockstep) hits its final value on the same frame and stops dead: no overshoot, no settle (whole-body speed 5.9 at F007, 0.0 at F008). Fix: a 2-frame wind-up (arm back +8, elbow starting to fold), the elbow leading with the forearm dragging (-40 at F005) and whipping straight on arrival, wrist drag then flick (Hand.rx +18 at F005 = trailing, -8 at F008, 0 at F012), a 6 deg overshoot on the upper arm that settles by F012, the head arriving 3 frames early (look, then point), the chest 1 frame early and the left counter-swing 2 frames late.",
    "fix": [
     {
      "op": "set_pose",
      "bone": "RightUpperArm",
      "ch": "rx",
      "frame": 2,
-     "value": 10
+     "value": 8
     },
     {
      "op": "set_pose",
      "bone": "RightLowerArm",
      "ch": "rx",
      "frame": 2,
-     "value": -20
+     "value": -18
     },
     {
      "op": "set_pose",
      "bone": "RightLowerArm",
      "ch": "rx",
      "frame": 5,
-     "value": -45
+     "value": -40
     },
     {
      "op": "add_breakdown",
@@ -151,13 +152,13 @@
      "bones": [
       "LeftUpperArm"
      ],
-     "ch": "rx",
      "range": [
       8,
       8
      ],
      "shift": 2,
-     "ripple": false
+     "ripple": false,
+     "ch": "rx"
     }
    ]
   },
@@ -174,7 +175,7 @@
     "RightLowerArm",
     "Head"
    ],
-   "observation": "",
+   "observation": "F008-F030: metrics.dead_holds reports a 22-frame hold with whole-body speed exactly 0.0; frames F008 through F030 on both contact sheets are pixel-identical. Over half of the 40-frame clip is a freeze frame, which reads as the game hanging rather than a character holding a gesture. Fix: one emphasis beat in the middle of the hold ('that one!'): the arm dips 7 deg at F018 with a slightly soft elbow and jabs back out to -102 at F021 before easing to the -100 hold key, and the head nods 4 deg toward the target at F020. The overshoot-settle from the previous finding covers F008-F012, so the body is never fully static.",
    "fix": [
     {
      "op": "set_pose",
@@ -195,7 +196,7 @@
      "bone": "RightLowerArm",
      "ch": "rx",
      "frame": 18,
-     "value": -18
+     "value": -12
     },
     {
      "op": "set_pose",
@@ -226,7 +227,7 @@
     "Head",
     "UpperTorso"
    ],
-   "observation": "",
+   "observation": "F030-F040: every channel leaves its hold on F030 and lands on F040 with the same ease, and the arm comes down as the same rigid bar that went up (elbow -5 -> -8). Fix: let the elbow relax as the arm falls (-24 at F036, straightening into the neutral -8), keep the head on the target 3 frames longer and the chest 1 frame longer so the arm leads the recovery.",
    "fix": [
     {
      "op": "set_pose",

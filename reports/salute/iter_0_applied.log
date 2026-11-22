@@ -1,0 +1,33 @@
+[salute-hand-inside-head-below-brow] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rx", "factor": 1.2714, "pivot": "rest"}
+scale_amplitude RightUpperArm.rx [0,40] x1.2714 about rest
+[salute-hand-inside-head-below-brow] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rz", "factor": 0.86, "pivot": -5}
+scale_amplitude RightUpperArm.rz [0,40] x0.86 about -5
+[salute-hand-inside-head-below-brow] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 6, "value": -56}
+set_pose RightUpperArm.ry @ 6: 0.00 -> -56.00
+[salute-hand-inside-head-below-brow] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 32, "value": -56}
+set_pose RightUpperArm.ry @ 32: -7.84 -> -56.00
+[salute-hand-inside-head-below-brow] {"op": "scale_amplitude", "bones": "RightLowerArm", "ch": "rx", "factor": 0.8361, "pivot": -8}
+scale_amplitude RightLowerArm.rx [0,40] x0.8361 about -8
+[salute-hand-inside-head-below-brow] {"op": "scale_amplitude", "bones": "RightHand", "ch": "rx", "factor": -0.35, "pivot": "rest"}
+scale_amplitude RightHand.rx [0,40] x-0.35 about rest
+[salute-lockstep-no-settle] {"op": "add_breakdown", "bone": "RightUpperArm", "ch": "rz", "frame": 8, "value": -44.5}
+set_pose RightUpperArm.rz @ 8: -48.00 -> -44.50
+[salute-lockstep-no-settle] {"op": "add_breakdown", "bone": "RightUpperArm", "ch": "rz", "frame": 11, "value": -48}
+set_pose RightUpperArm.rz @ 11: -44.65 -> -48.00
+[salute-frozen-hold] {"op": "add_breakdown", "bone": "UpperTorso", "ch": "rx", "frame": 17, "value": -8}
+set_pose UpperTorso.rx @ 17: -5.00 -> -8.00
+[salute-frozen-hold] {"op": "add_breakdown", "bone": "Head", "ch": "rx", "frame": 21, "value": -3}
+set_pose Head.rx @ 21: -5.00 -> -3.00
+[salute-frozen-hold] {"op": "add_breakdown", "bone": "LeftUpperArm", "ch": "rz", "frame": 24, "value": 4}
+set_pose LeftUpperArm.rz @ 24: 2.00 -> 4.00
+[salute-frozen-hold] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 32, "value": -87}
+set_pose RightUpperArm.rx @ 32: -89.00 -> -87.00
+[salute-lockstep-no-settle] {"op": "retime", "bones": ["LeftUpperLeg", "RightUpperLeg", "LeftUpperArm"], "range": [6, 6], "shift": -3, "ripple": false}
+retime bones=['LeftUpperLeg', 'RightUpperLeg', 'LeftUpperArm'] [6,6] scale 1 shift -3 ripple=False -> frame_end 40
+[salute-lockstep-no-settle] {"op": "retime", "bones": ["UpperTorso", "Head"], "range": [6, 6], "shift": -2, "ripple": false}
+retime bones=['UpperTorso', 'Head'] [6,6] scale 1 shift -2 ripple=False -> frame_end 40
+[salute-lockstep-no-settle] {"op": "retime", "bones": ["RightLowerArm"], "range": [6, 6], "shift": 1, "ripple": false}
+retime bones=['RightLowerArm'] [6,6] scale 1 shift +1 ripple=False -> frame_end 40
+[salute-lockstep-no-settle] {"op": "retime", "bones": ["UpperTorso", "Head", "LeftUpperLeg", "RightUpperLeg", "LeftUpperArm"], "range": [32, 32], "shift": 2, "ripple": false}
+retime bones=['UpperTorso', 'Head', 'LeftUpperLeg', 'RightUpperLeg', 'LeftUpperArm'] [32,32] scale 1 shift +2 ripple=False -> frame_end 40
+applied 16 ops, skipped 0; saved work/salute/iter_1.blend

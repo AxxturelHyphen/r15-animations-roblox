@@ -1,0 +1,118 @@
+{
+ "animation": "block",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 6,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 6
+ },
+ "summary": "wip",
+ "findings": [
+  {
+   "id": "block-clip-01",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "Head"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperArm",
+     "ch": "rx",
+     "delta": -5
+    },
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperArm",
+     "ch": "ry",
+     "delta": 15
+    },
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperArm",
+     "ch": "rz",
+     "delta": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -60.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -60
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -65
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperArm",
+     "ch": "rx",
+     "delta": -11
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperArm",
+     "ch": "ry",
+     "delta": -21
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperArm",
+     "ch": "rz",
+     "delta": -16
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -60.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -65
+    },
+    {
+     "op": "offset_channel",
+     "bones": "Head",
+     "ch": "rx",
+     "delta": -3
+    }
+   ]
+  }
+ ]
+}

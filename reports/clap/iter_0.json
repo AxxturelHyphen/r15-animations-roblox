@@ -9,7 +9,7 @@
   "transitions": 6,
   "appeal": 3
  },
- "summary": "",
+ "summary": "The hands never meet, so this is not a clap. Forward kinematics on the 'closed' keys (F008, F013, F018, F023, F028, F033) puts the hand centres at x = +-1.23, i.e. 2.46 studs apart with a 1.66-stud air gap between the hand boxes (each hand is 0.8 wide), and on the 'open' keys at x = +-1.39: each hand travels 0.16 studs sideways but 0.22 studs up and down, at head height (z 3.53-3.75), so it reads as two fists pumping beside the face. The four arm channels are also exact mirrors (4 twinned channels) and the body under the arms is static. Fixes: re-aim the arms so the forearms converge in front of the chest and the existing six-beat rz oscillation on the forearms now closes the hands exactly to contact (0.00 studs, never overlapping, checked on every half frame in a dry run), make the right hand the dominant one, and give the chest and head a beat that follows the claps.",
  "findings": [
   {
    "id": "clap-hands-never-meet",
@@ -27,7 +27,7 @@
     "LeftHand",
     "RightHand"
    ],
-   "observation": "",
+   "observation": "F004-F036: the clap is driven by UpperArm.rz and LowerArm.rz (-15/-35 and -10/-35 on the left, mirrored on the right). With the upper arm already raised 55 deg forward, rz (about the forward axis) mostly rolls the arm around its own length, and the forearm rz axis is only 30 deg off the forearm direction, so 25 deg of rz moves the hand 0.16 studs sideways. Measured hand centres: closed keys (+-1.23, -1.87, 3.75), open keys (+-1.39, -1.93, 3.53): the hand boxes are never closer than 1.66 studs. The crossed-arms look in the 3/4 view is perspective only; nothing touches and nothing passes through. The pose is also too high (hands at z 3.75 = mouth height, 1.9 studs in front of the body). Because left and right are exact mirrors (metrics.twinning: UpperArm rx/rz and LowerArm rx/rz), the motion is perfectly symmetric as well. Fix, solved with FK: raise the upper arms a little more (rx -66 left / -70 right), swing them inward with the new UpperArm.ry channel (left -11 = toward the character's right, right +12 = toward the left), hold UpperArm.rz constant (left +11, right -8) instead of oscillating it, open the elbows (rx -34 left / -28 right) and remap the existing forearm rz beats so they do the clapping: left -31 open / -49 closed, right +17 open / +47 closed. Closed keys then give hand centres (+0.50, -1.62, 3.37) and (-0.43, -1.63, 3.41): the boxes touch at 0.00 studs in front of the chest, slightly left of centre; open keys give a 0.63-stud gap. The right hand travels 0.57 studs and the left 0.30, so the right is the striking hand and the mirror symmetry is gone. Timing of the six beats is unchanged. In the dry run the hands never overlap between keys and no arm part touches the torso, head or the other arm.",
    "fix": [
     {
      "op": "scale_amplitude",
@@ -144,34 +144,34 @@
     "Head",
     "LowerTorso"
    ],
-   "observation": "",
+   "observation": "F006-F034: UpperTorso.rx is a flat +5 for 28 frames and LowerTorso.ly a flat -0.03, so the 'slight bounce' in the spec does not exist: the torso is a statue with two arms flapping on it, and the only secondary motion is a 2 deg head bob keyed on exactly the clap frames (lockstep_key_frames on F008/F013/F018/F023/F028/F033, overlap_score 0.476). The -0.03 root offset has no knee bend behind it, so it just sinks both feet 0.03 studs into the floor for F008-F028 (feet.lowest_z_per_frame -0.03). Fix: a chest pulse that follows every second clap by one frame (rx 3.5 at F014 and F024, 6.5 at F019 and F029; rx > 0 is a forward lean), the head bob delayed 1 frame so it reacts to the clap instead of hitting with the hands, and the root offset removed so the feet sit on the floor. The arms are children of the chest, so the hand contact is unaffected.",
    "fix": [
     {
      "op": "set_pose",
      "bone": "UpperTorso",
      "ch": "rx",
-     "frame": 13,
+     "frame": 14,
      "value": 3.5
     },
     {
      "op": "set_pose",
      "bone": "UpperTorso",
      "ch": "rx",
-     "frame": 18,
+     "frame": 19,
      "value": 6.5
     },
     {
      "op": "set_pose",
      "bone": "UpperTorso",
      "ch": "rx",
-     "frame": 23,
+     "frame": 24,
      "value": 3.5
     },
     {
      "op": "set_pose",
      "bone": "UpperTorso",
      "ch": "rx",
-     "frame": 28,
+     "frame": 29,
      "value": 6.5
     },
     {
@@ -181,11 +181,14 @@
      "offset": 1
     },
     {
-     "op": "scale_amplitude",
+     "op": "smooth_transition",
      "bones": "LowerTorso",
      "ch": "ly",
-     "factor": 0,
-     "pivot": "rest"
+     "mode": "remove_interior",
+     "range": [
+      0,
+      40
+     ]
     }
    ]
   }

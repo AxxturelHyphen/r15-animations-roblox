@@ -9,7 +9,7 @@
   "transitions": 6,
   "appeal": 4
  },
- "summary": "The salute does not read as a salute: the hand never reaches the brow. Forward kinematics on the F006-F032 hold puts the right hand centre at (x -0.87, y -0.41, z 4.23), i.e. jaw/cheek height (brow is z ~4.8), buried 0.11-0.15 studs in the head and 0.18 in the top of the chest, with the forearm 0.18 inside the chest as well. The clip is also fully lockstep (every bone keyed on F006 and F032, overlap_score 0.0) and frozen solid for 26 frames. Fixes: re-pose the arm so the fingertips rest against the right temple at brow height with the elbow out and forward (verified collision-free by FK), stagger the body so it comes to attention before the hand lands and relaxes after the arm starts down, add an elbow settle on arrival, and let the chest breathe through the hold.",
+ "summary": "The salute does not read as a salute because the hand never reaches the brow. Forward kinematics on the F006-F032 hold puts the right hand centre at (x -0.87, y -0.41, z 4.23): jaw height (the brow is at z ~4.8), buried 0.11-0.15 studs in the head and 0.18 in the top of the chest, with the forearm 0.18 inside the chest as well. The clip is also fully lockstep (all 8 bones keyed on F006 and F032, overlap_score 0.0) and frozen solid for 26 frames. Fixes: re-pose the arm so the fingertips rest against the right temple at brow height with the elbow out (checked collision-free on every half frame in a dry run), bring the body to attention before the hand lands and relax it after the arm starts down, add a small rebound on contact, and let the chest breathe through the hold.",
  "findings": [
   {
    "id": "salute-hand-inside-head-below-brow",
@@ -26,7 +26,7 @@
     "Head",
     "UpperTorso"
    ],
-   "observation": "F005-F033 (both views): with RightUpperArm rx -70 / rz -55 and the elbow folded to -130 the hand box sits at world (-0.87, -0.41, 4.23): the head spans x +-0.6 and z 3.95-5.15, so the hand is at jaw height, a full 0.55 studs below the brow, and it overlaps the head by 0.11-0.15 studs (SAT depth) and the top of the chest by 0.18; the forearm is 0.18 inside the chest too. In the side view the blue hand covers the lower face; in the 3/4 view the forearm merges into the shoulder/neck. RightHand rx +20 bends the hand back off the forearm line, which further breaks the straight forearm-to-fingertip line a salute needs. Fix (solved with FK, torso/head at their -5/-5 hold): upper arm rx -89, ry -54 (new channel: swings the raised arm outward so the elbow is out to the right), rz -49, elbow -110, hand rx -7. That puts the elbow at (-2.0, -0.4, 4.35) and the hand centre at (-1.0, -0.14, 4.81): fingertips against the right temple at brow height, 0.02 studs clear of the head, forearm and hand clear of the chest by more than 0.2. The scale ops only move the F006/F032 hold keys (F000/F040 stay at the neutral values): rx -70 -> -89, rz -55 -> -49 (pivot -5), elbow -130 -> -110 (pivot -8), hand +20 -> -7.",
+   "observation": "F005-F033 (both views): with RightUpperArm rx -70 / rz -55 and the elbow folded to -130, the hand box sits at world (-0.87, -0.41, 4.23). The head spans x +-0.6 and z 3.95-5.15, so the hand is at jaw height, 0.55 studs below the brow, and it overlaps the head by 0.11-0.15 studs (box-box penetration depth) and the top of the chest by 0.18; the forearm is 0.18 inside the chest too. In the side view the blue hand covers the lower face, and in the 3/4 view the forearm merges into the shoulder and neck. RightHand.rx +20 also bends the hand back off the forearm, breaking the straight forearm-to-fingertip line a salute needs. Fix (solved with FK against the -5/-5 chest/head hold): upper arm rx -89, ry -56 (new channel; with the arm raised this swings the elbow out to the character's right), rz -48, elbow -110, hand rx -7. That puts the elbow at about (-2.0, -0.4, 4.35) and the hand centre at (-1.02, -0.1, 4.82): fingertips against the right temple at brow height, 0.02 studs clear of the head, forearm and hand more than 0.2 clear of the chest; the elbow has to sit above the shoulder because the R15 arm is too short to reach the brow otherwise. The scale ops only change the F006/F032 hold keys (F000/F040 stay neutral): rx -70 -> -89, rz -55 -> -48 (pivot -5), elbow -130 -> -110 (pivot -8), hand +20 -> -7.",
    "fix": [
     {
      "op": "scale_amplitude",
@@ -89,7 +89,7 @@
     "RightUpperArm",
     "RightLowerArm"
    ],
-   "observation": "",
+   "observation": "metrics: lockstep_key_frames F006 (8 of 8 bones) and F032 (8 of 8), overlap_score 0.0. Heels, left arm, chest, head, shoulder, elbow and wrist all start on F000, arrive on F006 and leave on F032 with identical eases, so the move reads as one interpolated pose change; the hand reaches the brow and simply stops (whole-body speed 20.7 at F005, 0.0 at F006), with no contact accent. Fix: come to attention first (heels and left arm arrive at F003, chest and head at F004), the shoulder lands at F006 and the elbow closes one frame later at F007, then a 3.5 deg rebound of the elbow outward at F008 that presses back in by F011 (the rebound moves the hand AWAY from the head, gap 0.02 -> 0.06, so it cannot penetrate). On the release the arm leaves at F032 while chest, head, heels and left arm hold attention until F034.",
    "fix": [
     {
      "op": "retime",
@@ -173,9 +173,10 @@
    "bones": [
     "UpperTorso",
     "Head",
-    "LeftUpperArm"
+    "LeftUpperArm",
+    "RightUpperArm"
    ],
-   "observation": "",
+   "observation": "metrics: dead_holds F006-F032, 26 frames with whole-body speed exactly 0.0 (65% of the clip); F006 to F032 on the contact sheets are identical images. A salute should be rigid, but not a still frame. Fix: one slow breath through the hold, staggered so the parts never peak together: chest lifts a further 3 deg (rx -5 -> -8, chest up) by F017, the head counters 2 deg by F021 so the gaze stays level, the left arm eases 2 deg off the body by F024, and the saluting arm sags 2 deg (rx -89 -> -87) by the end of the hold, which also slides the hand slightly away from the head (gap 0.02 -> 0.04). The arm and head are both children of the chest, so the brow contact holds while it breathes.",
    "fix": [
     {
      "op": "add_breakdown",

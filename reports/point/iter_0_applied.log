@@ -1,0 +1,45 @@
+[point-torso-turns-away] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "ry", "factor": -0.8, "pivot": "rest"}
+scale_amplitude UpperTorso.ry [0,40] x-0.8 about rest
+[point-torso-turns-away] {"op": "scale_amplitude", "bones": "Head", "ch": "ry", "factor": -1.0, "pivot": "rest"}
+scale_amplitude Head.ry [0,40] x-1 about rest
+[point-torso-turns-away] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 8, "value": 4}
+set_pose UpperTorso.rx @ 8: 0.00 -> 4.00
+[point-torso-turns-away] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 30, "value": 4}
+set_pose UpperTorso.rx @ 30: 0.93 -> 4.00
+[point-rigid-arm-no-antic-no-settle] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 2, "value": 8}
+set_pose RightUpperArm.rx @ 2: -15.63 -> 8.00
+[point-rigid-arm-no-antic-no-settle] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 2, "value": -18}
+set_pose RightLowerArm.rx @ 2: -7.53 -> -18.00
+[point-rigid-arm-no-antic-no-settle] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 5, "value": -40}
+set_pose RightLowerArm.rx @ 5: -11.50 -> -40.00
+[point-rigid-arm-no-antic-no-settle] {"op": "add_breakdown", "bone": "RightUpperArm", "ch": "rx", "key_frame": 8, "overshoot": 6, "settle_frames": 4}
+overshoot RightUpperArm.rx @ 8: -100.00 -> -106.00, settles by 12
+[point-rigid-arm-no-antic-no-settle] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 5, "value": 18}
+set_pose RightHand.rx @ 5: 0.00 -> 18.00
+[point-rigid-arm-no-antic-no-settle] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 8, "value": -8}
+set_pose RightHand.rx @ 8: 0.00 -> -8.00
+[point-rigid-arm-no-antic-no-settle] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 12, "value": 0}
+set_pose RightHand.rx @ 12: -7.66 -> 0.00
+[point-dead-hold] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 18, "value": -93}
+set_pose RightUpperArm.rx @ 18: -100.00 -> -93.00
+[point-dead-hold] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 21, "value": -102}
+set_pose RightUpperArm.rx @ 21: -94.09 -> -102.00
+[point-dead-hold] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 18, "value": -12}
+set_pose RightLowerArm.rx @ 18: -5.00 -> -12.00
+[point-dead-hold] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 21, "value": -3}
+set_pose RightLowerArm.rx @ 21: -10.91 -> -3.00
+[point-dead-hold] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 20, "value": -1}
+set_pose Head.rx @ 20: -5.00 -> -1.00
+[point-lowering-all-together] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 36, "value": -24}
+set_pose RightLowerArm.rx @ 36: -7.32 -> -24.00
+[point-rigid-arm-no-antic-no-settle] {"op": "retime", "bones": ["Head"], "range": [8, 8], "shift": -3, "ripple": false}
+retime bones=['Head'] [8,8] scale 1 shift -3 ripple=False -> frame_end 40
+[point-rigid-arm-no-antic-no-settle] {"op": "retime", "bones": ["UpperTorso"], "range": [8, 8], "shift": -1, "ripple": false}
+retime bones=['UpperTorso'] [8,8] scale 1 shift -1 ripple=False -> frame_end 40
+[point-rigid-arm-no-antic-no-settle] {"op": "retime", "bones": ["LeftUpperArm"], "range": [8, 8], "shift": 2, "ripple": false, "ch": "rx"}
+retime bones=['LeftUpperArm'] [8,8] scale 1 shift +2 ripple=False -> frame_end 40
+[point-lowering-all-together] {"op": "retime", "bones": ["Head"], "range": [30, 30], "shift": 3, "ripple": false}
+retime bones=['Head'] [30,30] scale 1 shift +3 ripple=False -> frame_end 40
+[point-lowering-all-together] {"op": "retime", "bones": ["UpperTorso"], "range": [30, 30], "shift": 1, "ripple": false}
+retime bones=['UpperTorso'] [30,30] scale 1 shift +1 ripple=False -> frame_end 40
+applied 22 ops, skipped 0; saved work/point/iter_1.blend
