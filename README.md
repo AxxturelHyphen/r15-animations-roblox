@@ -23,51 +23,97 @@ by a **Fable 5.2 critic agent**, then fixed automatically by Claude, which edits
 
 ## Animations
 
-| Set | Animation | Frames @30fps | Loop | Priority |
-|---|---|---|---|---|
-| Locomotion | idle | 96 | ✓ | Idle |
-| | walk | 32 | ✓ | Movement |
-| | run | 20 | ✓ | Movement |
-| | jump | 33 (spec 30, retimed by the critic) | | Movement |
-| Combat | punch | 24 | | Action |
-| | sword_slash | 30 | | Action |
-| | hit_react | 20 | | Action |
-| Emotes | wave | 48 | | Action |
-| | dance | 64 | ✓ | Action |
-| | cheer | 40 | | Action |
+25 clips in seven sets:
+
+| Set | Animation | Frames @30fps | Loop | Priority | Floor contact |
+|---|---|---|---|---|---|
+| Locomotion | idle | 96 | ✓ | Idle | feet |
+|  | walk | 32 | ✓ | Movement | feet |
+|  | run | 20 | ✓ | Movement | feet |
+|  | jump | 33 (spec 30, retimed by the critic) |  | Movement | feet |
+| Combat | punch | 24 |  | Action | feet |
+|  | sword_slash | 30 |  | Action | feet |
+|  | hit_react | 20 |  | Action | feet |
+| Emotes | wave | 48 |  | Action | feet |
+|  | dance | 64 | ✓ | Action | feet |
+|  | cheer | 40 |  | Action | feet |
+| Movement states | fall | 24 | ✓ | Movement | none |
+|  | climb | 30 | ✓ | Movement | none |
+|  | swim | 40 | ✓ | Movement | none |
+|  | swim_idle | 60 | ✓ | Movement | none |
+|  | sit | 60 | ✓ | Core | none |
+| Combat 2 | block | 30 | ✓ | Action | feet |
+|  | kick | 30 |  | Action | feet |
+|  | combo | 48 |  | Action | feet |
+|  | death | 50 |  | Action4 | body |
+| Emotes 2 | point | 40 |  | Action | feet |
+|  | laugh | 48 |  | Action | feet |
+|  | clap | 40 |  | Action | feet |
+|  | salute | 40 |  | Action | feet |
+| Crouch | crouch_idle | 72 | ✓ | Idle | feet |
+|  | crouch_walk | 40 | ✓ | Movement | feet |
+
+Floor contact tells the metrics and fixes what should touch the floor: `feet`; `none` (airborne, on a truss, in water or on a seat); or `body` (lying down).
 
 ## Results
 
-All 10 animations were **approved** by the Fable 5.2 critic within 2–3 rounds. Critic scores, first round → final:
+All 25 animations were **approved** by the Fable 5.2 critic. Most needed 2–3 rounds. `death` needed a 4th, verification-only round: its round-3 fix had only been dry-run, and it was applied and re-reviewed rather than shipped unseen. Critic scores, first round → final:
 
-| Animation | Fluidity | Posing | Timing | Transitions | Appeal |
-|---|---|---|---|---|---|
-| idle | 4 → 7 | 4 → 7 | 4 → 7 | 7 → 9 | 3 → 6 |
-| walk | 5 → 8 | 3 → 8 | 5 → 8 | 5 → 8 | 4 → 7 |
-| run | 4 → 8 | 3 → 8 | 4 → 8 | 5 → 7 | 4 → 7 |
-| jump | 4 → 8 | 4 → 8 | 4 → 8 | 5 → 8 | 5 → 7 |
-| punch | 5 → 7 | 4 → 7 | 6 → 8 | 6 → 8 | 5 → 7 |
-| sword_slash | 5 → 8 | 3 → 8 | 6 → 8 | 5 → 7 | 5 → 8 |
-| hit_react | 4 → 8 | 5 → 7 | 6 → 8 | 6 → 8 | 4 → 7 |
-| wave | 5 → 7 | 4 → 7 | 5 → 7 | 6 → 8 | 4 → 7 |
-| dance | 5 → 8 | 5 → 7 | 5 → 7 | 5 → 8 | 4 → 7 |
-| cheer | 5 → 7 | 3 → 8 | 6 → 7 | 5 → 8 | 5 → 7 |
+| Animation | Rounds | Verdict | Fluidity | Posing | Timing | Transitions | Appeal |
+|---|---|---|---|---|---|---|---|
+| idle | 2 | approved | 4 → 7 | 4 → 7 | 4 → 7 | 7 → 9 | 3 → 6 |
+| walk | 2 | approved | 5 → 8 | 3 → 8 | 5 → 8 | 5 → 8 | 4 → 7 |
+| run | 3 | approved | 4 → 8 | 3 → 8 | 4 → 8 | 5 → 7 | 4 → 7 |
+| jump | 3 | approved | 4 → 8 | 4 → 8 | 4 → 8 | 5 → 8 | 5 → 7 |
+| punch | 3 | approved | 5 → 7 | 4 → 7 | 6 → 8 | 6 → 8 | 5 → 7 |
+| sword_slash | 3 | approved | 5 → 8 | 3 → 8 | 6 → 8 | 5 → 7 | 5 → 8 |
+| hit_react | 3 | approved | 4 → 8 | 5 → 7 | 6 → 8 | 6 → 8 | 4 → 7 |
+| wave | 2 | approved | 5 → 7 | 4 → 7 | 5 → 7 | 6 → 8 | 4 → 7 |
+| dance | 3 | approved | 5 → 8 | 5 → 7 | 5 → 7 | 5 → 8 | 4 → 7 |
+| cheer | 3 | approved | 5 → 7 | 3 → 8 | 6 → 7 | 5 → 7 | 5 → 7 |
+| fall | 2 | approved | 5 → 8 | 6 → 7 | 5 → 7 | 8 → 8 | 4 → 7 |
+| climb | 2 | approved | 5 → 8 | 3 → 8 | 4 → 7 | 8 → 8 | 4 → 7 |
+| swim | 3 | approved | 6 → 8 | 3 → 8 | 6 → 7 | 8 → 8 | 4 → 7 |
+| swim_idle | 3 | approved | 5 → 8 | 5 → 7 | 6 → 7 | 8 → 8 | 4 → 7 |
+| sit | 2 | approved | 4 → 7 | 5 → 8 | 6 → 7 | 9 → 9 | 4 → 6 |
+| block | 3 | approved | 4 → 7 | 3 → 8 | 5 → 7 | 7 → 9 | 3 → 7 |
+| kick | 2 | approved | 5 → 8 | 5 → 8 | 6 → 8 | 3 → 8 | 5 → 8 |
+| combo | 2 | approved | 5 → 8 | 5 → 8 | 4 → 8 | 3 → 8 | 5 → 8 |
+| death | 4 | approved | 5 → 8 | 3 → 8 | 4 → 8 | 5 → 8 | 4 → 7 |
+| point | 2 | approved | 4 → 7 | 5 → 7 | 4 → 8 | 6 → 8 | 4 → 7 |
+| laugh | 2 | approved | 5 → 7 | 3 → 7 | 4 → 7 | 6 → 8 | 4 → 7 |
+| clap | 2 | approved | 4 → 6 | 2 → 7 | 5 → 7 | 6 → 8 | 3 → 6 |
+| salute | 2 | approved | 4 → 7 | 3 → 8 | 5 → 7 | 6 → 8 | 4 → 7 |
+| crouch_idle | 2 | approved | 4 → 7 | 5 → 8 | 4 → 7 | 6 → 8 | 3 → 7 |
+| crouch_walk | 2 | approved | 5 → 8 | 3 → 8 | 4 → 8 | 4 → 8 | 4 → 7 |
 
-Typical first-pass problems the critic caught and fixed include:
-- feet sinking through the floor (every clip with leg motion)
-- the sword arm passing through the head, and the blade tip hitting the floor
-- a frozen, perfectly symmetric idle
-- everything keyed on the same frames
-- a run with no flight phase
-- fists clipping the head in the cheer
+Typical first-pass problems the critic caught and fixed:
+- feet sinking through the floor (almost every clip with leg motion), and skating crouch, kick and combo feet
+- the sword arm through the head, and the blade in the floor
+- a swim recovery that passed underwater through the head
+- climbing hands that missed the truss
+- clap hands that never met
+- a salute hand inside the head
+- a death that landed like a plank and then hovered above the floor
+- frozen, symmetric idles, and everything keyed on the same frames
 
-It also caught a bug in the pipeline itself: `plant_feet` compounded its corrections. That bug is fixed.
+The critics also caught a bug in the pipeline itself: `plant_feet` compounded its corrections. That bug is fixed.
 
-Per-round findings, metric tables and the change logs are in [`reports/SUMMARY.md`](reports/SUMMARY.md).
+Per-round findings, metric tables and change logs are in [`reports/SUMMARY.md`](reports/SUMMARY.md).
 Before/after GIFs are in `output/previews/*_before_after.gif`.
 
 Every exported `.rbxmx` is checked frame by frame with `python -m pipeline.verify_rbxmx`, which rebuilds the
-poses using Roblox's Motor6D joint math (`C0 · Transform`). The largest difference from Blender is 4e-6 studs.
+poses using Roblox's Motor6D joint math (`C0 · Transform`). The largest difference from Blender is 4.4e-6 studs.
+
+## Roblox integration
+
+`default.project.json` is a **Rojo** project that syncs the whole pack into Studio:
+- all 25 KeyframeSequences, with hit and footstep markers
+- a replacement `Animate` script for idle, walk, run, jump, fall, climb, swim, sit, crouch, death and `/e` emotes
+- combat: Mouse1 punch and combo, Q kick, F block, a sword slash, server-validated hits, hit reactions
+- a Studio test arena
+
+See [`roblox/README.md`](roblox/README.md) for the quick start.
 
 ## Layout
 
@@ -82,7 +128,9 @@ poses using Roblox's Motor6D joint math (`C0 · Transform`). The largest differe
 | `critic/findings_schema.json` | Critic report schema and the 9 typed fix ops. |
 | `pipeline/validate_report.py` | Report validator (the critic runs it before handing a report back). |
 | `pipeline/apply_fixes.py` | Applies fix ops to the F-curves, clamps joint limits, logs every change. |
-| `pipeline/export.py` | FBX + `.rbxmx` KeyframeSequence export, with a re-import check. |
+| `pipeline/export.py` | FBX + `.rbxmx` KeyframeSequence export, with a re-import check. Also writes markers, `output/meta/*.json` and `roblox/src/shared/AnimationMeta.luau`. |
+| `animations/markers.py` | Hit and footstep marker rules, resolved from the final curves at export. |
+| `roblox/`, `default.project.json` | Rojo project + Luau: AnimationLoader/Controller, Animate, combat, test arena. `roblox/check_project.py` is an offline consistency check. |
 | `pipeline/verify_rbxmx.py` | Rebuilds every `.rbxmx` frame with Roblox joint math and compares it to Blender. |
 | `pipeline/iterate.py` / `summary.py` | Apply a round of reports and re-render; write SUMMARY.md and the before/after previews. |
 | `reports/` | Critic reports per iteration, the logs of applied changes, and `SUMMARY.md`. |
@@ -111,10 +159,12 @@ one critic per set (locomotion, combat, emotes) runs in parallel. The loop stops
 `set_pose`, `add_breakdown` (breakdown key or overshoot-and-settle), `offset_channel`, `scale_amplitude`,
 `set_easing`, `offset_overlap` (drag and follow-through, wraps cyclically on loops), `smooth_transition`
 (`loop_seam` with cyclic handles, Gaussian `smooth`, `remove_interior`), `retime` (with optional ripple), and
-`plant_feet` (re-keys LowerTorso height so the lowest foot touches the floor). The pose ops run first, then retime,
+`plant_feet` (re-keys LowerTorso height so the lowest foot touches the floor, or with `parts: "all"` the lowest body part). The pose ops run first, then retime,
 then plant_feet, then the joint-limit clamp.
 
 ## Using the animations in Roblox Studio
+
+The easiest path is the Rojo project ([`roblox/README.md`](roblox/README.md)). To use individual clips by hand:
 
 **Option A: `.rbxmx` KeyframeSequence (exact).** Drag `output/rbxmx/<anim>.rbxmx` into Studio (or use
 *Insert from File*). Open it in the Animation Editor on an R15 rig, then *Publish to Roblox* to get an asset ID.
@@ -125,7 +175,7 @@ The poses are baked on every frame with linear easing, so the Blender curves are
 If root translation (the bob in walk/run, the crouch in jump) comes in at the wrong scale, re-export with a different
 `global_scale` in `pipeline/export.py`. Rotations are not affected by scale.
 
-Then play them from a script:
+Then play them from a script, or reuse `AnimationController` from the Rojo project:
 
 ```lua
 local anim = Instance.new("Animation")

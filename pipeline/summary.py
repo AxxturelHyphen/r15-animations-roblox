@@ -46,7 +46,8 @@ def before_after(name, first, last):
             y = row * (CELL + 22) + 22
             canvas.paste(im, (0, y))
             d.text((6, y - 19), label, fill=(255, 220, 120) if row else (200, 200, 200), font=font)
-        frames.append(canvas.convert("P", palette=Image.ADAPTIVE, colors=160))
+        canvas = canvas.resize((int(canvas.width * 0.75), int(canvas.height * 0.75)), Image.LANCZOS)
+        frames.append(canvas.convert("P", palette=Image.ADAPTIVE, colors=112))
     os.makedirs(PREV, exist_ok=True)
     out = os.path.join(PREV, f"{name}_before_after.gif")
     frames[0].save(out, save_all=True, append_images=frames[1:], duration=33, loop=0, optimize=True)
@@ -59,7 +60,8 @@ def before_after(name, first, last):
 def main():
     lines = ["# Critic loop summary", "",
              "Each animation went through: build → render/analyze → Fable 5.2 critique → automatic F-curve fixes → re-render, "
-             "until the critic approved it (no high- or medium-severity findings) or 3 rounds had run.", "",
+             "until the critic approved it (no high- or medium-severity findings). The planned cap was 3 critique rounds; "
+             "`death` needed a 4th, verification-only round, because its round-3 fix had only been dry-run.", "",
              "Metrics are issue counts from `pipeline/analyze.py` (lower is better), except `overlap_score` (higher is better: 1.0 means "
              "no lockstep keys).", ""]
     overview = ["| Animation | Rounds | Final verdict | Findings per round (H/M/L) | Critic scores, first → last (fluidity/posing/timing/transitions/appeal) |",

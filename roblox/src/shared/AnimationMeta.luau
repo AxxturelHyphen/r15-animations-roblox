@@ -24,6 +24,7 @@ local AnimationMeta: { [string]: Meta } = {
 	block = { looped = true, priority = Enum.AnimationPriority.Action, length = 1.0, authoredSpeed = nil, markers = {  } },
 	kick = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.0, authoredSpeed = nil, markers = { { name = "Hit", value = "", time = 0.3 } } },
 	combo = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.6, authoredSpeed = nil, markers = { { name = "Hit1", value = "", time = 0.2 }, { name = "Hit2", value = "", time = 0.5333 }, { name = "Hit3", value = "", time = 1.0 } } },
+	death = { looped = false, priority = Enum.AnimationPriority.Action4, length = 1.6667, authoredSpeed = nil, markers = {  } },
 	point = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.3333, authoredSpeed = nil, markers = {  } },
 	laugh = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.6, authoredSpeed = nil, markers = {  } },
 	clap = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.3333, authoredSpeed = nil, markers = {  } },
