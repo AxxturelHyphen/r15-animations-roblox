@@ -1,0 +1,27 @@
+[block-clip-01] {"op": "offset_channel", "bones": "LeftUpperArm", "ch": "rx", "delta": -5}
+offset_channel LeftUpperArm.rx [0,30] -5 on 4 keys
+[block-clip-01] {"op": "offset_channel", "bones": "LeftUpperArm", "ch": "ry", "delta": 15}
+offset_channel LeftUpperArm.ry [0,30] +15 on 2 keys
+[block-clip-01] {"op": "offset_channel", "bones": "LeftUpperArm", "ch": "rz", "delta": 20}
+offset_channel LeftUpperArm.rz [0,30] +20 on 2 keys
+[block-clip-01] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 0, "value": -60.5}
+set_pose LeftLowerArm.rx @ 0: -75.94 -> -60.50
+[block-clip-01] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 3, "value": -60}
+set_pose LeftLowerArm.rx @ 3: -75.00 -> -60.00
+[block-clip-01] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 18, "value": -65}
+set_pose LeftLowerArm.rx @ 18: -84.00 -> -65.00
+[block-clip-01] {"op": "offset_channel", "bones": "RightUpperArm", "ch": "rx", "delta": -11}
+offset_channel RightUpperArm.rx [0,30] -11 on 4 keys
+[block-clip-01] {"op": "offset_channel", "bones": "RightUpperArm", "ch": "ry", "delta": -21}
+offset_channel RightUpperArm.ry [0,30] -21 on 2 keys
+[block-clip-01] {"op": "offset_channel", "bones": "RightUpperArm", "ch": "rz", "delta": -16}
+offset_channel RightUpperArm.rz [0,30] -16 on 2 keys
+[block-clip-01] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 0, "value": -60.5}
+set_pose RightLowerArm.rx @ 0: -80.73 -> -60.50
+[block-clip-01] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 3, "value": -60}
+set_pose RightLowerArm.rx @ 3: -80.00 -> -60.00
+[block-clip-01] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 18, "value": -65}
+set_pose RightLowerArm.rx @ 18: -87.00 -> -65.00
+[block-clip-01] {"op": "offset_channel", "bones": "Head", "ch": "rx", "delta": -3}
+offset_channel Head.rx [0,30] -3 on 4 keys
+applied 13 ops, skipped 0; saved work/block/iter_2.blend

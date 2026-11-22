@@ -1,0 +1,14 @@
+{
+ "animation": "combo",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 8
+ },
+ "summary": "Approved, no findings. Round-1 fixes verified in the iter_1 sheets: both feet stay on their checker squares through all three hits (0 penetration, 0 slide, onion skin shows one clean foot pair on the floor line), the rear knee drives in with a small heel lift on the cross (f13-f17), the head stays on the target through the cross and the hook, and each punch now travels in 3 frames and holds its contact pose (f6-f7, f16-f17, f30-f32). Hit markers resolve to the intended poses: Hit1 = max LeftLowerArm.rx in f0-f12 -> f6 (-5 deg, jab fully extended), Hit2 = max RightLowerArm.rx in f11-f23 -> f16 (-5 deg, cross extended), Hit3 = max LeftUpperArm.rz in f24-f38 -> f30 (80 deg, hook across; the hold key at f32 is 78, so f30 stays the unique maximum). The 28 accel spikes and 18 velocity corners are all on the punching arms at the start and end of the strikes (f3/f6-f7, f13/f16-f17, f27/f30); the two largest corners (about 37-39 deg/frame on the forearms) are the deliberate LINEAR 3-frame extensions of the jab and cross. In the sheets they read as snaps with visible in-betweens (f4-f5, f14-f15, f28-f29), not pops, and each lands on a held pose. No self-intersection above 0.03 studs outside the shoulder joints.",
+ "findings": []
+}

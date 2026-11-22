@@ -1,0 +1,126 @@
+{
+ "animation": "death",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 6,
+  "transitions": 5,
+  "appeal": 6
+ },
+ "summary": "Round-1 fixes verified: nothing passes through the floor on any of the 51 frames, the held pose is flat on the back and limp (arms and legs on the ground, head lolled with rz instead of the corner-burying ry turn), the landing accelerates into f32 with a chest rebound and head bounce, and the limbs trail by 2-5 frames (lockstep 0, no twinning). The 10 accel spikes are the f32 impact (LowerTorso rx / ly, Head rx at f33) and read as a hit, not a pop; the dead hold at f45-f50 is the intended final hold. One medium problem remains: between f24 and f31 the body tips backward as a plank on its heels with the hips in the air instead of sitting down and rolling back. One set of leg keys fixes it.",
+ "findings": [
+  {
+   "id": "death-sit-01",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    22,
+    33
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "Round-1 fixes hold (no part below the floor on any frame, limp flat final pose, landing on f32 with rebound, staggered limbs), but the way the body gets to the floor is still wrong. After the knees buckle (f12-f23, a crouch on the toes) the legs partly straighten again while the pelvis tips back, so from f24 to f31 the character topples like a plank pivoting on its heels: in the side view f26-f27 it leans back 20-35 deg balanced on the feet, at f28-f30 the torso is at 48-70 deg with the hips still 0.5-1 stud in the air, and the hips, back and head all reach the floor together on f32 (the lowest part is a foot on every frame up to f31, then the head). A body whose knees have given way sits down first and then rolls onto its back. Cause: the leg keys at f31 (left) / f32 (right) open the knees to 60-70 deg and bring the thighs back to -30 / -40 just as the pelvis rotates to -90. Fix: keep the legs folded under the body as it goes back. Add a sit pose at f27 / f28 (thigh flexed -78 / -85 against the tilting pelvis, knee about 105, ankle counter-rotated so the sole stays on the floor: pelvis + thigh + knee + foot is about 0), keep the knees up and folded on the back-impact keys at f31 / f32, and let the existing f37 / f38 keys flop the legs flat. The 1-frame left/right stagger is kept. plant_feet with parts=all then re-rests the lowest part on every frame. Dry run on iter_1: hips reach the floor by f26-f27, the back rolls down over f28-f32 with the knees up, legs slide out by f37-f38; 0 penetration, 0 lockstep, final pose unchanged (every part within 0.03 studs of the floor), self-overlap in the fold at most 0.09 studs.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 27,
+     "value": -78
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 27,
+     "value": 105
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 27,
+     "value": 21
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 31,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 31,
+     "value": 100
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 31,
+     "value": 30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 28,
+     "value": -85
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 28,
+     "value": 106
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 32,
+     "value": -48
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 32,
+     "value": 100
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 32,
+     "value": 22
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 1,
+     "parts": "all"
+    }
+   ]
+  }
+ ]
+}
