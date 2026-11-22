@@ -1,0 +1,15 @@
+{
+ "name": "punch",
+ "iteration": 2,
+ "looped": false,
+ "priority": "Action",
+ "length": 0.8,
+ "authoredSpeed": null,
+ "markers": [
+  {
+   "name": "Hit",
+   "value": "",
+   "time": 0.3
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "name": "jump",
+ "iteration": 2,
+ "looped": false,
+ "priority": "Movement",
+ "length": 1.1,
+ "authoredSpeed": null,
+ "markers": []
+}

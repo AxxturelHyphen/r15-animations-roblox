@@ -13,11 +13,19 @@ ALL_ANIMATIONS = [
     "idle", "walk", "run", "jump",
     "punch", "sword_slash", "hit_react",
     "wave", "dance", "cheer",
+    "fall", "climb", "swim", "swim_idle", "sit",
+    "block", "kick", "combo", "death",
+    "point", "laugh", "clap", "salute",
+    "crouch_idle", "crouch_walk",
 ]
 SETS = {
     "locomotion": ["idle", "walk", "run", "jump"],
     "combat": ["punch", "sword_slash", "hit_react"],
     "emotes": ["wave", "dance", "cheer"],
+    "movement_states": ["fall", "climb", "swim", "swim_idle", "sit"],
+    "combat_2": ["block", "kick", "combo", "death"],
+    "emotes_2": ["point", "laugh", "clap", "salute"],
+    "crouch": ["crouch_idle", "crouch_walk"],
 }
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORK = os.path.join(ROOT, "work")
@@ -140,6 +148,9 @@ def apply_spec(arm, spec):
     scene["priority"] = spec.get("priority", "Action")
     scene["props"] = ",".join(spec.get("props", []))
     scene["description"] = spec.get("description", "")
+    # What should touch the floor: "feet" (default), "none" (airborne, climbing, swimming, seated)
+    # or "body" (lying on the floor).
+    scene["contact"] = spec.get("contact", "feet")
     set_props_visible(spec.get("props", []))
 
 

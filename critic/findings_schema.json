@@ -61,8 +61,8 @@
          "required": ["op", "bones", "mode"], "description": "loop_seam: close the loop and make handles cyclic. smooth: Gaussian-resample range (strength 0-1, a key every `step` frames). remove_interior: delete keys strictly inside range."},
         {"properties": {"op": {"const": "retime"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "range": {"$ref": "#/$defs/range"}, "scale": {"type": "number"}, "shift": {"type": "number"}, "ripple": {"type": "boolean"}},
          "required": ["op", "range"], "description": "Scale keys in range about range start, and/or shift them. ripple moves later keys too (bones=all + ripple changes the clip length; not allowed on loops). Applied after all pose ops."},
-        {"properties": {"op": {"const": "plant_feet"}, "range": {"$ref": "#/$defs/range"}, "step": {"type": "number"}, "mode": {"enum": ["all", "contact"]}, "tolerance": {"type": "number"}, "smooth": {"type": "number"}},
-         "required": ["op"], "description": "Re-key LowerTorso.ly so the lowest foot touches the floor (fixes sinking or floating feet). Applied last, after retime."}
+        {"properties": {"op": {"const": "plant_feet"}, "range": {"$ref": "#/$defs/range"}, "step": {"type": "number"}, "mode": {"enum": ["all", "contact"]}, "tolerance": {"type": "number"}, "smooth": {"type": "number"}, "parts": {"enum": ["feet", "all"]}},
+         "required": ["op"], "description": "Re-key LowerTorso.ly so the lowest foot (parts=feet, default) or lowest body part (parts=all, for lying poses) touches the floor. Applied last, after retime."}
       ]
     }
   }

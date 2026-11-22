@@ -341,7 +341,8 @@ def op_retime(ctx, op):
 
 
 def op_plant_feet(ctx, op):
-    """Adjust LowerTorso.ly so the lowest point of either foot rests on the floor.
+    """Adjust LowerTorso.ly so the lowest point of either foot (parts="feet", default) or of the
+    whole body (parts="all", e.g. a character lying on the floor) rests on the floor.
 
     mode "contact" only lifts or lowers frames where a foot should be planted (feet near the floor,
     within `tolerance`); mode "all" grounds every sampled frame (good for locomotion in place).
@@ -352,6 +353,11 @@ def op_plant_feet(ctx, op):
     step = float(op.get("step", 2))
     mode = op.get("mode", "all")
     tol = float(op.get("tolerance", 0.25))
+    parts = op.get("parts", "feet")
+    if parts not in ("feet", "all"):
+        raise FixError(f"plant_feet parts must be feet|all, not {parts!r}")
+    from pipeline.analyze import BODY_PARTS
+    probe = ("LeftFoot", "RightFoot") if parts == "feet" else BODY_PARTS
     (_, _, fc), = ctx.curves_for(["LowerTorso"], ["ly"], create=True)
     frames = []
     f = a
@@ -364,8 +370,8 @@ def op_plant_feet(ctx, op):
     for f in frames:
         ctx.scene.frame_set(int(f), subframe=f - int(f))
         low = 1e9
-        for foot in ("LeftFoot", "RightFoot"):
-            obj = bpy.data.objects[foot]
+        for part in probe:
+            obj = bpy.data.objects[part]
             for v in obj.data.vertices:
                 low = min(low, (obj.matrix_world @ Vector(v.co)).z)
         if mode == "contact" and low > tol:

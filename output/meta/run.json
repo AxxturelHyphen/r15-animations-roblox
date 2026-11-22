@@ -1,0 +1,20 @@
+{
+ "name": "run",
+ "iteration": 2,
+ "looped": true,
+ "priority": "Movement",
+ "length": 0.6667,
+ "authoredSpeed": 5.955,
+ "markers": [
+  {
+   "name": "Footstep",
+   "value": "Left",
+   "time": 0.0
+  },
+  {
+   "name": "Footstep",
+   "value": "Right",
+   "time": 0.3333
+  }
+ ]
+}

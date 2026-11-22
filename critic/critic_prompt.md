@@ -37,6 +37,22 @@ Child rotations are relative to the parent.
 Roblox context: locomotion is in place (the Humanoid moves the character), and the jump's vertical travel comes
 from physics, so the root only crouches and stretches. Loops (`loop: true`) must be seamless.
 
+**Floor contact** (`contact` in the spec and in `metrics.json`) says what should touch the floor:
+- `feet` (default): the feet must sit on the floor. No penetration, no unwanted floating, no sliding while planted.
+- `none`: nothing touches the floor, so ignore the floor metrics. This covers:
+  - **fall**: airborne; it must blend from the end of jump.
+  - **climb**: on a truss or ladder directly in front of the character. Hands and feet reach forward and up; no floor.
+  - **swim** and **swim_idle**: in water. Swim lies prone, with the body tipped forward through `LowerTorso.rx`.
+  - **sit**: on a Roblox Seat at hip height. The hips are supported and the shins hang.
+- `body`: the character ends lying on the floor (**death**). No part may go through the floor (`body_penetration`);
+  use `plant_feet` with `parts: "all"` to rest the lowest body point on the floor.
+
+Gameplay usage, for judging timing:
+- block is held as a loop, so the guard must read clearly.
+- kick and combo are melee attacks. Impact poses should land fast and read clearly; the game fires hit events on those frames.
+- crouch_idle and crouch_walk are a sneak mode.
+- death plays once when the Humanoid dies, and holds its last pose.
+
 ## What to look for
 1. **stiff**: robotic motion, with all parts moving and stopping together (lockstep keys, overlap_score < 0.75),
    no drag, follow-through or overlapping action, mirror-identical left/right (twinning), dead holds where a
@@ -62,7 +78,7 @@ Severity: **high** = a player would notice immediately (penetration, a pop, a br
 - `offset_overlap` {bones, ch?, offset}: delay child parts (hands, forearms, head) 1–3 frames for drag and follow-through.
 - `smooth_transition` {bones, ch?, range?, mode: loop_seam|smooth|remove_interior, strength?, step?}.
 - `retime` {bones?, ch?, range, scale?, shift?, ripple?}: change beat lengths. Applied after the pose ops.
-- `plant_feet` {range?, step?, mode: all|contact, tolerance?, smooth?}: re-key LowerTorso.ly so the lowest foot sits on the floor. It runs last.
+- `plant_feet` {range?, step?, mode: all|contact, tolerance?, smooth?, parts: feet|all}: re-key LowerTorso.ly so the lowest foot (or, with `parts: "all"`, the lowest body part) sits on the floor. It runs last.
 
 Rules for writing fixes:
 - Reference frame numbers in the **current** iteration. Pose ops run first in report order, then `retime`, then `plant_feet`.

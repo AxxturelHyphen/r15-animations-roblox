@@ -6,7 +6,10 @@ Writes:
   output/fbx/<anim>.fbx      armature-only FBX with baked animation, for the Avatar/Animation Editor FBX import
   output/rbxmx/<anim>.rbxmx  a KeyframeSequence (baked every frame, linear easing) you can drop straight into Studio
   output/blend/<anim>.blend  the final Blender file (rig + action + review scene)
+  output/meta/<anim>.json    loop, priority, length, markers and authored ground speed
+  roblox/src/shared/AnimationMeta.luau   all meta JSON combined, for the Rojo project
 """
+import json
 import glob
 import os
 import re
@@ -17,7 +20,8 @@ from xml.sax.saxutils import escape
 import bpy
 from mathutils import Matrix
 
-from pipeline import build
+from animations.markers import MARKERS
+from pipeline import build, curves
 from rig.r15_rig import ARMATURE_NAME, PARTS
 
 OUT = os.path.join(build.ROOT, "output")
@@ -58,7 +62,79 @@ def _pose_xml(arm, bone, indent, ref):
     return lines
 
 
-def export_rbxmx(name, path):
+def _frac_range(scene, fr):
+    length = scene.frame_end - scene.frame_start
+    return (int(round(scene.frame_start + fr[0] * length)), int(round(scene.frame_start + fr[1] * length)))
+
+
+def resolve_markers(name):
+    """Resolve animations/markers.py rules against the current (final) curves -> [(frame, name, value)]."""
+    from mathutils import Vector
+
+    scene = bpy.context.scene
+    fmap = curves.fcurve_map()
+    out = []
+    for marker, rule in MARKERS.get(name, []):
+        kind = rule[0]
+        if kind in ("extreme", "speed_peak"):
+            bone, ch = rule[1], rule[2]
+            fc = fmap[(bone, ch)]
+            a, b = _frac_range(scene, rule[-1])
+            vals = {f: curves.evaluate(fc, ch, f) for f in range(a, b + 1)}
+            if kind == "extreme":
+                pick = max if rule[3] == "max" else min
+                frame = pick(vals, key=vals.get)
+            else:
+                frame = max(range(a + 1, b + 1), key=lambda f: abs(vals[f] - vals[f - 1]))
+            out.append((frame, marker, ""))
+        elif kind == "footsteps":
+            lows = {"Left": [], "Right": []}
+            for f in range(scene.frame_start, scene.frame_end + 1):
+                scene.frame_set(f)
+                for side in lows:
+                    obj = bpy.data.objects[f"{side}Foot"]
+                    lows[side].append(min((obj.matrix_world @ Vector(v.co)).z for v in obj.data.vertices))
+            # A footstep is the support hand-off: the frame where the other foot becomes the lowest.
+            n = scene.frame_end - scene.frame_start
+            low_side = ["Left" if lows["Left"][i] <= lows["Right"][i] else "Right" for i in range(n + 1)]
+            # Debounce: heel-toe rolls make the lowest foot flicker, so a hand-off only counts when the new
+            # foot stays lowest for a sixth of the clip.
+            hold = max(3, n // 6)
+            loop = bool(scene.get("loop"))
+
+            def side_at(i):
+                return low_side[i % n] if loop else low_side[min(max(i, 0), n)]
+
+            stable = [side_at(i) if all(side_at(i + k) == side_at(i) for k in range(hold)) else None
+                      for i in range(n)]
+            current = None
+            for i in range(-n if loop else 0, n):
+                st = stable[i % n] if loop else stable[i]
+                if st and st != current:
+                    if current is not None and i >= 0:
+                        out.append((scene.frame_start + i, marker, st))
+                    current = st
+    return sorted(out)
+
+
+def authored_speed(name, iteration):
+    """Ground speed (studs/s) the cycle was animated for: mean planted-foot speed x fps (locomotion only)."""
+    path = os.path.join(build.WORK, name, f"iter_{iteration}", "metrics.json")
+    if name not in ("walk", "run", "crouch_walk") or not os.path.exists(path):
+        return None
+    with open(path) as fh:
+        m = json.load(fh)
+    total, weight = 0.0, 0
+    for foot in ("LeftFoot", "RightFoot"):
+        for seg in m["feet"][foot]["contact_segments"]:
+            span = seg["frames"][1] - seg["frames"][0]
+            if span >= 3 and seg["moves_backward"]:
+                total += seg["mean_speed"] * span
+                weight += span
+    return round(total / weight * m["fps"], 3) if weight else None
+
+
+def export_rbxmx(name, path, markers=()):
     scene = bpy.context.scene
     arm = bpy.data.objects[ARMATURE_NAME]
     fps = scene.render.fps
@@ -81,6 +157,14 @@ def export_rbxmx(name, path):
                   f'    <float name="Time">{(f - scene.frame_start) / fps:.6f}</float>',
                   "   </Properties>"]
         lines += _pose_xml(arm, "HumanoidRootPart", 3, counter)
+        for mf, mname, mval in markers:
+            if mf == f:
+                lines += [f'   <Item class="KeyframeMarker" referent="RBX{next(counter):08X}">',
+                          "    <Properties>",
+                          f'     <string name="Name">{escape(mname)}</string>',
+                          f'     <string name="Value">{escape(mval)}</string>',
+                          "    </Properties>",
+                          "   </Item>"]
         lines.append("  </Item>")
     lines += [" </Item>", "</roblox>"]
     with open(path, "w") as fh:
@@ -106,9 +190,23 @@ def export_fbx(path):
 def export(name, iteration=None):
     iteration = latest_iteration(name) if iteration is None else iteration
     build.open_iteration(name, iteration)
-    for sub in ("fbx", "rbxmx", "blend"):
+    for sub in ("fbx", "rbxmx", "blend", "meta"):
         os.makedirs(os.path.join(OUT, sub), exist_ok=True)
-    export_rbxmx(name, os.path.join(OUT, "rbxmx", f"{name}.rbxmx"))
+    scene = bpy.context.scene
+    markers = resolve_markers(name)
+    meta = {
+        "name": name,
+        "iteration": iteration,
+        "looped": bool(scene.get("loop")),
+        "priority": scene.get("priority", "Action"),
+        "length": round((scene.frame_end - scene.frame_start) / scene.render.fps, 4),
+        "authoredSpeed": authored_speed(name, iteration),
+        "markers": [{"name": n, "value": v, "time": round((f - scene.frame_start) / scene.render.fps, 4)}
+                    for f, n, v in markers],
+    }
+    with open(os.path.join(OUT, "meta", f"{name}.json"), "w") as fh:
+        json.dump(meta, fh, indent=1)
+    export_rbxmx(name, os.path.join(OUT, "rbxmx", f"{name}.rbxmx"), markers)
     export_fbx(os.path.join(OUT, "fbx", f"{name}.fbx"))
     shutil.copy(build.blend_path(name, iteration), os.path.join(OUT, "blend", f"{name}.blend"))
     return iteration
@@ -144,6 +242,31 @@ def verify(name):
                       "duration_s": float(kfs[-1].find("Properties/float").text)}
 
 
+def write_meta_luau():
+    """Combine output/meta/*.json into the Rojo project's AnimationMeta ModuleScript."""
+    rows = []
+    for name in build.ALL_ANIMATIONS:
+        p = os.path.join(OUT, "meta", f"{name}.json")
+        if not os.path.exists(p):
+            continue
+        with open(p) as fh:
+            m = json.load(fh)
+        markers = ", ".join(f'{{ name = "{x["name"]}", value = "{x["value"]}", time = {x["time"]} }}' for x in m["markers"])
+        speed = "nil" if m["authoredSpeed"] is None else m["authoredSpeed"]
+        rows.append(f'\t{name} = {{ looped = {str(m["looped"]).lower()}, priority = Enum.AnimationPriority.{m["priority"]}, '
+                    f'length = {m["length"]}, authoredSpeed = {speed}, markers = {{ {markers} }} }},')
+    dest = os.path.join(build.ROOT, "roblox", "src", "shared", "AnimationMeta.luau")
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    with open(dest, "w") as fh:
+        fh.write("--!strict\n-- GENERATED by pipeline/export.py. Do not edit by hand; re-run `python -m pipeline.export`.\n"
+                 "-- authoredSpeed: ground speed (studs/s) the cycle was animated for; playback speed = actual / authored.\n\n"
+                 "export type Marker = { name: string, value: string, time: number }\n"
+                 "export type Meta = { looped: boolean, priority: Enum.AnimationPriority, length: number, "
+                 "authoredSpeed: number?, markers: { Marker } }\n\n"
+                 "local AnimationMeta: { [string]: Meta } = {\n" + "\n".join(rows) + "\n}\n\nreturn AnimationMeta\n")
+    return dest
+
+
 if __name__ == "__main__":
     args = sys.argv[1:] or build.ALL_ANIMATIONS
     for a in args:
@@ -151,3 +274,4 @@ if __name__ == "__main__":
         used = export(n, int(it) if it else None)
         probs, info = verify(n)
         print(f"{n} (iter {used}): {info} {'OK' if not probs else probs}")
+    print("wrote", os.path.relpath(write_meta_luau(), build.ROOT))

@@ -94,7 +94,8 @@ _LIMB_LIMITS = {
     "Foot": {"rx": (-45, 55), "ry": (-25, 25), "rz": (-25, 25)},
 }
 JOINT_LIMITS = {
-    "LowerTorso": {"rx": (-60, 60), "ry": (-60, 60), "rz": (-45, 45)},
+    # The Root joint may tip the whole body (swim lies prone, death falls on its back).
+    "LowerTorso": {"rx": (-100, 100), "ry": (-60, 60), "rz": (-90, 90)},
     "UpperTorso": {"rx": (-35, 50), "ry": (-50, 50), "rz": (-35, 35)},
     "Head": {"rx": (-50, 60), "ry": (-80, 80), "rz": (-40, 40)},
 }

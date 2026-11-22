@@ -18,6 +18,11 @@ SEAM_VALUE_DEG = 0.5
 SEAM_VEL_DEG = 1.2
 HOLD_SPEED = 0.35        # whole-body deg/frame, below which the body counts as frozen
 HOLD_MIN_FRAMES = 5
+LOCOMOTION = ("walk", "run", "crouch_walk")   # in-place cycles: stance feet should move back steadily
+AIRBORNE_OK = ("run", "jump")                  # clips where both feet legitimately leave the floor
+BODY_PARTS = ("LowerTorso", "UpperTorso", "Head", "LeftUpperArm", "LeftLowerArm", "LeftHand",
+              "RightUpperArm", "RightLowerArm", "RightHand", "LeftUpperLeg", "LeftLowerLeg", "LeftFoot",
+              "RightUpperLeg", "RightLowerLeg", "RightFoot")
 CONTACT_Z = 0.06
 PENETRATION_Z = -0.05
 
@@ -54,7 +59,8 @@ def analyze():
     loop = bool(scene.get("loop", False))
     name = scene.get("anim_name", "anim")
     fmap = curves.fcurve_map()
-    res = {"animation": name, "frames": [f0, f1], "loop": loop, "fps": scene.render.fps}
+    contact_mode = scene.get("contact", "feet")
+    res = {"animation": name, "frames": [f0, f1], "loop": loop, "fps": scene.render.fps, "contact": contact_mode}
 
     spikes, corners, seam, limits, ranges = [], [], [], [], {}
     body_speed = [0.0] * (f1 - f0 + (0 if loop else 0))
@@ -205,20 +211,45 @@ def analyze():
     foot_res["both_feet_airborne_frames"] = floating
     res["feet"] = foot_res
 
+    # Whole-body floor penetration (matters for clips that lie on the floor).
+    body_pen = []
+    for f in range(f0, f1 + 1):
+        scene.frame_set(f)
+        for part in BODY_PARTS:
+            obj = bpy.data.objects[part]
+            low = min((obj.matrix_world @ Vector(v.co)).z for v in obj.data.vertices)
+            if low < PENETRATION_Z:
+                body_pen.append({"frame": f, "part": part, "z": round(low, 3)})
+    res["body_penetration"] = body_pen[:40]
+    res["body_penetration_count"] = len(body_pen)
+
     res["score"] = score(res)
     return res
 
 
 def score(res):
-    """Issue counts used for the before/after comparison (lower is better)."""
+    """Issue counts used for the before/after comparison (lower is better).
+
+    Floor metrics follow the clip's contact mode: "feet" scores foot penetration, sliding and
+    floating; "body" scores penetration of any part; "none" ignores the floor entirely.
+    """
+    mode = res.get("contact", "feet")
     slide = 0
-    for foot in ("LeftFoot", "RightFoot"):
-        for seg in res["feet"][foot]["contact_segments"]:
-            if res["animation"] in ("walk", "run"):
-                if seg["speed_std"] > 0.03:
+    if mode == "feet":
+        for foot in ("LeftFoot", "RightFoot"):
+            for seg in res["feet"][foot]["contact_segments"]:
+                if res["animation"] in LOCOMOTION:
+                    if seg["speed_std"] > 0.03:
+                        slide += 1
+                elif seg["drift_studs"] > 0.12:
                     slide += 1
-            elif seg["drift_studs"] > 0.12:
-                slide += 1
+    if mode == "feet":
+        pen = res["feet"]["LeftFoot"]["penetration_count"] + res["feet"]["RightFoot"]["penetration_count"]
+        floating = 0 if res["animation"] in AIRBORNE_OK else len(res["feet"]["both_feet_airborne_frames"])
+    elif mode == "body":
+        pen, floating = res.get("body_penetration_count", 0), 0
+    else:
+        pen, floating = 0, 0
     return {
         "accel_spikes": res["accel_spike_count"],
         "velocity_corners": len(res["velocity_corners"]),
@@ -228,8 +259,8 @@ def score(res):
         "lockstep_key_frames": len(res["lockstep_key_frames"]),
         "twinned_channels": len(res["twinning"]),
         "foot_slide_segments": slide,
-        "foot_penetration_frames": res["feet"]["LeftFoot"]["penetration_count"] + res["feet"]["RightFoot"]["penetration_count"],
-        "floating_frames": 0 if res["animation"] in ("run", "jump") else len(res["feet"]["both_feet_airborne_frames"]),
+        "foot_penetration_frames": pen,
+        "floating_frames": floating,
         "overlap_score": res["overlap_score"],
     }
 

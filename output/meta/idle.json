@@ -1,0 +1,9 @@
+{
+ "name": "idle",
+ "iteration": 1,
+ "looped": true,
+ "priority": "Idle",
+ "length": 3.2,
+ "authoredSpeed": null,
+ "markers": []
+}

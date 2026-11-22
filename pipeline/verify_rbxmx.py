@@ -43,7 +43,7 @@ def check(name, iteration):
             for c in pose.findall("Item"):
                 walk(c, n)
 
-        walk(kf.find("Item"), None)
+        walk(kf.find("Item[@class='Pose']"), None)
         scene.frame_set(scene.frame_start + i)
         for n in PARTS:
             pb = arm.pose.bones[n]

@@ -62,6 +62,8 @@ def validate(report):
             if name == "add_breakdown" and not ("overshoot" in op and "key_frame" in op) and not (
                     "frame" in op and ("value" in op or "delta" in op)):
                 errs.append(f"{where}: add_breakdown needs frame+value/delta or key_frame+overshoot")
+            if name == "plant_feet" and op.get("parts", "feet") not in ("feet", "all"):
+                errs.append(f"{where}: plant_feet parts must be feet|all")
     if report.get("verdict") == "approved" and any(f.get("severity") in ("high", "medium") for f in report.get("findings", [])):
         errs.append("verdict approved but high/medium findings remain")
     return errs
