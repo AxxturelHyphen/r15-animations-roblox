@@ -39,7 +39,7 @@
      "op": "scale_amplitude",
      "bones": "RightUpperArm",
      "ch": "rz",
-     "factor": 0.88,
+     "factor": 0.86,
      "pivot": -5
     },
     {
@@ -47,14 +47,14 @@
      "bone": "RightUpperArm",
      "ch": "ry",
      "frame": 6,
-     "value": -54
+     "value": -56
     },
     {
      "op": "set_pose",
      "bone": "RightUpperArm",
      "ch": "ry",
      "frame": 32,
-     "value": -54
+     "value": -56
     },
     {
      "op": "scale_amplitude",
@@ -150,9 +150,15 @@
      "op": "add_breakdown",
      "bone": "RightUpperArm",
      "ch": "rz",
-     "key_frame": 6,
-     "overshoot": 4,
-     "settle_frames": 4
+     "frame": 8,
+     "value": -44.5
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 11,
+     "value": -48
     }
    ]
   },
@@ -176,21 +182,28 @@
      "bone": "UpperTorso",
      "ch": "rx",
      "frame": 17,
-     "value": -7.5
+     "value": -8
     },
     {
      "op": "add_breakdown",
      "bone": "Head",
      "ch": "rx",
-     "frame": 20,
-     "value": -3.5
+     "frame": 21,
+     "value": -3
     },
     {
      "op": "add_breakdown",
      "bone": "LeftUpperArm",
      "ch": "rz",
-     "frame": 22,
-     "value": 3.5
+     "frame": 24,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -87
     }
    ]
   }

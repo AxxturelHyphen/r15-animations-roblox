@@ -1,0 +1,120 @@
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 0, "value": -0.545}
+set_pose LowerTorso.ly @ 0: -0.56 -> -0.55
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 36, "value": -0.585}
+set_pose LowerTorso.ly @ 36: -0.58 -> -0.58
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 0, "value": -54.09}
+set_pose LeftUpperLeg.rx @ 0: -55.00 -> -54.09
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 0, "value": 93.29}
+set_pose LeftLowerLeg.rx @ 0: 95.00 -> 93.29
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 0, "value": -39.09}
+set_pose LeftFoot.rx @ 0: -40.00 -> -39.09
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 36, "value": -56.04}
+set_pose LeftUpperLeg.rx @ 36: -54.09 -> -56.04
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 36, "value": 96.99}
+set_pose LeftLowerLeg.rx @ 36: 93.29 -> 96.99
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 36, "value": -40.83}
+set_pose LeftFoot.rx @ 36: -39.09 -> -40.83
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 0, "value": -54.09}
+set_pose RightUpperLeg.rx @ 0: -55.00 -> -54.09
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 0, "value": 93.29}
+set_pose RightLowerLeg.rx @ 0: 95.00 -> 93.29
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -39.09}
+set_pose RightFoot.rx @ 0: -40.00 -> -39.09
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 36, "value": -56.04}
+set_pose RightUpperLeg.rx @ 36: -54.09 -> -56.04
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 36, "value": 96.99}
+set_pose RightLowerLeg.rx @ 36: 93.29 -> 96.99
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 36, "value": -40.83}
+set_pose RightFoot.rx @ 36: -39.09 -> -40.83
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "ry", "frame": 0, "value": -3.1}
+set_pose LeftFoot.ry @ 0: 0.00 -> -3.10
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 0, "value": -3.81}
+set_pose LeftFoot.rz @ 0: 0.00 -> -3.81
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "ry", "frame": 0, "value": 3.1}
+set_pose RightFoot.ry @ 0: 0.00 -> 3.10
+[cidle-1-feet-rolled-into-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 0, "value": 3.81}
+set_pose RightFoot.rz @ 0: 0.00 -> 3.81
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 18, "value": 0.05}
+set_pose LowerTorso.lx @ 18: 0.00 -> 0.05
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 54, "value": -0.05}
+set_pose LowerTorso.lx @ 54: 0.01 -> -0.05
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 18, "value": 2.37}
+set_pose LeftUpperLeg.rz @ 18: 5.00 -> 2.37
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 54, "value": 7.61}
+set_pose LeftUpperLeg.rz @ 54: 4.32 -> 7.61
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LeftFoot", "ch": "ry", "frame": 18, "value": -1.53}
+set_pose LeftFoot.ry @ 18: -3.10 -> -1.53
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 18, "value": -1.81}
+set_pose LeftFoot.rz @ 18: -3.81 -> -1.81
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LeftFoot", "ch": "ry", "frame": 54, "value": -4.87}
+set_pose LeftFoot.ry @ 54: -2.69 -> -4.87
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 54, "value": -5.86}
+set_pose LeftFoot.rz @ 54: -3.29 -> -5.86
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 18, "value": -7.61}
+set_pose RightUpperLeg.rz @ 18: -5.00 -> -7.61
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 54, "value": -2.37}
+set_pose RightUpperLeg.rz @ 54: -5.68 -> -2.37
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "RightFoot", "ch": "ry", "frame": 18, "value": 4.87}
+set_pose RightFoot.ry @ 18: 3.10 -> 4.87
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 18, "value": 5.86}
+set_pose RightFoot.rz @ 18: 3.81 -> 5.86
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "RightFoot", "ch": "ry", "frame": 54, "value": 1.53}
+set_pose RightFoot.ry @ 54: 3.56 -> 1.53
+[cidle-2-frozen-lower-body] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 54, "value": 1.81}
+set_pose RightFoot.rz @ 54: 4.34 -> 1.81
+[cidle-2-frozen-lower-body] {"op": "smooth_transition", "bones": ["LowerTorso", "LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": ["lx", "ly", "rx", "ry", "rz"], "mode": "loop_seam"}
+loop_seam LowerTorso.lx: closed + cyclic handles
+loop_seam LowerTorso.ly: closed + cyclic handles
+loop_seam LeftUpperLeg.rx: closed + cyclic handles
+loop_seam LeftUpperLeg.rz: closed + cyclic handles
+loop_seam LeftLowerLeg.rx: closed + cyclic handles
+loop_seam LeftFoot.rx: closed + cyclic handles
+loop_seam LeftFoot.ry: closed + cyclic handles
+loop_seam LeftFoot.rz: closed + cyclic handles
+loop_seam RightUpperLeg.rx: closed + cyclic handles
+loop_seam RightUpperLeg.rz: closed + cyclic handles
+loop_seam RightLowerLeg.rx: closed + cyclic handles
+loop_seam RightFoot.rx: closed + cyclic handles
+loop_seam RightFoot.ry: closed + cyclic handles
+loop_seam RightFoot.rz: closed + cyclic handles
+[cidle-3-lifeless-upper-body] {"op": "smooth_transition", "bones": "Head", "ch": "ry", "range": [0, 72], "mode": "remove_interior"}
+remove_interior Head.ry (0,72): removed 1 keys
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 0, "value": 2.0}
+set_pose Head.ry @ 0: 0.00 -> 2.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 14, "value": 10.0}
+set_pose Head.ry @ 14: 2.00 -> 10.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 50, "value": -12.0}
+set_pose Head.ry @ 50: 4.58 -> -12.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 18, "value": 3.0}
+set_pose UpperTorso.ry @ 18: 0.00 -> 3.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 54, "value": -3.5}
+set_pose UpperTorso.ry @ 54: 0.78 -> -3.50
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 21, "value": 1.5}
+set_pose UpperTorso.rz @ 21: 0.00 -> 1.50
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 57, "value": -1.5}
+set_pose UpperTorso.rz @ 57: 0.31 -> -1.50
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 36, "value": 28.0}
+set_pose UpperTorso.rx @ 36: 27.00 -> 28.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 40, "value": -28.0}
+set_pose LeftUpperArm.rx @ 40: -25.00 -> -28.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 44, "value": -22.0}
+set_pose RightUpperArm.rx @ 44: -25.00 -> -22.00
+[cidle-3-lifeless-upper-body] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 30, "value": -13.0}
+set_pose RightUpperArm.rz @ 30: -10.00 -> -13.00
+[cidle-3-lifeless-upper-body] {"op": "scale_amplitude", "bones": "RightLowerArm", "ch": "rx", "factor": 1.6, "pivot": -50}
+scale_amplitude RightLowerArm.rx [0,72] x1.6 about -50
+[cidle-3-lifeless-upper-body] {"op": "smooth_transition", "bones": ["Head", "UpperTorso"], "ch": ["ry", "rz"], "mode": "loop_seam"}
+loop_seam Head.ry: closed + cyclic handles
+loop_seam UpperTorso.ry: closed + cyclic handles
+loop_seam UpperTorso.rz: closed + cyclic handles
+[cidle-4-everything-stops-at-seam] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "rx", "offset": 4}
+offset_overlap UpperTorso.rx by +4 frames
+[cidle-4-everything-stops-at-seam] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 8}
+offset_overlap Head.rx by +8 frames
+[cidle-4-everything-stops-at-seam] {"op": "offset_overlap", "bones": "LeftLowerArm", "ch": "rx", "offset": 6}
+offset_overlap LeftLowerArm.rx by +6 frames
+[cidle-4-everything-stops-at-seam] {"op": "offset_overlap", "bones": "RightLowerArm", "ch": "rx", "offset": 10}
+offset_overlap RightLowerArm.rx by +10 frames
+[cidle-1-feet-rolled-into-floor] {"op": "plant_feet", "range": [0, 72], "step": 4, "mode": "all"}
+plant_feet [0,72] step 4 mode all: 19 keys, max correction 0.005 studs
+applied 52 ops, skipped 0; saved work/crouch_idle/iter_1.blend

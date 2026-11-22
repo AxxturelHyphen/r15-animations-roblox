@@ -1,0 +1,236 @@
+[cwalk-1-feet-floor-and-skate] {"op": "smooth_transition", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": "rx", "range": [0, 40], "mode": "remove_interior"}
+remove_interior LeftUpperLeg.rx (0,40): removed 3 keys
+remove_interior LeftLowerLeg.rx (0,40): removed 4 keys
+remove_interior LeftFoot.rx (0,40): removed 3 keys
+remove_interior RightUpperLeg.rx (0,40): removed 3 keys
+remove_interior RightLowerLeg.rx (0,40): removed 4 keys
+remove_interior RightFoot.rx (0,40): removed 3 keys
+[cwalk-1-feet-floor-and-skate] {"op": "smooth_transition", "bones": "LowerTorso", "ch": "ly", "range": [0, 40], "mode": "remove_interior"}
+remove_interior LowerTorso.ly (0,40): removed 5 keys
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 2, "value": -0.58}
+set_pose LowerTorso.ly @ 2: -0.56 -> -0.58
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 12, "value": -0.54}
+set_pose LowerTorso.ly @ 12: -0.58 -> -0.54
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 22, "value": -0.58}
+set_pose LowerTorso.ly @ 22: -0.55 -> -0.58
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 32, "value": -0.54}
+set_pose LowerTorso.ly @ 32: -0.57 -> -0.54
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 0, "value": -0.58}
+set_pose LowerTorso.ly @ 0: -0.56 -> -0.58
+[cwalk-1-feet-floor-and-skate] {"op": "smooth_transition", "bones": "LowerTorso", "ch": ["ly", "ry"], "mode": "loop_seam"}
+loop_seam LowerTorso.ly: closed + cyclic handles
+loop_seam LowerTorso.ry: closed + cyclic handles
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 0, "value": -68.85}
+set_pose LeftUpperLeg.rx @ 0: -75.00 -> -68.85
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 0, "value": 75.21}
+set_pose LeftLowerLeg.rx @ 0: 85.00 -> 75.21
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 0, "value": -6.35}
+set_pose LeftFoot.rx @ 0: -10.00 -> -6.35
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 2, "value": -68.18}
+set_pose LeftUpperLeg.rx @ 2: -68.85 -> -68.18
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 2, "value": 79.46}
+set_pose LeftLowerLeg.rx @ 2: 75.21 -> 79.46
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 2, "value": -11.28}
+set_pose LeftFoot.rx @ 2: -6.35 -> -11.28
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 4, "value": -66.97}
+set_pose LeftUpperLeg.rx @ 4: -68.19 -> -66.97
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 4, "value": 82.66}
+set_pose LeftLowerLeg.rx @ 4: 79.43 -> 82.66
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 4, "value": -15.69}
+set_pose LeftFoot.rx @ 4: -11.24 -> -15.69
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 10, "value": -61.02}
+set_pose LeftUpperLeg.rx @ 10: -67.11 -> -61.02
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 10, "value": 87.76}
+set_pose LeftLowerLeg.rx @ 10: 82.11 -> 87.76
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 10, "value": -26.73}
+set_pose LeftFoot.rx @ 10: -15.00 -> -26.73
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 16, "value": -55.53}
+set_pose LeftUpperLeg.rx @ 16: -61.83 -> -55.53
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 16, "value": 94.08}
+set_pose LeftLowerLeg.rx @ 16: 86.45 -> 94.08
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 16, "value": -38.55}
+set_pose LeftFoot.rx @ 16: -24.61 -> -38.55
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 20, "value": -55.65}
+set_pose LeftUpperLeg.rx @ 20: -56.52 -> -55.65
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 20, "value": 104.75}
+set_pose LeftLowerLeg.rx @ 20: 92.68 -> 104.75
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 20, "value": -43.61}
+set_pose LeftFoot.rx @ 20: -36.16 -> -43.61
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 0, "value": -55.83}
+set_pose RightUpperLeg.rx @ 0: -35.00 -> -55.83
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 0, "value": 105.12}
+set_pose RightLowerLeg.rx @ 0: 80.00 -> 105.12
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -43.79}
+set_pose RightFoot.rx @ 0: -45.00 -> -43.79
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 20, "value": -68.58}
+set_pose RightUpperLeg.rx @ 20: -55.83 -> -68.58
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 20, "value": 74.82}
+set_pose RightLowerLeg.rx @ 20: 105.12 -> 74.82
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 20, "value": -6.23}
+set_pose RightFoot.rx @ 20: -43.79 -> -6.23
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 22, "value": -68.18}
+set_pose RightUpperLeg.rx @ 22: -68.22 -> -68.18
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 22, "value": 79.46}
+set_pose RightLowerLeg.rx @ 22: 75.67 -> 79.46
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 22, "value": -11.28}
+set_pose RightFoot.rx @ 22: -7.28 -> -11.28
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 24, "value": -66.97}
+set_pose RightUpperLeg.rx @ 24: -67.17 -> -66.97
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 24, "value": 82.66}
+set_pose RightLowerLeg.rx @ 24: 85.63 -> 82.66
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -15.69}
+set_pose RightFoot.rx @ 24: -18.21 -> -15.69
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 30, "value": -61.02}
+set_pose RightUpperLeg.rx @ 30: -61.72 -> -61.02
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 30, "value": 87.76}
+set_pose RightLowerLeg.rx @ 30: 92.56 -> 87.76
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 30, "value": -26.73}
+set_pose RightFoot.rx @ 30: -28.95 -> -26.73
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 36, "value": -55.83}
+set_pose RightUpperLeg.rx @ 36: -56.72 -> -55.83
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 36, "value": 94.63}
+set_pose RightLowerLeg.rx @ 36: 100.44 -> 94.63
+[cwalk-1-feet-floor-and-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 36, "value": -38.81}
+set_pose RightFoot.rx @ 36: -39.84 -> -38.81
+[cwalk-1-feet-floor-and-skate] {"op": "smooth_transition", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": "rx", "mode": "loop_seam"}
+loop_seam LeftUpperLeg.rx: closed + cyclic handles
+loop_seam LeftLowerLeg.rx: closed + cyclic handles
+loop_seam LeftFoot.rx: closed + cyclic handles
+loop_seam RightUpperLeg.rx: closed + cyclic handles
+loop_seam RightLowerLeg.rx: closed + cyclic handles
+loop_seam RightFoot.rx: closed + cyclic handles
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 22, "value": -58.36}
+set_pose LeftUpperLeg.rx @ 22: -56.17 -> -58.36
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 22, "value": 113.06}
+set_pose LeftLowerLeg.rx @ 22: 103.92 -> 113.06
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 22, "value": -42.33}
+set_pose LeftFoot.rx @ 22: -42.57 -> -42.33
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 24, "value": -63.34}
+set_pose LeftUpperLeg.rx @ 24: -61.48 -> -63.34
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 24, "value": 121.79}
+set_pose LeftLowerLeg.rx @ 24: 111.76 -> 121.79
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 24, "value": -36.45}
+set_pose LeftFoot.rx @ 24: -39.26 -> -36.45
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 30, "value": -80.08}
+set_pose LeftUpperLeg.rx @ 30: -67.50 -> -80.08
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 30, "value": 130.37}
+set_pose LeftLowerLeg.rx @ 30: 107.05 -> 130.37
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 30, "value": -29.29}
+set_pose LeftFoot.rx @ 30: -18.91 -> -29.29
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 36, "value": -78.2}
+set_pose LeftUpperLeg.rx @ 36: -73.58 -> -78.20
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 36, "value": 91.12}
+set_pose LeftLowerLeg.rx @ 36: 94.63 -> 91.12
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 36, "value": -8.92}
+set_pose LeftFoot.rx @ 36: -12.97 -> -8.92
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 2, "value": -58.36}
+set_pose RightUpperLeg.rx @ 2: -56.19 -> -58.36
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 2, "value": 113.06}
+set_pose RightLowerLeg.rx @ 2: 104.27 -> 113.06
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 2, "value": -42.33}
+set_pose RightFoot.rx @ 2: -42.74 -> -42.33
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 4, "value": -63.34}
+set_pose RightUpperLeg.rx @ 4: -61.40 -> -63.34
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 4, "value": 121.79}
+set_pose RightLowerLeg.rx @ 4: 111.75 -> 121.79
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 4, "value": -36.45}
+set_pose RightFoot.rx @ 4: -39.06 -> -36.45
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 10, "value": -80.08}
+set_pose RightUpperLeg.rx @ 10: -67.30 -> -80.08
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 10, "value": 130.37}
+set_pose RightLowerLeg.rx @ 10: 106.93 -> 130.37
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 10, "value": -29.29}
+set_pose RightFoot.rx @ 10: -18.95 -> -29.29
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 16, "value": -77.84}
+set_pose RightUpperLeg.rx @ 16: -73.22 -> -77.84
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 16, "value": 90.66}
+set_pose RightLowerLeg.rx @ 16: 94.37 -> 90.66
+[cwalk-2-liftoff-swing-landing] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 16, "value": -8.82}
+set_pose RightFoot.rx @ 16: -12.87 -> -8.82
+[cwalk-2-liftoff-swing-landing] {"op": "smooth_transition", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": "rx", "mode": "loop_seam"}
+loop_seam LeftUpperLeg.rx: closed + cyclic handles
+loop_seam LeftLowerLeg.rx: closed + cyclic handles
+loop_seam LeftFoot.rx: closed + cyclic handles
+loop_seam RightUpperLeg.rx: closed + cyclic handles
+loop_seam RightLowerLeg.rx: closed + cyclic handles
+loop_seam RightFoot.rx: closed + cyclic handles
+[cwalk-3-planted-foot-swivel] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "ry", "frame": 0, "value": 5.0}
+set_pose LeftUpperLeg.ry @ 0: 0.00 -> 5.00
+[cwalk-3-planted-foot-swivel] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "ry", "frame": 20, "value": -5.0}
+set_pose LeftUpperLeg.ry @ 20: 5.00 -> -5.00
+[cwalk-3-planted-foot-swivel] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "ry", "frame": 0, "value": 5.0}
+set_pose RightUpperLeg.ry @ 0: 0.00 -> 5.00
+[cwalk-3-planted-foot-swivel] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "ry", "frame": 20, "value": -5.0}
+set_pose RightUpperLeg.ry @ 20: 5.00 -> -5.00
+[cwalk-3-planted-foot-swivel] {"op": "smooth_transition", "bones": ["LeftUpperLeg", "RightUpperLeg"], "ch": "ry", "mode": "loop_seam"}
+loop_seam LeftUpperLeg.ry: closed + cyclic handles
+loop_seam RightUpperLeg.ry: closed + cyclic handles
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 12, "value": 0.05}
+set_pose LowerTorso.lx @ 12: 0.00 -> 0.05
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 32, "value": -0.05}
+set_pose LowerTorso.lx @ 32: 0.01 -> -0.05
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 12, "value": -2.63}
+set_pose LeftUpperLeg.rz @ 12: 0.00 -> -2.63
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 32, "value": 2.63}
+set_pose LeftUpperLeg.rz @ 32: -0.52 -> 2.63
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 12, "value": -2.63}
+set_pose RightUpperLeg.rz @ 12: 0.00 -> -2.63
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 32, "value": 2.63}
+set_pose RightUpperLeg.rz @ 32: -0.52 -> 2.63
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 12, "value": 2.23}
+set_pose LeftFoot.rz @ 12: 0.00 -> 2.23
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 32, "value": -2.23}
+set_pose LeftFoot.rz @ 32: 0.44 -> -2.23
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 12, "value": 2.23}
+set_pose RightFoot.rz @ 12: 0.00 -> 2.23
+[cwalk-4-no-weight-shift] {"op": "set_pose", "bone": "RightFoot", "ch": "rz", "frame": 32, "value": -2.23}
+set_pose RightFoot.rz @ 32: 0.44 -> -2.23
+[cwalk-4-no-weight-shift] {"op": "smooth_transition", "bones": ["LowerTorso", "LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": ["lx", "rz"], "mode": "loop_seam"}
+loop_seam LowerTorso.lx: closed + cyclic handles
+loop_seam LeftUpperLeg.rz: closed + cyclic handles
+loop_seam LeftFoot.rz: closed + cyclic handles
+loop_seam RightUpperLeg.rz: closed + cyclic handles
+loop_seam RightFoot.rz: closed + cyclic handles
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 5, "value": 27.0}
+set_pose UpperTorso.rx @ 5: 25.00 -> 27.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 15, "value": 24.0}
+set_pose UpperTorso.rx @ 15: 26.60 -> 24.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 25, "value": 27.0}
+set_pose UpperTorso.rx @ 25: 24.35 -> 27.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 35, "value": 24.0}
+set_pose UpperTorso.rx @ 35: 25.52 -> 24.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 7, "value": -21.5}
+set_pose Head.rx @ 7: -20.00 -> -21.50
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 17, "value": -19.0}
+set_pose Head.rx @ 17: -21.17 -> -19.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 27, "value": -21.5}
+set_pose Head.rx @ 27: -19.40 -> -21.50
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 37, "value": -19.0}
+set_pose Head.rx @ 37: -20.20 -> -19.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 0, "value": -56.0}
+set_pose LeftLowerArm.rx @ 0: -60.00 -> -56.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 0, "value": -65.0}
+set_pose RightLowerArm.rx @ 0: -60.00 -> -65.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 5, "value": -54.0}
+set_pose LeftLowerArm.rx @ 5: -56.00 -> -54.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 25, "value": -67.0}
+set_pose LeftLowerArm.rx @ 25: -55.21 -> -67.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 5, "value": -67.0}
+set_pose RightLowerArm.rx @ 5: -65.00 -> -67.00
+[cwalk-5-stiff-upper-body] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 25, "value": -54.0}
+set_pose RightLowerArm.rx @ 25: -65.79 -> -54.00
+[cwalk-5-stiff-upper-body] {"op": "smooth_transition", "bones": ["UpperTorso", "Head", "LeftLowerArm", "RightLowerArm"], "ch": "rx", "mode": "loop_seam"}
+loop_seam UpperTorso.rx: closed + cyclic handles
+loop_seam Head.rx: closed + cyclic handles
+loop_seam LeftLowerArm.rx: closed + cyclic handles
+loop_seam RightLowerArm.rx: closed + cyclic handles
+[cwalk-5-stiff-upper-body] {"op": "offset_overlap", "bones": ["LeftUpperArm", "RightUpperArm"], "ch": "rx", "offset": 3}
+offset_overlap LeftUpperArm.rx by +3 frames
+offset_overlap RightUpperArm.rx by +3 frames
+[cwalk-5-stiff-upper-body] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "ry", "offset": 1}
+offset_overlap UpperTorso.ry by +1 frames
+[cwalk-5-stiff-upper-body] {"op": "offset_overlap", "bones": "Head", "ch": "ry", "offset": 3}
+offset_overlap Head.ry by +3 frames
+[cwalk-1-feet-floor-and-skate] {"op": "plant_feet", "range": [0, 40], "step": 2, "mode": "all", "smooth": 1.0}
+plant_feet [0,40] step 2 mode all: 21 keys, max correction 0.009 studs
+applied 105 ops, skipped 0; saved work/crouch_walk/iter_1.blend

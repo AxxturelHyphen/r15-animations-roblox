@@ -1,0 +1,305 @@
+{
+ "animation": "death",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 4,
+  "timing": 4,
+  "transitions": 5,
+  "appeal": 4
+ },
+ "summary": "wip",
+ "findings": [
+  {
+   "id": "death-floor-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    50
+   ],
+   "bones": [
+    "Head",
+    "UpperTorso",
+    "LowerTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "ry",
+     "factor": 0,
+     "pivot": "rest"
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 36,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 42,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 50,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 34,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 50,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 36,
+     "value": -3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 50,
+     "value": -3.5
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 1,
+     "parts": "all"
+    }
+   ]
+  },
+  {
+   "id": "death-limp-02",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    34,
+    50
+   ],
+   "bones": [
+    "LeftUpperArm"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": 62
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": 62
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": -2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": -2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 34,
+     "value": 7
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 50,
+     "value": 7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 34,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 50,
+     "value": -14
+    }
+   ]
+  }
+ ]
+}
