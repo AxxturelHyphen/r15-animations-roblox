@@ -1,0 +1,193 @@
+{
+ "animation": "clap",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 2,
+  "timing": 5,
+  "transitions": 6,
+  "appeal": 3
+ },
+ "summary": "",
+ "findings": [
+  {
+   "id": "clap-hands-never-meet",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    4,
+    36
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "LeftHand",
+    "RightHand"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "LeftUpperArm",
+     "ch": "rx",
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": "rx",
+     "factor": 1.2727,
+     "pivot": "rest"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 4,
+     "value": -11
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 36,
+     "value": -11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 4,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 36,
+     "value": 12
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "LeftUpperArm",
+     "ch": "rz",
+     "factor": 0,
+     "pivot": 11,
+     "range": [
+      4,
+      36
+     ]
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": "rz",
+     "factor": 0,
+     "pivot": -8,
+     "range": [
+      4,
+      36
+     ]
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "LeftLowerArm",
+     "ch": "rx",
+     "factor": 0.5,
+     "pivot": -8
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "factor": 0.3846,
+     "pivot": -8
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "LeftLowerArm",
+     "ch": "rz",
+     "factor": 0.72,
+     "pivot": -85,
+     "range": [
+      4,
+      36
+     ]
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightLowerArm",
+     "ch": "rz",
+     "factor": 1.2,
+     "pivot": -25,
+     "range": [
+      4,
+      36
+     ]
+    }
+   ]
+  },
+  {
+   "id": "clap-body-dead-under-arms",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    6,
+    34
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LowerTorso"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 13,
+     "value": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 18,
+     "value": 6.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 23,
+     "value": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 28,
+     "value": 6.5
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "factor": 0,
+     "pivot": "rest"
+    }
+   ]
+  }
+ ]
+}
