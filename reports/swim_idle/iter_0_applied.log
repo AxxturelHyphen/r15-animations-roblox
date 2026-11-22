@@ -1,0 +1,50 @@
+[swimidle-1-arms-not-mirrored] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "ry", "factor": -1.5, "pivot": 0}
+scale_amplitude RightUpperArm.ry [0,60] x-1.5 about 0
+[swimidle-1-arms-not-mirrored] {"op": "scale_amplitude", "bones": "LeftUpperArm", "ch": "ry", "factor": 1.5, "pivot": 0}
+scale_amplitude LeftUpperArm.ry [0,60] x1.5 about 0
+[swimidle-1-arms-not-mirrored] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rz", "factor": -1, "pivot": -55}
+scale_amplitude RightUpperArm.rz [0,60] x-1 about -55
+[swimidle-2-frozen-forearms] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 15, "value": -76}
+set_pose LeftLowerArm.rx @ 15: -60.00 -> -76.00
+[swimidle-2-frozen-forearms] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 30, "value": -52}
+set_pose LeftLowerArm.rx @ 30: -71.85 -> -52.00
+[swimidle-2-frozen-forearms] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 45, "value": -76}
+set_pose LeftLowerArm.rx @ 45: -56.00 -> -76.00
+[swimidle-2-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 15, "value": -76}
+set_pose RightLowerArm.rx @ 15: -60.00 -> -76.00
+[swimidle-2-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 30, "value": -52}
+set_pose RightLowerArm.rx @ 30: -71.85 -> -52.00
+[swimidle-2-frozen-forearms] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 45, "value": -76}
+set_pose RightLowerArm.rx @ 45: -56.00 -> -76.00
+[swimidle-2-frozen-forearms] {"op": "offset_overlap", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "offset": 3}
+offset_overlap LeftLowerArm.rx by +3 frames
+offset_overlap RightLowerArm.rx by +3 frames
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 8, "value": 25}
+set_pose LeftUpperLeg.rz @ 8: 15.00 -> 25.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 23, "value": 8}
+set_pose LeftUpperLeg.rz @ 23: 22.98 -> 8.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 38, "value": 25}
+set_pose LeftUpperLeg.rz @ 38: 10.52 -> 25.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 53, "value": 8}
+set_pose LeftUpperLeg.rz @ 53: 17.39 -> 8.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 8, "value": -8}
+set_pose RightUpperLeg.rz @ 8: -15.00 -> -8.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 23, "value": -25}
+set_pose RightUpperLeg.rz @ 23: -9.41 -> -25.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 38, "value": -8}
+set_pose RightUpperLeg.rz @ 38: -21.40 -> -8.00
+[swimidle-3-pedal-not-eggbeater] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 53, "value": -25}
+set_pose RightUpperLeg.rz @ 53: -13.32 -> -25.00
+[swimidle-4-small-body-motion] {"op": "scale_amplitude", "bones": "LowerTorso", "ch": "ly", "factor": 2, "pivot": 0}
+scale_amplitude LowerTorso.ly [0,60] x2 about 0
+[swimidle-4-small-body-motion] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "rx", "factor": 2.5, "pivot": "mean"}
+scale_amplitude UpperTorso.rx [0,60] x2.5 about mean
+[swimidle-4-small-body-motion] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 15, "value": 4}
+set_pose UpperTorso.ry @ 15: 0.00 -> 4.00
+[swimidle-4-small-body-motion] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 45, "value": -4}
+set_pose UpperTorso.ry @ 45: 1.04 -> -4.00
+[swimidle-4-small-body-motion] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "rx", "offset": 3}
+offset_overlap UpperTorso.rx by +3 frames
+[swimidle-4-small-body-motion] {"op": "offset_overlap", "bones": "Head", "ch": "ry", "offset": 5}
+offset_overlap Head.ry by +5 frames
+applied 24 ops, skipped 0; saved work/swim_idle/iter_1.blend

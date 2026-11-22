@@ -1,0 +1,62 @@
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 0, "value": -150}
+set_pose LeftUpperArm.rx @ 0: -160.00 -> -150.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 0, "value": -10}
+set_pose LeftLowerArm.rx @ 0: -40.00 -> -10.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 15, "value": -72}
+set_pose LeftUpperArm.rx @ 15: -110.00 -> -72.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 15, "value": -95}
+set_pose LeftLowerArm.rx @ 15: -90.00 -> -95.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 15, "value": -150}
+set_pose RightUpperArm.rx @ 15: -160.00 -> -150.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 15, "value": -10}
+set_pose RightLowerArm.rx @ 15: -40.00 -> -10.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 0, "value": -72}
+set_pose RightUpperArm.rx @ 0: -110.00 -> -72.00
+[climb-1-hands-miss-truss] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 0, "value": -95}
+set_pose RightLowerArm.rx @ 0: -90.00 -> -95.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 0, "value": -36}
+set_pose LeftUpperLeg.rx @ 0: -25.00 -> -36.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 0, "value": 28}
+set_pose LeftLowerLeg.rx @ 0: 40.00 -> 28.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 15, "value": -88}
+set_pose LeftUpperLeg.rx @ 15: -75.00 -> -88.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 15, "value": 110}
+set_pose LeftLowerLeg.rx @ 15: 100.00 -> 110.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 15, "value": -36}
+set_pose RightUpperLeg.rx @ 15: -25.00 -> -36.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 15, "value": 28}
+set_pose RightLowerLeg.rx @ 15: 40.00 -> 28.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 0, "value": -88}
+set_pose RightUpperLeg.rx @ 0: -75.00 -> -88.00
+[climb-2-feet-depth] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 0, "value": 110}
+set_pose RightLowerLeg.rx @ 0: 100.00 -> 110.00
+[climb-3-sine-lockstep] {"op": "add_breakdown", "bone": "LeftUpperArm", "ch": "rx", "frame": 25, "value": -142}
+set_pose LeftUpperArm.rx @ 25: -129.78 -> -142.00
+[climb-3-sine-lockstep] {"op": "add_breakdown", "bone": "LeftLowerArm", "ch": "rx", "frame": 25, "value": -16}
+set_pose LeftLowerArm.rx @ 25: -32.04 -> -16.00
+[climb-3-sine-lockstep] {"op": "add_breakdown", "bone": "RightUpperArm", "ch": "rx", "frame": 10, "value": -142}
+set_pose RightUpperArm.rx @ 10: -129.78 -> -142.00
+[climb-3-sine-lockstep] {"op": "add_breakdown", "bone": "RightLowerArm", "ch": "rx", "frame": 10, "value": -16}
+set_pose RightLowerArm.rx @ 10: -32.04 -> -16.00
+[climb-3-sine-lockstep] {"op": "offset_overlap", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": "rx", "offset": 3}
+offset_overlap LeftUpperLeg.rx by +3 frames
+offset_overlap LeftLowerLeg.rx by +3 frames
+offset_overlap LeftFoot.rx by +3 frames
+offset_overlap RightUpperLeg.rx by +3 frames
+offset_overlap RightLowerLeg.rx by +3 frames
+offset_overlap RightFoot.rx by +3 frames
+[climb-4-stiff-trunk-head] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "ry", "factor": -1.25, "pivot": 0}
+scale_amplitude UpperTorso.ry [0,30] x-1.25 about 0
+[climb-4-stiff-trunk-head] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 7, "value": -0.08}
+set_pose LowerTorso.lx @ 7: 0.00 -> -0.08
+[climb-4-stiff-trunk-head] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 22, "value": 0.08}
+set_pose LowerTorso.lx @ 22: -0.02 -> 0.08
+[climb-4-stiff-trunk-head] {"op": "scale_amplitude", "bones": "LowerTorso", "ch": "ly", "factor": 1.5, "pivot": 0}
+scale_amplitude LowerTorso.ly [0,30] x1.5 about 0
+[climb-4-stiff-trunk-head] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 0, "value": 5}
+set_pose Head.ry @ 0: 0.00 -> 5.00
+[climb-4-stiff-trunk-head] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 15, "value": -5}
+set_pose Head.ry @ 15: 5.00 -> -5.00
+[climb-4-stiff-trunk-head] {"op": "offset_overlap", "bones": "Head", "ch": "ry", "offset": 2}
+offset_overlap Head.ry by +2 frames
+applied 28 ops, skipped 0; saved work/climb/iter_1.blend

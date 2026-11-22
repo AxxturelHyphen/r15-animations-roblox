@@ -1,0 +1,168 @@
+{
+ "animation": "fall",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 6,
+  "timing": 5,
+  "transitions": 8,
+  "appeal": 4
+ },
+ "summary": "Clean loop with no pops, but it reads as a held 'hands up' pose that breathes rather than a fall: every bone is keyed on 0/12/24 and the arms only move 12-15 deg. Fixes: turn the arm motion into a real circular flail, stagger forearms, shins, feet and head, and add a counter-twist through the torso. The blend from jump is fine (similar leg tuck, arms already raised).",
+ "findings": [
+  {
+   "id": "fall-1-arms-barely-wave",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    24
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm"
+   ],
+   "observation": "The spec asks for arms 'waving for balance', but on the sheets F000 and F012 are almost the same silhouette and the onion skin shows a single arm shape. UpperArm.rz moves only 15 deg (left) and 12 deg (right), UpperArm.rx is a flat -10, so the hands travel on a short straight line in one plane. The arm amplitude is doubled and an out-of-phase forward/back swing is added on rx (left forward at 6, back at 18; right the opposite), which makes each hand trace a loop instead of a line.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rz",
+     "factor": 2,
+     "pivot": "mean"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -32
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -32
+    }
+   ]
+  },
+  {
+   "id": "fall-2-lockstep",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    24
+   ],
+   "bones": [
+    "LeftLowerArm",
+    "RightLowerArm",
+    "LeftLowerLeg",
+    "RightLowerLeg",
+    "Head",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "metrics: overlap_score 0.0, 11 of 13 bones keyed on frame 12, and whole-body speed drops to 2.5 deg/frame on frames 0, 11, 12 and 23, so the whole body stops and reverses together twice per loop. Both feet are frozen (Foot.rx range 0). Forearms are delayed 3 frames, shins 2, head 3, and the feet get a loose dangle on different frames, so no frame has everything at rest.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerLeg",
+      "RightLowerLeg"
+     ],
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 14,
+     "value": 34
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": 38
+    }
+   ]
+  },
+  {
+   "id": "fall-3-rigid-torso",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    24
+   ],
+   "bones": [
+    "UpperTorso",
+    "LowerTorso"
+   ],
+   "observation": "The trunk is a rigid column: LowerTorso.rx moves 2 deg and UpperTorso.rx 3 deg, with no twist, so the flailing arms do not act on the body (side view F000-F024, the teal blocks never move). A chest counter-twist (ry -7 at 6, +7 at 18, against the arm that swings forward) and double the rock on rx are added.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 6,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 18,
+     "value": 7
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LowerTorso",
+      "UpperTorso"
+     ],
+     "ch": "rx",
+     "factor": 2,
+     "pivot": "mean"
+    }
+   ]
+  }
+ ]
+}

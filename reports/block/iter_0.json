@@ -1,0 +1,263 @@
+{
+ "animation": "block",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 3,
+  "timing": 5,
+  "transitions": 7,
+  "appeal": 3
+ },
+ "summary": "The loop is seamless and the braced stance is balanced, but the block fails at its one job: the forearms flank the head and leave the face wide open (rz used where ry was needed, with the wrong roll sign), the clip is a 30-frame dead hold with zero motion in head, arms and legs, and both feet sit 0.04-0.08 studs under the floor for every frame.",
+ "findings": [
+  {
+   "id": "block-guard-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm"
+   ],
+   "observation": "The guard does not guard. In every 3/4 cell (f0-f30) the whole face is visible between the arms: the forearms stand beside the head, splayed outward, instead of crossing in front of it as the spec asks. Cause: with the upper arms raised to rx -80 the rz +/-25 keys no longer swing the arm sideways, they roll it about its own length, and the sign used (Left rz -25, Right rz +25) tips the forearm tops OUTWARD. There is no ry at all, which is the channel that swings a raised arm across the chest. Re-pose: swing the raised upper arms inward with ry (left arm toward the character's right = ry < 0, right arm = ry > 0), flip the rz roll so the forearm tops lean inward (Left rz > 0, Right rz < 0), and open the elbows slightly so the forearms sit in front of the face instead of in the head. Dry-run FK: hands end at x +0.57/-0.60, z 4.25 (head centre z 4.34), about 0.3 studs clear of the face; the values are deliberately not mirror-identical.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 0,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 0,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -75
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -84
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 0,
+     "value": 36
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 0,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -80
+    }
+   ]
+  },
+  {
+   "id": "block-alive-02",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftLowerArm",
+    "RightLowerArm",
+    "LeftUpperArm",
+    "RightUpperArm"
+   ],
+   "observation": "The whole clip is one dead hold (metrics dead_holds [0,30], whole-body speed peaks at 0.2 deg/frame; all 31 cells are pixel-identical). Only UpperTorso.rx (2 deg) and LowerTorso.ly (0.03 studs) move; head, arms and legs have motion_range 0. A held block should breathe and brace: give the chest a visible breath, let the head sink behind the guard and the forearms give and tighten, and let the chest lead by 2 frames and the arms and head trail by 1-4 so nothing peaks on the same frame. Frame 0/30 stay untouched, so the loop stays closed.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 15,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 15,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 15,
+     "value": 13
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -85
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -80
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -84
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -87
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": [
+      "rx",
+      "ry"
+     ],
+     "offset": -2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 4
+    }
+   ]
+  },
+  {
+   "id": "block-feet-03",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "Both feet are sunk in the floor for the whole loop: LeftFoot z -0.054 at f0 down to -0.084 at f15, RightFoot -0.036 to -0.066 (46 penetration frames). The root is keyed 0.15-0.18 studs down but the leg bend only shortens the legs by about 0.10, and because the legs are static the 0.03-stud root bob pushes the soles in and out of the ground. Drive the bob from the legs instead (a small knee give at f15, with the ankles counter-rotated so the soles stay flat: thigh + knee + foot stays 0 on each leg), then re-ground the root on the feet.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": -28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 41
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -13
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 25
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -33
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 3,
+     "parts": "feet"
+    }
+   ]
+  }
+ ]
+}

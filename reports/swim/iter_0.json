@@ -1,0 +1,223 @@
+{
+ "animation": "swim",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 6,
+  "posing": 3,
+  "timing": 6,
+  "transitions": 8,
+  "appeal": 4
+ },
+ "summary": "The loop is smooth and the kick is fine, but the stroke is not a crawl: the recovering arm swings back to the front underneath the body, on the same path as the pull, so each arm is a pendulum and both hands hang below the chest at the same time. The forearm also passes through the head. Fixes: route the recovery out to the side and over the water with UpperArm.ry, add a real body roll timed to it, widen the breath, and stagger forearms and shins.",
+ "findings": [
+  {
+   "id": "swim-1-recovery-underwater",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm"
+   ],
+   "observation": "The spec intends 'recovery out to the side' and keys UpperArm.rz 80 at the recovery mid-point, but at that key rx is -90, so the arm already points along the rz axis and rz only twists it. Measured: at F030 the recovering left hand is at height 0.74, about 1.3 studs BELOW the body and under the chest (x +0.77, then +0.16 at F035), at the same height as the pulling right hand (0.76). The same happens to the right arm at F010. On the sheets F006-F010 (blue) and F026-F030 (orange) show the recovering arm hanging straight down. The forearm then cuts through the head: Head x RightLowerArm intersect on F015-F016 and Head x LeftLowerArm on F035. Fix: drop the rz twist at the mid-point and swing the arm out with ry instead (left +85/+88/+85 at 25/30/35, right -85/-88/-85 at 5/10/15; ry does nothing at the ends, where the arm lies along the body). Checked: the left hand now goes 1.95 (hip, F020) -> 2.62 (F025) -> 3.78 (F030, above the back) -> 3.43 (F035) -> entry, and no parts intersect on any frame.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 30,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 20,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 25,
+     "value": 85
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 30,
+     "value": 88
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 35,
+     "value": 85
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 10,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 20,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 5,
+     "value": -85
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 10,
+     "value": -88
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 15,
+     "value": -85
+    }
+   ]
+  },
+  {
+   "id": "swim-2-roll-phase",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso"
+   ],
+   "observation": "The only roll is UpperTorso.ry +/-15, and it peaks on frames 0 and 20, when one arm is entering and the other finishing; at the middle of each recovery (F010, F030) the chest is flat (ry 0). In a crawl the shoulder of the recovering arm is highest mid-recovery. The chest roll is shifted 10 frames earlier (peak +10.5 at F030 with the left shoulder up, -10.5 at F010) and a hip roll is added on LowerTorso.rz (+10 at 30, -10 at 10; for the prone body rz is the roll about its long axis). Amplitudes are kept moderate because the raised head sits about 1.1 studs off the roll axis and would otherwise wag sideways.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rz",
+     "frame": 10,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rz",
+     "frame": 30,
+     "value": 10
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "factor": 0.7,
+     "pivot": 0
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "offset": -10
+    }
+   ]
+  },
+  {
+   "id": "swim-3-breath-blip",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    20,
+    36
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "The breath is a 10-frame blip: Head.ry goes 0 -> 30 -> 0 on frames 20/25/30 with no hold, and 30 deg does not get the face out of the water (F024-F027, front view: the face still points forward and down). It now turns to 45 by F025, holds 35 at F030 and returns by F036, riding on the body roll, and counter-turns +12 at F010 so the face stays down while the body rolls the other way.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 10,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 25,
+     "value": 45
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 30,
+     "value": 35
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 36,
+     "value": 0
+    }
+   ]
+  },
+  {
+   "id": "swim-4-lockstep-limbs",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftLowerArm",
+    "RightLowerArm",
+    "LeftLowerLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "metrics: overlap_score 0.362, with 9-11 of 13 bones keyed on frames 10, 20 and 30. Elbows change direction on exactly the same frames as the shoulders, and knees with the hips, so the limbs move as rigid sticks. Forearms and shins are delayed 2 frames for drag in the pull and a whip in the flutter kick.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerLeg",
+      "RightLowerLeg"
+     ],
+     "ch": "rx",
+     "offset": 2
+    }
+   ]
+  }
+ ]
+}

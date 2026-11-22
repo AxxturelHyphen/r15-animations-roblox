@@ -1,0 +1,43 @@
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 30, "value": 10}
+set_pose LeftUpperArm.rz @ 30: 80.00 -> 10.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 20, "value": 0}
+set_pose LeftUpperArm.ry @ 20: 0.00 -> 0.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 25, "value": 85}
+set_pose LeftUpperArm.ry @ 25: 0.00 -> 85.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 30, "value": 88}
+set_pose LeftUpperArm.ry @ 30: 62.96 -> 88.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 35, "value": 85}
+set_pose LeftUpperArm.ry @ 35: 44.00 -> 85.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 10, "value": -10}
+set_pose RightUpperArm.rz @ 10: -80.00 -> -10.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 20, "value": 0}
+set_pose RightUpperArm.ry @ 20: 0.00 -> 0.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 5, "value": -85}
+set_pose RightUpperArm.ry @ 5: 0.00 -> -85.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 10, "value": -88}
+set_pose RightUpperArm.ry @ 10: -62.96 -> -88.00
+[swim-1-recovery-underwater] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 15, "value": -85}
+set_pose RightUpperArm.ry @ 15: -44.00 -> -85.00
+[swim-2-roll-phase] {"op": "set_pose", "bone": "LowerTorso", "ch": "rz", "frame": 10, "value": -10}
+set_pose LowerTorso.rz @ 10: 0.00 -> -10.00
+[swim-2-roll-phase] {"op": "set_pose", "bone": "LowerTorso", "ch": "rz", "frame": 30, "value": 10}
+set_pose LowerTorso.rz @ 30: -2.59 -> 10.00
+[swim-2-roll-phase] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "ry", "factor": 0.7, "pivot": 0}
+scale_amplitude UpperTorso.ry [0,40] x0.7 about 0
+[swim-2-roll-phase] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "ry", "offset": -10}
+offset_overlap UpperTorso.ry by -10 frames
+[swim-3-breath-blip] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 10, "value": 12}
+set_pose Head.ry @ 10: 0.00 -> 12.00
+[swim-3-breath-blip] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 25, "value": 45}
+set_pose Head.ry @ 25: 30.00 -> 45.00
+[swim-3-breath-blip] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 30, "value": 35}
+set_pose Head.ry @ 30: 0.00 -> 35.00
+[swim-3-breath-blip] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 36, "value": 0}
+set_pose Head.ry @ 36: 8.72 -> 0.00
+[swim-4-lockstep-limbs] {"op": "offset_overlap", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "offset": 2}
+offset_overlap LeftLowerArm.rx by +2 frames
+offset_overlap RightLowerArm.rx by +2 frames
+[swim-4-lockstep-limbs] {"op": "offset_overlap", "bones": ["LeftLowerLeg", "RightLowerLeg"], "ch": "rx", "offset": 2}
+offset_overlap LeftLowerLeg.rx by +2 frames
+offset_overlap RightLowerLeg.rx by +2 frames
+applied 20 ops, skipped 0; saved work/swim/iter_1.blend

@@ -1,0 +1,293 @@
+{
+ "animation": "climb",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 4,
+  "transitions": 8,
+  "appeal": 4
+ },
+ "summary": "Seamless and pop-free, but the pose does not sell a truss in front of the character: the reaching hand ends up directly above the shoulder and the hands drift 0.7 studs in depth, so it reads as marching on the spot with the arms overhead. Timing is one pure sine with every limb keyed on frame 15. Fixes: re-pose both arms and legs so hands and feet stay in the truss plane, give the reach a fast move plus a grip hold, let the feet follow the hands, and loosen the torso and head.",
+ "findings": [
+  {
+   "id": "climb-1-hands-miss-truss",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "Measured on the rig: at F000 the reaching left hand is only 0.12 studs in front of the root at height 5.72 (straight above the shoulder), while the pulling right hand is 0.84 in front at 5.10; they swap by F015. So each hand slides 0.7 studs toward and away from the truss every cycle, and both stay above the head (vertical travel only 0.6). Cause: UpperArm.rx -160 plus elbow -40 puts the forearm at -200 deg, i.e. tilted backward past vertical. Side view F000-F004: the orange forearm leans back over the head. New poses: reach = UpperArm -150 / elbow -10, pull = UpperArm -72 / elbow -95 (elbow tucked beside the ribs). Checked with the chest twist below: both hands sit 1.22-1.28 studs in front at each end of the stroke and travel 1.1 studs vertically (4.47 to 5.57), with no part intersections on any frame.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -150
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -72
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -95
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -150
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -72
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -95
+    }
+   ]
+  },
+  {
+   "id": "climb-2-feet-depth",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftLowerLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "The feet also wander in depth: the low foot is 0.34 studs in front of the root and the high foot 0.70 (F000 vs F015), so the feet pedal a circle under the body instead of stepping on rungs in front. The low leg now reaches forward (thigh -36, knee 28) and the high leg is thigh -88, knee 110, which keeps both feet 0.78-0.88 in front through the whole cycle.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -36
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": -88
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 110
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": -36
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -88
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 110
+    }
+   ]
+  },
+  {
+   "id": "climb-3-sine-lockstep",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftLowerLeg",
+    "RightLowerLeg",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "Every limb is a single sine keyed on 0/15/30 (metrics: overlap_score 0.143, 12 of 13 bones keyed on frame 15; whole-body speed 5.7 deg/frame at frames 0, 14, 15, 29 and 44.7 mid-way). Hand and foot start, peak and stop on identical frames, and there is no moment where a hand grips: reach and pull take the same 15 frames. A breakdown near the top of each reach (left arm frame 25, right arm frame 10) makes the reach take about 10 frames and then hold on the rung for about 5, and the legs are delayed 3 frames so each foot steps just after the opposite hand has landed.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 25,
+     "value": -142
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 25,
+     "value": -16
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 10,
+     "value": -142
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 10,
+     "value": -16
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "offset": 3
+    }
+   ]
+  },
+  {
+   "id": "climb-4-stiff-trunk-head",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "UpperTorso",
+    "LowerTorso",
+    "Head"
+   ],
+   "observation": "Head.rx is a flat -15 and UpperTorso.rx a flat 5 for the whole loop; the only trunk motion is an 8 deg twist that goes the wrong way (ry +4 at F000 turns the chest left, pulling the reaching left shoulder away from the truss). The twist is reversed and slightly enlarged (-5 at 0, +5 at 15, reaching shoulder forward), the head counter-turns with a 2-frame lag so the face stays on the truss, the hips shift over the pushing leg (lx -0.08 at 7, +0.08 at 22) and the push-up bob grows from 0.10 to 0.15 studs.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "factor": -1.25,
+     "pivot": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 7,
+     "value": -0.08
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 22,
+     "value": 0.08
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "factor": 1.5,
+     "pivot": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 0,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 15,
+     "value": -5
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 2
+    }
+   ]
+  }
+ ]
+}

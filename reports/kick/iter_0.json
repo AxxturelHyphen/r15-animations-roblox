@@ -1,0 +1,442 @@
+{
+ "animation": "kick",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 5,
+  "timing": 6,
+  "transitions": 3,
+  "appeal": 5
+ },
+ "summary": "The kick is well timed in outline (6-frame chamber, 3-frame snap to the f9 impact, fast re-chamber), but it is not grounded: the support foot skates 0.38 studs under the body, both feet are below the floor on every frame, and the body never shifts over the standing leg. The impact pose then freezes for 3 frames, and the arms move as one block keyed on the same frame as everything else. All fixes keep the hit on frame 9. The remaining accel spikes on RightLowerLeg/RightFoot are the snap of the kick and are intentional.",
+ "findings": [
+  {
+   "id": "kick-support-01",
+   "category": "transition",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot"
+   ],
+   "observation": "The standing foot skates. LeftFoot is in contact on all 31 frames but its centre slides 0.38 studs backward between f0 and f9 (y -0.38 -> 0.00) and back again by f30 (side view: the orange foot walks under the body while the blue leg kicks; metrics: moves_backward, mean_speed 0.026). Two causes: the root is keyed 0.15 studs BACKWARD on the impact frame (lz -0.15 at f9) with nothing in the support leg to absorb it, and the support thigh/knee keys (-15/15 -> -10/20) tip the shin 10 deg with no ankle key, so the sole also tilts toes-down into the floor. Hips that retreat as the leg extends also make the kick weak. Fix: settle back slightly in the chamber (f5), drive the hips FORWARD into the extension (lz > 0 at f9), and re-key the support leg at f5/f9/f16 so the ankle stays over the same spot with the sole flat (thigh + knee + foot = 0). Values come from an FK solve of the 0.9/0.75-stud leg; in the dry run the support foot stays within 0.01 studs of y -0.38 for the whole clip.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 5,
+     "value": -0.06
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 9,
+     "value": 0.12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 16,
+     "value": -0.02
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": -18.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 17
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 5,
+     "value": 1.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": -13.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 9,
+     "value": -7.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -16.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 16
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -0.0
+    }
+   ]
+  },
+  {
+   "id": "kick-ground-02",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "Feet through the floor on every frame (47 penetration frames). At rest (f0, f22-f30) the rear right foot is keyed rx -15 on a shin that leans 25 deg back (thigh 10 + knee 15), so the toes point 10 deg down and dig in 0.15 studs; on lift-off (f1-f3, z -0.19/-0.23/-0.13) and on the step-down (f19-f22, z down to -0.25) the foot swings through the ground toe-first, and it touches down at f19 about 0.5 studs ahead of where it ends, then drags back along the floor. The support foot is 0.07-0.16 under as well, because the root height never matches the leg bend. Fix: flatten the rear sole (thigh + knee + foot = 0 at f0/f22/f30) and finish the step at f22 so the foot does not creep afterwards; dorsiflex the ankle (Foot rx < 0 = toes up) and add knee at f2 and f20 so the toes clear on the way up and the foot stays airborne until it is over its landing spot; then re-ground the root on the lowest foot. Dry run: no penetration left, support foot at z 0.00 on every frame, rear foot within 0.035 of the floor when planted.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -21
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -21
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": 9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 22,
+     "value": -21
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 2,
+     "value": -42
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 2,
+     "delta": 12
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": -38
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 20,
+     "delta": 14
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2,
+     "parts": "feet"
+    }
+   ]
+  },
+  {
+   "id": "kick-balance-03",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    4,
+    18
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftFoot"
+   ],
+   "observation": "From f4 to f18 the character stands on the left leg only, but the pelvis stays exactly centred between where the two feet were (there is no lx key anywhere), so in the 3/4 view the body hangs beside its support foot and the kick reads weightless. Shift the hips 0.18 studs over the standing foot (lx > 0 = toward the character's left) before the foot leaves and back as it lands, and counter it in the support hip and ankle so the planted foot neither slides sideways nor rolls onto its edge (LeftUpperLeg rz < 0 swings the foot back to its old spot; LeftFoot rz is the opposite, to keep the sole flat).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 5,
+     "value": 0.18
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 16,
+     "value": 0.18
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 22,
+     "value": 0.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 5,
+     "value": -6.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 16,
+     "value": -6.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 22,
+     "value": 0.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 5,
+     "value": 6.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 16,
+     "value": 6.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 22,
+     "value": 0.0
+    }
+   ]
+  },
+  {
+   "id": "kick-impact-04",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    6,
+    12
+   ],
+   "bones": [
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "The game fires the hit on f9 and the extension itself is good (knee 110 -> 5 deg in f6-f9), but it lands on a pose that is then frozen: RightUpperLeg and RightLowerLeg have identical keys at f9 and f12 (whole-body speed drops to 4 deg/frame; f9, f10 and f11 are the same picture), and the torso only leans 15 deg, so the kick reaches hip height with an upright body. Keep the impact on f9 but make it a snap that settles: drive the thigh above horizontal and lock the knee straight on f9, let both ease back to the existing f12 keys (a 3-frame recoil instead of a freeze), and commit the spine with more lean-back (UpperTorso rx < 0) while the head nods to stay on the target.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "key_frame": 9,
+     "overshoot": 5,
+     "settle_frames": 3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": -94
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 9,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 9,
+     "value": 20
+    }
+   ]
+  },
+  {
+   "id": "kick-arms-05",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "Head",
+    "UpperTorso"
+   ],
+   "observation": "All 12 animated bones are keyed on f9 (lockstep 12/12, overlap_score 0.52) and both arms do the same thing at the same time: they open and drop together and come back together, so the upper body moves as one block. Give the arms jobs: the left stays a tight guard in front of the chin, the right (kicking side) swings back and down as a counterweight to the leg (UpperArm rx > 0 = swung backward). Then break the lockstep: the arms and head trail the leg by 1-3 frames and the spine by 1, so the leg leads and the rest follows through. Dry run: lockstep frames 0, overlap_score 1.0.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 9,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 9,
+     "value": -55
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 9,
+     "value": -62
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 9,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 9,
+     "value": -112
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "ch": [
+      "rx",
+      "rz"
+     ],
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "ch": [
+      "rx",
+      "rz"
+     ],
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "offset": 1
+    }
+   ]
+  }
+ ]
+}

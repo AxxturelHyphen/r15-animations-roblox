@@ -1,0 +1,435 @@
+{
+ "animation": "combo",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 5,
+  "timing": 5,
+  "transitions": 4,
+  "appeal": 5
+ },
+ "summary": "wip",
+ "findings": [
+  {
+   "id": "combo-feet-01",
+   "category": "transition",
+   "severity": "high",
+   "frames": [
+    0,
+    48
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "offset_channel",
+     "bones": "RightFoot",
+     "ch": "rx",
+     "delta": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 6,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 6,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 16,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 16,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 24,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 24,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 30,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 30,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": -13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -18.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 32
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -31
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -18.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": -9
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -16
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2,
+     "parts": "feet"
+    }
+   ]
+  },
+  {
+   "id": "combo-snap-02",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    36
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -46
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -116,
+     "interpolation": "LINEAR"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 7,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 7,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 7,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 17,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 17,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 17,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -85
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 32,
+     "value": 78
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -90
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm"
+     ],
+     "range": [
+      11,
+      11
+     ],
+     "shift": 2,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "LeftUpperArm",
+      "LeftLowerArm"
+     ],
+     "range": [
+      24,
+      24
+     ],
+     "shift": 3,
+     "ripple": false
+    }
+   ]
+  },
+  {
+   "id": "combo-head-03",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    6,
+    36
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 6,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 16,
+     "value": -36
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 24,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 30,
+     "value": 46
+    }
+   ]
+  }
+ ]
+}

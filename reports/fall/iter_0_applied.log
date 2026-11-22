@@ -1,0 +1,31 @@
+[fall-1-arms-barely-wave] {"op": "scale_amplitude", "bones": ["LeftUpperArm", "RightUpperArm"], "ch": "rz", "factor": 2, "pivot": "mean"}
+scale_amplitude LeftUpperArm.rz [0,24] x2 about mean
+scale_amplitude RightUpperArm.rz [0,24] x2 about mean
+[fall-1-arms-barely-wave] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 6, "value": -32}
+set_pose LeftUpperArm.rx @ 6: -10.00 -> -32.00
+[fall-1-arms-barely-wave] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 18, "value": 12}
+set_pose LeftUpperArm.rx @ 18: -15.70 -> 12.00
+[fall-1-arms-barely-wave] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 6, "value": 12}
+set_pose RightUpperArm.rx @ 6: -10.00 -> 12.00
+[fall-1-arms-barely-wave] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 18, "value": -32}
+set_pose RightUpperArm.rx @ 18: -4.30 -> -32.00
+[fall-2-lockstep] {"op": "offset_overlap", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "offset": 3}
+offset_overlap LeftLowerArm.rx by +3 frames
+offset_overlap RightLowerArm.rx by +3 frames
+[fall-2-lockstep] {"op": "offset_overlap", "bones": ["LeftLowerLeg", "RightLowerLeg"], "ch": "rx", "offset": 2}
+offset_overlap LeftLowerLeg.rx by +2 frames
+offset_overlap RightLowerLeg.rx by +2 frames
+[fall-2-lockstep] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 3}
+offset_overlap Head.rx by +3 frames
+[fall-2-lockstep] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 14, "value": 34}
+set_pose LeftFoot.rx @ 14: 20.00 -> 34.00
+[fall-2-lockstep] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 4, "value": 38}
+set_pose RightFoot.rx @ 4: 25.00 -> 38.00
+[fall-3-rigid-torso] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 6, "value": -7}
+set_pose UpperTorso.ry @ 6: 0.00 -> -7.00
+[fall-3-rigid-torso] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 18, "value": 7}
+set_pose UpperTorso.ry @ 18: -1.81 -> 7.00
+[fall-3-rigid-torso] {"op": "scale_amplitude", "bones": ["LowerTorso", "UpperTorso"], "ch": "rx", "factor": 2, "pivot": "mean"}
+scale_amplitude LowerTorso.rx [0,24] x2 about mean
+scale_amplitude UpperTorso.rx [0,24] x2 about mean
+applied 13 ops, skipped 0; saved work/fall/iter_1.blend

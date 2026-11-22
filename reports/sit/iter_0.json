@@ -1,0 +1,195 @@
+{
+ "animation": "sit",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 5,
+  "timing": 6,
+  "transitions": 9,
+  "appeal": 4
+ },
+ "summary": "A clean, seamless seated pose with correct thigh and shin angles, but the hands do not rest on the thighs as specified and the clip is close to a still image: peak whole-body speed is 2 deg/frame and the whole left side never moves. Fixes: bring the forearms in onto the thighs, enlarge the breathing and carry it into the arms, add a small weight shift and left-leg fidget, and give the look-around a hold.",
+ "findings": [
+  {
+   "id": "sit-1-hands-off-thighs",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftUpperLeg",
+    "RightUpperLeg"
+   ],
+   "observation": "The spec says 'hands resting on the thighs', but the forearms point straight ahead from the shoulders: measured hand centres at x +/-1.57 while the thighs span about x 0.03-0.97, so both hands hover in the air outside the knees (front view, every frame: the pose reads as holding a steering wheel). The upper arms are turned in (ry -35 left, +35 right), opened slightly (rz +/-14) and brought forward (rx -30), and the knees are opened 5 deg. Checked: hand centres move to x +/-0.79, with the underside of the hand at height 2.44 on the thigh top at 2.43, and no arm/torso or arm/leg intersection on any frame (a plain ry -35 without the rz change pushed the forearm 0.13 into the torso).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 0,
+     "value": -35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 0,
+     "value": 35
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 0,
+     "value": 14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 0,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -30
+    },
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperLeg",
+     "ch": "rz",
+     "delta": 5
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperLeg",
+     "ch": "rz",
+     "delta": -5
+    }
+   ]
+  },
+  {
+   "id": "sit-2-near-static",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "UpperTorso",
+    "LeftLowerArm",
+    "RightLowerArm",
+    "LeftLowerLeg",
+    "LeftFoot"
+   ],
+   "observation": "metrics: whole-body speed never exceeds 2.05 deg/frame; UpperTorso.rx moves 2 deg and the elbows 2 deg. Sheets 1-4 show the same image on every frame except the right shin (10 deg swing). LeftUpperArm, LeftUpperLeg, LeftLowerLeg and both upper arms are completely flat, so the left half of the body is frozen. The breathing is doubled and carried into the elbows with a 4-frame lag, a +/-2 deg side weight shift is added, and the left leg gets a small swing and foot flex late in the loop (frames 44-48), out of phase with the right leg.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "factor": 2,
+     "pivot": "mean"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "factor": 2,
+     "pivot": "mean"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 15,
+     "value": 2
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 45,
+     "value": -2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 44,
+     "value": 84
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 48,
+     "value": -8
+    }
+   ]
+  },
+  {
+   "id": "sit-3-look-no-hold",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "Head.ry is a single sine, 0 -> 12 -> 0, never resting at either end, and Head.rx peaks on the same frame 30, so the look-around reads as a metronome. Breakdowns at 22 and 38 make the head arrive, hold the look for about half a second and return; the nod is delayed 6 frames.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 22,
+     "value": 11
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 38,
+     "value": 11
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 6
+    }
+   ]
+  }
+ ]
+}
