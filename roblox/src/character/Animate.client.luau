@@ -6,6 +6,7 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TextChatService = game:GetService("TextChatService")
 local UserInputService = game:GetService("UserInputService")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
@@ -16,7 +17,7 @@ local character = script.Parent
 local humanoid = character:WaitForChild("Humanoid") :: Humanoid
 local controller = AnimationController.new(humanoid)
 
-local EMOTES = {
+local EMOTES: { [string]: boolean } = {
 	wave = true,
 	dance = true,
 	cheer = true,
@@ -26,7 +27,10 @@ local EMOTES = {
 	salute = true,
 }
 local MOVE_THRESHOLD = 0.75 -- studs/s; below this the character counts as standing still
-local RUN_THRESHOLD = 12 -- studs/s; above this walk becomes run
+-- Above this ground speed walk becomes run. The cycles were authored for about 3.2 (walk) and
+-- 6.0 (run) studs/s; playback is scaled to the real speed, within MAX_CYCLE_RATE.
+local RUN_THRESHOLD = 8.5
+local MAX_CYCLE_RATE = 3.5
 local CROUCH_SPEED_FACTOR = 0.5
 
 type Mode = "ground" | "air" | "climb" | "swim" | "seated" | "dead"
@@ -42,7 +46,7 @@ local function cycleSpeed(name: string, speed: number): number
 	local meta = AnimationMeta[name]
 	local authored = meta and meta.authoredSpeed
 	if authored and authored > 0 then
-		return math.clamp(speed / authored, 0.4, 3)
+		return math.clamp(speed / authored, 0.4, MAX_CYCLE_RATE)
 	end
 	return 1
 end
@@ -84,12 +88,18 @@ local function setCrouching(on: boolean)
 		return
 	end
 	crouching = on
+	if on then
+		stopEmote()
+	end
 	humanoid.WalkSpeed = if on then standingWalkSpeed * CROUCH_SPEED_FACTOR else standingWalkSpeed
 	updateGround()
 end
 
 humanoid.Running:Connect(function(speed: number)
 	groundSpeed = speed
+	if mode == "dead" or mode == "seated" then
+		return
+	end
 	if mode == "air" or mode == "climb" or mode == "swim" then
 		-- Running fires when the character lands or leaves a ladder or water.
 		setMode("ground")
@@ -122,6 +132,9 @@ humanoid.FreeFalling:Connect(function(active: boolean)
 end)
 
 humanoid.Climbing:Connect(function(speed: number)
+	if mode == "dead" then
+		return
+	end
 	setMode("climb")
 	setCrouching(false)
 	-- Freeze the cycle while hanging still; otherwise scale by climb speed.
@@ -130,6 +143,9 @@ humanoid.Climbing:Connect(function(speed: number)
 end)
 
 humanoid.Swimming:Connect(function(speed: number)
+	if mode == "dead" then
+		return
+	end
 	setMode("swim")
 	setCrouching(false)
 	if speed > 1 then
@@ -140,6 +156,9 @@ humanoid.Swimming:Connect(function(speed: number)
 end)
 
 humanoid.Seated:Connect(function(active: boolean)
+	if mode == "dead" then
+		return
+	end
 	if active then
 		setMode("seated")
 		setCrouching(false)
@@ -175,18 +194,50 @@ local function playEmote(name: string)
 	end
 end
 
-local player = Players.LocalPlayer
-player.Chatted:Connect(function(message: string)
-	local name = string.match(string.lower(message), "^/e%s+(%a+)") or string.match(string.lower(message), "^/emote%s+(%a+)")
-	if name then
-		playEmote(name)
+local function emoteFromMessage(message: string): string?
+	local lower = string.lower(message)
+	return string.match(lower, "^/e%s+(%a+)") or string.match(lower, "^/emote%s+(%a+)")
+end
+
+if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+	-- The built-in RBXEmoteCommand would swallow "/e" and only knows Roblox's default emotes,
+	-- so replace it locally with a command that knows this pack's emotes.
+	local commands = TextChatService:FindFirstChild("TextChatCommands")
+	local builtIn = commands and commands:FindFirstChild("RBXEmoteCommand")
+	if builtIn and builtIn:IsA("TextChatCommand") then
+		builtIn.Enabled = false
 	end
-end)
+	local command = Instance.new("TextChatCommand")
+	command.Name = "AnimationPackEmote"
+	command.PrimaryAlias = "/e"
+	command.SecondaryAlias = "/emote"
+	command.Triggered:Connect(function(_source: TextSource, message: string)
+		local name = emoteFromMessage(message)
+		if name then
+			playEmote(name)
+		end
+	end)
+	command.Parent = commands or TextChatService
+	script.Destroying:Connect(function()
+		command:Destroy()
+	end)
+else
+	Players.LocalPlayer.Chatted:Connect(function(message: string)
+		local name = emoteFromMessage(message)
+		if name then
+			playEmote(name)
+		end
+	end)
+end
 
 -- Other scripts (e.g. an emote wheel) can call this through the character's "PlayEmote" BindableFunction.
 local playEmoteFunction = Instance.new("BindableFunction")
 playEmoteFunction.Name = "PlayEmote"
-playEmoteFunction.OnInvoke = function(name: string): boolean
+playEmoteFunction.OnInvoke = function(name: unknown): boolean
+	-- Humanoid:PlayEmote may pass an Animation instance; this pack's emotes are addressed by name.
+	if typeof(name) ~= "string" then
+		return false
+	end
 	playEmote(name)
 	return currentEmote == name
 end

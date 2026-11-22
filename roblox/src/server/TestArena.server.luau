@@ -12,7 +12,7 @@ if not (RunService:IsStudio() or pack:GetAttribute("BuildTestArena") == true) th
 	return
 end
 
-local AnimationController = require(pack:WaitForChild("AnimationController"))
+local ReplicatedPlay = require(pack:WaitForChild("ReplicatedPlay"))
 
 local arena = Instance.new("Folder")
 arena.Name = "AnimationTestArena"
@@ -41,8 +41,9 @@ truss.Parent = arena
 anchoredPart("TrussTop", Vector3.new(8, 1, 8), CFrame.new(24, 24.5, 4), Color3.fromRGB(110, 110, 120))
 
 -- Swimming: a block of terrain water inside a low rim.
+-- Terrain uses a 4-stud voxel grid, so the pool is grid-aligned (x -16..16, y 0..8, z 24..56).
 local POOL_CENTER = Vector3.new(0, 4, 40)
-local POOL_SIZE = Vector3.new(28, 8, 28)
+local POOL_SIZE = Vector3.new(32, 8, 32)
 workspace.Terrain:FillBlock(CFrame.new(POOL_CENTER), POOL_SIZE, Enum.Material.Water)
 for _, side in { Vector3.new(1, 0, 0), Vector3.new(-1, 0, 0), Vector3.new(0, 0, 1), Vector3.new(0, 0, -1) } do
 	local alongX = side.X == 0
@@ -74,11 +75,9 @@ local function spawnDummy()
 	humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.Subject
 	dummy:PivotTo(DUMMY_CFRAME)
 	dummy.Parent = arena
-	local controller = AnimationController.new(humanoid)
-	controller:playBase("idle", 0, 1)
+	ReplicatedPlay.base(humanoid, "idle")
 	humanoid.Died:Connect(function()
-		controller:stopAll(0.1)
-		controller:playAction("death", 0.1, 1)
+		ReplicatedPlay.action(humanoid, "death", true)
 		task.delay(4, function()
 			dummy:Destroy()
 			spawnDummy()

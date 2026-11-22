@@ -29,10 +29,16 @@ export type AnimationController = typeof(setmetatable(
 
 local controllers: { [Humanoid]: AnimationController } = {}
 
+local RunService = game:GetService("RunService")
+
 local function findAnimator(humanoid: Humanoid): Animator
 	local animator = humanoid:FindFirstChildOfClass("Animator")
 	if animator then
 		return animator
+	end
+	if RunService:IsClient() then
+		-- The server creates the Animator. A client-made Animator would not replicate its tracks.
+		return humanoid:WaitForChild("Animator") :: Animator
 	end
 	local newAnimator = Instance.new("Animator")
 	newAnimator.Parent = humanoid
@@ -44,17 +50,24 @@ function AnimationController.new(humanoid: Humanoid): AnimationController
 	if existing then
 		return existing
 	end
-	local self = setmetatable({
+	local self: AnimationController = setmetatable({
 		humanoid = humanoid,
 		animator = findAnimator(humanoid),
-		tracks = {},
-		baseName = nil,
-		baseTrack = nil,
+		tracks = {} :: { [string]: AnimationTrack },
+		baseName = nil :: string?,
+		baseTrack = nil :: AnimationTrack?,
 		destroyed = false,
 	}, AnimationController)
 	controllers[humanoid] = self
+	-- Old characters are not always destroyed (Workspace.PlayerCharacterDestroyBehavior), so also
+	-- clean up when the Humanoid leaves the DataModel.
 	humanoid.Destroying:Connect(function()
 		self:destroy()
+	end)
+	humanoid.AncestryChanged:Connect(function()
+		if not humanoid:IsDescendantOf(game) then
+			self:destroy()
+		end
 	end)
 	return self
 end

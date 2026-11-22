@@ -248,6 +248,7 @@ def write_meta_luau():
     for name in build.ALL_ANIMATIONS:
         p = os.path.join(OUT, "meta", f"{name}.json")
         if not os.path.exists(p):
+            print(f"WARNING: no output/meta/{name}.json; '{name}' is left out of AnimationMeta.luau (export it first)")
             continue
         with open(p) as fh:
             m = json.load(fh)

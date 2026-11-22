@@ -50,26 +50,42 @@ local function equippedSword(): Tool?
 	return nil
 end
 
+-- Marker signals are connected once per track (replaying a still-playing track does not fire Stopped,
+-- so per-play connections would stack up and send duplicate hits).
+local wiredTracks: { [AnimationTrack]: boolean } = {}
+
+local function wireMarkers(track: AnimationTrack, name: string)
+	if wiredTracks[track] then
+		return
+	end
+	wiredTracks[track] = true
+	local meta = AnimationMeta[name]
+	if meta == nil then
+		return
+	end
+	local seen: { [string]: boolean } = {}
+	for _, marker in meta.markers do
+		if string.sub(marker.name, 1, 3) == "Hit" and not seen[marker.name] then
+			seen[marker.name] = true
+			track:GetMarkerReachedSignal(marker.name):Connect(function()
+				attackRemote:FireServer(name, marker.name)
+			end)
+		end
+	end
+	track.Destroying:Connect(function()
+		wiredTracks[track] = nil
+	end)
+end
+
 local function attack(s: CharacterState, name: string)
-	local track: AnimationTrack? = s.controller:playAction(name, 0.08, 1)
+	local track: AnimationTrack? = s.controller:track(name)
 	if track == nil then
 		return
 	end
+	wireMarkers(track, name)
+	s.controller:playAction(name, 0.08, 1)
 	local meta = AnimationMeta[name]
 	s.busyUntil = os.clock() + (if meta then meta.length * 0.8 else 0.6)
-	if meta then
-		for _, marker in meta.markers do
-			if string.sub(marker.name, 1, 3) == "Hit" then
-				local connection: RBXScriptConnection
-				connection = track:GetMarkerReachedSignal(marker.name):Connect(function()
-					attackRemote:FireServer(name, marker.name)
-				end)
-				track.Stopped:Once(function()
-					connection:Disconnect()
-				end)
-			end
-		end
-	end
 end
 
 local function onPrimary(s: CharacterState)

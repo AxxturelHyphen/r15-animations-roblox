@@ -1,7 +1,9 @@
 --!strict
 -- Server side of the AnimationPack combat demo.
---   * Validates attack requests (known attack + hit marker, alive, cooldown per hit) and runs a hitbox
---     in front of the attacker. Damage is reduced while the target blocks; unblocked hits play hit_react.
+--   * Validates attack hits: one attack in flight per player, a shared minimum gap between attacks,
+--     hit markers accepted only in order and inside the timing window the animation defines
+--     (AnimationMeta marker times), sword hits only with the Sword, unarmed hits only without it.
+--   * Runs a hitbox in front of the attacker. Blocking cuts damage; unblocked hits play hit_react.
 --   * Keeps R15 joints intact on death so the "death" animation can play (BreakJointsOnDeath = false).
 --   * Fits the Sword tool's grip so the blade points the way it does in sword_slash.
 
@@ -9,69 +11,129 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
-local AnimationController = require(pack:WaitForChild("AnimationController"))
+local AnimationMeta = require(pack:WaitForChild("AnimationMeta"))
+local ReplicatedPlay = require(pack:WaitForChild("ReplicatedPlay"))
 local remotes = pack:WaitForChild("Remotes")
 local attackRemote = remotes:WaitForChild("Attack") :: RemoteEvent
 local blockRemote = remotes:WaitForChild("Block") :: RemoteEvent
 
-type AttackSpec = { damage: number, range: number, width: number, cooldown: number }
+type HitSpec = { damage: number, range: number, width: number }
 
--- Keyed by "<animation>/<marker>"; markers come from animations/markers.py.
-local ATTACKS: { [string]: AttackSpec } = {
-	["punch/Hit"] = { damage = 10, range = 4.5, width = 4, cooldown = 0.35 },
-	["combo/Hit1"] = { damage = 7, range = 4.5, width = 4, cooldown = 0.2 },
-	["combo/Hit2"] = { damage = 9, range = 4.5, width = 4, cooldown = 0.2 },
-	["combo/Hit3"] = { damage = 14, range = 4.5, width = 5, cooldown = 0.2 },
-	["kick/Hit"] = { damage = 15, range = 5.5, width = 4, cooldown = 0.6 },
-	["sword_slash/Hit"] = { damage = 22, range = 7, width = 6, cooldown = 0.6 },
+-- Keyed by animation, then hit marker (markers come from animations/markers.py).
+local ATTACKS: { [string]: { [string]: HitSpec } } = {
+	punch = { Hit = { damage = 10, range = 4.5, width = 4 } },
+	combo = {
+		Hit1 = { damage = 7, range = 4.5, width = 4 },
+		Hit2 = { damage = 9, range = 4.5, width = 4 },
+		Hit3 = { damage = 14, range = 4.5, width = 5 },
+	},
+	kick = { Hit = { damage = 15, range = 5.5, width = 4 } },
+	sword_slash = { Hit = { damage = 22, range = 7, width = 6 } },
 }
+local SWORD_ONLY = { sword_slash = true }
+local MIN_ATTACK_GAP = 0.18 -- seconds between two attack starts, whatever the attack
+local MARKER_TOLERANCE = 0.3 -- seconds of latency slack around each marker's expected time
+local COMBO_UPGRADE_WINDOW = 0.6 -- a punch may be cancelled into the combo this soon after it starts
 local BLOCK_DAMAGE_FACTOR = 0.2
 
-local lastHit: { [Player]: { [string]: number } } = {}
-local blocking: { [Model]: boolean } = {}
+type AttackState = { animation: string, startedAt: number, nextMarker: number }
+
+local current: { [Player]: AttackState } = {}
+local lastStart: { [Player]: number } = {}
+local blocking: { [Model]: true } = {}
+
+local function hitMarkers(animation: string): { { name: string, time: number } }
+	local meta = AnimationMeta[animation]
+	local list = {}
+	if meta then
+		for _, marker in meta.markers do
+			if string.sub(marker.name, 1, 3) == "Hit" then
+				table.insert(list, { name = marker.name, time = marker.time })
+			end
+		end
+	end
+	return list
+end
 
 local function aliveHumanoid(model: Instance?): Humanoid?
-	local humanoid = model and model:FindFirstChildOfClass("Humanoid")
+	local humanoid = if model then model:FindFirstChildOfClass("Humanoid") else nil
 	if humanoid and humanoid.Health > 0 then
 		return humanoid
 	end
 	return nil
 end
 
-local function playHitReact(humanoid: Humanoid)
-	local controller = AnimationController.get(humanoid, 0) or AnimationController.new(humanoid)
-	controller:playAction("hit_react", 0.05, 1)
+-- Returns true if this marker is a legitimate next hit for the player, updating their attack state.
+local function acceptMarker(player: Player, animation: string, markerName: string, now: number): boolean
+	local markers = hitMarkers(animation)
+	if #markers == 0 then
+		return false
+	end
+	local state = current[player]
+	local meta = AnimationMeta[animation]
+	local length = if meta then meta.length else 1
+	if state and state.animation == animation and now - state.startedAt <= length + MARKER_TOLERANCE then
+		-- A later hit of the attack already in flight: must be the next marker, on time.
+		local expected = markers[state.nextMarker]
+		if expected == nil or expected.name ~= markerName then
+			return false
+		end
+		if math.abs((now - state.startedAt) - expected.time) > MARKER_TOLERANCE then
+			return false
+		end
+		state.nextMarker += 1
+		return true
+	end
+	-- A new attack: only its first marker, after the shared gap, and only once the previous attack is
+	-- (nearly) over, except that a punch may be upgraded into the combo.
+	if markers[1].name ~= markerName then
+		return false
+	end
+	if now - (lastStart[player] or -math.huge) < MIN_ATTACK_GAP then
+		return false
+	end
+	if state then
+		local previousMeta = AnimationMeta[state.animation]
+		local previousLength = if previousMeta then previousMeta.length else 0
+		local upgrading = state.animation == "punch" and animation == "combo"
+			and now - state.startedAt <= COMBO_UPGRADE_WINDOW + markers[1].time + MARKER_TOLERANCE
+		if not upgrading and now - state.startedAt < previousLength * 0.75 then
+			return false
+		end
+	end
+	local startedAt = now - markers[1].time
+	current[player] = { animation = animation, startedAt = startedAt, nextMarker = 2 }
+	lastStart[player] = now
+	return true
 end
 
 attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unknown, markerName: unknown)
 	if typeof(animationName) ~= "string" or typeof(markerName) ~= "string" then
 		return
 	end
-	local key = animationName .. "/" .. markerName
-	local spec = ATTACKS[key]
+	local specs = ATTACKS[animationName]
+	local spec = specs and specs[markerName]
 	local character = player.Character
 	local humanoid = aliveHumanoid(character)
-	local root = character and character:FindFirstChild("HumanoidRootPart") :: BasePart?
-	if spec == nil or humanoid == nil or root == nil or blocking[character :: Model] then
+	if spec == nil or character == nil or humanoid == nil or blocking[character] then
 		return
 	end
-	if animationName == "sword_slash" then
-		local tool = (character :: Model):FindFirstChildOfClass("Tool")
-		if tool == nil or tool.Name ~= "Sword" then
-			return
-		end
-	end
-	local times = lastHit[player] or {}
-	lastHit[player] = times
-	local now = os.clock()
-	if now - (times[key] or -math.huge) < spec.cooldown then
+	local root = character:FindFirstChild("HumanoidRootPart")
+	if root == nil or not root:IsA("BasePart") then
 		return
 	end
-	times[key] = now
+	local tool = character:FindFirstChildOfClass("Tool")
+	local holdingSword = tool ~= nil and tool.Name == "Sword"
+	if (SWORD_ONLY[animationName] == true) ~= holdingSword then
+		return
+	end
+	if not acceptMarker(player, animationName, markerName, os.clock()) then
+		return
+	end
 
 	local params = OverlapParams.new()
 	params.FilterType = Enum.RaycastFilterType.Exclude
-	params.FilterDescendantsInstances = { character :: Model }
+	params.FilterDescendantsInstances = { character }
 	local boxCFrame = root.CFrame * CFrame.new(0, 0, -spec.range / 2)
 	local parts = workspace:GetPartBoundsInBox(boxCFrame, Vector3.new(spec.width, 5, spec.range), params)
 	local victims: { [Humanoid]: Model } = {}
@@ -86,15 +148,20 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 		local isBlocking = blocking[model] == true
 		victim:TakeDamage(if isBlocking then spec.damage * BLOCK_DAMAGE_FACTOR else spec.damage)
 		if not isBlocking and victim.Health > 0 then
-			playHitReact(victim)
+			ReplicatedPlay.action(victim, "hit_react")
 		end
 	end
 end)
 
 blockRemote.OnServerEvent:Connect(function(player: Player, active: unknown)
 	local character = player.Character
-	if character and typeof(active) == "boolean" then
-		blocking[character] = if active then true else nil
+	if character == nil or typeof(active) ~= "boolean" then
+		return
+	end
+	if active then
+		blocking[character] = true
+	else
+		blocking[character] = nil
 	end
 end)
 
@@ -104,8 +171,8 @@ local SWORD_HANDLE_OFFSET = CFrame.new(0, -0.15, -1.6)
 
 local function fitSword(tool: Tool, character: Model)
 	local hand = character:FindFirstChild("RightHand")
-	local attachment = hand and hand:FindFirstChild("RightGripAttachment") :: Attachment?
-	if attachment then
+	local attachment = if hand then hand:FindFirstChild("RightGripAttachment") else nil
+	if attachment and attachment:IsA("Attachment") then
 		-- RightGrip.C0 = attachment.CFrame and C1 = Tool.Grip, so handle = hand * C0 * Grip:Inverse().
 		tool.Grip = SWORD_HANDLE_OFFSET:Inverse() * attachment.CFrame
 	end
@@ -114,33 +181,38 @@ end
 local function onCharacter(player: Player, character: Model)
 	local humanoid = character:WaitForChild("Humanoid") :: Humanoid
 	humanoid.BreakJointsOnDeath = false
+	humanoid.Died:Connect(function()
+		current[player] = nil
+	end)
 	character.ChildAdded:Connect(function(child)
 		if child:IsA("Tool") and child.Name == "Sword" then
 			fitSword(child, character)
 		end
 	end)
-	character.Destroying:Connect(function()
-		blocking[character] = nil
-	end)
 end
 
-Players.PlayerAdded:Connect(function(player: Player)
+local function onPlayer(player: Player)
 	player.CharacterAdded:Connect(function(character)
 		onCharacter(player, character)
 	end)
+	player.CharacterRemoving:Connect(function(character)
+		blocking[character] = nil
+		current[player] = nil
+	end)
 	if player.Character then
-		onCharacter(player, player.Character)
+		task.spawn(onCharacter, player, player.Character)
 	end
-end)
+end
+
+Players.PlayerAdded:Connect(onPlayer)
 for _, player in Players:GetPlayers() do
-	if player.Character then
-		onCharacter(player, player.Character)
-	end
-	player.CharacterAdded:Connect(function(character)
-		onCharacter(player, character)
-	end)
+	onPlayer(player)
 end
 
 Players.PlayerRemoving:Connect(function(player: Player)
-	lastHit[player] = nil
+	current[player] = nil
+	lastStart[player] = nil
+	if player.Character then
+		blocking[player.Character] = nil
+	end
 end)
