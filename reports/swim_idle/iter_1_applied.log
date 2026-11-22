@@ -1,0 +1,25 @@
+[swimidle-1-mirror-lockstep] {"op": "offset_overlap", "bones": ["RightUpperArm", "RightLowerArm"], "offset": 2}
+offset_overlap RightUpperArm.rx by +2 frames
+offset_overlap RightUpperArm.ry by +2 frames
+offset_overlap RightUpperArm.rz by +2 frames
+offset_overlap RightLowerArm.rx by +2 frames
+[swimidle-1-mirror-lockstep] {"op": "offset_overlap", "bones": ["LeftLowerLeg", "RightLowerLeg"], "ch": "rx", "offset": 2}
+offset_overlap LeftLowerLeg.rx by +2 frames
+offset_overlap RightLowerLeg.rx by +2 frames
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 0, "value": 19}
+set_pose LeftFoot.rx @ 0: 20.00 -> 19.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 18, "value": 34}
+set_pose LeftFoot.rx @ 18: 19.00 -> 34.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 33, "value": 16}
+set_pose LeftFoot.rx @ 33: 29.63 -> 16.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 48, "value": 34}
+set_pose LeftFoot.rx @ 48: 17.75 -> 34.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": 31}
+set_pose RightFoot.rx @ 0: 20.00 -> 31.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 18, "value": 16}
+set_pose RightFoot.rx @ 18: 31.00 -> 16.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 33, "value": 34}
+set_pose RightFoot.rx @ 33: 20.37 -> 34.00
+[swimidle-2-frozen-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 48, "value": 16}
+set_pose RightFoot.rx @ 48: 32.25 -> 16.00
+applied 10 ops, skipped 0; saved work/swim_idle/iter_2.blend

@@ -1,0 +1,98 @@
+{
+ "animation": "crouch_walk",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. All 105 iteration-0 ops applied with no skips or clamps and the render matches the dry run. Sheets 1-3: both feet now sit on the floor line through stance with flat soles (lowest foot z between -0.008 and +0.010 on every frame, 0 penetration frames, shins clear). Stance travel is steady: left contact segment F000-F025 and right F019-F040 move backward with speed std 0.009 and 0.006 against means of 0.030-0.033 (was 0.020-0.021), and whole-body speed stays between 12.5 and 25.9 deg/frame, so the stop at each contact is gone. Lift-off reads: heel peels from F016/F036 with the toe planted, the foot leaves on F004/F024, the knee folds to about 130 and the toe clears by 0.11-0.20. Touch-down is flat on F000/F020 from 0.02 the frame before. The planted foot no longer swivels, the hips shift 0.05 over the stance foot (3/4 view F012 vs F032), and arms, chest and head are staggered (overlap 1.0, no lockstep). Seam: F040 matches F000, no seam or corner metrics. No regressions found. Only low-severity polish remains.",
+ "findings": [
+  {
+   "id": "cwalk-r2-1-rigid-hands",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftHand",
+    "RightHand"
+   ],
+   "observation": "The hands have no keys, so each hand stays locked in line with its forearm through the whole arm swing (3/4 view, all frames). A few degrees of wrist drag would soften the arms. Polish only: hand trails back (+rx) while its arm travels forward and leads on the way back.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftHand",
+     "ch": "rx",
+     "frame": 13,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftHand",
+     "ch": "rx",
+     "frame": 33,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 13,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 33,
+     "value": 5
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftHand",
+      "RightHand"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "cwalk-r2-2-swing-arc-dip",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    24,
+    40
+   ],
+   "bones": [
+    "LeftLowerLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "The swing foot's height is slightly double-humped: toe clearance peaks at 0.20 on F029-F030 (left) / F009-F010 (right), sags to 0.11 on F034-F035 / F014-F015, then holds 0.12 before it comes down over the last 3 frames (0.12, 0.07, 0.02, 0.00). It never touches the floor and is hard to see at speed; a little more knee fold late in the swing would make it one arc.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 34,
+     "delta": 4
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 14,
+     "delta": 4
+    }
+   ]
+  }
+ ]
+}

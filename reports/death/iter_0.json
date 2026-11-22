@@ -83,6 +83,48 @@
      "value": -3.5
     },
     {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": -45
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 34,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": -45
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 34,
+     "value": 0
+    },
+    {
      "op": "plant_feet",
      "mode": "all",
      "step": 1,
@@ -247,6 +289,13 @@
      "op": "set_pose",
      "bone": "LeftUpperLeg",
      "ch": "rz",
+     "frame": 28,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
      "frame": 34,
      "value": 7
     },
@@ -284,6 +333,13 @@
      "ch": "rx",
      "frame": 50,
      "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 28,
+     "value": 0
     },
     {
      "op": "set_pose",
@@ -419,7 +475,8 @@
      "op": "offset_overlap",
      "bones": [
       "LeftUpperLeg",
-      "LeftLowerLeg"
+      "LeftLowerLeg",
+      "LeftFoot"
      ],
      "offset": 3
     },
@@ -427,7 +484,8 @@
      "op": "offset_overlap",
      "bones": [
       "RightUpperLeg",
-      "RightLowerLeg"
+      "RightLowerLeg",
+      "RightFoot"
      ],
      "offset": 4
     }
