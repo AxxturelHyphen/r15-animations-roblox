@@ -1,0 +1,55 @@
+{
+ "animation": "punch",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. Both feet sit on the floor for all 25 frames (lowest z 0.00 on every frame, floating 0, penetration 0, slide 0) and the hover from iteration 1 is gone (ly flat at -0.03). Coil at f4-5, 3-frame strike (66/131/117 deg per frame), moving hold f9-12 and eased recovery all read. The 15 accel spikes and 10 velocity corners are all on f4-9, i.e. the start and stop of the strike on the arm, chest and hips, and read as the intended snap. Only polish remains.",
+ "findings": [
+  {
+   "id": "punch-legs-01",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    24
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LowerTorso"
+   ],
+   "observation": "All four leg channels are constant (motion range 0) and the root height is flat, so the lower body never loads or drives the punch; the weight shift is carried only by the hip and chest twist. A small front-knee dip on the wind-up would add weight. Polish only.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": -21
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 21
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      24
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  }
+ ]
+}

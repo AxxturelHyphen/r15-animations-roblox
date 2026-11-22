@@ -1,0 +1,14 @@
+{
+ "animation": "dance",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The fore-aft foot skate is fixed: measured in the iter_2 blend, foot centre y stays within -0.128..-0.151 over the whole loop (0.023 studs, was 0.15) and x within 0.02, with mean contact speed 0.003 studs/frame (was 0.018). Lowest foot z is -0.0005..+0.009, so no sinking or floating, and the bounce is still about 0.13 studs. Side view F000/F008/F016/F032: the feet stay put while the knees work. The seam is continuous (F063 -> F064 = F000 on every curve). Weight shift, counter-tilted chest, working elbows and offset head/arms all survive from iteration 1; fists stay 1.34+ studs from the head centre. The only metric left is Foot.rx twinning, which is correct for two flat planted feet. Remaining polish, not worth another pass: the bounce is an even sine, so the down-beat does not hit harder than the up-beat.",
+ "findings": []
+}
