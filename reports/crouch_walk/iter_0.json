@@ -1,0 +1,892 @@
+{
+ "animation": "crouch_walk",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 4,
+  "transitions": 4,
+  "appeal": 4
+ },
+ "summary": "The crouch silhouette, the arm/leg opposition and the loop seam values are right, but the legs do not work as a walk on a floor. At each contact pose the front foot hangs 0.12 studs in the air while the rear foot is 0.18 under the floor, so no root height can ground both; the stance foot eases to a stop at every contact instead of sliding back steadily; and the planted foot swivels with the pelvis twist. The upper body is frozen apart from a 20 degree shoulder swing keyed on frame 20. Fixes: stance legs re-keyed so the sole stays flat on the floor and travels back at a constant 0.035 studs/frame for 24 frames (4 frames of double support), a heel peel and a clean swing with a soft, flat landing, hip counter-twist, a small weight shift over the stance foot, staggered arms/chest/head, then plant_feet as a safety net. Dry run of these ops on a scratch copy: 0 penetration frames, 0 slide segments, 0 seam issues, overlap 1.0.",
+ "findings": [
+  {
+   "id": "cwalk-1-feet-floor-and-skate",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "Feet through the floor and skating for most of the cycle. Side view F000-F006 and F033-F040: the rear (blue) foot and shin are cut by the floor line; F013-F026 the same for the orange leg. Metrics: LeftFoot under the floor on 14 frames (F013-F026, down to -0.189 at F022), RightFoot on 15 frames (F000-F006, F033-F040, -0.181), shins down to -0.235. At the contact poses (F000, F020) the front foot is 0.118 ABOVE the floor while the rear foot is at -0.178, a 0.30 stud mismatch that no root offset can fix: the front leg (thigh -75, knee 85) is 0.30 shorter than the rear leg (thigh -35, knee 80), so plant_feet alone would leave the leading foot floating at contact. The planted foot also does not move back at a steady rate: every leg channel has an extreme on frames 0 and 20, so the stance foot decelerates to a stop at each contact (contact segments: mean 0.034-0.041 studs/frame with std 0.020-0.021, i.e. +-50-60%; whole-body speed falls from ~20 to 3.0 deg/frame at F019/F039). With playback scaled to ground speed that reads as the foot alternately slipping and sticking. Fix: clear the old interior leg keys and re-key the stance leg from a 2-bone IK solve so the sole is flat (Foot rx = -(thigh + knee)), on the floor, and the ankle travels back linearly at 0.035 studs/frame from 0.80 studs in front of the root; stance lasts 24 frames per foot (left 0-24, right 20-44) which gives 4 frames of double support. Root height becomes a gentle bob, lowest just after each contact (frames 2, 22) and highest at the passing pose (12, 32), with half the old range so the head stays steady. plant_feet runs last as a safety net (dry run: max correction 0.009 studs).",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "range": [
+      0,
+      40
+     ],
+     "mode": "remove_interior"
+    },
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "range": [
+      0,
+      40
+     ],
+     "mode": "remove_interior"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 2,
+     "value": -0.58
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 12,
+     "value": -0.54
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 22,
+     "value": -0.58
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 32,
+     "value": -0.54
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 0,
+     "value": -0.58
+    },
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": [
+      "ly",
+      "ry"
+     ],
+     "mode": "loop_seam"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -68.85
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 75.21
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -6.35
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 2,
+     "value": -68.18
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 2,
+     "value": 79.46
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 2,
+     "value": -11.28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": -66.97
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 82.66
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": -15.69
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": -61.02
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 87.76
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": -26.73
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -55.53
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 94.08
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -38.55
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": -55.65
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": 104.75
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": -43.61
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -55.83
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 105.12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -43.79
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": -68.58
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 20,
+     "value": 74.82
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 20,
+     "value": -6.23
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": -68.18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": 79.46
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 22,
+     "value": -11.28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -66.97
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 82.66
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -15.69
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": -61.02
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 87.76
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -26.73
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": -55.83
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": 94.63
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 36,
+     "value": -38.81
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      40
+     ],
+     "step": 2,
+     "mode": "all",
+     "smooth": 1.0
+    }
+   ]
+  },
+  {
+   "id": "cwalk-2-liftoff-swing-landing",
+   "category": "timing",
+   "severity": "high",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "The step has no readable lift-off or touch-down. Lift-off: the trailing foot stays flat and slides forward under the floor (right foot F000-F006, left F020-F026, z -0.18 to -0.09) before it pops up; there is no heel peel, although the ankle is already at its -45 limit. Landing: the swing foot is still 0.12 above the floor on the frame the spec calls contact (left F000/F040, right F020) and only reaches the floor 3 frames later (left foot z 0.119, 0.099, 0.055, 0.010 on F000-F003) while it is already moving backward, so the foot lands late and drags. Fix: heel peel over the last 8 frames of stance (toe stays planted and keeps sliding, heel rises to 22 deg at lift-off on frame 24 left / 4 right), then a 16-frame swing with the knee folding to ~130 deg, 0.20-0.24 studs of toe clearance, the foot levelling out before it comes down, and the forward travel easing so the foot touches down flat with zero vertical speed and already matching ground speed (a careful, sneaking step). These keys are the swing half of the same IK solve as cwalk-1, so the seam at frame 0/40 stays closed.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": -58.36
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": 113.06
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 22,
+     "value": -42.33
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -63.34
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 121.79
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -36.45
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": -80.08
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 130.37
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -29.29
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": -78.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": 91.12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 36,
+     "value": -8.92
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 2,
+     "value": -58.36
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 2,
+     "value": 113.06
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 2,
+     "value": -42.33
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": -63.34
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 121.79
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": -36.45
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": -80.08
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 130.37
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": -29.29
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -77.84
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 90.66
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -8.82
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "cwalk-3-planted-foot-swivel",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "RightUpperLeg"
+   ],
+   "observation": "LowerTorso.ry swings -5 to +5 and the legs follow it rigidly, so the planted foot yaws 10 degrees on the floor during its stance and drifts sideways: the left ankle is at x 0.434 on F000 (toed in, 3/4 view) and at 0.497-0.500 on F010-F020. A planted foot should not twist. Fix: counter the pelvis twist at the hips (UpperLeg.ry = -LowerTorso.ry: +5 on frame 0, -5 on frame 20, same key frames and easing as the pelvis), so the legs stay in the direction of travel and only the hips rotate over them.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 0,
+     "value": 5.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 20,
+     "value": -5.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 0,
+     "value": 5.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 20,
+     "value": -5.0
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "RightUpperLeg"
+     ],
+     "ch": "ry",
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "cwalk-4-no-weight-shift",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "In the 3/4 view the hips run on a rail: LowerTorso has no lx at all, so the weight never moves over the supporting foot even though each foot carries the body alone for 16 frames in a deep crouch. Fix: shift the root 0.05 studs toward the stance side at mid-stance (left, +lx, on frame 12; right on frame 32), lean both legs the opposite way by 2.6 deg (UpperLeg.rz) so the feet stay where they are, and roll the ankles back by 2.2 deg (Foot.rz) so the soles stay flat.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 12,
+     "value": 0.05
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 32,
+     "value": -0.05
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 12,
+     "value": -2.63
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 32,
+     "value": 2.63
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 12,
+     "value": -2.63
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 32,
+     "value": 2.63
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 12,
+     "value": 2.23
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 32,
+     "value": -2.23
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 12,
+     "value": 2.23
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 32,
+     "value": -2.23
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LowerTorso",
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": [
+      "lx",
+      "rz"
+     ],
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "cwalk-5-stiff-upper-body",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "Above the hips only the shoulders move: UpperTorso.rx, Head.rx and both LowerArm.rx are flat lines (motion_range 0), and pelvis twist, chest counter-twist, head and both arms are all keyed on frame 20 (lockstep 11 of 13 bones, overlap_score 0.621), so the arms swing like rigid L-shapes exactly in phase with the legs. Fix: let the chest give 2-3 deg into each step (lean to 27 just after contact on frames 5/25, back to 24 on 15/35) with the head countering 2 frames later so the gaze stays level; flex the elbow as the arm comes forward and open it as it goes back (-54 / -67, peaking 2 frames after the upper arm); delay the arm swing 3 frames behind the legs, the chest twist 1 frame and the head 3 frames for drag.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 5,
+     "value": 27.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 15,
+     "value": 24.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 25,
+     "value": 27.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 35,
+     "value": 24.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 7,
+     "value": -21.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 17,
+     "value": -19.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 27,
+     "value": -21.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 37,
+     "value": -19.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -56.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -65.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 5,
+     "value": -54.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 25,
+     "value": -67.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 5,
+     "value": -67.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 25,
+     "value": -54.0
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "UpperTorso",
+      "Head",
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 3
+    }
+   ]
+  }
+ ]
+}

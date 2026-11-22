@@ -1,0 +1,265 @@
+{
+ "animation": "point",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 5,
+  "timing": 4,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "",
+ "findings": [
+  {
+   "id": "point-torso-turns-away",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    8,
+    30
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "factor": -0.8,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "ry",
+     "factor": -1.0,
+     "pivot": "rest"
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 8,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 30,
+     "value": 4
+    }
+   ]
+  },
+  {
+   "id": "point-rigid-arm-no-antic-no-settle",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    12
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "Head",
+    "LeftUpperArm"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 2,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 2,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 5,
+     "value": -45
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "key_frame": 8,
+     "overshoot": 6,
+     "settle_frames": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 5,
+     "value": 18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 8,
+     "value": -8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 12,
+     "value": 0
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "Head"
+     ],
+     "range": [
+      8,
+      8
+     ],
+     "shift": -3,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "UpperTorso"
+     ],
+     "range": [
+      8,
+      8
+     ],
+     "shift": -1,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "LeftUpperArm"
+     ],
+     "ch": "rx",
+     "range": [
+      8,
+      8
+     ],
+     "shift": 2,
+     "ripple": false
+    }
+   ]
+  },
+  {
+   "id": "point-dead-hold",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    8,
+    30
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "Head"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -93
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 21,
+     "value": -102
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 21,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 20,
+     "value": -1
+    }
+   ]
+  },
+  {
+   "id": "point-lowering-all-together",
+   "category": "transition",
+   "severity": "low",
+   "frames": [
+    30,
+    40
+   ],
+   "bones": [
+    "RightLowerArm",
+    "Head",
+    "UpperTorso"
+   ],
+   "observation": "",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 36,
+     "value": -24
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "Head"
+     ],
+     "range": [
+      30,
+      30
+     ],
+     "shift": 3,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "UpperTorso"
+     ],
+     "range": [
+      30,
+      30
+     ],
+     "shift": 1,
+     "ripple": false
+    }
+   ]
+  }
+ ]
+}
