@@ -1,0 +1,14 @@
+{
+ "animation": "clap",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 6,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 6
+ },
+ "summary": "Approved. The hands now actually meet: on every closed key (F008, F013, F018, F023, F028, F033) the hand boxes touch at 0.00 studs in front of the chest (centres about (+0.50, -1.62, 3.37) and (-0.43, -1.63, 3.41)), they open to a 0.63-stud gap on the open keys, and on no half frame do they overlap or pass through each other; no arm part touches the torso, head or the other arm. The right hand is the striking hand (twinned_channels 0, was 4), the chest pulses after every second clap with the head trailing by a frame, and the feet sit on the floor (lowest z 0.0, was -0.03). Lockstep 0, overlap_score 1.0. Residuals: accel_spikes 33 and velocity_corners 25 remain (down from 58 and 42); they are the 5-frame clap beat itself, 18-30 deg forearm reversals every 2-3 frames, and read as crisp impacts rather than pops. The opening is small and the left forearm hides part of it in the 3/4 view; the closing stroke takes 3 frames and the rebound 2, where the reverse would be a little snappier. Both are polish only.",
+ "findings": []
+}

@@ -1,0 +1,14 @@
+{
+ "animation": "point",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. All four iter-0 findings are fixed. The chest now turns and leans into the point (UpperTorso ry +8, rx +4) and the hand sits at world (-1.10, -2.34, 4.06) on the hold: forward of the right shoulder, converging on the target, about 6 deg above horizontal (side view F012-F030). The raise has a 2-frame wind-up (F002-F003), a dragging elbow and wrist (F004-F006), a 6 deg overshoot at F008 that settles by F012, the head arrives at F005 ahead of the arm, and the F018-F021 emphasis beat breaks the old 22-frame freeze (dead_holds 0, lockstep 0, overlap_score 1.0). The lowering leads with the arm and a soft elbow (F034-F037). No part intersects another on any half frame. Residuals, not worth another round: accel peaks of about 12.7 deg/frame^2 on the F002-F008 raise are the intended snap, and the F018-F021 beat is subtle at this render size.",
+ "findings": []
+}

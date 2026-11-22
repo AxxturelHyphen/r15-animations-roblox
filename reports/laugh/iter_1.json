@@ -1,0 +1,14 @@
+{
+ "animation": "laugh",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The right hand now rests on the front of the torso for the whole F008-F036 hold: hand centre at world (-0.48, -0.9, 2.95), 0.04 studs off the chest, forearm in contact (overlap 0.03 or less), nothing inside the body (was 0.26 inside the chest with the hand floating 0.7 studs in front). It rides the chest correctly as it bounces. The laugh has a forward catch at F002-F004 before the throw-back, a big first burst that decays (side view F008/F016 vs F024/F032), the head whipping 2 frames behind the chest, and a left arm that shakes with it. Root bob removed: feet at 0.0 on every frame. Metrics are clean (0 spikes, 0 corners, 0 holds, 0 lockstep, overlap_score 1.0). Residuals: the hand sits at the bottom of the ribcage rather than the belly proper, which is the lowest the R15 arm reaches without the forearm cutting the body, and the right elbow is carried fairly high (above the shoulder line in F008-F036) to get there; RightLowerArm.ry is at its +60 limit.",
+ "findings": []
+}
