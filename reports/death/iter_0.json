@@ -37,14 +37,14 @@
      "op": "set_pose",
      "bone": "Head",
      "ch": "rz",
-     "frame": 36,
+     "frame": 38,
      "value": 0
     },
     {
      "op": "set_pose",
      "bone": "Head",
      "ch": "rz",
-     "frame": 42,
+     "frame": 45,
      "value": 22
     },
     {
@@ -58,7 +58,7 @@
      "op": "set_pose",
      "bone": "UpperTorso",
      "ch": "rx",
-     "frame": 34,
+     "frame": 38,
      "value": 4
     },
     {
@@ -72,7 +72,7 @@
      "op": "set_pose",
      "bone": "Head",
      "ch": "rx",
-     "frame": 36,
+     "frame": 40,
      "value": -3.5
     },
     {
@@ -298,6 +298,138 @@
      "ch": "rz",
      "frame": 50,
      "value": -14
+    }
+   ]
+  },
+  {
+   "id": "death-impact-03",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    18,
+    40
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rx",
+     "frame": 28,
+     "value": -48,
+     "interpolation": "LINEAR"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rx",
+     "frame": 32,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 32,
+     "value": -0.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 28,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 32,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 34,
+     "value": 9
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 30,
+     "value": 18
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 33,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 36,
+     "value": 7
+    }
+   ]
+  },
+  {
+   "id": "death-overlap-04",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    50
+   ],
+   "bones": [
+    "LeftUpperArm"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "offset": 4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "offset": 5
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg"
+     ],
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "RightUpperLeg",
+      "RightLowerLeg"
+     ],
+     "offset": 4
     }
    ]
   }
