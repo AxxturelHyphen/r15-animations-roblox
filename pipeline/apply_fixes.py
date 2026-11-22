@@ -383,9 +383,11 @@ def op_plant_feet(ctx, op):
                 nb = (ds[max(i - 1, 0)] + ds[i] + ds[min(i + 1, n - 1)]) / 3
             avg.append(ds[i] * (1 - smooth) + nb * smooth)
         corrections = [(f, d) for (f, _), d in zip(corrections, avg)]
-    for f, d in corrections:
-        cur = curves.evaluate(fc, "ly", f)
-        curves.set_key(fc, "ly", f, cur + d)
+    # Read every original height before writing any key: each new key reshapes the curve,
+    # so evaluating while keying would compound corrections.
+    targets = [(f, curves.evaluate(fc, "ly", f) + d) for f, d in corrections]
+    for f, v in targets:
+        curves.set_key(fc, "ly", f, v)
     if ctx.loop:
         v0 = curves.evaluate(fc, "ly", ctx.f0)
         curves.set_key(fc, "ly", ctx.f1, v0)

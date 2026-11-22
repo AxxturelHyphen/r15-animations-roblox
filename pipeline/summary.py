@@ -16,7 +16,7 @@ from pipeline.render import CELL, _font
 REPORTS = os.path.join(build.ROOT, "reports")
 PREV = os.path.join(build.ROOT, "output", "previews")
 METRIC_KEYS = ["accel_spikes", "velocity_corners", "loop_seam_issues", "joint_limit_violations", "dead_holds",
-               "lockstep_key_frames", "twinned_channels", "foot_slide_segments", "foot_penetration_frames", "overlap_score"]
+               "lockstep_key_frames", "twinned_channels", "foot_slide_segments", "foot_penetration_frames", "floating_frames", "overlap_score"]
 
 
 def iterations(name):

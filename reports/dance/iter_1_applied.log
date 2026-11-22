@@ -1,0 +1,9 @@
+[dance-feet-skate-fore-aft] {"op": "scale_amplitude", "bones": ["LeftUpperLeg", "RightUpperLeg"], "ch": "rx", "factor": 0.79, "pivot": "rest"}
+scale_amplitude LeftUpperLeg.rx [0,64] x0.79 about rest
+scale_amplitude RightUpperLeg.rx [0,64] x0.79 about rest
+[dance-feet-skate-fore-aft] {"op": "scale_amplitude", "bones": ["LeftFoot", "RightFoot"], "ch": "rx", "factor": 1.29, "pivot": "rest"}
+scale_amplitude LeftFoot.rx [0,64] x1.29 about rest
+scale_amplitude RightFoot.rx [0,64] x1.29 about rest
+[dance-feet-skate-fore-aft] {"op": "plant_feet", "mode": "all", "step": 2}
+plant_feet [0,64] step 2 mode all: 33 keys, max correction 0.021 studs
+applied 3 ops, skipped 0; saved work/dance/iter_2.blend

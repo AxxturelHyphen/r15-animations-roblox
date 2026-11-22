@@ -229,6 +229,7 @@ def score(res):
         "twinned_channels": len(res["twinning"]),
         "foot_slide_segments": slide,
         "foot_penetration_frames": res["feet"]["LeftFoot"]["penetration_count"] + res["feet"]["RightFoot"]["penetration_count"],
+        "floating_frames": 0 if res["animation"] in ("run", "jump") else len(res["feet"]["both_feet_airborne_frames"]),
         "overlap_score": res["overlap_score"],
     }
 

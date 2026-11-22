@@ -20,7 +20,7 @@ def main():
             continue
         with open(rp) as fh:
             rep = json.load(fh)
-        if rep.get("verdict") == "approved" and not rep.get("findings"):
+        if rep.get("verdict") == "approved":  # final; low-severity polish is not applied unreviewed
             print(f"{n}: approved at iter {it}")
             continue
         applied, failed = apply_fixes.apply_report(n, it)

@@ -1,0 +1,135 @@
+{
+ "animation": "cheer",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 6,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 6,
+  "appeal": 7
+ },
+ "summary": "The head clipping is fixed: on both pumps (F019-F022, F031-F035) the elbows drop out to +-135 and the forearms stand vertical outside the head; the closest forearm vertex stays 1.36 studs from the head centre. Foot penetration is gone (0 frames, worst -0.015). The arms now trail the body by 1-4 frames and the left and right arms are no longer twinned. Three things remain: the feet skate 0.2 studs forward and back in the crouch (present in iteration 0, I missed it), the re-plant left both feet hovering 0.07-0.08 studs during the final settle (F033-F037), and the legs, root and chest still share keys on 6/12/18/30 (overlap 0.595). The fast arm thrust is the source of the accel-spike metrics; it reads as an intended snap, so it is polish only. The clip still ends in the V pose, as the spec asks.",
+ "findings": [
+  {
+   "id": "cheer-crouch-foot-skate",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    0,
+    12
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "Side view F000 -> F006 -> F012: both planted feet slide forward under the body in the crouch and back again in the burst. Measured in the iter_1 blend, foot centre y goes -0.150 (F000) -> -0.349 (F006) -> -0.150 (F012): 0.2 studs each way in 6 frames. Cause: thigh -35 / knee 60 at F006 puts the ankle 0.9*sin(35) - 0.75*sin(25) = 0.2 studs ahead of the hip. Fix: same knee bend with the thigh at -27 so the ankle stays under the hip (0.9*sin(27) = 0.75*sin(33)), and the foot at -33 to stay flat (-27 + 60 - 33 = 0).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -33
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -33
+    }
+   ]
+  },
+  {
+   "id": "cheer-feet-hover-in-settle",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    32,
+    38
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "Introduced by the iteration-0 re-plant: LowerTorso.ly was keyed +0.07 at F034 and F036 (curves.png: the purple bump at the end), so both feet lift off the floor with flat soles while the knees are still bent: lowest foot z is +0.038 at F032, +0.066 at F033, +0.078 at F034, +0.074 at F035, +0.071 at F036, +0.053 at F037 (both feet lose contact at F033-F036 per the contact segments). It reads as an unmotivated float in the final settle. Smaller floats of 0.02-0.04 sit at F008-F010 and F020-F022. Every even frame now carries a root key, so a second plant pass corrects those keys exactly instead of inserting new ones.",
+   "fix": [
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2
+    }
+   ]
+  },
+  {
+   "id": "cheer-lower-body-lockstep",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    6,
+    30
+   ],
+   "bones": [
+    "UpperTorso"
+   ],
+   "observation": "metrics: lockstep on frames 6, 12, 18 and 30 (8 of 13 bones: both legs, both feet, the root and the chest), overlap_score 0.595. The legs and root have to move together to keep the feet planted, but the chest lean (UpperTorso.rx keys 6/12/16) and twist (ry keys 18/30) change direction on exactly the same frames as the knees, so the spine has no drag behind the hips in the crouch (F006) or the burst (F012). Fix: let the chest follow the hips by one frame.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "offset": 1
+    }
+   ]
+  },
+  {
+   "id": "cheer-arm-thrust-hard-stop",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    7,
+    16
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm"
+   ],
+   "observation": "metrics: 8 accel spikes of 10-15 deg/frame^2 and 4 velocity corners on UpperArm.rz around the thrust (right arm keys 7 -> 13, left 8 -> 14). The arms cover 145 degrees in 6 frames and stop dead at 165 (F012-F014 in the 3/4 view), then reverse into the first pump. The speed suits a cheer; only the start and stop are abrupt. Optional polish: lightly round the thrust without re-timing it.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rz",
+     "mode": "smooth",
+     "range": [
+      6,
+      16
+     ],
+     "strength": 0.5,
+     "step": 1,
+     "radius": 2
+    }
+   ]
+  }
+ ]
+}

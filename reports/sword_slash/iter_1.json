@@ -1,0 +1,147 @@
+{
+ "animation": "sword_slash",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 5,
+  "appeal": 7
+ },
+ "summary": "The three posing errors are fixed: the raised arm now passes outside the head (face unobstructed f6-11; FK re-check of the iter-1 keys shows no arm or blade samples inside the head), the blade ends forward and above the floor on f15-20, and there is no foot penetration. Strike spikes at f10-15 are the intended snap. Two problems remain: the root hops during the recovery, and the feet swivel on the floor through the cut.",
+ "findings": [
+  {
+   "id": "slash-hop-01",
+   "category": "transition",
+   "severity": "high",
+   "frames": [
+    20,
+    28
+   ],
+   "bones": [
+    "LowerTorso",
+    "RightFoot"
+   ],
+   "observation": "During the recovery the root pops up: LowerTorso ly goes -0.15 (f18) to +0.17 (f24) and back to -0.01 (f30), leaving both feet airborne on f21-27 (lowest foot z up to 0.23-0.27; visible as the body lifting in the side view f22-f25 and the hump in the ly curve). The height that actually grounds the lowest foot is a smooth dip: -0.01 at f0, -0.16 at f12-16, -0.01 at f30. Introduced by the iteration-0 plant_feet pass, so the root is re-keyed explicitly instead. The rear foot also rides a constant 0.045 above the floor; 3 deg of toe-down closes it.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "mode": "remove_interior",
+     "range": [
+      0,
+      30
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 0,
+     "value": -0.014
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 4,
+     "value": -0.037
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 8,
+     "value": -0.109
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 12,
+     "value": -0.163
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 16,
+     "value": -0.162
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 20,
+     "value": -0.121
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 24,
+     "value": -0.054
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 30,
+     "value": -0.014
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightFoot",
+     "ch": "rx",
+     "delta": 3
+    }
+   ]
+  },
+  {
+   "id": "slash-footslide-02",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    9,
+    17
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso"
+   ],
+   "observation": "Planted feet slide: right foot drifts 0.34 studs over f11-15 and the left 0.22 over f0-19 (foot_slide_segments 2). The legs hang off LowerTorso, so its ry swing of -15 (f9) to +15 (f13) to +20 (f17) swivels both feet around the root while they are on the floor. Halve the pelvis twist and move the difference into the chest so the shoulder line, arm path and sword arc stay the same.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "LowerTorso",
+     "ch": "ry",
+     "factor": 0.5,
+     "pivot": "rest"
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 10,
+     "value": -32
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 14,
+     "value": 32
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 18,
+     "value": 44
+    }
+   ]
+  }
+ ]
+}

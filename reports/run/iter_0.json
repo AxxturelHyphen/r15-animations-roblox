@@ -1,0 +1,500 @@
+{
+ "animation": "run",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 4,
+  "timing": 5,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "x",
+ "findings": [
+  {
+   "id": "R1",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 7,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": 42
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 70
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 105
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 3,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 5,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 7,
+     "value": -12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 17,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 42
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 70
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": 105
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 90
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 17,
+     "value": -12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 3,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 5,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 2,
+     "delta": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 4,
+     "delta": -4.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 12,
+     "delta": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 14,
+     "delta": -4.3
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "R3",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "UpperTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "range": [
+      0,
+      20
+     ],
+     "mode": "remove_interior"
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 3,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 8,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 13,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 18,
+     "value": 10
+    },
+    {
+     "op": "smooth_transition",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "mode": "loop_seam"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "factor": 2.5,
+     "pivot": "mean"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 2
+    }
+   ]
+  },
+  {
+   "id": "R4",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "x",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "range": [
+      0,
+      20
+     ],
+     "mode": "smooth",
+     "strength": 0,
+     "step": 1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 8,
+     "value": 0.16
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 9,
+     "value": 0.09
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 18,
+     "value": 0.16
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 19,
+     "value": 0.09
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      7
+     ],
+     "step": 1,
+     "mode": "all"
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      10,
+      17
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  }
+ ]
+}

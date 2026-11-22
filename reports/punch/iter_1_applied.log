@@ -1,0 +1,13 @@
+[punch-float-01] {"op": "smooth_transition", "bones": "LowerTorso", "ch": "ly", "mode": "remove_interior", "range": [0, 24]}
+remove_interior LowerTorso.ly (0,24): removed 11 keys
+[punch-float-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 0, "value": -0.03}
+set_pose LowerTorso.ly @ 0: -0.03 -> -0.03
+[punch-float-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 24, "value": -0.03}
+set_pose LowerTorso.ly @ 24: -0.03 -> -0.03
+[punch-float-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -20}
+set_pose RightFoot.rx @ 0: -25.00 -> -20.00
+[punch-float-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 8, "value": -20}
+set_pose RightFoot.rx @ 8: -17.00 -> -20.00
+[punch-float-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -20}
+set_pose RightFoot.rx @ 24: -25.00 -> -20.00
+applied 6 ops, skipped 0; saved work/punch/iter_2.blend

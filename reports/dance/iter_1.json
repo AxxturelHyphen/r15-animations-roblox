@@ -1,0 +1,59 @@
+{
+ "animation": "dance",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 6,
+  "transitions": 6,
+  "appeal": 7
+ },
+ "summary": "Most iteration-0 problems are fixed: the sideways foot skate is gone (foot centre x moves 0.02 studs instead of 0.30), the feet no longer sink (lowest z -0.005..+0.015, 0 penetration frames), the legs alternate a deeper off-leg bend, the chest now counters the hips, the elbows work and the overlap score is 1.0. The loop seam is still clean (F063 -> F064/F000 continuous on every curve, speeds match the other beats). One problem remains, and my 1.4x knee scale made it worse: the planted feet now skate forward and back about 0.14-0.15 studs on every beat. Foot.rx is still mirror-identical left/right (the one remaining twinned channel), which is harmless for flat planted feet.",
+ "findings": [
+  {
+   "id": "dance-feet-skate-fore-aft",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    0,
+    64
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftFoot",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "Side view, F000 vs F008 vs F016 (and every beat after): both feet shift forward on each down-beat and back on each up-beat while staying on the floor. Measured in the iter_1 blend, foot centre moves from y -0.168 at F008/F024 to -0.304 (weighted leg) and -0.318 (off leg) at F000/F016/F032: 0.14-0.15 studs every 8 frames (it was 0.10 in iteration 0; metrics still show mean_speed 0.018 studs/frame in a single 0-64 contact segment). Cause: thigh -28 / knee 49 puts the ankle 0.9*sin(28) - 0.75*sin(21) = 0.15 studs ahead of the hip. Fix: keep the knee bend but share it so the ankle stays under the hip (0.9*sin(thigh) = 0.75*sin(knee - thigh)): thighs x0.79 (-28 -> -22, -33.6 -> -26.5, -7 -> -5.5) and feet x1.29 (-21 -> -27, -7 -> -9) so the weighted foot stays flat and the off foot keeps its 5-degree toe roll; then re-plant, since the legs get about 0.02 studs shorter at the bottom of the bounce.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperLeg",
+      "RightUpperLeg"
+     ],
+     "ch": "rx",
+     "factor": 0.79,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftFoot",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "factor": 1.29,
+     "pivot": "rest"
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2
+    }
+   ]
+  }
+ ]
+}

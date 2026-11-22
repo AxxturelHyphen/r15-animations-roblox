@@ -1,0 +1,29 @@
+[slash-hop-01] {"op": "smooth_transition", "bones": "LowerTorso", "ch": "ly", "mode": "remove_interior", "range": [0, 30]}
+remove_interior LowerTorso.ly (0,30): removed 14 keys
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 0, "value": -0.014}
+set_pose LowerTorso.ly @ 0: -0.01 -> -0.01
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 4, "value": -0.037}
+set_pose LowerTorso.ly @ 4: -0.01 -> -0.04
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 8, "value": -0.109}
+set_pose LowerTorso.ly @ 8: -0.04 -> -0.11
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 12, "value": -0.163}
+set_pose LowerTorso.ly @ 12: -0.10 -> -0.16
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 16, "value": -0.162}
+set_pose LowerTorso.ly @ 16: -0.14 -> -0.16
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 20, "value": -0.121}
+set_pose LowerTorso.ly @ 20: -0.13 -> -0.12
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 24, "value": -0.054}
+set_pose LowerTorso.ly @ 24: -0.06 -> -0.05
+[slash-hop-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 30, "value": -0.014}
+set_pose LowerTorso.ly @ 30: -0.01 -> -0.01
+[slash-hop-01] {"op": "offset_channel", "bones": "RightFoot", "ch": "rx", "delta": 3}
+offset_channel RightFoot.rx [0,30] +3 on 4 keys
+[slash-footslide-02] {"op": "scale_amplitude", "bones": "LowerTorso", "ch": "ry", "factor": 0.5, "pivot": "rest"}
+scale_amplitude LowerTorso.ry [0,30] x0.5 about rest
+[slash-footslide-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 10, "value": -32}
+set_pose UpperTorso.ry @ 10: -25.00 -> -32.00
+[slash-footslide-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 14, "value": 32}
+set_pose UpperTorso.ry @ 14: 25.00 -> 32.00
+[slash-footslide-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 18, "value": 44}
+set_pose UpperTorso.ry @ 18: 35.00 -> 44.00
+applied 14 ops, skipped 0; saved work/sword_slash/iter_2.blend
