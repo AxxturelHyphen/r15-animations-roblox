@@ -28,7 +28,7 @@ by a **Fable 5.2 critic agent**, then fixed automatically by Claude, which edits
 | Locomotion | idle | 96 | ✓ | Idle |
 | | walk | 32 | ✓ | Movement |
 | | run | 20 | ✓ | Movement |
-| | jump | 30 | | Movement |
+| | jump | 33 (spec 30, retimed by the critic) | | Movement |
 | Combat | punch | 24 | | Action |
 | | sword_slash | 30 | | Action |
 | | hit_react | 20 | | Action |
@@ -36,7 +36,38 @@ by a **Fable 5.2 critic agent**, then fixed automatically by Claude, which edits
 | | dance | 64 | ✓ | Action |
 | | cheer | 40 | | Action |
 
-Final lengths can change if the critic retimes a clip. See `reports/SUMMARY.md`.
+## Results
+
+All 10 animations were **approved** by the Fable 5.2 critic within 2–3 rounds. Critic scores, first round → final:
+
+| Animation | Fluidity | Posing | Timing | Transitions | Appeal |
+|---|---|---|---|---|---|
+| idle | 4 → 7 | 4 → 7 | 4 → 7 | 7 → 9 | 3 → 6 |
+| walk | 5 → 8 | 3 → 8 | 5 → 8 | 5 → 8 | 4 → 7 |
+| run | 4 → 8 | 3 → 8 | 4 → 8 | 5 → 7 | 4 → 7 |
+| jump | 4 → 8 | 4 → 8 | 4 → 8 | 5 → 8 | 5 → 7 |
+| punch | 5 → 7 | 4 → 7 | 6 → 8 | 6 → 8 | 5 → 7 |
+| sword_slash | 5 → 8 | 3 → 8 | 6 → 8 | 5 → 7 | 5 → 8 |
+| hit_react | 4 → 8 | 5 → 7 | 6 → 8 | 6 → 8 | 4 → 7 |
+| wave | 5 → 7 | 4 → 7 | 5 → 7 | 6 → 8 | 4 → 7 |
+| dance | 5 → 8 | 5 → 7 | 5 → 7 | 5 → 8 | 4 → 7 |
+| cheer | 5 → 7 | 3 → 8 | 6 → 7 | 5 → 8 | 5 → 7 |
+
+Typical first-pass problems the critic caught and fixed include:
+- feet sinking through the floor (every clip with leg motion)
+- the sword arm passing through the head, and the blade tip hitting the floor
+- a frozen, perfectly symmetric idle
+- everything keyed on the same frames
+- a run with no flight phase
+- fists clipping the head in the cheer
+
+It also caught a bug in the pipeline itself: `plant_feet` compounded its corrections. That bug is fixed.
+
+Per-round findings, metric tables and the change logs are in [`reports/SUMMARY.md`](reports/SUMMARY.md).
+Before/after GIFs are in `output/previews/*_before_after.gif`.
+
+Every exported `.rbxmx` is checked frame by frame with `python -m pipeline.verify_rbxmx`, which rebuilds the
+poses using Roblox's Motor6D joint math (`C0 · Transform`). The largest difference from Blender is 4e-6 studs.
 
 ## Layout
 
@@ -52,6 +83,8 @@ Final lengths can change if the critic retimes a clip. See `reports/SUMMARY.md`.
 | `pipeline/validate_report.py` | Report validator (the critic runs it before handing a report back). |
 | `pipeline/apply_fixes.py` | Applies fix ops to the F-curves, clamps joint limits, logs every change. |
 | `pipeline/export.py` | FBX + `.rbxmx` KeyframeSequence export, with a re-import check. |
+| `pipeline/verify_rbxmx.py` | Rebuilds every `.rbxmx` frame with Roblox joint math and compares it to Blender. |
+| `pipeline/iterate.py` / `summary.py` | Apply a round of reports and re-render; write SUMMARY.md and the before/after previews. |
 | `reports/` | Critic reports per iteration, the logs of applied changes, and `SUMMARY.md`. |
 | `output/` | Final deliverables. |
 

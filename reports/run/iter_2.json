@@ -1,0 +1,14 @@
+{
+ "animation": "run",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 7,
+  "appeal": 7
+ },
+ "summary": "Approved. The push-off fix landed: the root now rises evenly from the absorb (F003-F004) through toe-off (F007) into the flight (F008-F009), and the supporting foot stays on the floor for the whole stance (lowest z 0.00 on F000-F007 and F010-F017, 0 penetration frames, from 21 at iteration 0). Stance speed std is 0.034 (from 0.09 at iteration 0 and 0.059 at iteration 1) against a mean of 0.20 studs/frame, which no longer reads as skating at 20 frames per cycle; it is just over the 0.03 metric threshold, so the 2 foot_slide_segments remain as a known, low-severity item. Also left as polish: the flight registers on one frame per step by the metric (the trailing toe is 0.09 above the floor on F008/F018), and the knee has accel peaks of about 11 deg/frame^2 at toe-off and contact, which suit a run. Loop seam clean, no lockstep, overlap 1.0.",
+ "findings": []
+}

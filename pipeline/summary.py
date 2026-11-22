@@ -50,10 +50,9 @@ def before_after(name, first, last):
     os.makedirs(PREV, exist_ok=True)
     out = os.path.join(PREV, f"{name}_before_after.gif")
     frames[0].save(out, save_all=True, append_images=frames[1:], duration=33, loop=0, optimize=True)
-    # Final contact sheet(s) + curves for reference.
-    for p in glob.glob(os.path.join(build.WORK, name, f"iter_{last}", "review", "*.png")):
-        shutil.copy(p, os.path.join(PREV, f"{name}_final_{os.path.basename(p)}"))
-    shutil.copy(os.path.join(build.WORK, name, f"iter_{last}", "preview.gif"), os.path.join(PREV, f"{name}.gif"))
+    # Final F-curves for reference. Full contact sheets stay under work/ (not committed).
+    shutil.copy(os.path.join(build.WORK, name, f"iter_{last}", "review", "curves.png"),
+                os.path.join(PREV, f"{name}_final_curves.png"))
     return out
 
 
