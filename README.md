@@ -52,12 +52,14 @@ by a **Fable 5.2 critic agent**, then fixed automatically by Claude, which edits
 |  | salute | 40 |  | Action | feet |
 | Crouch | crouch_idle | 72 | ✓ | Idle | feet |
 |  | crouch_walk | 40 | ✓ | Movement | feet |
+| Social | high_five | 33 (spec 30, retimed by the critic) | | Action | feet |
+|  | land_heavy | 26 | | Action | feet |
 
 Floor contact tells the metrics and fixes what should touch the floor: `feet`; `none` (airborne, on a truss, in water or on a seat); or `body` (lying down).
 
 ## Results
 
-All 25 animations were **approved** by the Fable 5.2 critic. Most needed 2–3 rounds. `death` needed a 4th, verification-only round: its round-3 fix had only been dry-run, and it was applied and re-reviewed rather than shipped unseen. Critic scores, first round → final:
+All 27 animations were **approved** by the Fable 5.2 critic. Most needed 2–3 rounds. `death` needed a 4th, verification-only round: its round-3 fix had only been dry-run, and it was applied and re-reviewed rather than shipped unseen. Critic scores, first round → final:
 
 | Animation | Rounds | Verdict | Fluidity | Posing | Timing | Transitions | Appeal |
 |---|---|---|---|---|---|---|---|
@@ -86,6 +88,8 @@ All 25 animations were **approved** by the Fable 5.2 critic. Most needed 2–3 r
 | salute | 2 | approved | 4 → 7 | 3 → 8 | 5 → 7 | 6 → 8 | 4 → 7 |
 | crouch_idle | 2 | approved | 4 → 7 | 5 → 8 | 4 → 7 | 6 → 8 | 3 → 7 |
 | crouch_walk | 2 | approved | 5 → 8 | 3 → 8 | 4 → 8 | 4 → 8 | 4 → 7 |
+| high_five | 2 | approved | 5 → 8 | 3 → 8 | 5 → 8 | 6 → 8 | 4 → 7 |
+| land_heavy | 2 | approved | 3 → 8 | 2 → 8 | 5 → 8 | 3 → 8 | 3 → 8 |
 
 Typical first-pass problems the critic caught and fixed:
 - feet sinking through the floor (almost every clip with leg motion), and skating crouch, kick and combo feet
