@@ -63,7 +63,7 @@ local function verifiedFall(player: Player, claimed: number, root: BasePart): nu
 		return nil
 	end
 	local maxFall = peak.y - root.Position.Y + 3
-	return math.floor(math.clamp(math.min(claimed, maxFall), 0, 60))
+	return math.floor(math.clamp(math.min(claimed, maxFall), 0, 80)) -- the bench can throw ~65 studs
 end
 
 -- One feed line per player every 3 s (taunts and dance parties), so nobody floods the feed.
@@ -220,12 +220,14 @@ socialRemote.OnServerEvent:Connect(function(player: Player, kind: unknown, value
 			return
 		end
 		feedbackRemote:FireAllClients("splash", { position = root.Position, size = height })
-		-- Knocked into the water by someone in the last 3 s: a dunk.
+		-- Knocked (kick or combo finisher) into the water by someone in the last 3 s: a dunk.
+		-- Each knock is credited once (clearing the tag), so re-entering the water doesn't repeat it.
 		local humanoid = humanoidOf(player)
-		local byId = humanoid and humanoid:GetAttribute("LastHitBy")
-		local at = humanoid and humanoid:GetAttribute("LastHitAt")
+		local byId = humanoid and humanoid:GetAttribute("LastKnockBy")
+		local at = humanoid and humanoid:GetAttribute("LastKnockAt")
 		local dunker = if typeof(byId) == "number" then Players:GetPlayerByUserId(byId) else nil
-		if dunker and dunker ~= player and typeof(at) == "number" and now - at <= 3 then
+		if humanoid and dunker and dunker ~= player and typeof(at) == "number" and now - at <= 3 then
+			humanoid:SetAttribute("LastKnockAt", nil)
 			GameState.feed(`{dunker.DisplayName} dunked {player.DisplayName} into the pool`)
 		end
 		if height >= 6 then

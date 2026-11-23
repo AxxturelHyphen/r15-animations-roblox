@@ -181,7 +181,7 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 			and os.clock() - (blockStartedAt[model] or -math.huge) <= PARRY_WINDOW
 		local isSneak = false
 		local attackerSpeed = (root.AssemblyLinearVelocity * Vector3.new(1, 0, 1)).Magnitude
-		if crouching[player] and attackerSpeed <= MAX_SNEAK_SPEED and victimRoot and victimRoot:IsA("BasePart") then
+		if not isGuardBreak and crouching[player] and attackerSpeed <= MAX_SNEAK_SPEED and victimRoot and victimRoot:IsA("BasePart") then
 			-- Behind the victim: the attacker is on the opposite side of where the victim faces.
 			local toAttacker = (root.Position - victimRoot.Position) * Vector3.new(1, 0, 1)
 			if toAttacker.Magnitude > 0.1 and victimRoot.CFrame.LookVector:Dot(toAttacker.Unit) < -0.3 then
@@ -218,6 +218,10 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 			victim = model,
 		})
 
+		if isGuardBreak then
+			-- A real break: the guard drops until the victim raises it again.
+			blocking[model] = nil
+		end
 		if isParry then
 			parryEligible[model] = false -- one parry per guard raise
 			-- The attacker is thrown off balance.
@@ -230,6 +234,9 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 				local away = (victimRoot.Position - root.Position) * Vector3.new(1, 0, 1)
 				local dir = if away.Magnitude > 0.1 then away.Unit else root.CFrame.LookVector
 				local velocity = dir * push + Vector3.new(0, spec.lift or 0, 0)
+				-- Remember who knocked them, for "dunked into the pool".
+				victim:SetAttribute("LastKnockBy", player.UserId)
+				victim:SetAttribute("LastKnockAt", os.clock())
 				if victimPlayer then
 					-- Player characters are simulated by their own client, so it applies the push.
 					feedbackRemote:FireClient(victimPlayer, "knockback", { velocity = velocity })

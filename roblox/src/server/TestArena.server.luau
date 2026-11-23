@@ -206,6 +206,7 @@ launchPrompt.Triggered:Connect(function(puller: Player)
 		weld:Destroy()
 	end
 	occupant.Sit = false
+	occupant:SetAttribute("LastKnockAt", nil) -- a bench launch is not a dunk by whoever hit them last
 	local flightTime = launchRandom:NextNumber(LAUNCH_FLIGHT_MIN, LAUNCH_FLIGHT_MAX)
 	local target = POOL_CENTER + Vector3.new(launchRandom:NextNumber(-8, 8), 2, launchRandom:NextNumber(-8, 8))
 	local delta = target - root.Position
