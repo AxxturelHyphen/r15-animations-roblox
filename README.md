@@ -126,10 +126,11 @@ Results, what's still below the bar and a real-playtest checklist are in [`playt
 ## Roblox integration
 
 `default.project.json` is a **Rojo** project that syncs the whole pack into Studio:
-- all 25 KeyframeSequences, with hit and footstep markers
+- all 27 KeyframeSequences, with hit and footstep markers
 - a replacement `Animate` script for idle, walk, run, jump, fall, climb, swim, sit, crouch, death and `/e` emotes
-- combat: Mouse1 punch and combo, Q kick, F block, a sword slash, server-validated hits, hit reactions
+- combat: Mouse1 punch and combo, Q kick, F block, a sword slash, server-validated hits, hit reactions (also on gamepad and touch buttons)
 - a Studio test arena
+- an automated Studio play-test (`roblox/test/run_tests.py`) that plays the game solo and with 2 clients
 
 See [`roblox/README.md`](roblox/README.md) for the quick start, or **[`roblox/GUIA.md`](roblox/GUIA.md)** for a step-by-step guide in Spanish (install, play alone, play with a friend, publish, troubleshooting).
 
@@ -149,6 +150,8 @@ See [`roblox/README.md`](roblox/README.md) for the quick start, or **[`roblox/GU
 | `pipeline/export.py` | FBX + `.rbxmx` KeyframeSequence export, with a re-import check. Also writes markers, `output/meta/*.json` and `roblox/src/shared/AnimationMeta.luau`. |
 | `animations/markers.py` | Hit and footstep marker rules, resolved from the final curves at export. |
 | `roblox/`, `default.project.json` | Rojo project + Luau: AnimationLoader/Controller, Animate, combat, test arena. `roblox/check_project.py` is an offline consistency check. |
+| `roblox/test/` | Automated Studio play-test: `AFHarness.plugin.luau` (StudioTestService plugin) and `run_tests.py`. |
+| `rokit.toml`, `selene.toml` | Pinned toolchain (Rojo, luau-lsp, selene, Lune) and lint config. |
 | `pipeline/verify_rbxmx.py` | Rebuilds every `.rbxmx` frame with Roblox joint math and compares it to Blender. |
 | `pipeline/iterate.py` / `summary.py` | Apply a round of reports and re-render; write SUMMARY.md and the before/after previews. |
 | `reports/` | Critic reports per iteration, the logs of applied changes, and `SUMMARY.md`. |

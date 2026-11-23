@@ -75,7 +75,7 @@ end
 -- Returns the controller for a Humanoid, waiting up to `timeout` seconds for another script to create it.
 function AnimationController.get(humanoid: Humanoid, timeout: number?): AnimationController?
 	local deadline = os.clock() + (timeout or 5)
-	while controllers[humanoid] == nil and os.clock() < deadline do
+	while not controllers[humanoid] and os.clock() < deadline do
 		task.wait(0.05)
 	end
 	return controllers[humanoid]
@@ -145,7 +145,7 @@ end
 
 function AnimationController.isPlaying(self: AnimationController, name: string): boolean
 	local track = self.tracks[name]
-	return track ~= nil and track.IsPlaying
+	return if track then track.IsPlaying else false
 end
 
 function AnimationController.stopAll(self: AnimationController, fadeTime: number?)

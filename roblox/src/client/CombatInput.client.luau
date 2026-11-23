@@ -4,12 +4,14 @@
 --                  With the Sword tool equipped: sword_slash.
 --   Q              kick
 --   F (hold)       block
+-- Gamepad: R2 punch/slash, X kick, L2 block. Touch: on-screen Hit, Kick and Block buttons.
+-- Actions go through ContextActionService, so any input (or a test harness) can drive them.
 -- Each attack asks the server for a hit exactly on its animation's "Hit" markers, which the
 -- Blender exporter placed on the impact poses. The server validates and applies damage.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local UserInputService = game:GetService("UserInputService")
+local ContextActionService = game:GetService("ContextActionService")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local AnimationController = require(pack:WaitForChild("AnimationController"))
@@ -126,28 +128,57 @@ local function setBlocking(s: CharacterState, on: boolean)
 	blockRemote:FireServer(on)
 end
 
-UserInputService.InputBegan:Connect(function(input: InputObject, processed: boolean)
+local function onAction(actionName: string, inputState: Enum.UserInputState, _input: InputObject?): Enum.ContextActionResult
 	local s = state
-	if processed or s == nil then
-		return
+	if s == nil then
+		return Enum.ContextActionResult.Pass
 	end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		onPrimary(s)
-	elseif input.KeyCode == Enum.KeyCode.Q then
-		if canAct(s) and os.clock() >= s.busyUntil then
+	local began = inputState == Enum.UserInputState.Begin
+	if actionName == "PackPrimary" then
+		if began then
+			onPrimary(s)
+		end
+	elseif actionName == "PackKick" then
+		if began and canAct(s) and os.clock() >= s.busyUntil then
 			attack(s, "kick")
 		end
-	elseif input.KeyCode == Enum.KeyCode.F then
-		setBlocking(s, true)
+	elseif actionName == "PackBlock" then
+		if began then
+			setBlocking(s, true)
+		elseif inputState == Enum.UserInputState.End or inputState == Enum.UserInputState.Cancel then
+			setBlocking(s, false)
+		end
 	end
-end)
+	-- Pass, so the mouse still reaches the camera and tools.
+	return Enum.ContextActionResult.Pass
+end
 
-UserInputService.InputEnded:Connect(function(input: InputObject)
-	local s = state
-	if s and input.KeyCode == Enum.KeyCode.F then
-		setBlocking(s, false)
+ContextActionService:BindAction("PackPrimary", onAction, true, Enum.UserInputType.MouseButton1, Enum.KeyCode.ButtonR2)
+ContextActionService:BindAction("PackKick", onAction, true, Enum.KeyCode.Q, Enum.KeyCode.ButtonX)
+ContextActionService:BindAction("PackBlock", onAction, true, Enum.KeyCode.F, Enum.KeyCode.ButtonL2)
+-- Touch buttons (only shown on touch devices), stacked above the jump button.
+-- Other scripts (a custom mobile UI, a tutorial, the test harness) can trigger the same actions:
+--   CombatInput.PackAction:Invoke("PackPrimary" | "PackKick" | "PackBlock", began: boolean)
+local packAction = Instance.new("BindableFunction")
+packAction.Name = "PackAction"
+packAction.OnInvoke = function(action: unknown, began: unknown): boolean
+	if typeof(action) ~= "string" then
+		return false
 	end
-end)
+	onAction(action, if began == false then Enum.UserInputState.End else Enum.UserInputState.Begin, nil)
+	return true
+end
+packAction.Parent = script
+
+local TOUCH_BUTTONS: { { action: string, title: string } } = {
+	{ action = "PackPrimary", title = "Hit" },
+	{ action = "PackKick", title = "Kick" },
+	{ action = "PackBlock", title = "Block" },
+}
+for i, button in TOUCH_BUTTONS do
+	ContextActionService:SetTitle(button.action, button.title)
+	ContextActionService:SetPosition(button.action, UDim2.new(1, -95 - (i - 1) * 75, 1, -230))
+end
 
 local function onCharacter(character: Model)
 	local humanoid = character:WaitForChild("Humanoid") :: Humanoid

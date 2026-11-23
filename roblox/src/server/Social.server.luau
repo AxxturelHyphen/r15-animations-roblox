@@ -35,34 +35,57 @@ local lastFeedLine: { [Player]: number } = {}
 local lastLanding: { [Player]: number } = {}
 local lastDanceParty = -math.huge
 
--- Server-side height tracking: the highest root Y in the last few seconds, used to check fall heights
--- that clients report for splashes and landings.
-type Peak = { y: number, at: number }
-local peaks: { [Player]: Peak } = {}
+-- Server-side height tracking: recent root heights per player, used to check the fall heights that
+-- clients report for splashes and landings. The report (a RemoteEvent) usually arrives before the
+-- server has seen the character land (physics replication lags behind), so reports are checked
+-- SETTLE_SECONDS later, against the highest point in the last few seconds and the lowest point since
+-- the report.
+type Sample = { t: number, y: number }
+local HISTORY_SECONDS = 5
+local SETTLE_SECONDS = 0.3
+local heights: { [Player]: { Sample } } = {}
 RunService.Heartbeat:Connect(function()
 	local now = os.clock()
 	for _, p in Players:GetPlayers() do
 		local character = p.Character
 		local root = character and character:FindFirstChild("HumanoidRootPart")
 		if root and root:IsA("BasePart") then
-			local y = root.Position.Y
-			local peak = peaks[p]
-			if peak == nil or y >= peak.y or now - peak.at > 3 then
-				peaks[p] = { y = y, at = now }
+			local list = heights[p]
+			if list == nil then
+				list = {}
+				heights[p] = list
+			end
+			table.insert(list, { t = now, y = root.Position.Y })
+			while list[1] and now - list[1].t > HISTORY_SECONDS do
+				table.remove(list, 1)
 			end
 		end
 	end
 end)
 
-local function verifiedFall(player: Player, claimed: number, root: BasePart): number?
+-- Call SETTLE_SECONDS after the report: the highest point in the 4 s before it, minus the lowest point
+-- seen from just before it until now.
+local function verifiedFall(player: Player, claimed: number, reportedAt: number): number?
 	if claimed ~= claimed then
 		return nil -- NaN
 	end
-	local peak = peaks[player]
-	if peak == nil then
+	local list = heights[player]
+	if list == nil then
 		return nil
 	end
-	local maxFall = peak.y - root.Position.Y + 3
+	local top, bottom = -math.huge, math.huge
+	for _, sample in list do
+		if sample.t >= reportedAt - 4 and sample.t <= reportedAt then
+			top = math.max(top, sample.y)
+		end
+		if sample.t >= reportedAt - 0.25 then
+			bottom = math.min(bottom, sample.y)
+		end
+	end
+	if top == -math.huge or bottom == math.huge then
+		return nil
+	end
+	local maxFall = top - bottom + 3
 	return math.floor(math.clamp(math.min(claimed, maxFall), 0, 80)) -- the bench can throw ~65 studs
 end
 
@@ -204,45 +227,51 @@ socialRemote.OnServerEvent:Connect(function(player: Player, kind: unknown, value
 			end
 		end
 	elseif kind == "splash" and typeof(value) == "number" then
-		local arena = workspace:FindFirstChild("AnimationTestArena")
-		local pool = arena and arena:FindFirstChild("PoolZone")
-		if pool == nil or not pool:IsA("BasePart") then
-			return -- no pool in this place
-		end
-		-- Only count splashes inside the pool zone.
-		local localPos = pool.CFrame:PointToObjectSpace(root.Position)
-		local half = pool.Size / 2 + Vector3.new(2, 6, 2)
-		if math.abs(localPos.X) > half.X or math.abs(localPos.Y) > half.Y or math.abs(localPos.Z) > half.Z then
-			return
-		end
-		local height = verifiedFall(player, value, root)
-		if height == nil then
-			return
-		end
-		feedbackRemote:FireAllClients("splash", { position = root.Position, size = height })
-		-- Knocked (kick or combo finisher) into the water by someone in the last 3 s: a dunk.
-		-- Each knock is credited once (clearing the tag), so re-entering the water doesn't repeat it.
-		local humanoid = humanoidOf(player)
-		local byId = humanoid and humanoid:GetAttribute("LastKnockBy")
-		local at = humanoid and humanoid:GetAttribute("LastKnockAt")
-		local dunker = if typeof(byId) == "number" then Players:GetPlayerByUserId(byId) else nil
-		if humanoid and dunker and dunker ~= player and typeof(at) == "number" and now - at <= 3 then
-			humanoid:SetAttribute("LastKnockAt", nil)
-			GameState.feed(`{dunker.DisplayName} dunked {player.DisplayName} into the pool`)
-		end
-		if height >= 6 then
-			GameState.submit("splash", player, height)
-		end
+		task.delay(SETTLE_SECONDS, function()
+			local settledRoot = rootOf(player)
+			local arena = workspace:FindFirstChild("AnimationTestArena")
+			local pool = arena and arena:FindFirstChild("PoolZone")
+			if settledRoot == nil or pool == nil or not pool:IsA("BasePart") then
+				return -- no pool in this place
+			end
+			-- Only count splashes inside the pool zone.
+			local localPos = pool.CFrame:PointToObjectSpace(settledRoot.Position)
+			local half = pool.Size / 2 + Vector3.new(2, 6, 2)
+			if math.abs(localPos.X) > half.X or math.abs(localPos.Y) > half.Y or math.abs(localPos.Z) > half.Z then
+				return
+			end
+			local height = verifiedFall(player, value, now)
+			if height == nil then
+				return
+			end
+			feedbackRemote:FireAllClients("splash", { position = settledRoot.Position, size = height })
+			-- Knocked (kick or combo finisher) into the water by someone in the last 3 s: a dunk.
+			-- Each knock is credited once (clearing the tag), so re-entering the water doesn't repeat it.
+			local humanoid = humanoidOf(player)
+			local byId = humanoid and humanoid:GetAttribute("LastKnockBy")
+			local at = humanoid and humanoid:GetAttribute("LastKnockAt")
+			local dunker = if typeof(byId) == "number" then Players:GetPlayerByUserId(byId) else nil
+			if humanoid and dunker and dunker ~= player and typeof(at) == "number" and now - at <= 3 then
+				humanoid:SetAttribute("LastKnockAt", nil)
+				GameState.feed(`{dunker.DisplayName} dunked {player.DisplayName} into the pool`)
+			end
+			if height >= 6 then
+				GameState.submit("splash", player, height)
+			end
+		end)
 	elseif kind == "landing" and typeof(value) == "number" then
 		if now - (lastLanding[player] or -math.huge) < 1 then
 			return
 		end
-		local height = verifiedFall(player, value, root)
-		if height == nil or height < Feedback.HEAVY_LANDING_STUDS then
-			return
-		end
 		lastLanding[player] = now
-		feedbackRemote:FireAllClients("landing", { position = root.Position - Vector3.new(0, 2.8, 0), height = height })
+		task.delay(SETTLE_SECONDS, function()
+			local settledRoot = rootOf(player)
+			local height = verifiedFall(player, value, now)
+			if settledRoot == nil or height == nil or height < Feedback.HEAVY_LANDING_STUDS then
+				return
+			end
+			feedbackRemote:FireAllClients("landing", { position = settledRoot.Position - Vector3.new(0, 2.8, 0), height = height })
+		end)
 	end
 end)
 
@@ -252,5 +281,5 @@ Players.PlayerRemoving:Connect(function(player: Player)
 	dancingSince[player] = nil
 	lastFeedLine[player] = nil
 	lastLanding[player] = nil
-	peaks[player] = nil
+	heights[player] = nil
 end)
