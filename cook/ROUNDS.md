@@ -61,3 +61,26 @@ Changes (commits 57297d1, then the review fixes):
 Measured: `roblox/check_project.py`: the 25 shipped clips pass; high_five and land_heavy are pending export (expected).
 Not checked: anything in Studio (no Roblox here); luau-analyze and rojo build (downloads blocked).
 Simulation round 2: 3 fresh session agents running, with the round-2 inventory only.
+
+Recall, round 2 (3 fresh zero-context critics; eyeballed, counted by aggregate.py):
+- Fixed (now talked about, positive): M04 crouch sneak attack 3/3, M08 bench launch 3/3, M13 kick 3/3, M17 dummy 3/3, M32 emote taunts 2/3, new M35 high five 3/3.
+- Complaint resolved but neutral (now forgotten): M01, M20, M41.
+- Still complained about: M42, 3/3 ("I got to seven and it didn't even say I won", no rounds or shop).
+- Regressions: M07 pool ("just blue", eclipsed by the bench), M31 dance (silent), M15 sword equip, M18 hit-friend (absorbed into M19), M40 dummy idle.
+- Still forgotten: M11/M12 punches and combo ("the sword beats punching"), plus plumbing (M02, M03, M10, M34).
+- New complaint: the bench throws the same arc every time, so the splash record can't be beaten.
+- Would play again: maybe / maybe / maybe (round 1: maybe / no / no). Play time: 21, 19 and 22 min (round 1: 16-17 min).
+- Inventory error caught by a session agent (dummy kills listed as KOs after the review fix). Fixed the inventory, and marked a correction in run 1's log before its recall ran.
+
+Stop check: bar [no: M42 complained, regressions, play-again not "yes"] | cap [round 2 of 3] -> round 3
+Next focus: a win moment (M42), a beatable splash (M08/M07), the pool tied into fights (M07), a purpose for punches (M11/M12).
+
+---
+
+## Round 03 (build, last round under the cap)
+
+Changes:
+- Rivalry sets: the first player to 5 KOs on the same rival wins the set. A "KAI WINS THE SET 5-3!" callout for everyone, the record ping, an automatic cheer on the winner, set wins on the board, and the head-to-head resets for the next set. (M42, M19)
+- Bench launch: the height (about 30-62 studs) and the landing spot in the pool vary on every pull, so the splash record can be beaten. (M08, M07)
+- Dunk: hit into the pool within 3 s of a knockback, and the feed says "Kai dunked Robin into the pool". (M07, M13)
+- Guard break: the combo finisher (Hit3) ignores block and parry, with a "GUARD BREAK!" callout, so punches beat a turtling sword user. (M11, M12, M14)

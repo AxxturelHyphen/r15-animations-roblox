@@ -180,7 +180,10 @@ seat.Parent = arena
 local lever = anchoredPart("LaunchLever", Vector3.new(0.6, 3, 0.6), seat.CFrame * CFrame.new(3, 1, 0), Color3.fromRGB(220, 60, 60))
 local launchPrompt = prompt(lever, "Launch!", "Bench")
 
-local LAUNCH_FLIGHT_TIME = 1.4 -- seconds to the pool centre; peaks about 49 studs up
+-- Every pull is different: the flight time (so the height, about 30 to 65 studs) and the landing spot
+-- vary, so the biggest-splash record can always be beaten.
+local LAUNCH_FLIGHT_MIN, LAUNCH_FLIGHT_MAX = 1.15, 1.65
+local launchRandom = Random.new()
 launchPrompt.Triggered:Connect(function(puller: Player)
 	local occupant = seat.Occupant
 	local riderModel = occupant and occupant:FindFirstAncestorOfClass("Model")
@@ -203,12 +206,13 @@ launchPrompt.Triggered:Connect(function(puller: Player)
 		weld:Destroy()
 	end
 	occupant.Sit = false
-	local target = POOL_CENTER + Vector3.new(0, 2, 0)
+	local flightTime = launchRandom:NextNumber(LAUNCH_FLIGHT_MIN, LAUNCH_FLIGHT_MAX)
+	local target = POOL_CENTER + Vector3.new(launchRandom:NextNumber(-8, 8), 2, launchRandom:NextNumber(-8, 8))
 	local delta = target - root.Position
 	local g = workspace.Gravity
-	local velocity = Vector3.new(delta.X / LAUNCH_FLIGHT_TIME, (delta.Y + 0.5 * g * LAUNCH_FLIGHT_TIME ^ 2) / LAUNCH_FLIGHT_TIME, delta.Z / LAUNCH_FLIGHT_TIME)
+	local velocity = Vector3.new(delta.X / flightTime, (delta.Y + 0.5 * g * flightTime ^ 2) / flightTime, delta.Z / flightTime)
 	feedbackRemote:FireAllClients("sound", { name = "launch", position = seat.Position })
-	feedbackRemote:FireClient(rider, "launch", { velocity = velocity, duration = LAUNCH_FLIGHT_TIME })
+	feedbackRemote:FireClient(rider, "launch", { velocity = velocity, duration = flightTime })
 	if puller == rider then
 		GameState.feed(`{rider.DisplayName} launched themselves into the pool`)
 	else

@@ -121,12 +121,12 @@ local function doHighFive(a: Player, b: Player)
 			return
 		end
 	end
-	-- Square them up: face each other about 3.5 studs apart, so the right hands meet.
+	-- Square them up: face each other 3.7 studs apart, where the high_five hands meet (critic-measured).
 	local mid = (ra.Position + rb.Position) / 2
 	local axis = (rb.Position - ra.Position) * Vector3.new(1, 0, 1)
 	local dir = if axis.Magnitude > 0.1 then axis.Unit else Vector3.new(0, 0, -1)
-	local posA = Vector3.new(mid.X, ra.Position.Y, mid.Z) - dir * 1.75
-	local posB = Vector3.new(mid.X, rb.Position.Y, mid.Z) + dir * 1.75
+	local posA = Vector3.new(mid.X, ra.Position.Y, mid.Z) - dir * 1.85
+	local posB = Vector3.new(mid.X, rb.Position.Y, mid.Z) + dir * 1.85
 	ca:PivotTo(CFrame.lookAt(posA, posA + dir))
 	cb:PivotTo(CFrame.lookAt(posB, posB - dir))
 	ReplicatedPlay.action(ha, "high_five")
@@ -220,6 +220,14 @@ socialRemote.OnServerEvent:Connect(function(player: Player, kind: unknown, value
 			return
 		end
 		feedbackRemote:FireAllClients("splash", { position = root.Position, size = height })
+		-- Knocked into the water by someone in the last 3 s: a dunk.
+		local humanoid = humanoidOf(player)
+		local byId = humanoid and humanoid:GetAttribute("LastHitBy")
+		local at = humanoid and humanoid:GetAttribute("LastHitAt")
+		local dunker = if typeof(byId) == "number" then Players:GetPlayerByUserId(byId) else nil
+		if dunker and dunker ~= player and typeof(at) == "number" and now - at <= 3 then
+			GameState.feed(`{dunker.DisplayName} dunked {player.DisplayName} into the pool`)
+		end
 		if height >= 6 then
 			GameState.submit("splash", player, height)
 		end

@@ -24,7 +24,8 @@ local feedbackRemote = remotes:WaitForChild("Feedback") :: RemoteEvent
 
 -- knockback: horizontal studs/s away from the attacker, plus lift (studs/s up). Kicks and the combo finisher
 -- launch people, so you can kick a friend off the tower or into the pool.
-type HitSpec = { damage: number, range: number, width: number, knockback: number?, lift: number?, heavy: boolean? }
+-- guardBreak: ignores block and parry (the combo finisher), so punches beat a turtling sword user.
+type HitSpec = { damage: number, range: number, width: number, knockback: number?, lift: number?, heavy: boolean?, guardBreak: boolean? }
 
 -- Keyed by animation, then hit marker (markers come from animations/markers.py).
 local ATTACKS: { [string]: { [string]: HitSpec } } = {
@@ -32,7 +33,7 @@ local ATTACKS: { [string]: { [string]: HitSpec } } = {
 	combo = {
 		Hit1 = { damage = 7, range = 4.5, width = 4 },
 		Hit2 = { damage = 9, range = 4.5, width = 4 },
-		Hit3 = { damage = 14, range = 4.5, width = 5, knockback = 38, lift = 22, heavy = true },
+		Hit3 = { damage = 14, range = 4.5, width = 5, knockback = 38, lift = 22, heavy = true, guardBreak = true },
 	},
 	kick = { Hit = { damage = 15, range = 5.5, width = 4, knockback = 52, lift = 28, heavy = true } },
 	sword_slash = { Hit = { damage = 22, range = 7, width = 6, knockback = 18, lift = 8, heavy = true } },
@@ -174,7 +175,8 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 		local contact = if victimRoot and victimRoot:IsA("BasePart")
 			then victimRoot.Position:Lerp(root.Position, 0.35) + Vector3.new(0, 1, 0)
 			else root.Position + root.CFrame.LookVector * 2
-		local isBlocking = blocking[model] == true
+		local isGuardBreak = spec.guardBreak == true and blocking[model] == true
+		local isBlocking = blocking[model] == true and not isGuardBreak
 		local isParry = isBlocking and parryEligible[model] == true
 			and os.clock() - (blockStartedAt[model] or -math.huge) <= PARRY_WINDOW
 		local isSneak = false
@@ -187,7 +189,8 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 			end
 		end
 
-		local kind: Feedback.HitKind = if isParry then "parry"
+		local kind: Feedback.HitKind = if isGuardBreak then "guardbreak"
+			elseif isParry then "parry"
 			elseif isBlocking then "blocked"
 			elseif isSneak then "sneak"
 			elseif spec.heavy then "heavy"

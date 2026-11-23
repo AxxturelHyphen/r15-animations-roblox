@@ -24,7 +24,7 @@ Feedback.Sounds = {
 }
 
 -- Event kinds sent through Remotes.Feedback (server -> clients).
-export type HitKind = "normal" | "heavy" | "blocked" | "parry" | "sneak"
+export type HitKind = "normal" | "heavy" | "blocked" | "parry" | "sneak" | "guardbreak"
 
 Feedback.Colors = {
 	normal = Color3.fromRGB(255, 255, 255),
@@ -32,6 +32,7 @@ Feedback.Colors = {
 	blocked = Color3.fromRGB(150, 190, 255),
 	parry = Color3.fromRGB(120, 255, 200),
 	sneak = Color3.fromRGB(255, 110, 110),
+	guardbreak = Color3.fromRGB(255, 150, 40),
 	record = Color3.fromRGB(255, 220, 90),
 	feed = Color3.fromRGB(235, 235, 240),
 }

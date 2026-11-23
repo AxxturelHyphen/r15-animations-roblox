@@ -7,6 +7,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local Feedback = require(pack:WaitForChild("Feedback"))
+local ReplicatedPlay = require(pack:WaitForChild("ReplicatedPlay"))
 local feedbackRemote = pack:WaitForChild("Remotes"):WaitForChild("Feedback") :: RemoteEvent
 
 local GameState = {}
@@ -20,7 +21,9 @@ local RECORDS: { [string]: RecordSpec } = {
 	challenge = { label = "Dummy challenge (10 s)", unit = " dmg", lowerIsBetter = false },
 }
 local records: { [string]: Record } = {}
-local rivalry: { [string]: number } = {} -- "killer>victim" -> KOs
+local rivalry: { [string]: number } = {} -- "killer>victim" -> KOs in the current set
+local setWins: { [string]: number } = {} -- "winner>loser" -> sets won
+local SET_TARGET = 5 -- first to 5 KOs on the same rival wins the set
 local highFives = 0
 local lastKO: { [Player]: { victim: string, at: number } } = {}
 local boardLabel: TextLabel? = nil
@@ -66,7 +69,7 @@ function GameState.refreshBoard()
 	end
 	table.insert(lines, `High fives: {highFives}`)
 	table.insert(lines, "")
-	table.insert(lines, "RIVALRIES")
+	table.insert(lines, `RIVALRIES (first to {SET_TARGET} wins the set)`)
 	local shown: { [string]: boolean } = {}
 	for key in rivalry do
 		local a, b = string.match(key, "^(.-)>(.+)$")
@@ -74,7 +77,9 @@ function GameState.refreshBoard()
 			local pairKey = if a < b then a .. "|" .. b else b .. "|" .. a
 			if not shown[pairKey] then
 				shown[pairKey] = true
-				table.insert(lines, `{a} {rivalry[a .. ">" .. b] or 0} - {rivalry[b .. ">" .. a] or 0} {b}`)
+				local sets = (setWins[a .. ">" .. b] or 0) + (setWins[b .. ">" .. a] or 0)
+				local setText = if sets > 0 then `   (sets {setWins[a .. ">" .. b] or 0}-{setWins[b .. ">" .. a] or 0})` else ""
+				table.insert(lines, `{a} {rivalry[a .. ">" .. b] or 0} - {rivalry[b .. ">" .. a] or 0} {b}{setText}`)
 			end
 		end
 	end
@@ -166,10 +171,26 @@ local function onDied(humanoid: Humanoid, victimName: string, isPlayer: boolean)
 			kos.Value += 1
 		end
 		local key = killer.DisplayName .. ">" .. victimName
+		local reverse = victimName .. ">" .. killer.DisplayName
 		rivalry[key] = (rivalry[key] or 0) + 1
+		rivalry[reverse] = rivalry[reverse] or 0
 		lastKO[killer] = { victim = victimName, at = os.clock() }
 		local template = HOW_TEXT[if typeof(how) == "string" then how else ""] or "sent %s to nap"
 		GameState.feed(`{killer.DisplayName} {string.format(template, victimName)}`)
+		if rivalry[key] >= SET_TARGET then
+			-- The win moment: everyone sees it, the winner cheers, and a new set starts.
+			local score = `{rivalry[key]}-{rivalry[reverse]}`
+			setWins[key] = (setWins[key] or 0) + 1
+			rivalry[key], rivalry[reverse] = 0, 0
+			GameState.announce(`{string.upper(killer.DisplayName)} WINS THE SET {score} vs {victimName}!`)
+			feedbackRemote:FireAllClients("sound", { name = "record" })
+			GameState.feed(`{killer.DisplayName} won set {setWins[key] + (setWins[reverse] or 0)} against {victimName} ({score})`)
+			local character = killer.Character
+			local winnerHumanoid = character and character:FindFirstChildOfClass("Humanoid")
+			if winnerHumanoid and winnerHumanoid.Health > 0 then
+				ReplicatedPlay.action(winnerHumanoid, "cheer")
+			end
+		end
 		GameState.refreshBoard()
 	elseif root == nil or (root:IsA("BasePart") and root.Position.Y < -20) then
 		-- Parts below FallenPartsDestroyHeight are destroyed, so a missing root means a fall.

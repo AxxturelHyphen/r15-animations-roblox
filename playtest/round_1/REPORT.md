@@ -30,7 +30,7 @@
 | M34 emote-on-move | 3 | 1 | 1 | 1 | **forgotten** |
 | M40 dummy-idle | 3 | 2 | 0 | 0 | **talked about** |
 | M41 explore-edges | 3 | 3 | 3 | 0 | **complained about** |
-| M42 no-goal | 3 | 3 | 3 | 0 | **complained about** |
+| M42 goals | 3 | 3 | 3 | 0 | **complained about** |
 
 ## Why (from the next-day recall)
 

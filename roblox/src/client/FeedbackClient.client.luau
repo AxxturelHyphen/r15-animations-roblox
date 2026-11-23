@@ -289,7 +289,7 @@ local function holdVelocity(velocity: Vector3, duration: number)
 end
 
 -- Events ---------------------------------------------------------------------------------------
-local CALLOUT_TEXT: { [string]: string } = { blocked = "BLOCKED", parry = "PARRY!", sneak = "SNEAK ATTACK x2" }
+local CALLOUT_TEXT: { [string]: string } = { blocked = "BLOCKED", parry = "PARRY!", sneak = "SNEAK ATTACK x2", guardbreak = "GUARD BREAK!" }
 
 feedbackRemote.OnClientEvent:Connect(function(kind: string, data: any)
 	if kind == "hit" then
@@ -310,7 +310,9 @@ feedbackRemote.OnClientEvent:Connect(function(kind: string, data: any)
 		else
 			Feedback.playSound(if hitKind == "normal" then "hit" else "heavyHit", position)
 			flash(position, color, if hitKind == "normal" then 1.8 else 2.8)
-			local label = if hitKind == "sneak" then `{data.amount}  SNEAK ATTACK!` else tostring(data.amount)
+			local label = if hitKind == "sneak" then `{data.amount}  SNEAK ATTACK!`
+				elseif hitKind == "guardbreak" then `{data.amount}  GUARD BREAK!`
+				else tostring(data.amount)
 			floatingText(position, label, color, hitKind ~= "normal")
 			local stop = if hitKind == "normal" then 0.05 else 0.09
 			hitStop(data.attacker, stop)
