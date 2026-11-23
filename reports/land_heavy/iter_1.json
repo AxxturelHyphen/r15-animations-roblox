@@ -1,0 +1,14 @@
+{
+ "animation": "land_heavy",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 8
+ },
+ "summary": "Approved, no findings. iter_1 matches the iteration-0 dry run number for number (101 ops applied, 0 skipped, 26 frames, Impact on F004 = the lowest root height, -0.717). Reviewed on both sheets and measured on iter_1.blend (lowest point of each part on every frame). Feet from the first frame: on F000 both feet are on the floor (left -0.001, right toe 0.000) and nothing is below -0.010 on any of the 27 frames (body_penetration 0, foot penetration 0, floating 0). The left foot stays flat under the root for the whole clip (centre within 0.024 studs of its mark on F001-F003 and within 0.006 afterwards). The right toe tip stays within 0.03 studs of its mark from F000 to F016. Knee: the right knee touches the floor on F004 (0.000), hovers 0.004-0.043 above it through the hold F005-F013 and lifts as the rise starts. Fist: the lowest point of the right hand is 0.000 on F004 and between -0.010 and +0.001 on F005-F012 (it never goes more than 0.01 studs into the floor), with its centre within 0.02 studs of (x -1.46, 0.80 forward); it lifts off on F013 (+0.03). Rise: the right toe stays down until F016, the foot is 0.06-0.17 studs clear of the floor on F017-F023, lands on F024 and both feet are within 0.006 of the floor to the end; F026 is neutral. In the sheets the clip reads as a superhero landing: arms out in the split stance on F000, drop F001-F003, impact on F004 with the head thrown down, fist planted and left arm back, head coming up to look ahead by F011, hold with the hips settling, rise over the front foot with a clean step F016-F024. Metrics: lockstep only on the impact frame, overlap_score 0.863, joint limits 0, dead holds 0; the 18 accel spikes and 9 velocity corners are the 4-frame drop, the impact and the step. The one foot_slide segment (right foot F000-F016, 0.32 studs) is the heel rolling about the pinned toe, not a slide. Still true for whoever wires it up: the hips sit 0.3-0.5 studs behind the HumanoidRootPart from F000 until the rise, so the blend in from the fall clip shifts the body back by about 0.3 studs.",
+ "findings": []
+}
