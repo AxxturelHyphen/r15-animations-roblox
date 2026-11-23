@@ -1,0 +1,207 @@
+{
+  "run": 1,
+  "would_play_again": "maybe",
+  "one_line_pitch_to_sam": "It's a grey floor where you sword-fight your friend, but there's a bench that launches you into space and into a pool.",
+  "moments": [
+    {
+      "moment_id": "M01",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Spawning on a grey floor next to signs was nothing; only 'grey floor' survives as a description."
+    },
+    {
+      "moment_id": "M03",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Ordinary jumping and falling is swallowed by the superhero landing memory."
+    },
+    {
+      "moment_id": "M04",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The 44-damage sneak attack shocked Kai and Robin is still bragging about it."
+    },
+    {
+      "moment_id": "M05",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "They remember racing for the bell record, but the repeat runs blurred together."
+    },
+    {
+      "moment_id": "M06",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The accidental superhero landing off the tower was a howling shared high point."
+    },
+    {
+      "moment_id": "M07",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The pool itself was 'just blue'; it only exists in memory as where the bench lands you."
+    },
+    {
+      "moment_id": "M08",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The bench launch into the pool was the best moment and the only thing Robin would return for."
+    },
+    {
+      "moment_id": "M10",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Silent punching at air felt like nothing."
+    },
+    {
+      "moment_id": "M11",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Hitting the dummy was routine once they had each other to hit."
+    },
+    {
+      "moment_id": "M12",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The combo hook flung Robin but they never noticed it as a combo."
+    },
+    {
+      "moment_id": "M13",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Kick is Kai's favourite button and it caused the tower fall and the winning point."
+    },
+    {
+      "moment_id": "M14",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The accidental 'I'm literally Sekiro' parry is a brag, though the timing practice is gone."
+    },
+    {
+      "moment_id": "M15",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Finding the sword key was a quick surprise that became just 'there's swords'."
+    },
+    {
+      "moment_id": "M16",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": true,
+      "sentiment": "neutral",
+      "why": "Swords are remembered as how you fight, not as a moment in themselves."
+    },
+    {
+      "moment_id": "M17",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Kai lists the dummy record among their records; the samey challenge runs are forgotten."
+    },
+    {
+      "moment_id": "M18",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Hits feeling good was noticed in the moment but is not something kids retell."
+    },
+    {
+      "moment_id": "M19",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The rivalry score and 'into a nap' feed lines are what they argue about, five-four versus six-four."
+    },
+    {
+      "moment_id": "M20",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Only the silly final standoff with both holding block stuck."
+    },
+    {
+      "moment_id": "M31",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Silent dancing was cute for seconds; only 'no music' leaks into the complaint list."
+    },
+    {
+      "moment_id": "M32",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "'Robin laughed at Kai' in the feed was a big shared laugh, and Kai's fizzled clap became a joke."
+    },
+    {
+      "moment_id": "M33",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The unknown-emote message was a small shrug."
+    },
+    {
+      "moment_id": "M35",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Being publicly 'left hanging' was funny and the synced high five was a real together-moment."
+    },
+    {
+      "moment_id": "M40",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The breathing dummy was mildly curious and instantly forgotten."
+    },
+    {
+      "moment_id": "M41",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Forty seconds of walking through nothing for one small laugh left no memory worth telling."
+    },
+    {
+      "moment_id": "M42",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "No win screen, rounds, shop or levels is the complaint that explains why they left for Rivals."
+    }
+  ]
+}

@@ -1,0 +1,812 @@
+{
+ "animation": "land_heavy",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 3,
+  "posing": 2,
+  "timing": 5,
+  "transitions": 3,
+  "appeal": 3
+ },
+ "summary": "The idea reads (drop, one-knee crouch, hold, rise) and the timing is sound (4-frame drop, 8-frame hold, 14-frame rise, Impact marker on F004), but every floor contact is wrong. The right foot starts 0.41 studs under the floor on F000 and slides 1.04 studs back by F003; the kneeling shin is 0.28 studs under the floor through the hold while both feet float (left 0.10, right 0.2); the fist stops 0.14-0.23 studs short of the floor; and during the rise both feet sink (right -0.65 on F020, left -0.16) and skate home (1.15 and 0.35 studs). All 13 bones are keyed together on F004 and F012 with a frozen hold between them (overlap_score 0.07). The legs, root and fist arm are re-keyed from FK solves; the upper body, the left arm and the clip length are kept. Dry run of these exact ops (26 frames, Impact still on F004 = lowest root -0.717): no part below -0.010 on any frame (body_penetration 0, foot penetration 0, floating 0), left foot fixed under the root for the whole clip, right toe pinned from F000 to F016 and then stepped in clear of the floor, right knee on the floor on F004 and hovering 0.04 above it in the hold, fist flat on the floor F004-F012. Dry-run metrics: lockstep 1 (the impact frame), overlap_score 0.86, joint limits 0, dead holds 0, 18 accel spikes and 9 velocity corners (the 4-frame drop and the step). Two things to know: the hips sit 0.3-0.5 studs behind the HumanoidRootPart from F000 until the rise (root lz -0.32 on F000, -0.51 in the kneel), because the front foot is kept under the root so that the rise needs no slide; and the foot-slide metric will keep flagging the right foot on F000-F016 (foot centre moves 0.32 studs as the heel lifts about the pinned toe).",
+ "findings": [
+  {
+   "id": "lh-legs-through-floor",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    13
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "F000-F003: the clip starts with the right foot 0.41 studs under the floor (metrics.feet.RightFoot: -0.41, -0.57, -0.49, -0.08; the side view shows the blue toe below the floor line), then the 'planted' foot shoots 1.04 studs backward in 3 frames to reach the kneel. F001-F021: the kneeling shin is through the floor on 21 frames (RightLowerLeg -0.28 on F004-F008): with the thigh at -10, the knee at 130 and the root at -0.95 the knee pivot is only 0.1 above the floor and the shin box hangs below it. In the hold F004-F012 nothing actually stands on the floor: the left foot floats 0.09-0.11 and the right foot 0.17-0.22, toe in the air behind the body. Fix, solved with FK so that every contact is exact: the left foot is flat and stays under the root for the whole clip (ankle at y 0), the right toe is tucked and pinned 1.15 studs behind it from the first frame, and the hips sit between them. F000 = touchdown in that split stance (root -0.32, both feet on the floor, right heel up, knee 0.35 off the floor); F004 = impact, the lowest root height (-0.717) with the right knee touching the floor (0.00) and the front shin leaning 28 deg; F009/F013 = the settled hold, hips 0.07 / 0.055 higher with the knee hovering 0.04 over the floor, so the root minimum (the Impact marker) is unique and stays on F004. The old F012 leg and root keys are deleted (the hold now ends on F013). A breakdown on F002 keeps the right toe on its mark during the drop and plant_feet lifts the root the last 0.02 on F001-F003. Dry run F000-F013: lowest point of either foot between -0.001 and +0.005, right shin 0.00 on F004 and above the floor everywhere else, left foot centre within 0.024 studs of its mark, right toe tip within 0.03. Note for the next round: metrics.feet will still report one 0.32-stud 'drift' segment for the right foot on F000-F016, because it measures the foot centre and the foot rotates about its pinned toe as the heel rises; judge that foot by its toe.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot",
+      "LowerTorso"
+     ],
+     "mode": "remove_interior",
+     "range": [
+      4,
+      26
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 0,
+     "value": -0.32
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 0,
+     "value": -0.32
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -44.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 68.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -24.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 69.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -39.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 4,
+     "value": -0.717
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 4,
+     "value": -0.506
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": -72.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 100.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": -28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 4,
+     "value": 139.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 4,
+     "value": -45
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 9,
+     "value": -0.647
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 9,
+     "value": -0.506
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": -68.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": 94.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 9,
+     "value": -26.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 9,
+     "value": 133.9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 9,
+     "value": -42.4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 13,
+     "value": -0.662
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 13,
+     "value": -0.506
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": -69.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 95.9
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": -26.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 135.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": -43.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 2,
+     "value": 107.4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 2,
+     "value": -45.0
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      1,
+      3
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  },
+  {
+   "id": "lh-fist-never-lands",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    4,
+    12
+   ],
+   "bones": [
+    "UpperTorso",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand"
+   ],
+   "observation": "F004-F012: the fist is the point of the pose and it never reaches the floor: the lowest point of RightHand is 0.14 studs up on F004 and climbs to 0.23 by F012, while the arm hangs straight down beside the hip (hand centre at x -1.79, 0.48 forward). The shoulders are too high for the arm to reach: chest lean 40 with level shoulders leaves the shoulder 2.4+ studs up and the arm is 2.3 long. Fix, solved with FK on top of the new leg keys: drop the right shoulder toward the fist (new UpperTorso.rz +15 = top tips to the character's right, new UpperTorso.ry +12 = right shoulder forward, lean 40 -> 46) and plant the fist flat, knuckles down, 0.8 studs in front of the root and level with the front foot, with a bent elbow on impact (-27) that straightens to -6 as the hips settle upward, so the fist stays where it landed. Dry run: fist lowest point 0.000 on F004, between -0.010 and +0.001 on F005-F012, centre within 0.02 studs of (x -1.46, 0.80 forward); it lifts off on F013 (+0.03) as the rise starts.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 4,
+     "value": 46
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 4,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 4,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 4,
+     "value": -27.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 4,
+     "value": -19.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 4,
+     "value": -27.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 4,
+     "value": 13.9
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 8,
+     "value": 44.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 8,
+     "value": 16
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 8,
+     "value": 11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 8,
+     "value": -38.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 8,
+     "value": -20.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 8,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 8,
+     "value": 5.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 12,
+     "value": 45.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 12,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 12,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 12,
+     "value": -40.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 12,
+     "value": -19.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 12,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 12,
+     "value": 5.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -29.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 6,
+     "value": -20.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -24.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 6,
+     "value": 13.4
+    }
+   ]
+  },
+  {
+   "id": "lh-rise-feet-slide",
+   "category": "transition",
+   "severity": "high",
+   "frames": [
+    13,
+    26
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "F013-F026: the rise is one straight blend from the kneel to neutral, so the legs unfold faster than the root comes up: the right foot is under the floor on F015-F024 (worst -0.65 on F020, a third of the leg is gone in the side view of F018-F021) and the left on F017-F023 (-0.16), and both feet skate along the floor to get home (right 1.15 studs on F014-F026, left 0.35). Fix: stand up over the planted left foot and step the right foot in. F016: hips up and forward, right toe still on its mark, knee 0.2 off the floor; F019: weight on the left leg, right foot in the air (0.17 clear) swinging through; F022: right foot over its final spot, 0.08 clear; F024: right foot down, both knees still 18 deg soft; F026: neutral. A breakdown on F015 keeps the toe on the floor while the knee lifts. Dry run F013-F026: left foot centre within 0.006 studs of its mark and never below -0.005; right toe pinned until F016, then clear of the floor by 0.06-0.17 on F017-F023, down on F024 and within 0.02 of its final spot after that; no body part below -0.006.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 16,
+     "value": -0.42
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 16,
+     "value": -0.37
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -51.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 78.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -26.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -6.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 112.4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 19,
+     "value": -0.22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 19,
+     "value": -0.2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 19,
+     "value": -34.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 19,
+     "value": 58.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 19,
+     "value": -24.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 19,
+     "value": -16.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 19,
+     "value": 115.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 19,
+     "value": -45.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 22,
+     "value": -0.07
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 22,
+     "value": -0.07
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": -17.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": 33.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 22,
+     "value": -15.7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": -31.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 22,
+     "value": 68.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 22,
+     "value": -27.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 24,
+     "value": -0.02
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 24,
+     "value": -0.02
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -8.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 17.9
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -9.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -8.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 17.9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -9.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 121.9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -34.5
+    }
+   ]
+  },
+  {
+   "id": "lh-no-overlap-on-impact",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    4,
+    12
+   ],
+   "bones": [
+    "Head",
+    "LeftUpperArm",
+    "LeftLowerArm"
+   ],
+   "observation": "F004: all 13 animated bones are keyed on the impact frame and 12 of 13 again on F012 (overlap_score 0.07), and between them nothing moves (whole-body speed 1.9-7 deg/frame on F004-F011): the body hits the pose and freezes as one block. The head snaps to its looking-up angle (-30) on the same frame the knee lands, so the impact has no weight. Fix: let the head be thrown DOWN by the impact (chin +6) and only then come up to look ahead (-34, five frames later), delayed two frames behind the body; let the thrown-back left arm overshoot 12 deg and settle, the upper arm one frame and the forearm two frames late. Together with the hips settling 0.07 upward after F004 and the elbow straightening, the hold now breathes without the planted fist or feet moving. Dry run: lockstep only on F004 (the contact frame itself, 11 of 14 bones), overlap_score 0.86, whole-body speed 5-38 deg/frame through the hold, no dead hold.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 4,
+     "value": 6
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 9,
+     "value": -34
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "key_frame": 4,
+     "overshoot": 12,
+     "settle_frames": 4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "Head"
+     ],
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm"
+     ],
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm"
+     ],
+     "offset": 2
+    }
+   ]
+  }
+ ]
+}
