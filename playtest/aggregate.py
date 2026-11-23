@@ -39,18 +39,28 @@ def aggregate(round_no):
     stats = {}
     for run in runs:
         for m in run["moments"]:
-            s = stats.setdefault(m["moment_id"], {"happened": 0, "mentioned": 0, "detail": 0, "again": 0, "why": []})
+            s = stats.setdefault(m["moment_id"], {"happened": 0, "mentioned": 0, "detail": 0, "again": 0, "neg": 0, "why": []})
             s["happened"] += 1
             s["mentioned"] += bool(m.get("mentioned"))
             s["detail"] += bool(m.get("retold_with_detail"))
             s["again"] += bool(m.get("wants_to_do_again"))
+            s["neg"] += bool(m.get("mentioned")) and m.get("sentiment") == "negative"
             if m.get("why"):
                 s["why"].append(m["why"])
     return runs, stats
 
 
 def classify(s):
-    return "talked about" if s["mentioned"] >= 2 else "forgotten"
+    """talked about (positively) / complained about / forgotten.
+
+    A moment mentioned in 2+ runs but negative in most of those mentions is a COMPLAINT: it is memorable for
+    the wrong reason and still needs fixing.
+    """
+    if s["mentioned"] < 2:
+        return "forgotten"
+    if s["neg"] * 2 > s["mentioned"]:
+        return "complained about"
+    return "talked about"
 
 
 def main():
@@ -61,10 +71,11 @@ def main():
     lines = [f"# Simulated playtest — round {round_no}", "",
              f"{len(runs)} independent simulated sessions of the same two friends (see `playtest/personas.md`). "
              "A moment is **talked about** if they brought it up at school in at least 2 of the runs, and "
-             "**forgotten** if it happened but came up in at most 1. This is an LLM simulation grounded in the "
+             "**forgotten** if it happened but came up in at most 1. A moment mentioned mostly negatively is "
+             "**complained about**: memorable for the wrong reason. This is an LLM simulation grounded in the "
              "code, not a real playtest.", "",
-             "| Moment | Happened (runs) | Mentioned | Retold with detail | Want to do again | Verdict |",
-             "|---|---|---|---|---|---|"]
+             "| Moment | Happened (runs) | Mentioned | Negative mentions | Retold with detail | Want to do again | Verdict |",
+             "|---|---|---|---|---|---|---|"]
     for mid in sorted(stats, key=key):
         s = stats[mid]
         lines.append(f"| {mid} {names.get(mid, '').split(':')[0]} | {s['happened']} | {s['mentioned']} | {s['detail']} | "
@@ -78,7 +89,13 @@ def main():
         fh.write("\n".join(lines) + "\n")
     print("wrote", os.path.relpath(out, os.path.dirname(HERE)))
     for mid in sorted(stats, key=key):
-        print(mid, classify(stats[mid]), stats[mid]["mentioned"], "/", stats[mid]["happened"])
+        print(mid, classify(stats[mid]), stats[mid]["mentioned"], "/", stats[mid]["happened"], "neg", stats[mid]["neg"])
+    pa = [r.get("would_play_again") for r in runs]
+    print("would_play_again:", pa)
+    with open(out, "a") as fh:
+        fh.write("\n## Would they play again\n\n" + ", ".join(f"run {r.get('run')}: **{r.get('would_play_again')}**" for r in runs) + "\n\n")
+        for r in runs:
+            fh.write(f"- Run {r.get('run')} pitch to Sam: \"{r.get('one_line_pitch_to_sam')}\"\n")
 
 
 if __name__ == "__main__":
