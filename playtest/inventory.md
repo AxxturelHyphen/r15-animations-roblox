@@ -18,7 +18,7 @@ landings and the high-five clap. There is no round system and no shop or progres
 
 **At spawn:** a 3-second spawn shield (a ForceField: no damage while it lasts). Two signs face the spawn:
 - **CONTROLS**: click punch / combo, Q kick (knocks people flying), hold F block (tap just before a hit: PARRY; the combo's 3rd hit breaks a block),
-  C crouch (hit from behind: SNEAK ATTACK x2), 1 sword, `/e highfive` with a friend, `/e dance` and so on.
+  C crouch (hit from behind: SNEAK ATTACK x2), 1 sword, `/e highfive` with a friend, `/e dance` and so on, and "First to 5 KOs on a rival wins the set".
 - **RECORDS board**: fastest climb, biggest splash, dummy challenge, total high fives, and **RIVALRIES**
   (head-to-head KO score, e.g. "Kai 3 - 2 Robin"), updated live.
 

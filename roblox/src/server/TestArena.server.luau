@@ -97,7 +97,7 @@ end
 
 -- Signs face the spawn: a part's Front face is its -Z side, which CFrame.lookAt points at the target.
 sign("ControlsSign", CFrame.lookAt(Vector3.new(-8, 4, 8), Vector3.new(0, 4, 0)), Vector2.new(9, 6),
-	"CONTROLS\nClick: punch (click again fast: combo)\nQ: kick (knocks people flying)\nHold F: block (tap right before a hit: PARRY)\nC: crouch (hit from behind: SNEAK ATTACK x2)\n1: sword\n/e highfive with a friend, /e dance, laugh, ...",
+	"CONTROLS\nClick: punch (click again fast: combo, 3rd hit breaks blocks)\nQ: kick (knocks people flying)\nHold F: block (tap right before a hit: PARRY)\nC: crouch (hit from behind: SNEAK ATTACK x2)\n1: sword\n/e highfive with a friend, /e dance, laugh, ...\nFirst to 5 KOs on a rival wins the set",
 	26)
 local boardLabel = sign("RecordsBoard", CFrame.lookAt(Vector3.new(8, 4, 8), Vector3.new(0, 4, 0)), Vector2.new(9, 6), "RECORDS", 28)
 GameState.setBoard(boardLabel)
