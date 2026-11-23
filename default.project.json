@@ -42,6 +42,9 @@
       },
       "StarterPlayerScripts": {
         "$path": "roblox/src/client"
+      },
+      "$properties": {
+        "GameSettingsAvatar": "R15"
       }
     },
     "StarterPack": {
@@ -50,6 +53,62 @@
     "Workspace": {
       "$properties": {
         "PlayerCharacterDestroyBehavior": "Enabled"
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Locked": true,
+          "Size": [
+            2048,
+            16,
+            2048
+          ],
+          "Color": [
+            0.388,
+            0.373,
+            0.384
+          ],
+          "Material": "Plastic",
+          "TopSurface": "Smooth",
+          "BottomSurface": "Smooth",
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                -8,
+                0
+              ],
+              "orientation": [
+                [
+                  1,
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        }
+      },
+      "Terrain": {
+        "$className": "Terrain"
+      }
+    },
+    "TextChatService": {
+      "$properties": {
+        "ChatVersion": "TextChatService",
+        "CreateDefaultCommands": true,
+        "CreateDefaultTextChannels": true
       }
     }
   }

@@ -94,7 +94,7 @@ Verdicts: **talked about** (mentioned in at least 2 of 3 runs, mostly positive),
 
 ## Real-playtest checklist (two actual friends, about 20 minutes, then ask them the next day)
 1. Publish the 27 clips and fill `roblox/src/shared/AnimationIds.luau`. In Studio, temporary KeyframeSequence IDs only work on the machine that made them, so two-player tests need published IDs.
-2. Run `rojo build` and `luau-analyze` locally (not possible in this environment) and fix anything they flag.
+2. ~~Run `rojo build` and `luau-analyze` locally and fix anything they flag.~~ Done on 2026-11-23: `rojo build`, luau-lsp (strict, Roblox types) and selene are clean, and `roblox/test/run_tests.py` plays the build in a real Roblox Studio, solo and with 2 clients (results in `roblox/GUIA.md` section 9). Fixed along the way: a Rojo-built place had no Terrain (no pool water) and used the retired legacy chat; combat and crouch input now go through ContextActionService (touch buttons and gamepad); server fall-height checks for splashes and landings tolerated replication lag badly; a hard bench launch could reach the pool floor before swimming started and lose the splash. Last run: solo 64/64, 2 clients 27/27, 0 script errors.
 3. Watch for: do they find the bench lever on their own? Do they notice parry and guard break without the sign? Do they try `/e highfive`? Does a set win feel like a win? Does anyone go back to the dummy challenge?
 4. The next day, without prompting, ask: "What happened in that game?" Compare their answers with the table above.
 

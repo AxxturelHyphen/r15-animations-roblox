@@ -7,7 +7,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
-local UserInputService = game:GetService("UserInputService")
+local ContextActionService = game:GetService("ContextActionService")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local AnimationController = require(pack:WaitForChild("AnimationController"))
@@ -49,6 +49,27 @@ local groundSpeed = 0
 local currentEmote: string? = nil
 local jumpStartedAt = -math.huge
 local fallStartY: number? = nil -- highest point of the current airborne stretch
+
+-- True when the root is inside terrain water (the 4-stud voxel that contains it).
+local function inWater(): boolean
+	local root = character:FindFirstChild("HumanoidRootPart")
+	if root == nil or not root:IsA("BasePart") then
+		return false
+	end
+	local p = root.Position
+	local region = Region3.new(p - Vector3.new(0.5, 0.5, 0.5), p + Vector3.new(0.5, 0.5, 0.5)):ExpandToGrid(4)
+	local materials, occupancies = workspace.Terrain:ReadVoxels(region, 4)
+	for x = 1, materials.Size.X do
+		for y = 1, materials.Size.Y do
+			for z = 1, materials.Size.Z do
+				if materials[x][y][z] == Enum.Material.Water and occupancies[x][y][z] > 0 then
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
 
 local rootPart = character:WaitForChild("HumanoidRootPart") :: BasePart
 
@@ -213,7 +234,13 @@ humanoid.StateChanged:Connect(function(_old: Enum.HumanoidStateType, new: Enum.H
 		end
 	elseif new == Enum.HumanoidStateType.Landed then
 		local height = airborneHeight()
-		if height >= Feedback.HEAVY_LANDING_STUDS then
+		if inWater() then
+			-- A fast dive (the launch bench) can reach the pool floor before the Humanoid starts
+			-- swimming. That is a splash, not a superhero landing on the bottom of the pool.
+			if height > 2 then
+				socialRemote:FireServer("splash", height)
+			end
+		elseif height >= Feedback.HEAVY_LANDING_STUDS then
 			controller:playAction("land_heavy", 0.05, 1)
 			socialRemote:FireServer("landing", height)
 		end
@@ -236,14 +263,29 @@ game:GetService("RunService").Heartbeat:Connect(function()
 	end
 end)
 
-UserInputService.InputBegan:Connect(function(input: InputObject, processed: boolean)
-	if processed then
-		return
-	end
-	if input.KeyCode == Enum.KeyCode.C or input.KeyCode == Enum.KeyCode.LeftControl then
+-- C / Left Ctrl / gamepad B toggles crouch; a touch button on phones and tablets.
+local function onCrouchAction(_name: string, inputState: Enum.UserInputState, _input: InputObject?): Enum.ContextActionResult
+	if inputState == Enum.UserInputState.Begin then
 		setCrouching(not crouching)
 	end
-end)
+	return Enum.ContextActionResult.Pass
+end
+ContextActionService:BindAction("PackCrouch", onCrouchAction, true, Enum.KeyCode.C, Enum.KeyCode.LeftControl, Enum.KeyCode.ButtonB)
+-- Same action for other scripts: Animate.PackAction:Invoke("PackCrouch", true) toggles crouch.
+local packAction = Instance.new("BindableFunction")
+packAction.Name = "PackAction"
+packAction.OnInvoke = function(action: unknown, began: unknown): boolean
+	if action ~= "PackCrouch" then
+		return false
+	end
+	onCrouchAction("PackCrouch", if began == false then Enum.UserInputState.End else Enum.UserInputState.Begin, nil)
+	return true
+end
+packAction.Parent = script
+ContextActionService:SetTitle("PackCrouch", "Crouch")
+ContextActionService:SetPosition("PackCrouch", UDim2.new(1, -95, 1, -305))
+-- No unbind on Destroying: the new character's Animate rebinds the same name (replacing this one), and
+-- the old script can be destroyed after the new one has bound, which would remove the new binding.
 
 local EMOTE_LIST = "highfive (with a friend), wave, dance, cheer, point, laugh, clap, salute"
 

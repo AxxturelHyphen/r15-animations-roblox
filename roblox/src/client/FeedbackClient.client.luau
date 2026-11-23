@@ -30,7 +30,7 @@ local feedFrame = Instance.new("Frame")
 feedFrame.BackgroundTransparency = 1
 feedFrame.AnchorPoint = Vector2.new(1, 0)
 feedFrame.Position = UDim2.new(1, -16, 0, 60)
-feedFrame.Size = UDim2.new(0, 420, 0, 220)
+feedFrame.Size = UDim2.fromOffset(420, 220)
 feedFrame.Parent = gui
 local feedLayout = Instance.new("UIListLayout")
 feedLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
@@ -44,7 +44,7 @@ local function feedLine(text: string)
 	local label = Instance.new("TextLabel")
 	label.LayoutOrder = feedOrder
 	label.AutomaticSize = Enum.AutomaticSize.X
-	label.Size = UDim2.new(0, 0, 0, 26)
+	label.Size = UDim2.fromOffset(0, 26)
 	label.BackgroundColor3 = Color3.fromRGB(20, 22, 28)
 	label.BackgroundTransparency = 0.25
 	label.TextColor3 = Feedback.Colors.feed
@@ -79,7 +79,7 @@ end
 
 local centre = Instance.new("TextLabel")
 centre.AnchorPoint = Vector2.new(0.5, 0)
-centre.Position = UDim2.new(0.5, 0, 0.18, 0)
+centre.Position = UDim2.fromScale(0.5, 0.18)
 centre.Size = UDim2.new(0.8, 0, 0, 44)
 centre.BackgroundTransparency = 1
 centre.Font = Enum.Font.GothamBlack
@@ -139,7 +139,7 @@ local function floatingText(position: Vector3, text: string, color: Color3, big:
 	anchor.CFrame = CFrame.new(position + Vector3.new(math.random() - 0.5, 1.5, math.random() - 0.5))
 	anchor.Parent = workspace
 	local billboard = Instance.new("BillboardGui")
-	billboard.Size = UDim2.new(0, 220, 0, 60)
+	billboard.Size = UDim2.fromOffset(220, 60)
 	billboard.AlwaysOnTop = true
 	billboard.MaxDistance = 90
 	billboard.Parent = anchor
