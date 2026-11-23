@@ -2,7 +2,7 @@
 
 This folder syncs the whole animation pack into Roblox Studio with [Rojo](https://rojo.space): all 25 KeyframeSequences, a replacement `Animate` script, combat, chat emotes, crouch, and a test arena.
 
-> Quick start only. A full step-by-step tutorial comes later.
+> **Guía paso a paso en español:** [`GUIA.md`](GUIA.md), from installing Rojo to playing with a friend and publishing.
 
 ## Quick start
 

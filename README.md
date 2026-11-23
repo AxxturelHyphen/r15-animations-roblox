@@ -131,7 +131,7 @@ Results, what's still below the bar and a real-playtest checklist are in [`playt
 - combat: Mouse1 punch and combo, Q kick, F block, a sword slash, server-validated hits, hit reactions
 - a Studio test arena
 
-See [`roblox/README.md`](roblox/README.md) for the quick start.
+See [`roblox/README.md`](roblox/README.md) for the quick start, or **[`roblox/GUIA.md`](roblox/GUIA.md)** for a step-by-step guide in Spanish (install, play alone, play with a friend, publish, troubleshooting).
 
 ## Layout
 
