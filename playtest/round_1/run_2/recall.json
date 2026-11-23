@@ -1,0 +1,223 @@
+{
+  "run": 2,
+  "would_play_again": "no",
+  "one_line_pitch_to_sam": "It's a grey test map where the sword looks sick and you can dance off a tower, but there's no actual game and nothing keeps score.",
+  "moments": [
+    {
+      "moment_id": "M01",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Only survives as 'you spawn and it's just a grey floor'; nothing happened there."
+    },
+    {
+      "moment_id": "M02",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Running around was fine and felt like nothing."
+    },
+    {
+      "moment_id": "M03",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Bunny-hopping between things left no trace."
+    },
+    {
+      "moment_id": "M04",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Five seconds of 'we're ninjas' with nothing to sneak up on; gone by morning."
+    },
+    {
+      "moment_id": "M05",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The truss is only remembered as the tower you dance off; the made-up race and the empty top are forgotten."
+    },
+    {
+      "moment_id": "M06",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Dancing off the edge with flailing arms was the biggest shared laugh, though it wore out after a few repeats."
+    },
+    {
+      "moment_id": "M07",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Remembered as a random pool with nothing at the bottom; 'mid, it's just water'."
+    },
+    {
+      "moment_id": "M08",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Sitting on the bench and getting killed on it felt like nothing even at the time."
+    },
+    {
+      "moment_id": "M10",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Shadow-boxing the air only fed the general 'game is on mute' impression."
+    },
+    {
+      "moment_id": "M11",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "First silent punch on the dummy was overwritten by the sword."
+    },
+    {
+      "moment_id": "M12",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The combo was a small spark that nothing built on."
+    },
+    {
+      "moment_id": "M13",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Finding the kick was pleasant for a second and never mattered again."
+    },
+    {
+      "moment_id": "M14",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Learning the block key is forgotten; only what blocking did to the fight stuck."
+    },
+    {
+      "moment_id": "M15",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "positive",
+      "why": "'You have a sword' is how they describe the game, but the equip moment itself is not retold."
+    },
+    {
+      "moment_id": "M16",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Both agree the slash looks sick; it's the one thing they praise about the game."
+    },
+    {
+      "moment_id": "M17",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "The dummy lying down then reappearing and giving nothing became the 'immortal guy' joke and a complaint."
+    },
+    {
+      "moment_id": "M18",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Hitting a friend working is the premise of the retelling, but the mushy trading itself blurred together."
+    },
+    {
+      "moment_id": "M19",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The bet fight where the loser had to say the other is better, plus the disputed 7-2 score, is the headline story."
+    },
+    {
+      "moment_id": "M20",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Blocking looked like lag with no feedback and killed the fight; Kai is still annoyed."
+    },
+    {
+      "moment_id": "M30",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Waving hello and goodbye was sweet but too small to survive."
+    },
+    {
+      "moment_id": "M31",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "positive",
+      "why": "'Dancing to nothing' is remembered only as the setup for the jump; the failed synced dance party is forgotten."
+    },
+    {
+      "moment_id": "M32",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The silent laugh over Kai's body was cursed and became the running gag."
+    },
+    {
+      "moment_id": "M33",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Guessed emotes being swallowed was a string of small letdowns, not a story."
+    },
+    {
+      "moment_id": "M34",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Dance cancelling on movement was a minor annoyance that didn't stick."
+    },
+    {
+      "moment_id": "M40",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The dummy 'just stands there staring at you' gets one line as part of the immortal-guy bit."
+    },
+    {
+      "moment_id": "M41",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The absurdly long run to the edge of the world is remembered for the commitment, not the destination."
+    },
+    {
+      "moment_id": "M42",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "No rounds, leaderboard, ranks or shop is the reason they give for not playing again."
+    }
+  ]
+}
