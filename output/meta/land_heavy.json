@@ -1,0 +1,15 @@
+{
+ "name": "land_heavy",
+ "iteration": 1,
+ "looped": false,
+ "priority": "Action",
+ "length": 0.8667,
+ "authoredSpeed": null,
+ "markers": [
+  {
+   "name": "Impact",
+   "value": "",
+   "time": 0.1333
+  }
+ ]
+}

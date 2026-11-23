@@ -31,6 +31,8 @@ local AnimationMeta: { [string]: Meta } = {
 	salute = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.3333, authoredSpeed = nil, markers = {  } },
 	crouch_idle = { looped = true, priority = Enum.AnimationPriority.Idle, length = 2.4, authoredSpeed = nil, markers = {  } },
 	crouch_walk = { looped = true, priority = Enum.AnimationPriority.Movement, length = 1.3333, authoredSpeed = 0.904, markers = { { name = "Footstep", value = "Left", time = 0.1667 }, { name = "Footstep", value = "Right", time = 0.8333 } } },
+	high_five = { looped = false, priority = Enum.AnimationPriority.Action, length = 1.1, authoredSpeed = nil, markers = { { name = "Clap", value = "", time = 0.4333 } } },
+	land_heavy = { looped = false, priority = Enum.AnimationPriority.Action, length = 0.8667, authoredSpeed = nil, markers = { { name = "Impact", value = "", time = 0.1333 } } },
 }
 
 return AnimationMeta
