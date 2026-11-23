@@ -288,6 +288,12 @@ local function playEmote(name: string)
 		return
 	end
 	if mode ~= "ground" or groundSpeed > MOVE_THRESHOLD or crouching then
+		local why = if crouching then "Stand up (C) to emote"
+			elseif mode == "seated" then "Get off the seat (Space) to emote"
+			elseif mode == "swim" then "You can't emote while swimming"
+			elseif mode ~= "ground" then "Land first, then emote"
+			else "Stand still to emote"
+		systemMessage(why)
 		return
 	end
 	stopEmote()

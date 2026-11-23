@@ -39,6 +39,7 @@ local ATTACKS: { [string]: { [string]: HitSpec } } = {
 	sword_slash = { Hit = { damage = 22, range = 7, width = 6, knockback = 18, lift = 8, heavy = true } },
 }
 local SWORD_ONLY = { sword_slash = true }
+local UNARMED_ONLY = { punch = true, combo = true } -- the kick works with or without the sword
 local MIN_ATTACK_GAP = 0.18 -- seconds between two attack starts, whatever the attack
 local MARKER_TOLERANCE = 0.3 -- seconds of latency slack around each marker's expected time
 local COMBO_UPGRADE_WINDOW = 0.6 -- a punch may be cancelled into the combo this soon after it starts
@@ -146,7 +147,7 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 	end
 	local tool = character:FindFirstChildOfClass("Tool")
 	local holdingSword = tool ~= nil and tool.Name == "Sword"
-	if (SWORD_ONLY[animationName] == true) ~= holdingSword then
+	if (SWORD_ONLY[animationName] and not holdingSword) or (UNARMED_ONLY[animationName] and holdingSword) then
 		return
 	end
 	if not acceptMarker(player, animationName, markerName, os.clock()) then
@@ -168,7 +169,18 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 	end
 	for victim, model in victims do
 		if model:FindFirstChildOfClass("ForceField") then
-			continue -- spawn shield: no damage, no knockback, no hit feedback
+			-- Spawn shield: no damage or knockback, but say so (otherwise it reads as "PvP is off").
+			local shieldRoot = model:FindFirstChild("HumanoidRootPart")
+			if shieldRoot and shieldRoot:IsA("BasePart") then
+				feedbackRemote:FireAllClients("hit", {
+					position = shieldRoot.Position + Vector3.new(0, 1, 0),
+					amount = 0,
+					kind = "shielded",
+					attacker = character,
+					victim = model,
+				})
+			end
+			continue
 		end
 		local victimRoot = model:FindFirstChild("HumanoidRootPart")
 		local victimPlayer = Players:GetPlayerFromCharacter(model)

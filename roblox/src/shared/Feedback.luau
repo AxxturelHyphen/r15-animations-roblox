@@ -24,7 +24,7 @@ Feedback.Sounds = {
 }
 
 -- Event kinds sent through Remotes.Feedback (server -> clients).
-export type HitKind = "normal" | "heavy" | "blocked" | "parry" | "sneak" | "guardbreak"
+export type HitKind = "normal" | "heavy" | "blocked" | "parry" | "sneak" | "guardbreak" | "shielded"
 
 Feedback.Colors = {
 	normal = Color3.fromRGB(255, 255, 255),
@@ -33,6 +33,7 @@ Feedback.Colors = {
 	parry = Color3.fromRGB(120, 255, 200),
 	sneak = Color3.fromRGB(255, 110, 110),
 	guardbreak = Color3.fromRGB(255, 150, 40),
+	shielded = Color3.fromRGB(190, 160, 255),
 	record = Color3.fromRGB(255, 220, 90),
 	feed = Color3.fromRGB(235, 235, 240),
 }
@@ -41,7 +42,7 @@ Feedback.Colors = {
 Feedback.HEAVY_LANDING_STUDS = 18 -- falls at least this high get the superhero landing
 Feedback.HIGH_FIVE_RANGE = 7 -- studs
 Feedback.HIGH_FIVE_WINDOW = 3 -- seconds a high-five request waits for a partner
-Feedback.TAUNT_WINDOW = 4 -- seconds after a KO in which an emote counts as a taunt
+Feedback.TAUNT_WINDOW = 8 -- seconds after a KO in which an emote counts as a taunt (players type /e ...)
 Feedback.CHALLENGE_SECONDS = 10
 
 -- Play a built-in sound, positioned in the world when a position is given (client side).

@@ -297,7 +297,14 @@ feedbackRemote.OnClientEvent:Connect(function(kind: string, data: any)
 		local hitKind = data.kind :: string
 		local color = Feedback.Colors[hitKind] or Feedback.Colors.normal
 		local involved = data.attacker == player.Character or data.victim == player.Character
-		if hitKind == "blocked" then
+		if hitKind == "shielded" then
+			flash(position, color, 2)
+			floatingText(position, "SHIELDED", color, false)
+			if involved then
+				callout(if data.victim == player.Character then "SPAWN SHIELD (3 s)" else "They just spawned: shielded", color)
+			end
+			return
+		elseif hitKind == "blocked" then
 			Feedback.playSound("block", position)
 			flash(position, color, 2.2)
 			floatingText(position, "BLOCKED", color, false)

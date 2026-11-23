@@ -1,0 +1,199 @@
+{
+  "run": 2,
+  "would_play_again": "maybe",
+  "one_line_pitch_to_sam": "It's a mid grey fighting game, but there's a bench that cannons you into a pool and the game roasts you in the corner when you get left hanging on a high five.",
+  "moments": [
+    {
+      "moment_id": "M01",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Only remembered as 'it's a grey floor', a complaint about the look."
+    },
+    {
+      "moment_id": "M04",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Sneak attack was a big number in the moment but neither brought it up."
+    },
+    {
+      "moment_id": "M05",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The tower only came up as the place Robin got kicked off; the race times were used up fast."
+    },
+    {
+      "moment_id": "M06",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Robin's superhero landing after being kicked off was a big shared laugh."
+    },
+    {
+      "moment_id": "M07",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The 'dunked' feed line made kicking Robin back in funny; the pool itself was empty and forgotten."
+    },
+    {
+      "moment_id": "M08",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The surprise launch into the pool was the best moment, though Kai also remembers the stuck-at-60 record as rigged."
+    },
+    {
+      "moment_id": "M10",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Punching empty air in the first seconds felt like nothing."
+    },
+    {
+      "moment_id": "M11",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Hitting the dummy felt okay but it doesn't fight back, so it didn't stick."
+    },
+    {
+      "moment_id": "M12",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The guard break was clever at the time but got buried under funnier things."
+    },
+    {
+      "moment_id": "M13",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Kicking Robin off the tower and into the pool is what kick is remembered for."
+    },
+    {
+      "moment_id": "M14",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Block was briefly exciting for Robin but didn't change the fight and was dropped."
+    },
+    {
+      "moment_id": "M15",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "'You get a sword' is the whole memory."
+    },
+    {
+      "moment_id": "M16",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Remembered only as 'whoever clicks first wins', the same every time."
+    },
+    {
+      "moment_id": "M17",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The dummy and its challenge were just another number neither cared about."
+    },
+    {
+      "moment_id": "M18",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Robin remembers being hit on the bench with no way to hit back as cheap."
+    },
+    {
+      "moment_id": "M19",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "positive",
+      "why": "Kai brags about 5-0 and Robin about 'danced on Kai', but Robin won't do more sword fights."
+    },
+    {
+      "moment_id": "M20",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The parry was an accident nobody could repeat or explain."
+    },
+    {
+      "moment_id": "M30",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Kai's wave missed the taunt window so nothing happened to remember."
+    },
+    {
+      "moment_id": "M31",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "The dance party is remembered mostly for having no music."
+    },
+    {
+      "moment_id": "M33",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The unknown-emote message was just a list that led to the high five."
+    },
+    {
+      "moment_id": "M35",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "'Left hanging' called them out by name, and landing it on the third try felt great."
+    },
+    {
+      "moment_id": "M40",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "A dummy standing around made no impression."
+    },
+    {
+      "moment_id": "M41",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Running for the edge and finding only grey grid is retold as a complaint."
+    },
+    {
+      "moment_id": "M42",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "No shop, no unlocks, 'did everything in twenty minutes' is why they stopped."
+    }
+  ]
+}
