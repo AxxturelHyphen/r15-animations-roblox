@@ -1,0 +1,207 @@
+{
+ "run": 3,
+ "would_play_again": "maybe",
+ "one_line_pitch_to_sam": "It's a fighting game on a grey floor where the corner of the screen snitches on everything you do, and there's a bench that launches you into the sky, but you've done it all in twenty minutes.",
+ "moments": [
+  {
+   "moment_id": "M01",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The plain baseplate start got a tease at the time but was nothing to retell, only a vague 'grey floor' later."
+  },
+  {
+   "moment_id": "M04",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "Goblin-mode sneak attack on Kai at the dummy was Robin's biggest laugh and Kai's real outrage."
+  },
+  {
+   "moment_id": "M05",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "'(beat Kai!)' on Kai's own screen turned the climb into a four-minute rivalry with real times to brag about."
+  },
+  {
+   "moment_id": "M06",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "Superhero landing with screen shake, done together, was a shared wow."
+  },
+  {
+   "moment_id": "M07",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "Swimming was just water with nothing in it."
+  },
+  {
+   "moment_id": "M08",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "Being launched into the sky and the pool was the loudest moment; the unbeatable splash record is the one gripe."
+  },
+  {
+   "moment_id": "M10",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "Punching air with no sound was fine and felt like nothing."
+  },
+  {
+   "moment_id": "M11",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "Hitting the dummy was task-mode with no reaction."
+  },
+  {
+   "moment_id": "M12",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The combo launch was fun in the first minute but got overwritten once swords took over."
+  },
+  {
+   "moment_id": "M13",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "Robin kicking Kai off the tower mid record run stuck as a prank story."
+  },
+  {
+   "moment_id": "M14",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "Landing the parry after four tries felt like actual skill to Kai."
+  },
+  {
+   "moment_id": "M15",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "Equipping the sword was exciting for a second but is just 'there's a sword' now."
+  },
+  {
+   "moment_id": "M16",
+   "mentioned": true,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "negative",
+   "why": "Remembered only as the complaint that the sword beats punching so fights are who clicks first."
+  },
+  {
+   "moment_id": "M17",
+   "mentioned": true,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The dummy only survives as the place Kai got sneak-attacked; the solo record went flat with nobody competing."
+  },
+  {
+   "moment_id": "M18",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The first hit-freeze impressed Kai then but blended into general fighting."
+  },
+  {
+   "moment_id": "M19",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": false,
+   "sentiment": "positive",
+   "why": "'Into a nap' feed lines and the 6-3 score are the brag, but they don't want more samey duels."
+  },
+  {
+   "moment_id": "M20",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The failed parry attempts collapsed into 'it took me four tries'."
+  },
+  {
+   "moment_id": "M31",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "Silent synced dance was cute for ten seconds then awkward and forgettable."
+  },
+  {
+   "moment_id": "M32",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": true,
+   "sentiment": "positive",
+   "why": "The feed snitching on laugh, bye-bye wave and slow clap made the taunts hilarious."
+  },
+  {
+   "moment_id": "M33",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The 'no emote called flex' message was a small let-down with no story in it."
+  },
+  {
+   "moment_id": "M34",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "The dance stopping when you walk was never noticed as a thing."
+  },
+  {
+   "moment_id": "M35",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": false,
+   "sentiment": "positive",
+   "why": "'Robin was left hanging' in the feed, twice, is the funny part; the high five that worked is not what got retold."
+  },
+  {
+   "moment_id": "M40",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "An NPC standing there vibing registered as nothing."
+  },
+  {
+   "moment_id": "M41",
+   "mentioned": false,
+   "retold_with_detail": false,
+   "wants_to_do_again": false,
+   "sentiment": "neutral",
+   "why": "Empty floor and falling off the world gave one small laugh and no memory."
+  },
+  {
+   "moment_id": "M42",
+   "mentioned": true,
+   "retold_with_detail": true,
+   "wants_to_do_again": false,
+   "sentiment": "negative",
+   "why": "The rivalry board is remembered fondly, but the lasting takeaway is no rounds, shop or unlocks so nothing else to do."
+  }
+ ]
+}
