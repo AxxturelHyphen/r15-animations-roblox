@@ -5,8 +5,8 @@ Time: floor none | cap 3 simulation rounds
 Bar: forgotten to talked about (at least 2 of 3 mentions, plus detail or again at least once) | no regressions | would_play_again "yes" in at least 2 of 3
 Calibration offset: none (no user estimate yet)
 Usage: about 20% per hour, never 100%
-Gate: report approved [no] | final [not started]
-Best so far: round 1 baseline
+Gate: report approved [no] | final [report written, playtest/REPORT.md]
+Best so far: round 3 build + post-round polish (commit after 'Polish after round 3')
 
 ## Decisions
 - 2026-11-23 No questions after intake: the user said "don't ask me anything", and the plan questions already set scope, animation policy and personas.
@@ -84,3 +84,15 @@ Changes:
 - Bench launch: the height (about 30-62 studs) and the landing spot in the pool vary on every pull, so the splash record can be beaten. (M08, M07)
 - Dunk: hit into the pool within 3 s of a knockback, and the feed says "Kai dunked Robin into the pool". (M07, M13)
 - Guard break: the combo finisher (Hit3) ignores block and parry, with a "GUARD BREAK!" callout, so punches beat a turtling sword user. (M11, M12, M14)
+
+Review: 5 findings in the round-3 diff (dunk credited on any hit; repeated dunks; bench launch credited as a dunk; splash clamp at 60; guard break kept the guard). All fixed.
+
+Recall, round 3 (3 fresh zero-context critics; eyeballed, counted by aggregate.py):
+- Holding: M04 2/3, M08 3/3, M13 3/3, M35 3/3, M19 3/3 (set wins retold), M06 3/3, M05 2/3, M14 2/3. M12 combo now talked about 2/3 (guard break). M07 and M31 back to 2/3.
+- Still complained about: M42 3/3 (no unlocks, shop or second map), M01 3/3 (signs behind spawn, silent shield), and new: M16 sword 3/3 ("whoever clicks first").
+- Regressed: M17 dummy challenge 0/3 ("a record with nobody watching").
+- Would play again: maybe / maybe / maybe. Play time 19-22 min.
+- Session agents found code/inventory mismatches (splash cap 60, kick with the sword, shield silence, sign placement). Fixed after the round: "Polish after round 3" commit, not re-simulated.
+
+Stop check: bar [no: M42 and M16 complained, play-again not "yes"] | cap [3 of 3 reached] -> stop at cap.
+Below the bar, reported plainly in `playtest/REPORT.md`: progression and unlocks are out of the chosen scope (M42), the sword needs balance (M16), solo goals don't stick (M17), there's no music for the dance or pool. The post-round fixes are unverified by simulation, and nothing is verified in Studio.

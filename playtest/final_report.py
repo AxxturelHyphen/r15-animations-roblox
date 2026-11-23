@@ -57,6 +57,9 @@ def main():
         for run in data[r][0]:
             out.append(f"- Round {r}, run {run.get('run')}: \"{run.get('one_line_pitch_to_sam')}\"")
     out.append("")
+    analysis = os.path.join(HERE, "ANALYSIS.md")
+    if os.path.exists(analysis):
+        out.append(open(analysis).read())
     open(os.path.join(HERE, "REPORT.md"), "w").write("\n".join(out) + "\n")
     print("wrote playtest/REPORT.md")
 

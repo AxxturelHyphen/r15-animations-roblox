@@ -45,14 +45,15 @@ This folder syncs the whole animation pack into Roblox Studio with [Rojo](https:
 - Hits get a contact flash, a sound, a damage number and a short hit-stop. Heavy hits (combo finisher, kick, sword) also knock the target back. The kick launches people, for example off the tower.
 - Blocking shows BLOCKED with a clang. Raising the guard within 0.25 s before a hit is a **parry**: no damage, and the attacker staggers. One parry is possible per guard raise, at most once a second.
 - Crouch plus a hit from behind is a **sneak attack** for double damage. It's checked on the server, including real crouch speed.
-- The 3 s spawn shield blocks all hits, and attacking ends your own shield.
+- The combo's third hit is a **guard break**: it goes through block and parry and drops the guard. The kick works with or without the sword.
+- The 3 s spawn shield blocks all hits and shows SHIELDED. Attacking ends your own shield.
 
 ### Social and goals
 
 - `/e highfive`: two players within 7 studs within 3 s get a synced high five. Alone, you're "left hanging".
 - Dancing next to a friend syncs your dance, and two dancers start a "Dance party!".
-- Any emote within 4 s of a KO is a taunt in the kill feed. An unknown `/e` shows the list of emotes.
-- **Records board:** fastest climb (start pad to bell), biggest splash (fall height into the pool, checked against the server's height tracking), 10 s dummy damage challenge (orange pad), total high fives, and head-to-head **rivalries**. Dummy kills appear in the feed but don't count as KOs.
+- Any emote within 8 s of a KO is a taunt in the kill feed. An unknown `/e` shows the list of emotes, and an emote that can't play right now says why.
+- **Records board:** fastest climb (start pad to bell), biggest splash (fall height into the pool, checked against the server's height tracking), 10 s dummy damage challenge (orange pad), total high fives, and head-to-head **rivalries**. The first player to 5 KOs on a rival **wins the set**: a callout for everyone and an automatic cheer, and the set count goes on the board. Dummy kills appear in the feed but don't count as KOs.
 
 ### Test arena
 
@@ -60,7 +61,7 @@ In Studio, `TestArena` builds:
 - a spawn shield, plus a controls sign and the records board facing spawn
 - a truss with the climb race
 - a water pool with a splash zone
-- a bench with a **launch lever** that flings the sitter into the pool
+- a bench with a **launch lever** that flings the sitter into the pool, with a different height and landing spot each time; being knocked into the pool is a **dunk** in the feed
 - a respawning R15 training dummy with a visible health bar, which walks back home after being kicked away
 To build it in live games too, set the attribute `BuildTestArena = true` on `ReplicatedStorage.AnimationPack`.
 

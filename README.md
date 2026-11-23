@@ -23,7 +23,7 @@ by a **Fable 5.2 critic agent**, then fixed automatically by Claude, which edits
 
 ## Animations
 
-25 clips in seven sets:
+27 clips in eight sets (`high_five` and `land_heavy` were added for the playtest improvements):
 
 | Set | Animation | Frames @30fps | Loop | Priority | Floor contact |
 |---|---|---|---|---|---|
@@ -104,6 +104,20 @@ Before/after GIFs are in `output/previews/*_before_after.gif`.
 
 Every exported `.rbxmx` is checked frame by frame with `python -m pipeline.verify_rbxmx`, which rebuilds the
 poses using Roblox's Motor6D joint math (`C0 · Transform`). The largest difference from Blender is 4.4e-6 studs.
+
+## Simulated playtest
+
+`playtest/` holds a simulated first session by two 12-year-old best friends: 3 independent runs per round, with separate zero-context Fable 5.2 agents writing the next-day lunch-table recall. It tracks which moments they talk about at school, complain about or forget. Over 3 rounds, the forgettable moments were rebuilt:
+- stakes and the kill feed
+- hit feedback
+- parry and guard break
+- sneak attacks
+- a launch bench
+- high fives
+- set wins
+- two new critic-approved clips: `high_five` and `land_heavy`
+
+Results, what's still below the bar and a real-playtest checklist are in [`playtest/REPORT.md`](playtest/REPORT.md). The run used the Cook Loop; its ledger is in `cook/`.
 
 ## Roblox integration
 
