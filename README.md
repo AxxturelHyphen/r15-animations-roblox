@@ -150,6 +150,7 @@ See [`roblox/README.md`](roblox/README.md) for the quick start, or **[`roblox/GU
 | `pipeline/export.py` | FBX + `.rbxmx` KeyframeSequence export, with a re-import check. Also writes markers, `output/meta/*.json` and `roblox/src/shared/AnimationMeta.luau`. |
 | `animations/markers.py` | Hit and footstep marker rules, resolved from the final curves at export. |
 | `roblox/`, `default.project.json` | Rojo project + Luau: AnimationLoader/Controller, Animate, combat, test arena. `roblox/check_project.py` is an offline consistency check. |
+| `roblox/publish/` | `publish_animations.py`: uploads all 27 clips with the Open Cloud Assets API (your API key) and fills in `AnimationIds.luau`. |
 | `roblox/test/` | Automated Studio play-test: `AFHarness.plugin.luau` (StudioTestService plugin) and `run_tests.py`. |
 | `rokit.toml`, `selene.toml` | Pinned toolchain (Rojo, luau-lsp, selene, Lune) and lint config. |
 | `pipeline/verify_rbxmx.py` | Rebuilds every `.rbxmx` frame with Roblox joint math and compares it to Blender. |

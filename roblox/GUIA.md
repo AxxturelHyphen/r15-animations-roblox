@@ -144,7 +144,26 @@ Apunta lo que falle.
 funciona en el ordenador que la cargó**. Con dos jugadores, cada uno vería al otro sin animaciones. La
 solución es publicarlas.
 
-**7.1 Publicar las 27 animaciones** (una vez):
+**7.1 Publicar las 27 animaciones** (una vez).
+
+**Forma rápida: un solo comando (recomendada).** El script sube las 27 animaciones a tu cuenta y rellena
+`AnimationIds.luau` solo. Necesita una *API key* tuya; solo tú puedes crearla, y se tarda unos 2 minutos:
+1. Entra en [create.roblox.com](https://create.roblox.com) → **Open Cloud** → **API Keys** → **Create API Key**.
+2. Ponle un nombre, añade la API **Assets** con los permisos **Read** y **Write**, y en *Accepted IP
+   Addresses* pon `0.0.0.0/0`. Crea la clave y cópiala (solo se ve una vez).
+3. Busca tu **ID de usuario**: es el número de la dirección de tu perfil (`roblox.com/users/123456789/profile`).
+4. En PowerShell, en la carpeta del proyecto:
+   ```powershell
+   $env:ROBLOX_API_KEY = "pega-aqui-la-clave"
+   py roblox/publish/publish_animations.py --user-id 123456789
+   ```
+   (Si el juego es de un grupo, usa `--group-id <id del grupo>` en lugar de `--user-id`.)
+   Con `--dry-run` ves qué subiría sin subir nada. Si alguna falla, vuelve a ejecutarlo: las que ya tienen ID
+   se saltan.
+5. Vuelve a construir el juego (`rojo build -o build/AnimationForge.rbxl`) o deja que `rojo serve` lo sincronice.
+   No compartas la clave con nadie; cuando acabes, puedes borrarla en la misma página.
+
+**Forma manual (sin API key), una por una:**
 1. Inserta un personaje R15 de prueba, por ejemplo desde el constructor de rigs (*Rig Builder*, pestaña *Avatar*).
 2. Abre el **Animation Editor** con ese rig seleccionado.
 3. Carga cada animación de `ReplicatedStorage → AnimationPack → KeyframeSequences` (por ejemplo, clic derecho

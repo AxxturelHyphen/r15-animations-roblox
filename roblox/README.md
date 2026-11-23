@@ -74,6 +74,8 @@ The KeyframeSequence fallback only works in Studio. For a published game:
 2. For each clip in `ReplicatedStorage.AnimationPack.KeyframeSequences`, load it (⋯ → Load, or right-click the KeyframeSequence → Save to Roblox), then use **Publish to Roblox**.
 3. Paste each asset ID into `src/shared/AnimationIds.luau`. Rojo syncs the change.
 
+Faster: `python roblox/publish/publish_animations.py --user-id <id>` (or `--group-id`) uploads all 27 clips through the Open Cloud Assets API and fills in `AnimationIds.luau`. It needs an API key from your account with Assets read and write in `ROBLOX_API_KEY`; see `GUIA.md` section 7.1.
+
 Notes:
 
 - Animations must be owned by the game's owner (user or group), or they won't play in that game.
