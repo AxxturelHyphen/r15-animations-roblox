@@ -1,0 +1,248 @@
+{
+ "animation": "swim_idle",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 5,
+  "timing": 6,
+  "transitions": 8,
+  "appeal": 4
+ },
+ "summary": "Seamless and calm, but it does not read as treading water. Both upper arms twist the same way, so the hands swing left and right together like a steering wheel instead of sculling in and out; the elbows and feet are frozen; and the 'eggbeater' is a straight forward/back pedal. Fixes: mirror the right arm, add forearm sweep with drag, make the thighs circle, and enlarge the bob and the chest motion.",
+ "findings": [
+  {
+   "id": "swimidle-1-arms-not-mirrored",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "RightUpperArm",
+    "LeftUpperArm"
+   ],
+   "observation": "LeftUpperArm.ry and RightUpperArm.ry carry identical keys (+20 at 0/30, -20 at 15/45). Positive ry turns toward the character's left for both arms, so the left hand sweeps out while the right sweeps in. The rz keys are also offset (left 50 at F000 while right is -60). Measured at F000: left hand x +2.66 / height 3.30, right hand x -2.20 / height 2.65; they swap at F015. On the sheets the blue arm is thrown wide while the orange one is folded in (F000), then the reverse (F012-F016). The right arm's ry and rz are mirrored and the scull is enlarged to +/-30. Checked: hands are at x +/-2.78 on F000 and F030 and sweep in to about +/-1.8 on F015.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": "ry",
+     "factor": -1.5,
+     "pivot": 0
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "LeftUpperArm",
+     "ch": "ry",
+     "factor": 1.5,
+     "pivot": 0
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightUpperArm",
+     "ch": "rz",
+     "factor": -1,
+     "pivot": -55
+    }
+   ]
+  },
+  {
+   "id": "swimidle-2-frozen-forearms",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "LowerArm.rx is a flat -60 on both sides for all 60 frames, so the scull comes from the shoulder only and the arm moves as one bent bar (front view F000-F059: the elbow angle never changes). The elbows now open to about -52 on the out-sweep and close to -76 on the in-sweep, delayed 3 frames behind the upper arm.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -76
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 30,
+     "value": -52
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 45,
+     "value": -76
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 15,
+     "value": -76
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 30,
+     "value": -52
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 45,
+     "value": -76
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 3
+    }
+   ]
+  },
+  {
+   "id": "swimidle-3-pedal-not-eggbeater",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "RightUpperLeg"
+   ],
+   "observation": "The legs only move on rx (thigh 20 deg, knee 40 deg) with UpperLeg.rz fixed at +/-15, so each foot goes straight up and down (side view: the feet trace a vertical line; lowest-foot height just oscillates). An eggbeater kick circles. rz keys are added a quarter cycle off the rx keys (left 25/8 at 8/23/38/53, right mirrored and opposite), so each knee traces an ellipse. No intersections on any frame.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 8,
+     "value": 25
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 23,
+     "value": 8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 38,
+     "value": 25
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 53,
+     "value": 8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 8,
+     "value": -8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 23,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 38,
+     "value": -8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 53,
+     "value": -25
+    }
+   ]
+  },
+  {
+   "id": "swimidle-4-small-body-motion",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "The bob is 0.08 studs and UpperTorso.rx moves 2 deg, both too small to see at game distance (onion skin: one torso outline), and the chest and head turn exactly on the key frames 0/30/60. The bob is doubled, the chest motion enlarged with a slow +/-4 twist, and the chest and head are delayed 3 and 5 frames.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "factor": 2,
+     "pivot": 0
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "factor": 2.5,
+     "pivot": "mean"
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 15,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 45,
+     "value": -4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 5
+    }
+   ]
+  }
+ ]
+}

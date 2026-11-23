@@ -1,0 +1,477 @@
+{
+ "animation": "crouch_idle",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 5,
+  "timing": 4,
+  "transitions": 6,
+  "appeal": 3
+ },
+ "summary": "The crouch pose itself is good (compact, balanced over the feet, clear sneak silhouette) and the seam values match, but the clip is close to a still image: the whole lower body has zero motion, the fastest moment of the loop is 0.83 deg/frame, every moving channel peaks on frame 36 and stops on frame 0, and the two arms are identical. Both feet are also rolled 5 degrees onto their outer edges and sit 0.035-0.055 studs under the floor for the whole clip, sinking further as the hips drop. Fixes: flatten the feet and let the knees take the breathing, add a slow weight shift from foot to foot with the feet pinned, turn the head drift into a look left then right, break the arm symmetry and stagger the phases, then plant_feet. Dry run on a scratch copy: 0 penetration frames, feet static (drift 0.00), 0 dead holds, 0 seam issues.",
+ "findings": [
+  {
+   "id": "cidle-1-feet-rolled-into-floor",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    72
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "The feet are not flat and are under the floor on all 73 frames. lowest_z is -0.035 on F000 and -0.055 on F036 for both feet (23 frames per foot beyond the -0.05 threshold, F025-F047). Two causes. (1) UpperLeg.rz is +-5 (knees apart) with nothing at the ankle to undo it, so each foot is rolled 5 deg: the outer edge is 0.039 below the sole line and the inner edge is lifted (foot z range -0.035..+0.343 for a 0.30 tall block). (2) LowerTorso.ly breathes 0.02 studs down to frame 36 while all six leg channels are constant (motion_range 0), so the hips push the rigid legs straight through the floor (ankle z 0.303 on F000, 0.292 on F020) instead of the knees bending. Fix: counter the splay at the ankles (Foot.rz/ry, solved so the sole is level) and let the legs absorb a slightly larger breath: hips 0.04 studs lower on frame 36 with the thigh, knee and ankle folding 2-4 deg to keep each ankle exactly where it is (2-bone IK values). plant_feet runs last (dry run: max correction 0.005 studs).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 0,
+     "value": -0.545
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 36,
+     "value": -0.585
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -54.09
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 93.29
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -39.09
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": -56.04
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": 96.99
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 36,
+     "value": -40.83
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -54.09
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 93.29
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -39.09
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": -56.04
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 36,
+     "value": 96.99
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 36,
+     "value": -40.83
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "ry",
+     "frame": 0,
+     "value": -3.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 0,
+     "value": -3.81
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "ry",
+     "frame": 0,
+     "value": 3.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 0,
+     "value": 3.81
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      72
+     ],
+     "step": 4,
+     "mode": "all"
+    }
+   ]
+  },
+  {
+   "id": "cidle-2-frozen-lower-body",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    72
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "Sheets 1-4: from F000 to F072 the side view is the same picture; hips, thighs, shins and feet never change (motion_range 0 on every leg channel, LowerTorso 0.02 studs). Whole-body speed peaks at 0.83 deg/frame and the analyzer reports dead holds on F000-F005 and F032-F042. Nobody holds a deep crouch for 2.4 s without moving their weight. Fix: a slow weight shift, 0.05 studs toward the left foot on frame 18 and toward the right on frame 54 (a quarter cycle out of phase with the breath, so the hips trace a small loop and never stop). The legs lean the other way (UpperLeg.rz 2.4 / 7.6 instead of 5) and the ankles roll with them (Foot.rz/ry), solved so both feet stay pinned and flat: dry run foot drift 0.00 studs.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 18,
+     "value": 0.05
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lx",
+     "frame": 54,
+     "value": -0.05
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 18,
+     "value": 2.37
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 54,
+     "value": 7.61
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "ry",
+     "frame": 18,
+     "value": -1.53
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 18,
+     "value": -1.81
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "ry",
+     "frame": 54,
+     "value": -4.87
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 54,
+     "value": -5.86
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 18,
+     "value": -7.61
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 54,
+     "value": -2.37
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "ry",
+     "frame": 18,
+     "value": 4.87
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 18,
+     "value": 5.86
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "ry",
+     "frame": 54,
+     "value": 1.53
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 54,
+     "value": 1.81
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LowerTorso",
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": [
+      "lx",
+      "ly",
+      "rx",
+      "ry",
+      "rz"
+     ],
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "cidle-3-lifeless-upper-body",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    72
+   ],
+   "bones": [
+    "Head",
+    "UpperTorso",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "RightLowerArm"
+   ],
+   "observation": "The upper body does not read as someone sneaking. The head only drifts 8 deg to the right and back (Head.ry 0 to -8 on F040), the chest moves 2 deg, the upper arms are constant, and the left and right arms are exact mirror copies (both LowerArm.rx -50 to -54; identical arm silhouettes in the 3/4 view on every frame). Fix: make the head scan, left to +10 on frame 14 and right to -12 on frame 50, with the chest following by about a third (UpperTorso.ry +3 / -3.5) and tipping 1.5 deg against the weight shift (rz, 3 frames after the hips); deepen the chest breath to 28; break the arm twinning: left upper arm reaches 3 deg further forward on the exhale (frame 40), right upper arm eases back 3 deg (frame 44) and out 3 deg (rz -13 on frame 30), and the right forearm breathes 1.6x as much as the left.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "Head",
+     "ch": "ry",
+     "range": [
+      0,
+      72
+     ],
+     "mode": "remove_interior"
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 0,
+     "value": 2.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 14,
+     "value": 10.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 50,
+     "value": -12.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 18,
+     "value": 3.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 54,
+     "value": -3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 21,
+     "value": 1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 57,
+     "value": -1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 36,
+     "value": 28.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 40,
+     "value": -28.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 44,
+     "value": -22.0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 30,
+     "value": -13.0
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "factor": 1.6,
+     "pivot": -50
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "Head",
+      "UpperTorso"
+     ],
+     "ch": [
+      "ry",
+      "rz"
+     ],
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "cidle-4-everything-stops-at-seam",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    0,
+    72
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "Every animated channel has its extremes on frames 0/72 and 36 (Head.ry on 40), so the whole body eases to a dead stop twice per loop: whole-body speed is 0.04 deg/frame on F000 and 0.05 on F071, and 0.12 on F036. The stop at the seam makes the loop point visible as a pause every 2.4 s even though the values match. Fix: stagger the phases so nothing stops together and the motion carries through the seam: chest breath 4 frames after the hips, head nod 8 frames, left forearm 6 frames and right forearm 10 frames (offset_overlap wraps around the loop and makes the curves cyclic).",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "offset": 4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 8
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "ch": "rx",
+     "offset": 6
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "offset": 10
+    }
+   ]
+  }
+ ]
+}

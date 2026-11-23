@@ -1,0 +1,38 @@
+{
+ "animation": "sword_slash",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 7,
+  "appeal": 8
+ },
+ "summary": "Approved. Feet are grounded on all 31 frames (max 0.01 clearance, floating 0, penetration 0, slide 0); the recovery hop and the foot swivel from iteration 1 are gone, with the twist now carried by the chest. The raised arm passes outside the head (f6-11), the blade stays clear of the head and ends forward above the floor (f15-20). The 15 accel spikes and 7 velocity corners sit on f10-15, the start and stop of the cut on the sword arm, wrist, chest and counter-swinging left arm, and read as the intended snap. Only polish remains.",
+ "findings": [
+  {
+   "id": "slash-stop-01",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    13,
+    18
+   ],
+   "bones": [
+    "RightUpperArm"
+   ],
+   "observation": "The sword arm stops dead at f14 (rx -160 to -40 in 4 frames, then only 5 deg of drift to f18; velocity corner 5.17 deg/frame at f14). The follow-through is carried by the chest and wrist, which works, but a small overshoot-and-settle on the shoulder would soften the stop. Polish only.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "key_frame": 14,
+     "overshoot": 6,
+     "settle_frames": 3
+    }
+   ]
+  }
+ ]
+}

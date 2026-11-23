@@ -1,0 +1,107 @@
+[combo-feet-01] {"op": "offset_channel", "bones": "RightFoot", "ch": "rx", "delta": -20}
+offset_channel RightFoot.rx [0,48] -20 on 4 keys
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "ry", "frame": 6, "value": 5}
+set_pose LeftUpperLeg.ry @ 6: 0.00 -> 5.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "ry", "frame": 6, "value": 5}
+set_pose RightUpperLeg.ry @ 6: 0.00 -> 5.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 6, "value": -13.5}
+set_pose LeftUpperLeg.rx @ 6: -15.00 -> -13.50
+[combo-feet-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 6, "value": -1.5}
+set_pose LeftFoot.rx @ 6: 0.00 -> -1.50
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 6, "value": 13.5}
+set_pose RightUpperLeg.rx @ 6: 15.00 -> 13.50
+[combo-feet-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 6, "value": 10}
+set_pose RightLowerLeg.rx @ 6: 10.00 -> 10.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 6, "value": -18.5}
+set_pose RightFoot.rx @ 6: -15.25 -> -18.50
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "ry", "frame": 16, "value": -15}
+set_pose LeftUpperLeg.ry @ 16: 4.28 -> -15.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "ry", "frame": 16, "value": -15}
+set_pose RightUpperLeg.ry @ 16: 4.28 -> -15.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 16, "value": -20}
+set_pose LeftUpperLeg.rx @ 16: -13.71 -> -20.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 16, "value": 5}
+set_pose LeftFoot.rx @ 16: -1.29 -> 5.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 16, "value": 11}
+set_pose RightUpperLeg.rx @ 16: 13.71 -> 11.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 16, "value": 32}
+set_pose RightLowerLeg.rx @ 16: 10.00 -> 32.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 16, "value": -31}
+set_pose RightFoot.rx @ 16: -5.00 -> -31.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "ry", "frame": 24, "value": 5}
+set_pose LeftUpperLeg.ry @ 24: -12.66 -> 5.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "ry", "frame": 24, "value": 5}
+set_pose RightUpperLeg.ry @ 24: -12.66 -> 5.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 24, "value": -13.5}
+set_pose LeftUpperLeg.rx @ 24: -19.22 -> -13.50
+[combo-feet-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 24, "value": -1.5}
+set_pose LeftFoot.rx @ 24: 4.22 -> -1.50
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 24, "value": 13.5}
+set_pose RightUpperLeg.rx @ 24: 11.62 -> 13.50
+[combo-feet-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 24, "value": 10}
+set_pose RightLowerLeg.rx @ 24: 28.56 -> 10.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -18.5}
+set_pose RightFoot.rx @ 24: -20.00 -> -18.50
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "ry", "frame": 30, "value": 20}
+set_pose LeftUpperLeg.ry @ 30: 4.22 -> 20.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "ry", "frame": 30, "value": 20}
+set_pose RightUpperLeg.ry @ 30: 4.22 -> 20.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 30, "value": -9}
+set_pose LeftUpperLeg.rx @ 30: -13.73 -> -9.00
+[combo-feet-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 30, "value": -6}
+set_pose LeftFoot.rx @ 30: -1.27 -> -6.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 30, "value": 9}
+set_pose RightUpperLeg.rx @ 30: 14.37 -> 9.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 30, "value": 10}
+set_pose RightLowerLeg.rx @ 30: 10.00 -> 10.00
+[combo-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 30, "value": -16}
+set_pose RightFoot.rx @ 30: -18.73 -> -16.00
+[combo-feet-01] {"op": "offset_overlap", "bones": ["LeftUpperLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "offset": -1}
+offset_overlap LeftUpperLeg.rx by -1 frames
+offset_overlap LeftUpperLeg.ry by -1 frames
+offset_overlap LeftFoot.rx by -1 frames
+offset_overlap RightUpperLeg.rx by -1 frames
+offset_overlap RightUpperLeg.ry by -1 frames
+offset_overlap RightLowerLeg.rx by -1 frames
+offset_overlap RightFoot.rx by -1 frames
+[combo-feet-01] {"op": "offset_overlap", "bones": "LowerTorso", "ch": "ry", "offset": -1}
+offset_overlap LowerTorso.ry by -1 frames
+[combo-snap-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 3, "value": -46}
+set_pose LeftUpperArm.rx @ 3: -70.00 -> -46.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 3, "value": -116, "interpolation": "LINEAR"}
+set_pose LeftLowerArm.rx @ 3: -57.50 -> -116.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 7, "value": -90}
+set_pose LeftUpperArm.rx @ 7: -85.84 -> -90.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 7, "value": 0}
+set_pose LeftUpperArm.rz @ 7: 1.04 -> 0.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 7, "value": -7}
+set_pose LeftLowerArm.rx @ 7: -15.92 -> -7.00
+[combo-snap-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 17, "value": -90}
+set_pose RightUpperArm.rx @ 17: -87.04 -> -90.00
+[combo-snap-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 17, "value": 10}
+set_pose RightUpperArm.rz @ 17: 8.15 -> 10.00
+[combo-snap-02] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 17, "value": -7}
+set_pose RightLowerArm.rx @ 17: -12.78 -> -7.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 32, "value": -85}
+set_pose LeftUpperArm.rx @ 32: -79.63 -> -85.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 32, "value": 78}
+set_pose LeftUpperArm.rz @ 32: 68.70 -> 78.00
+[combo-snap-02] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 32, "value": -90}
+set_pose LeftLowerArm.rx @ 32: -91.67 -> -90.00
+[combo-snap-02] {"op": "set_easing", "bones": "RightLowerArm", "ch": "rx", "range": [11, 11], "interpolation": "LINEAR", "handle": "VECTOR"}
+set_easing RightLowerArm.rx [11,11] LINEAR/VECTOR/AUTO on 1 keys
+[combo-head-03] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 6, "value": 10}
+set_pose Head.ry @ 6: -6.33 -> 10.00
+[combo-head-03] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 16, "value": -36}
+set_pose Head.ry @ 16: -20.00 -> -36.00
+[combo-head-03] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 24, "value": 12}
+set_pose Head.ry @ 24: 0.99 -> 12.00
+[combo-head-03] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 30, "value": 46}
+set_pose Head.ry @ 30: 25.00 -> 46.00
+[combo-snap-02] {"op": "retime", "bones": ["RightUpperArm", "RightLowerArm"], "range": [11, 11], "shift": 2, "ripple": false}
+retime bones=['RightUpperArm', 'RightLowerArm'] [11,11] scale 1 shift +2 ripple=False -> frame_end 48
+[combo-snap-02] {"op": "retime", "bones": ["LeftUpperArm", "LeftLowerArm"], "range": [24, 24], "shift": 3, "ripple": false}
+retime bones=['LeftUpperArm', 'LeftLowerArm'] [24,24] scale 1 shift +3 ripple=False -> frame_end 48
+[combo-feet-01] {"op": "plant_feet", "mode": "all", "step": 2, "parts": "feet"}
+plant_feet [0,48] step 2 mode all: 25 keys, max correction 0.112 studs
+applied 50 ops, skipped 0; saved work/combo/iter_1.blend

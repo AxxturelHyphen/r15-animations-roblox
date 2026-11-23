@@ -1,0 +1,272 @@
+{
+ "animation": "laugh",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 4,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "The lean-back and the head throw read, but the signature pose is broken and the laugh is a metronome. The 'hand on the belly' never touches the body: FK puts the right hand at (x -1.36, y -1.2, z 3.4) for the whole F006-F034 hold, sticking straight out in front of the right shoulder at chest height, while the forearm is 0.26 studs inside the side of the chest. The bounce is four identical beats with chest and head keyed on the same frames and both arms frozen, and the root bob has no knee bend behind it, so it only pushes the feet 0.05 studs through the floor. Fixes: fold the right arm across the body so the hand rests on the front of the torso (verified in contact, no penetration), give the laugh a forward 'catch' before the throw-back, a big first burst that decays, a head that trails the chest, a left arm that shakes with it, and remove the root bob.",
+ "findings": [
+  {
+   "id": "laugh-hand-not-on-belly-forearm-in-chest",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    3,
+    39
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "UpperTorso"
+   ],
+   "observation": "F003-F039: RightUpperArm rx -15 / rz +15 with the elbow at -95 points the forearm straight ahead, so the hand hangs in mid-air at world (-1.36, -1.2, 3.4), 0.7 studs in front of the chest and outside the torso's right edge (x -1.0): it is nowhere near the belly (side view F006-F034: the forearm sticks out like a shelf; 3/4 view: the hand floats beside the body). rz +15 on the right arm is adduction (toward the character's left), which drives the elbow into the torso: the forearm box overlaps the chest by 0.16-0.26 studs on F004-F038 and clips the hips by 0.07 on F003 and F039. Fix, solved with FK against the leaning chest (rx -6 to -12): lift the elbow forward and out (upper arm rx -68, rz -40 = abducted away from the body, ry +20 = turned toward the character's left) and fold the forearm across the front of the torso (elbow rx -117 plus forearm ry +60 / rz -51, hand rz +19 to lay it flat). The hand then sits at chest-local (-0.49, -1.01, 2.8): on the front of the torso just right of centre, at the bottom of the ribcage, which is as low as the short R15 arm can reach without the forearm cutting through the body. Hand-to-torso gap 0.04 studs, forearm touching (0.03 or less). The arm is a child of the chest, so the hand stays planted while the chest bounces. ry/rz/hand-rz are new channels (neutral 0 at F000 and F048).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -68
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -68
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 6,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 6,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 34,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -117
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -117
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "ry",
+     "frame": 6,
+     "value": 60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "ry",
+     "frame": 34,
+     "value": 60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 6,
+     "value": -51
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -51
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 6,
+     "value": 19
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 34,
+     "value": 19
+    }
+   ]
+  },
+  {
+   "id": "laugh-metronome-bounce",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand"
+   ],
+   "observation": "F006-F034: UpperTorso.rx alternates -6/-12 and Head.rx -12/-22 on exactly the same frames (6, 10, 14 ... 34), so head and chest move as one block with no overlap, and all four 'ha' beats have the same size and the same 8-frame period (curves.png: two identical sine waves). Both arms are frozen from F006 to F034 (flat curves), so the 'shoulders bouncing' in the spec never happens. The entry is a single 6-frame snap into the full pose with no anticipation (accel spikes +-9.7 on RightLowerArm.rx at F001/F005; lockstep on F006, 6 of 7 bones). Fix: a 2-frame forward catch before the throw-back (chest +5, head +6 at F002; rx > 0 is forward), a bigger first burst that decays (chest and head x1.25 / x1.2 on F006-F014, x0.7 about their mid values on F022-F034), the head delayed 2 frames so it whips after the chest, the right arm delayed 2 frames so the hand lands on the body after the lean starts (this also removes the accel spikes), and three shake accents on the free left arm (rz 20 / 13 / 18 at F012 / F020 / F028; left-arm rz > 0 is away from the body). These ops must run after the hand-on-belly finding because the offset moves the F006/F034 arm keys set there.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "factor": 1.25,
+     "pivot": "rest",
+     "range": [
+      6,
+      14
+     ]
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "factor": 0.7,
+     "pivot": -9,
+     "range": [
+      22,
+      34
+     ]
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "rx",
+     "factor": 1.2,
+     "pivot": "rest",
+     "range": [
+      6,
+      14
+     ]
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "rx",
+     "factor": 0.7,
+     "pivot": -17,
+     "range": [
+      22,
+      34
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 2,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 2,
+     "value": 6
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm",
+      "RightHand"
+     ],
+     "offset": 2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 12,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 20,
+     "value": 13
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 28,
+     "value": 18
+    }
+   ]
+  },
+  {
+   "id": "laugh-root-bob-sinks-feet",
+   "category": "awkward_pose",
+   "severity": "low",
+   "frames": [
+    1,
+    39
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "F001-F039: LowerTorso.ly dips to -0.05 on F008/F016/F024/F032, but no leg channel is animated, so the dip is not absorbed by the knees: metrics.feet.lowest_z_per_frame follows the root exactly and both feet go 0.05 studs under the floor four times (right at the penetration threshold). The bob itself is invisible at this size; the bounce reads through the chest, head and arms. Fix: remove the interior root keys so ly stays 0 and the feet sit on the floor.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "mode": "remove_interior",
+     "range": [
+      0,
+      48
+     ]
+    }
+   ]
+  }
+ ]
+}

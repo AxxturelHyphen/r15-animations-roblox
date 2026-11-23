@@ -1,0 +1,122 @@
+{
+ "animation": "swim_idle",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 6,
+  "transitions": 8,
+  "appeal": 6
+ },
+ "summary": "Much better: the scull is now symmetric (hands at x +2.78/-2.78 on F000, sweeping in to about +/-1.8 on F015), the elbows open and close with drag, the knees circle and the bob is visible. No pops, seam closed, no intersections. What remains is mechanical regularity: the two arms are exact mirror images on every frame, most of the body still changes direction on frames 15 and 45, and the feet are still frozen.",
+ "findings": [
+  {
+   "id": "swimidle-1-mirror-lockstep",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "LeftLowerLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "metrics: twinning on UpperArm.ry, UpperArm.rz and LowerArm.rx (left and right are mirror-identical on every frame), lockstep with 8 of 13 bones keyed on frames 15 and 45, overlap_score 0.628 (below the 0.75 bar). On the sheets the two arms reach their widest (F000, F030) and closest (F015-F018, F045-F048) on exactly the same frames, which reads as a machine rather than someone treading water. Mirrored sculling is correct, so the shape is kept; only the timing is loosened: the whole right arm is delayed 2 frames and both shins 2 frames behind the thighs. Dry-run on iteration 1: no twinned channels, no frame with 7 or more bones keyed, no pops, no intersections; hands stay within 0.1 stud of symmetric (x +2.78/-2.70 on F000).",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm"
+     ],
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerLeg",
+      "RightLowerLeg"
+     ],
+     "ch": "rx",
+     "offset": 2
+    }
+   ]
+  },
+  {
+   "id": "swimidle-2-frozen-feet",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    60
+   ],
+   "bones": [
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "Foot.rx is a flat 20 on both feet for all 60 frames (curves.png), so the kick ends in rigid paddles. The feet now point (34) about 3 frames after each knee extends and relax (16) as it bends, opposite on the two sides.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": 19
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": 34
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 33,
+     "value": 16
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 48,
+     "value": 34
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": 31
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": 16
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 33,
+     "value": 34
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 48,
+     "value": 16
+    }
+   ]
+  }
+ ]
+}

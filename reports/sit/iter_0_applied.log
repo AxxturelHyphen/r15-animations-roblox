@@ -1,0 +1,39 @@
+[sit-1-hands-off-thighs] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 0, "value": -35}
+set_pose LeftUpperArm.ry @ 0: 0.00 -> -35.00
+[sit-1-hands-off-thighs] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 0, "value": 35}
+set_pose RightUpperArm.ry @ 0: 0.00 -> 35.00
+[sit-1-hands-off-thighs] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 0, "value": 14}
+set_pose LeftUpperArm.rz @ 0: 4.00 -> 14.00
+[sit-1-hands-off-thighs] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 0, "value": -14}
+set_pose RightUpperArm.rz @ 0: -4.00 -> -14.00
+[sit-1-hands-off-thighs] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 0, "value": -30}
+set_pose LeftUpperArm.rx @ 0: -25.00 -> -30.00
+[sit-1-hands-off-thighs] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 0, "value": -30}
+set_pose RightUpperArm.rx @ 0: -25.00 -> -30.00
+[sit-1-hands-off-thighs] {"op": "offset_channel", "bones": "LeftUpperLeg", "ch": "rz", "delta": 5}
+offset_channel LeftUpperLeg.rz [0,60] +5 on 2 keys
+[sit-1-hands-off-thighs] {"op": "offset_channel", "bones": "RightUpperLeg", "ch": "rz", "delta": -5}
+offset_channel RightUpperLeg.rz [0,60] -5 on 2 keys
+[sit-2-near-static] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "rx", "factor": 2, "pivot": "mean"}
+scale_amplitude UpperTorso.rx [0,60] x2 about mean
+[sit-2-near-static] {"op": "scale_amplitude", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "factor": 2, "pivot": "mean"}
+scale_amplitude LeftLowerArm.rx [0,60] x2 about mean
+scale_amplitude RightLowerArm.rx [0,60] x2 about mean
+[sit-2-near-static] {"op": "offset_overlap", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "offset": 4}
+offset_overlap LeftLowerArm.rx by +4 frames
+offset_overlap RightLowerArm.rx by +4 frames
+[sit-2-near-static] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 15, "value": 2}
+set_pose UpperTorso.rz @ 15: 0.00 -> 2.00
+[sit-2-near-static] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 45, "value": -2}
+set_pose UpperTorso.rz @ 45: 0.52 -> -2.00
+[sit-2-near-static] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 44, "value": 84}
+set_pose LeftLowerLeg.rx @ 44: 90.00 -> 84.00
+[sit-2-near-static] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 48, "value": -8}
+set_pose LeftFoot.rx @ 48: 0.00 -> -8.00
+[sit-3-look-no-hold] {"op": "add_breakdown", "bone": "Head", "ch": "ry", "frame": 22, "value": 11}
+set_pose Head.ry @ 22: 9.90 -> 11.00
+[sit-3-look-no-hold] {"op": "add_breakdown", "bone": "Head", "ch": "ry", "frame": 38, "value": 11}
+set_pose Head.ry @ 38: 9.90 -> 11.00
+[sit-3-look-no-hold] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 6}
+offset_overlap Head.rx by +6 frames
+applied 18 ops, skipped 0; saved work/sit/iter_1.blend

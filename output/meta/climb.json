@@ -1,0 +1,9 @@
+{
+ "name": "climb",
+ "iteration": 1,
+ "looped": true,
+ "priority": "Movement",
+ "length": 1.0,
+ "authoredSpeed": null,
+ "markers": []
+}

@@ -1,0 +1,15 @@
+{
+ "name": "sword_slash",
+ "iteration": 2,
+ "looped": false,
+ "priority": "Action",
+ "length": 1.0,
+ "authoredSpeed": null,
+ "markers": [
+  {
+   "name": "Hit",
+   "value": "",
+   "time": 0.4333
+  }
+ ]
+}

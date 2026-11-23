@@ -1,0 +1,61 @@
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 6, "value": -68}
+set_pose RightUpperArm.rx @ 6: -15.00 -> -68.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 34, "value": -68}
+set_pose RightUpperArm.rx @ 34: -15.00 -> -68.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 6, "value": -40}
+set_pose RightUpperArm.rz @ 6: 15.00 -> -40.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 34, "value": -40}
+set_pose RightUpperArm.rz @ 34: 15.00 -> -40.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 6, "value": 20}
+set_pose RightUpperArm.ry @ 6: 0.00 -> 20.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 34, "value": 20}
+set_pose RightUpperArm.ry @ 34: 5.19 -> 20.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 6, "value": -117}
+set_pose RightLowerArm.rx @ 6: -95.00 -> -117.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 34, "value": -117}
+set_pose RightLowerArm.rx @ 34: -95.00 -> -117.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightLowerArm", "ch": "ry", "frame": 6, "value": 60}
+set_pose RightLowerArm.ry @ 6: 0.00 -> 60.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightLowerArm", "ch": "ry", "frame": 34, "value": 60}
+set_pose RightLowerArm.ry @ 34: 15.56 -> 60.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 6, "value": -51}
+set_pose RightLowerArm.rz @ 6: 0.00 -> -51.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rz", "frame": 34, "value": -51}
+set_pose RightLowerArm.rz @ 34: -13.22 -> -51.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 6, "value": 19}
+set_pose RightHand.rz @ 6: 0.00 -> 19.00
+[laugh-hand-not-on-belly-forearm-in-chest] {"op": "set_pose", "bone": "RightHand", "ch": "rz", "frame": 34, "value": 19}
+set_pose RightHand.rz @ 34: 4.93 -> 19.00
+[laugh-metronome-bounce] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "rx", "factor": 1.25, "pivot": "rest", "range": [6, 14]}
+scale_amplitude UpperTorso.rx [6,14] x1.25 about rest
+[laugh-metronome-bounce] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "rx", "factor": 0.7, "pivot": -9, "range": [22, 34]}
+scale_amplitude UpperTorso.rx [22,34] x0.7 about -9
+[laugh-metronome-bounce] {"op": "scale_amplitude", "bones": "Head", "ch": "rx", "factor": 1.2, "pivot": "rest", "range": [6, 14]}
+scale_amplitude Head.rx [6,14] x1.2 about rest
+[laugh-metronome-bounce] {"op": "scale_amplitude", "bones": "Head", "ch": "rx", "factor": 0.7, "pivot": -17, "range": [22, 34]}
+scale_amplitude Head.rx [22,34] x0.7 about -17
+[laugh-metronome-bounce] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 2, "value": 5}
+set_pose UpperTorso.rx @ 2: -3.24 -> 5.00
+[laugh-metronome-bounce] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 2, "value": 6}
+set_pose Head.rx @ 2: -6.22 -> 6.00
+[laugh-metronome-bounce] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 2}
+offset_overlap Head.rx by +2 frames
+[laugh-metronome-bounce] {"op": "offset_overlap", "bones": ["RightUpperArm", "RightLowerArm", "RightHand"], "offset": 2}
+offset_overlap RightUpperArm.rx by +2 frames
+offset_overlap RightUpperArm.ry by +2 frames
+offset_overlap RightUpperArm.rz by +2 frames
+offset_overlap RightLowerArm.rx by +2 frames
+offset_overlap RightLowerArm.ry by +2 frames
+offset_overlap RightLowerArm.rz by +2 frames
+offset_overlap RightHand.rz by +2 frames
+[laugh-metronome-bounce] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 12, "value": 20}
+set_pose LeftUpperArm.rz @ 12: 15.00 -> 20.00
+[laugh-metronome-bounce] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 20, "value": 13}
+set_pose LeftUpperArm.rz @ 20: 19.76 -> 13.00
+[laugh-metronome-bounce] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 28, "value": 18}
+set_pose LeftUpperArm.rz @ 28: 14.21 -> 18.00
+[laugh-root-bob-sinks-feet] {"op": "smooth_transition", "bones": "LowerTorso", "ch": "ly", "mode": "remove_interior", "range": [0, 48]}
+remove_interior LowerTorso.ly (0,48): removed 8 keys
+clamp RightLowerArm.ry @ 8: 60.0 -> 60.0 (limit (-60, 60))
+clamp RightLowerArm.ry @ 36: 60.0 -> 60.0 (limit (-60, 60))
+applied 26 ops, skipped 0; saved work/laugh/iter_1.blend

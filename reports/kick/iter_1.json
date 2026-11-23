@@ -1,0 +1,40 @@
+{
+ "animation": "kick",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 8
+ },
+ "summary": "Approved. All five round-1 fixes hold in the iter_1 sheets: the support foot stays put (0 slide, 0 penetration), the rear foot clears on lift-off and lands on its spot at f21-f22, the hips shift over the standing leg and drive forward into the extension, the impact is a snap that settles (thigh -94 and knee locked on f9, recoil to f12, torso lean peaking a frame later), and the left guard / right counter-swing with 1-3 frame offsets removes the lockstep (overlap_score 1.0). The Hit marker (minimum of RightLowerLeg.rx in f4-f18) resolves to f9, the full-extension pose (-0.0 deg, next lowest 0.2 at f10). The 19 accel spikes and 10 velocity corners are all on RightLowerLeg / RightFoot / RightUpperLeg at the chamber, snap and re-chamber keys (f1-f2, f5-f9, f12-f15, f20-f22); in the sheets f6-f9 and f12-f15 read as a 3-frame whip out and back with clear in-between poses on f7, f8, f13 and f14, not as pops. Self-intersection is limited to 0.05-0.09 studs in the folded chamber at f6-f7. One optional low-severity polish item.",
+ "findings": [
+  {
+   "id": "kick-root-notch-01",
+   "category": "transition",
+   "severity": "low",
+   "frames": [
+    8,
+    10
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "Polish only. LowerTorso.ly still carries the original spec key on f9 between the planted keys on f8 and f10, a one-frame dip of about 0.01 studs of the root exactly on the impact frame (visible as the notch in the ly curve). It is far below what the renders show, but the key is redundant; remove it so the root height through the impact is a clean line.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "range": [
+      8,
+      10
+     ],
+     "mode": "remove_interior"
+    }
+   ]
+  }
+ ]
+}

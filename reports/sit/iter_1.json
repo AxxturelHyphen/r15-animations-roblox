@@ -1,0 +1,53 @@
+{
+ "animation": "sit",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 9,
+  "appeal": 6
+ },
+ "summary": "Approved. Verified: hand centres are at x +/-0.79 with the underside of each hand on the thigh top, and no arm/torso or arm/leg intersection on any frame (front view F000-F060: the hands sit on the knees instead of hovering outside them). Breathing now carries into the elbows, there is a small weight shift, the left leg fidgets, and the look-around holds for about half a second. Metrics all 0, overlap 1.0. It is a quiet clip by design, which suits a seat. One low polish item remains.",
+ "findings": [
+  {
+   "id": "sit-1-left-leg-return",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    44,
+    60
+   ],
+   "bones": [
+    "LeftLowerLeg",
+    "LeftFoot"
+   ],
+   "observation": "The left shin eases out over 44 frames and returns in 16, and the left foot flexes over 48 frames and returns in 12 (curves.png), so the return is noticeably quicker than the move out. Amplitudes are only 6 and 8 deg and no pop is flagged. Moving both extremes earlier would balance it.",
+   "fix": [
+    {
+     "op": "retime",
+     "bones": "LeftLowerLeg",
+     "ch": "rx",
+     "range": [
+      44,
+      44
+     ],
+     "shift": -10,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": "LeftFoot",
+     "ch": "rx",
+     "range": [
+      48,
+      48
+     ],
+     "shift": -10,
+     "ripple": false
+    }
+   ]
+  }
+ ]
+}

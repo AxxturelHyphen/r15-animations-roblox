@@ -1,0 +1,14 @@
+{
+ "animation": "idle",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 9,
+  "appeal": 6
+ },
+ "summary": "Approved. All iteration-0 fixes landed: the weight shift onto the left leg with a relaxed right knee reads clearly from F020 to F070 (peak at F048), the head look-around leads it (F036-F040), chest and arms peak on different frames (no lockstep, overlap 1.0, no dead holds), and both feet stay on the floor (0 penetration, lateral foot drift 0.00). The loop seam is clean and the black-leg render artifact is gone. Remaining polish only: the motion is still on the subtle side and the hands are not animated.",
+ "findings": []
+}

@@ -1,0 +1,54 @@
+{
+ "animation": "hit_react",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 6,
+  "appeal": 7
+ },
+ "summary": "Much improved: the feet stay under the body instead of digging in and skating, the pose is asymmetric (chest twist, wide left arm, tight right arm) and head and arms now trail the chest (overlap 1.0, no twinning). The remaining spikes (UpperTorso rx f3, LeftUpperArm rz f4) are the snap reversing and read correctly. One regression remains: the root bobs up and down during the settle.",
+ "findings": [
+  {
+   "id": "hit-bob-01",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    4,
+    17
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "LowerTorso ly wobbles 0 -> +0.11 (f6) -> 0 (f8) -> +0.13 (f13) -> 0, lifting both feet off the floor on f5-6 and f12-14 (lowest foot z 0.10-0.13) and producing the ly accel spikes at f3, f6 and f8. With the corrected leg poses the height that grounds the lowest foot is 0 +/- 0.012 on every frame, so the 21 per-frame keys left by the iteration-0 plant_feet pass are noise; removing them leaves the 0-valued end keys and a flat curve.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "mode": "remove_interior",
+     "range": [
+      0,
+      20
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 0,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 20,
+     "value": 0
+    }
+   ]
+  }
+ ]
+}

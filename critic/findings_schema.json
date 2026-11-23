@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Animation critic report",
+  "description": "Written by the Fable 5.2 critic for one animation and iteration (reports/<anim>/iter_N.json) and consumed by pipeline/apply_fixes.py.",
+  "type": "object",
+  "required": ["animation", "iteration", "verdict", "scores", "summary", "findings"],
+  "properties": {
+    "animation": {"type": "string"},
+    "iteration": {"type": "integer"},
+    "verdict": {"enum": ["approved", "needs_work"], "description": "approved = no high or medium findings remain"},
+    "scores": {
+      "type": "object",
+      "description": "1 (poor) to 10 (production quality)",
+      "properties": {
+        "fluidity": {"type": "integer"}, "posing": {"type": "integer"},
+        "timing": {"type": "integer"}, "transitions": {"type": "integer"}, "appeal": {"type": "integer"}
+      }
+    },
+    "summary": {"type": "string"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "severity", "frames", "bones", "observation", "fix"],
+        "properties": {
+          "id": {"type": "string"},
+          "category": {"enum": ["stiff", "awkward_pose", "timing", "transition"]},
+          "severity": {"enum": ["high", "medium", "low"]},
+          "frames": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+          "bones": {"type": "array", "items": {"type": "string"}},
+          "observation": {"type": "string", "description": "What is wrong, citing frame numbers and evidence (render and/or metric)."},
+          "fix": {"type": "array", "items": {"$ref": "#/$defs/op"}, "minItems": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "bones": {"description": "A bone name, a list of bone names, or \"all\"", "anyOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "ch": {"description": "rx|ry|rz|lx|ly|lz, a list of them, or omitted/\"all\"", "anyOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "op": {
+      "type": "object",
+      "required": ["op"],
+      "oneOf": [
+        {"properties": {"op": {"const": "set_pose"}, "bone": {"type": "string"}, "ch": {"type": "string"}, "frame": {"type": "number"}, "value": {"type": "number"}, "delta": {"type": "number"}, "interpolation": {"enum": ["BEZIER", "LINEAR", "CONSTANT"]}},
+         "required": ["op", "bone", "ch", "frame"], "description": "Insert or replace one key. Use value (absolute) or delta (added to the current curve value at that frame)."},
+        {"properties": {"op": {"const": "add_breakdown"}, "bone": {"type": "string"}, "ch": {"type": "string"}, "frame": {"type": "number"}, "value": {"type": "number"}, "delta": {"type": "number"},
+                        "key_frame": {"type": "number"}, "overshoot": {"type": "number"}, "settle_frames": {"type": "number"}},
+         "required": ["op", "bone", "ch"], "description": "Either a breakdown key (frame + value/delta), or an overshoot: push the key at key_frame past its target by `overshoot` degrees and settle back over settle_frames."},
+        {"properties": {"op": {"const": "offset_channel"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "range": {"$ref": "#/$defs/range"}, "delta": {"type": "number"}},
+         "required": ["op", "bones", "ch", "delta"], "description": "Add delta to every key in range."},
+        {"properties": {"op": {"const": "scale_amplitude"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "range": {"$ref": "#/$defs/range"}, "factor": {"type": "number"}, "pivot": {"anyOf": [{"enum": ["mean", "rest"]}, {"type": "number"}]}},
+         "required": ["op", "bones", "factor"], "description": "Scale key values about a pivot (>1 more range of motion, <1 less)."},
+        {"properties": {"op": {"const": "set_easing"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "range": {"$ref": "#/$defs/range"},
+                        "interpolation": {"enum": ["BEZIER", "LINEAR", "CONSTANT"]}, "handle": {"enum": ["AUTO_CLAMPED", "AUTO", "VECTOR", "ALIGNED", "FREE"]}, "easing": {"enum": ["AUTO", "EASE_IN", "EASE_OUT", "EASE_IN_OUT"]}},
+         "required": ["op", "bones"], "description": "Change interpolation and handles of keys in range."},
+        {"properties": {"op": {"const": "offset_overlap"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "offset": {"type": "number"}},
+         "required": ["op", "bones", "offset"], "description": "Delay (+) or lead (-) whole curves by N frames for drag, overlap and follow-through. Loops wrap around; one-shot clips keep their first and last poses."},
+        {"properties": {"op": {"const": "smooth_transition"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "range": {"$ref": "#/$defs/range"},
+                        "mode": {"enum": ["loop_seam", "smooth", "remove_interior"]}, "strength": {"type": "number"}, "step": {"type": "number"}, "radius": {"type": "integer"}},
+         "required": ["op", "bones", "mode"], "description": "loop_seam: close the loop and make handles cyclic. smooth: Gaussian-resample range (strength 0-1, a key every `step` frames). remove_interior: delete keys strictly inside range."},
+        {"properties": {"op": {"const": "retime"}, "bones": {"$ref": "#/$defs/bones"}, "ch": {"$ref": "#/$defs/ch"}, "range": {"$ref": "#/$defs/range"}, "scale": {"type": "number"}, "shift": {"type": "number"}, "ripple": {"type": "boolean"}},
+         "required": ["op", "range"], "description": "Scale keys in range about range start, and/or shift them. ripple moves later keys too (bones=all + ripple changes the clip length; not allowed on loops). Applied after all pose ops."},
+        {"properties": {"op": {"const": "plant_feet"}, "range": {"$ref": "#/$defs/range"}, "step": {"type": "number"}, "mode": {"enum": ["all", "contact"]}, "tolerance": {"type": "number"}, "smooth": {"type": "number"}, "parts": {"enum": ["feet", "all"]}},
+         "required": ["op"], "description": "Re-key LowerTorso.ly so the lowest foot (parts=feet, default) or lowest body part (parts=all, for lying poses) touches the floor. Applied last, after retime."}
+      ]
+    }
+  }
+}

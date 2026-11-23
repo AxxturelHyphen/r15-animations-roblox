@@ -1,0 +1,21 @@
+{
+  "className": "Tool",
+  "properties": {
+    "RequiresHandle": true,
+    "CanBeDropped": false,
+    "ToolTip": "Sword (click to slash)"
+  },
+  "children": [
+    {
+      "name": "Handle",
+      "className": "Part",
+      "properties": {
+        "Size": [0.22, 0.22, 4.0],
+        "Color": [0.85, 0.87, 0.9],
+        "Material": "Metal",
+        "CanCollide": false,
+        "Massless": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+{
+ "animation": "run",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 4,
+  "posing": 3,
+  "timing": 4,
+  "transitions": 5,
+  "appeal": 4
+ },
+ "summary": "Good energy in the arms and a clean loop seam, but it is not yet a run: there is no flight phase, the stance foot is buried in the floor at mid-stance and skates, the hip hyper-extends to 40 deg, and the knee and thigh pop through the recovery. The upper body is keyed in lockstep on frame 10. Fixes: rebuilt stance and recovery leg poses, flat-foot contact with a toe roll, a keyed flight arc with the root planted during stance, pumping elbows and staggered upper body.",
+ "findings": [
+  {
+   "id": "run-1-stance-leg",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "RightUpperLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "The leg poses do not describe a run. Contact (F000/F010) is an over-striding, straight-legged heel dig with the thigh at -35; the hip then hyper-extends to +40 (F010 left leg, the thigh is far behind the body with the knee still bent 30), and the recovery whips from +40 to -55 in 5 frames with the knee jumping 30 to 95 in 3 frames (accel spikes of 14-19 deg/frame^2 on LowerLeg at frames 1-3 and 10-13, velocity corners at 3, 5, 10, 13, 15). The planted foot also skates: its speed goes 0.15, 0.37, 0.43, 0.37, 0.32, 0.27 studs/frame (std 0.09) because the thigh eases out of the contact. Fix: land closer under the body (thigh -22, knee 14), absorb to a 42 deg knee at frame 3, push off to +22 at frame 7, start folding the trailing knee in flight (70 at the opposite contact) into a 105 deg recovery, and space the stance thigh keys so the foot travels at a steady 0.2 studs/frame.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 7,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 17,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": 42
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 70
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 105
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 90
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 13,
+     "value": 42
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 0,
+     "value": 70
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 3,
+     "value": 105
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 90
+    }
+   ]
+  },
+  {
+   "id": "run-2-foot-through-floor",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "Feet go through the floor on 21 frames. The stance foot is pitched 17-30 deg toes-down at mid-stance while the root dips (F003-F004: -0.34 and -0.37 studs, the whole foot is under the floor line in the side view), the contact is a 30 deg toes-up heel strike, and the recovering foot hangs 83-104 deg toes-down and also clips the floor as it passes under the body (F003/F013: -0.13). Fix: land almost flat (-8 deg), keep the foot flat from frame 2 to 4 by dorsiflexing against the shin, roll onto the toe for push-off at 6-7, and keep the ankle flexed through the recovery. Foot keys follow the new leg keys from run-1.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 3,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 5,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 7,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 13,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 15,
+     "value": -27
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 17,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 3,
+     "value": -25
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 5,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 2,
+     "delta": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 4,
+     "delta": -4.3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 12,
+     "delta": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 14,
+     "delta": -4.3
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    }
+   ]
+  },
+  {
+   "id": "run-3-upper-body",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "All 13 bones are keyed together on frame 10 (lockstep 13 of 13, overlap_score 0.63). The chest lean is frozen at 12 deg and the head at -8 for the whole cycle, the elbows only change 15 deg (-80 to -95) so the arms swing as rigid L-shapes, and arms, chest twist and head all reverse on the contact frame. Fix: pump the elbows (about -72 on the back swing, -110 in front), let the chest drive into each landing (15 deg at the absorb, 10 in flight), and trail the chest twist and upper arms by 1 frame and the forearms and head by 2.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "range": [
+      0,
+      20
+     ],
+     "mode": "remove_interior"
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 3,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 8,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 13,
+     "value": 15
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 18,
+     "value": 10
+    },
+    {
+     "op": "smooth_transition",
+     "bones": "UpperTorso",
+     "ch": "rx",
+     "mode": "loop_seam"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "factor": 2.5,
+     "pivot": "mean"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "ch": "ry",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "ch": "rx",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "ch": "ry",
+     "offset": 2
+    }
+   ]
+  },
+  {
+   "id": "run-4-no-flight",
+   "category": "timing",
+   "severity": "high",
+   "frames": [
+    0,
+    20
+   ],
+   "bones": [
+    "LowerTorso"
+   ],
+   "observation": "The spec calls for a flight phase at frames 5-9, but there is none: metrics report no frame with both feet off the ground, and on F008-F009 the trailing toe is still on the floor while the leading heel is already arriving, so it reads as a fast walk. The root curve is also out of phase with the legs (it peaks at frame 6, during push-off, and is already falling through the frames that should be airborne). Fix: plant the root to the supporting foot through each stance (frames 0-7 and 10-17) and key a ballistic arc for the two airborne frames between them.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 8,
+     "value": 0.165
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 9,
+     "value": 0.1
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 18,
+     "value": 0.165
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 19,
+     "value": 0.1
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      7
+     ],
+     "step": 1,
+     "mode": "all"
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      10,
+      17
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "animation": "jump",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The landing fix landed: the feet now stay where they touch down (contact drift 0.05 left / 0.02 right on F020-F033, from 0.19 / 0.20; 0 foot_slide_segments) and the absorb F022-F026 and recovery F027-F033 read with weight. Feet are never below the floor (0 penetration frames, from 56 at iteration 0), the crouch feet are flat, the take-off rolls onto the toes with the arms leading, and F013-F018 are clearly airborne with an uneven tuck. Left as documented polish: one lockstep frame at F010, which is the intended full-extension take-off pose (arms and legs together), and the accel spikes and velocity corners at frames 6-12 and 22-26, which are the take-off and landing impacts of an explosive move and do not read as pops on the sheets. Note the clip is 33 frames (30 in the spec) after the take-off and landing retimes.",
+ "findings": []
+}

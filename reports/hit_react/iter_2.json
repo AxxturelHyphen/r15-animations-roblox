@@ -1,0 +1,14 @@
+{
+ "animation": "hit_react",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 7,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The root bob is gone (ly flat at 0; feet within 0.03 studs of the floor on every frame, floating 0, penetration 0, slide 0). The 3-frame snap back, off-centre asymmetric pose (f3-6), trailing head and arms, forward rebound at f8-9 and eased settle to neutral all read cleanly. The three remaining accel spikes (UpperTorso rx f3, LeftUpperArm rz f4, root lz f3) are the snap reversing and are intended. No findings.",
+ "findings": []
+}

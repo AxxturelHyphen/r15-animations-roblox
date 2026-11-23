@@ -1,0 +1,61 @@
+[idle-1-frozen] {"op": "scale_amplitude", "bones": "UpperTorso", "ch": "rx", "factor": 1.8, "pivot": "rest"}
+scale_amplitude UpperTorso.rx [0,96] x1.8 about rest
+[idle-1-frozen] {"op": "scale_amplitude", "bones": "Head", "ch": ["rx", "ry"], "factor": 1.5, "pivot": "rest"}
+scale_amplitude Head.rx [0,96] x1.5 about rest
+scale_amplitude Head.ry [0,96] x1.5 about rest
+[idle-1-frozen] {"op": "scale_amplitude", "bones": ["LeftUpperArm", "RightUpperArm"], "ch": "rz", "factor": 2.5, "pivot": "mean"}
+scale_amplitude LeftUpperArm.rz [0,96] x2.5 about mean
+scale_amplitude RightUpperArm.rz [0,96] x2.5 about mean
+[idle-1-frozen] {"op": "scale_amplitude", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "factor": 2.5, "pivot": "mean"}
+scale_amplitude LeftLowerArm.rx [0,96] x2.5 about mean
+scale_amplitude RightLowerArm.rx [0,96] x2.5 about mean
+[idle-2-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 48, "value": 0.14}
+set_pose LowerTorso.lx @ 48: 0.04 -> 0.14
+[idle-2-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "rz", "frame": 48, "value": 2.0}
+set_pose LowerTorso.rz @ 48: 0.00 -> 2.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 48, "delta": -7}
+set_pose LeftUpperLeg.rz @ 48: 2.00 -> -5.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 48, "delta": -7}
+set_pose RightUpperLeg.rz @ 48: -2.00 -> -9.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 48, "value": -3.5}
+set_pose UpperTorso.rz @ 48: 0.00 -> -3.50
+[idle-2-weight-shift] {"op": "set_pose", "bone": "Head", "ch": "rz", "frame": 48, "value": 1.5}
+set_pose Head.rz @ 48: 0.00 -> 1.50
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 48, "value": -14}
+set_pose RightUpperLeg.rx @ 48: 0.00 -> -14.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 48, "value": 28}
+set_pose RightLowerLeg.rx @ 48: 0.00 -> 28.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 48, "value": -14}
+set_pose RightFoot.rx @ 48: 0.00 -> -14.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 24, "value": -11}
+set_pose RightUpperLeg.rx @ 24: -7.00 -> -11.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 24, "value": 22}
+set_pose RightLowerLeg.rx @ 24: 14.00 -> 22.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -11}
+set_pose RightFoot.rx @ 24: -7.00 -> -11.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 72, "value": -11}
+set_pose RightUpperLeg.rx @ 72: -7.00 -> -11.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 72, "value": 22}
+set_pose RightLowerLeg.rx @ 72: 14.00 -> 22.00
+[idle-2-weight-shift] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 72, "value": -11}
+set_pose RightFoot.rx @ 72: -7.00 -> -11.00
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "rx", "offset": 6}
+offset_overlap UpperTorso.rx by +6 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "rz", "offset": 4}
+offset_overlap UpperTorso.rz by +4 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "Head", "ch": "ry", "offset": -12}
+offset_overlap Head.ry by -12 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "Head", "ch": ["rx", "rz"], "offset": 8}
+offset_overlap Head.rx by +8 frames
+offset_overlap Head.rz by +8 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "LeftUpperArm", "ch": "rz", "offset": 8}
+offset_overlap LeftUpperArm.rz by +8 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "RightUpperArm", "ch": "rz", "offset": 12}
+offset_overlap RightUpperArm.rz by +12 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "LeftLowerArm", "ch": "rx", "offset": 14}
+offset_overlap LeftLowerArm.rx by +14 frames
+[idle-3-lockstep] {"op": "offset_overlap", "bones": "RightLowerArm", "ch": "rx", "offset": 18}
+offset_overlap RightLowerArm.rx by +18 frames
+[idle-4-feet-sink] {"op": "plant_feet", "range": [0, 96], "step": 4, "mode": "all"}
+plant_feet [0,96] step 4 mode all: 25 keys, max correction 0.039 studs
+applied 28 ops, skipped 0; saved work/idle/iter_1.blend

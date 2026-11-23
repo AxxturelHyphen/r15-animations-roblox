@@ -1,0 +1,214 @@
+{
+ "animation": "sword_slash",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 6,
+  "transitions": 5,
+  "appeal": 5
+ },
+ "summary": "Beat structure is sound (10-frame wind-up, 4-frame cut, follow-through, recovery) but the posing has three hard errors: the right forearm and hand pass through the head for the whole wind-up, the blade tip ends in the floor with the hand buried against the front thigh, and the rear foot is up to 0.5 studs under the floor. Everything is also keyed on frames 10/14 (overlap 0.41).",
+ "findings": [
+  {
+   "id": "slash-headclip-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    6,
+    11
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand"
+   ],
+   "observation": "Frames 6-11: the raised right arm sits on top of the face/head in the front view. FK check of keys.json at f10 puts ~33% of the forearm and ~37% of the hand inside the head box. Cause is a sign trap: with the arm raised to rx -160, RightUpperArm rz -40 tips the UPPER end toward the character's left (into the head); rz < 0 only means 'out to the right' for a hanging arm. A positive rz carries the raised hand out past the right shoulder (clears the head completely at +25).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 10,
+     "value": 25
+    },
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 5,
+     "value": 8
+    }
+   ]
+  },
+  {
+   "id": "slash-feet-02",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "RightFoot",
+    "LeftFoot",
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "RightUpperLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "Right foot is under the floor on all 31 frames (-0.25 at f0 to -0.51 at f17-19), left foot sinks to -0.20 at f19-20 and floats +0.05 at f10. The rear shin tilts back 20-45 deg with no ankle compensation (RightFoot is not animated), so the toe stabs down; the root then drops 0.3. Also the legs peak at f12 and start straightening immediately while the root stays lowest over f14-18, so the lunge never holds.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 12,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -35
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 25
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 20
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      30
+     ],
+     "step": 2,
+     "mode": "all",
+     "smooth": 0.5
+    }
+   ]
+  },
+  {
+   "id": "slash-followthru-03",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    14,
+    21
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightHand"
+   ],
+   "observation": "Frames 15-20: the arm finishes hanging at the hip (RightUpperArm rx -10, rz 25) with the wrist bent 30 deg down, so the blade tip reaches the floor (FK: tip at -0.3 studs at f18 before any root correction; front view shows the blade meeting its shadow) and the sword hand presses into the front of the left thigh. At f14 the blade still points slightly upward, so the edge does not lead the cut. End the cut forward of the body with the wrist snapping earlier.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 18,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 14,
+     "value": 35
+    }
+   ]
+  },
+  {
+   "id": "slash-overlap-04",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    9,
+    19
+   ],
+   "bones": [
+    "LowerTorso",
+    "RightHand",
+    "Head",
+    "LeftUpperArm",
+    "LeftLowerArm"
+   ],
+   "observation": "overlap_score 0.407; 8 of 12 bones are keyed on both f10 and f14, so hips, chest, arm, wrist and head all reverse on the same frame. The sword has no lag behind the arm and the hips do not lead the cut.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "LowerTorso",
+     "ch": "ry",
+     "offset": -1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightHand",
+     "ch": "rx",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "LeftLowerArm"
+     ],
+     "offset": 1
+    }
+   ]
+  }
+ ]
+}

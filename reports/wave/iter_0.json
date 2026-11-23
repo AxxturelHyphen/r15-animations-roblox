@@ -1,0 +1,236 @@
+{
+ "animation": "wave",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 4,
+  "timing": 5,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "The wave does not read as a wave: the forearm only ever flops outward from an almost straight raised arm (hand never stacks over the elbow) and it swings twice, not the three times in the spec. Head, torso and arm all arrive and leave on frames 8 and 38 (overlap 0.44), the hand moves in phase with the forearm (no drag), and the left arm and whole lower body are frozen for 48 frames. No clipping, no foot problems, and the clip returns to idle cleanly at 48.",
+ "findings": [
+  {
+   "id": "wave-forearm-pose",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    8,
+    38
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand"
+   ],
+   "observation": "F008-F038: RightUpperArm.rz holds -150 while RightLowerArm.rz swings +10..+50, so the forearm's total frontal angle is -140..-100: it only bends OUTWARD/down from a near-straight arm (F012-F016 the forearm is horizontal, pointing away from the body; F020/F032 the arm is just straight). That is a sideways elbow hinge the wrong way and the hand never sits above the elbow, so the silhouette is a stiff semaphore, not a wave. Only two out-swings (keys 14 and 26) although the spec asks for three. Fix: drop the elbow out to the side (-125), fold the forearm up toward vertical (centre -40, inside the +-60 elbow rz limit) and re-key three waves of +-20 on 5-frame beats, with the hand following.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 8,
+     "value": -125
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 38,
+     "value": -125
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "RightLowerArm",
+      "RightHand"
+     ],
+     "ch": "rz",
+     "mode": "remove_interior",
+     "range": [
+      8,
+      38
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 8,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 13,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 18,
+     "value": -60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 23,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 28,
+     "value": -60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 33,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 38,
+     "value": -40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 13,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 18,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 23,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 28,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rz",
+     "frame": 33,
+     "value": 12
+    }
+   ]
+  },
+  {
+   "id": "wave-lockstep-dead-body",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    48
+   ],
+   "bones": [
+    "Head",
+    "UpperTorso",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "LeftUpperArm",
+    "LeftLowerArm"
+   ],
+   "observation": "metrics: lockstep at frames 8 and 38 (5 of 6 bones keyed), overlap_score 0.444. Head turn, torso lean and the arm raise all start at 0 and stop on 8, then freeze until 38 (curves.png: three flat plateaus). The hand keys sit on the forearm keys with the same sign, so there is no wrist drag. LeftUpperArm has motion range 0 and nothing below the waist moves in any of the 49 frames, so only one arm is alive. The arm raise also stops dead at F008 (accel spike 10.1 at frames 1 and 7) with no settle. Fix: the head leads the gesture, the forearm and hand trail the upper arm, the raise overshoots and settles, the chest turns into the wave and breathes through the hold, and the free arm gets a small counter-move.",
+   "fix": [
+    {
+     "op": "add_breakdown",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "key_frame": 8,
+     "overshoot": 8,
+     "settle_frames": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 8,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 38,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rz",
+     "frame": 23,
+     "value": 6.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 12,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 36,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 12,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 36,
+     "value": -10
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "offset": -2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightHand",
+     "offset": 2
+    }
+   ]
+  }
+ ]
+}

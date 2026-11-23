@@ -1,0 +1,214 @@
+[lh-legs-through-floor] {"op": "smooth_transition", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot", "LowerTorso"], "mode": "remove_interior", "range": [4, 26]}
+remove_interior LeftUpperLeg.rx (4,26): removed 1 keys
+remove_interior LeftLowerLeg.rx (4,26): removed 1 keys
+remove_interior LeftFoot.rx (4,26): removed 1 keys
+remove_interior RightUpperLeg.rx (4,26): removed 1 keys
+remove_interior RightLowerLeg.rx (4,26): removed 1 keys
+remove_interior RightFoot.rx (4,26): removed 1 keys
+remove_interior LowerTorso.ly (4,26): removed 1 keys
+remove_interior LowerTorso.lz (4,26): removed 1 keys
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 0, "value": -0.32}
+set_pose LowerTorso.ly @ 0: -0.20 -> -0.32
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 0, "value": -0.32}
+set_pose LowerTorso.lz @ 0: 0.00 -> -0.32
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 0, "value": -44.2}
+set_pose LeftUpperLeg.rx @ 0: -40.00 -> -44.20
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 0, "value": 68.3}
+set_pose LeftLowerLeg.rx @ 0: 60.00 -> 68.30
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 0, "value": -24.2}
+set_pose LeftFoot.rx @ 0: -20.00 -> -24.20
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 0, "value": 22}
+set_pose RightUpperLeg.rx @ 0: -20.00 -> 22.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 0, "value": 69.5}
+set_pose RightLowerLeg.rx @ 0: 50.00 -> 69.50
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -39.5}
+set_pose RightFoot.rx @ 0: 0.00 -> -39.50
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 4, "value": -0.717}
+set_pose LowerTorso.ly @ 4: -0.95 -> -0.72
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 4, "value": -0.506}
+set_pose LowerTorso.lz @ 4: -0.35 -> -0.51
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 4, "value": -72.5}
+set_pose LeftUpperLeg.rx @ 4: -95.00 -> -72.50
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 4, "value": 100.5}
+set_pose LeftLowerLeg.rx @ 4: 120.00 -> 100.50
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 4, "value": -28}
+set_pose LeftFoot.rx @ 4: -25.00 -> -28.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 4, "value": -10}
+set_pose RightUpperLeg.rx @ 4: -10.00 -> -10.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 4, "value": 139.6}
+set_pose RightLowerLeg.rx @ 4: 130.00 -> 139.60
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 4, "value": -45}
+set_pose RightFoot.rx @ 4: 40.00 -> -45.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 9, "value": -0.647}
+set_pose LowerTorso.ly @ 9: -0.62 -> -0.65
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 9, "value": -0.506}
+set_pose LowerTorso.lz @ 9: -0.44 -> -0.51
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 9, "value": -68.5}
+set_pose LeftUpperLeg.rx @ 9: -62.97 -> -68.50
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 9, "value": 94.7}
+set_pose LeftLowerLeg.rx @ 9: 87.29 -> 94.70
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 9, "value": -26.2}
+set_pose LeftFoot.rx @ 9: -24.32 -> -26.20
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 9, "value": -10}
+set_pose RightUpperLeg.rx @ 9: -8.69 -> -10.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 9, "value": 133.9}
+set_pose RightLowerLeg.rx @ 9: 121.25 -> 133.90
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 9, "value": -42.4}
+set_pose RightFoot.rx @ 9: -39.08 -> -42.40
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 13, "value": -0.662}
+set_pose LowerTorso.ly @ 13: -0.49 -> -0.66
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 13, "value": -0.506}
+set_pose LowerTorso.lz @ 13: -0.44 -> -0.51
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 13, "value": -69.3}
+set_pose LeftUpperLeg.rx @ 13: -53.53 -> -69.30
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 13, "value": 95.9}
+set_pose LeftLowerLeg.rx @ 13: 73.85 -> 95.90
+[lh-legs-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 13, "value": -26.6}
+set_pose LeftFoot.rx @ 13: -20.33 -> -26.60
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 13, "value": -10}
+set_pose RightUpperLeg.rx @ 13: -8.60 -> -10.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 13, "value": 135.1}
+set_pose RightLowerLeg.rx @ 13: 107.15 -> 135.10
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 13, "value": -43.0}
+set_pose RightFoot.rx @ 13: -33.06 -> -43.00
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 2, "value": 107.4}
+set_pose RightLowerLeg.rx @ 2: 104.55 -> 107.40
+[lh-legs-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 2, "value": -45.0}
+set_pose RightFoot.rx @ 2: -42.25 -> -45.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 4, "value": 46}
+set_pose UpperTorso.rx @ 4: 40.00 -> 46.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 4, "value": 15}
+set_pose UpperTorso.rz @ 4: 0.00 -> 15.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 4, "value": 12}
+set_pose UpperTorso.ry @ 4: 0.00 -> 12.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 4, "value": -27.8}
+set_pose RightUpperArm.rx @ 4: -35.00 -> -27.80
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 4, "value": -19.6}
+set_pose RightUpperArm.rz @ 4: -10.00 -> -19.60
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 4, "value": -27.2}
+set_pose RightLowerArm.rx @ 4: -5.00 -> -27.20
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 4, "value": 13.9}
+set_pose RightHand.rx @ 4: 0.00 -> 13.90
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 8, "value": 44.7}
+set_pose UpperTorso.rx @ 8: 43.41 -> 44.70
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 8, "value": 16}
+set_pose UpperTorso.rz @ 8: 13.69 -> 16.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 8, "value": 11}
+set_pose UpperTorso.ry @ 8: 10.95 -> 11.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 8, "value": -38.7}
+set_pose RightUpperArm.rx @ 8: -31.40 -> -38.70
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 8, "value": -20.1}
+set_pose RightUpperArm.rz @ 8: -11.39 -> -20.10
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 8, "value": -6}
+set_pose RightLowerArm.rx @ 8: -16.10 -> -6.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 8, "value": 5.1}
+set_pose RightHand.rx @ 8: 12.69 -> 5.10
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 12, "value": 45.7}
+set_pose UpperTorso.rx @ 12: 36.00 -> 45.70
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 12, "value": 15}
+set_pose UpperTorso.rz @ 12: 13.98 -> 15.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 12, "value": 10}
+set_pose UpperTorso.ry @ 12: 8.47 -> 10.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 12, "value": -40.0}
+set_pose RightUpperArm.rx @ 12: -35.00 -> -40.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 12, "value": -19.3}
+set_pose RightUpperArm.rz @ 12: -10.00 -> -19.30
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 12, "value": -7}
+set_pose RightLowerArm.rx @ 12: -5.00 -> -7.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 12, "value": 5.7}
+set_pose RightHand.rx @ 12: 2.40 -> 5.70
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 6, "value": -29.0}
+set_pose RightUpperArm.rx @ 6: -32.76 -> -29.00
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 6, "value": -20.3}
+set_pose RightUpperArm.rz @ 6: -19.85 -> -20.30
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 6, "value": -24.7}
+set_pose RightLowerArm.rx @ 6: -16.60 -> -24.70
+[lh-fist-never-lands] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 6, "value": 13.4}
+set_pose RightHand.rx @ 6: 9.50 -> 13.40
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 16, "value": -0.42}
+set_pose LowerTorso.ly @ 16: -0.57 -> -0.42
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 16, "value": -0.37}
+set_pose LowerTorso.lz @ 16: -0.44 -> -0.37
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 16, "value": -51.6}
+set_pose LeftUpperLeg.rx @ 16: -59.93 -> -51.60
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 16, "value": 78.1}
+set_pose LeftLowerLeg.rx @ 16: 82.94 -> 78.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 16, "value": -26.6}
+set_pose LeftFoot.rx @ 16: -23.00 -> -26.60
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 16, "value": -6.8}
+set_pose RightUpperLeg.rx @ 16: -8.65 -> -6.80
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 16, "value": 112.4}
+set_pose RightLowerLeg.rx @ 16: 116.84 -> 112.40
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 16, "value": -25}
+set_pose RightFoot.rx @ 16: -37.19 -> -25.00
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 19, "value": -0.22}
+set_pose LowerTorso.ly @ 19: -0.17 -> -0.22
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 19, "value": -0.2}
+set_pose LowerTorso.lz @ 19: -0.19 -> -0.20
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 19, "value": -34.1}
+set_pose LeftUpperLeg.rx @ 19: -27.82 -> -34.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 19, "value": 58.1}
+set_pose LeftLowerLeg.rx @ 19: 47.19 -> 58.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 19, "value": -24.0}
+set_pose LeftFoot.rx @ 19: -20.85 -> -24.00
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 19, "value": -16.1}
+set_pose RightUpperLeg.rx @ 19: -3.18 -> -16.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 19, "value": 115.6}
+set_pose RightLowerLeg.rx @ 19: 69.57 -> 115.60
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 19, "value": -45.0}
+set_pose RightFoot.rx @ 19: -8.58 -> -45.00
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 22, "value": -0.07}
+set_pose LowerTorso.ly @ 22: -0.08 -> -0.07
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 22, "value": -0.07}
+set_pose LowerTorso.lz @ 22: -0.07 -> -0.07
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 22, "value": -17.6}
+set_pose LeftUpperLeg.rx @ 22: -15.06 -> -17.60
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 22, "value": 33.3}
+set_pose LeftLowerLeg.rx @ 22: 27.26 -> 33.30
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 22, "value": -15.7}
+set_pose LeftFoot.rx @ 22: -12.15 -> -15.70
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 22, "value": -31.5}
+set_pose RightUpperLeg.rx @ 22: -9.76 -> -31.50
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 22, "value": 68.6}
+set_pose RightLowerLeg.rx @ 22: 70.10 -> 68.60
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 22, "value": -27.1}
+set_pose RightFoot.rx @ 22: -27.29 -> -27.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 24, "value": -0.02}
+set_pose LowerTorso.ly @ 24: -0.02 -> -0.02
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 24, "value": -0.02}
+set_pose LowerTorso.lz @ 24: -0.02 -> -0.02
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 24, "value": -8.8}
+set_pose LeftUpperLeg.rx @ 24: -5.76 -> -8.80
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 24, "value": 17.9}
+set_pose LeftLowerLeg.rx @ 24: 11.38 -> 17.90
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 24, "value": -9.1}
+set_pose LeftFoot.rx @ 24: -5.63 -> -9.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 24, "value": -8.8}
+set_pose RightUpperLeg.rx @ 24: -15.75 -> -8.80
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 24, "value": 17.9}
+set_pose RightLowerLeg.rx @ 24: 22.07 -> 17.90
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -9.1}
+set_pose RightFoot.rx @ 24: -8.82 -> -9.10
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 15, "value": 121.9}
+set_pose RightLowerLeg.rx @ 15: 118.29 -> 121.90
+[lh-rise-feet-slide] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 15, "value": -34.5}
+set_pose RightFoot.rx @ 15: -29.67 -> -34.50
+[lh-no-overlap-on-impact] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 4, "value": 6}
+set_pose Head.rx @ 4: -30.00 -> 6.00
+[lh-no-overlap-on-impact] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 9, "value": -34}
+set_pose Head.rx @ 9: -17.24 -> -34.00
+[lh-no-overlap-on-impact] {"op": "add_breakdown", "bone": "LeftUpperArm", "ch": "rx", "key_frame": 4, "overshoot": 12, "settle_frames": 4}
+overshoot LeftUpperArm.rx @ 4: 45.00 -> 57.00, settles by 8
+[lh-no-overlap-on-impact] {"op": "offset_overlap", "bones": ["Head"], "offset": 2}
+offset_overlap Head.rx by +2 frames
+[lh-no-overlap-on-impact] {"op": "offset_overlap", "bones": ["LeftUpperArm"], "offset": 1}
+offset_overlap LeftUpperArm.rx by +1 frames
+offset_overlap LeftUpperArm.rz by +1 frames
+[lh-no-overlap-on-impact] {"op": "offset_overlap", "bones": ["LeftLowerArm"], "offset": 2}
+offset_overlap LeftLowerArm.rx by +2 frames
+[lh-legs-through-floor] {"op": "plant_feet", "range": [1, 3], "step": 1, "mode": "all"}
+plant_feet [1,3] step 1 mode all: 3 keys, max correction 0.020 studs
+clamp RightFoot.rx @ 2: -45.0 -> -45.0 (limit (-45, 55))
+clamp RightFoot.rx @ 4: -45.0 -> -45.0 (limit (-45, 55))
+clamp RightFoot.rx @ 19: -45.0 -> -45.0 (limit (-45, 55))
+applied 101 ops, skipped 0; saved work/land_heavy/iter_1.blend

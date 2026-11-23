@@ -1,0 +1,9 @@
+{
+ "name": "swim",
+ "iteration": 2,
+ "looped": true,
+ "priority": "Movement",
+ "length": 1.3333,
+ "authoredSpeed": null,
+ "markers": []
+}

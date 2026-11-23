@@ -1,0 +1,17 @@
+[cheer-crouch-foot-skate] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 6, "value": -27}
+set_pose LeftUpperLeg.rx @ 6: -35.00 -> -27.00
+[cheer-crouch-foot-skate] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 6, "value": -27}
+set_pose RightUpperLeg.rx @ 6: -35.00 -> -27.00
+[cheer-crouch-foot-skate] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 6, "value": -33}
+set_pose LeftFoot.rx @ 6: -25.00 -> -33.00
+[cheer-crouch-foot-skate] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 6, "value": -33}
+set_pose RightFoot.rx @ 6: -25.00 -> -33.00
+[cheer-lower-body-lockstep] {"op": "offset_overlap", "bones": "UpperTorso", "offset": 1}
+offset_overlap UpperTorso.rx by +1 frames
+offset_overlap UpperTorso.ry by +1 frames
+[cheer-arm-thrust-hard-stop] {"op": "smooth_transition", "bones": ["LeftUpperArm", "RightUpperArm"], "ch": "rz", "mode": "smooth", "range": [6, 16], "strength": 0.5, "step": 1, "radius": 2}
+smooth LeftUpperArm.rz [6,16] strength 0.5 step 1
+smooth RightUpperArm.rz [6,16] strength 0.5 step 1
+[cheer-feet-hover-in-settle] {"op": "plant_feet", "mode": "all", "step": 2}
+plant_feet [0,40] step 2 mode all: 21 keys, max correction 0.078 studs
+applied 7 ops, skipped 0; saved work/cheer/iter_2.blend

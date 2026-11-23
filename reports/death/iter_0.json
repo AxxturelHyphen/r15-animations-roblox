@@ -1,0 +1,513 @@
+{
+ "animation": "death",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 4,
+  "transitions": 5,
+  "appeal": 4
+ },
+ "summary": "The story beats are there (recoil, stagger, buckle, collapse backward, lie still) and the curves are clean, but the clip fails its contact rule: feet and shins are up to 0.8 studs under the floor through the buckle, and the head is 0.4 studs inside the floor in the pose that is held after death. The landing is eased like a lie-down, every bone arrives on frame 34 at once, and the final pose has both forearms and a knee held up in the air. The fixes end on a flat, limp pose on the back with every part resting on the floor; the last 5 frames are a deliberate hold.",
+ "findings": [
+  {
+   "id": "death-floor-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    50
+   ],
+   "bones": [
+    "Head",
+    "UpperTorso",
+    "LowerTorso",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "The body is under the floor for most of the clip (body_penetration on 106 part-frames) and, worst of all, in the pose it holds forever. (1) Final pose f34-f50: the head is sunk into the ground, z -0.21 at f34 growing to -0.42 at f50 (side view f40-f50: the beige head box hangs below the floor line). The head is 1.2 studs deep against the torso's 1.0, so it already sits 0.1 low when the body lies flat; Head.ry 35 then rolls the box about its long axis and drives a corner another 0.24 down, and Head.rx -5 tips the crown in further. A head lying on its back cannot be turned with ry without burying a corner, so drop the ry turn and loll the head toward the shoulder with rz instead (when the body lies flat rz slides the head in the floor plane), lift the chest 4 deg (UpperTorso rx > 0) so the neck clears, and lay the head back by the same amount. (2) Knee buckle f3-f33: the feet and shins are as much as 0.82 studs under the floor (RightFoot z -0.72 at f18, -0.82 at f21) because the root drop is hand-keyed and there are no ankle keys, so the feet stay square to the shins and the toes point 50 deg into the ground. Key the ankles so the soles stay on the floor while the knees fold (Foot rx < 0 = toes up, about -(thigh + knee), limited to -45), then let plant_feet with parts=all rest the lowest body part on the floor on every frame. Dry run: body_penetration 0, lowest part at z 0.00 on all 51 frames, and the root now sinks steadily (ly 0 -> -0.34 by f24 -> -1.49) instead of popping around.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "Head",
+     "ch": "ry",
+     "factor": 0,
+     "pivot": "rest"
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 38,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 45,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 50,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 38,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 50,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 40,
+     "value": -3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 50,
+     "value": -3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": -45
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 34,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 18,
+     "value": -45
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": -30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 34,
+     "value": 0
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 1,
+     "parts": "all"
+    }
+   ]
+  },
+  {
+   "id": "death-limp-02",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    34,
+    50
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "RightUpperLeg",
+    "RightLowerLeg"
+   ],
+   "observation": "The corpse is holding itself up. In the held pose both arms hover: UpperArm rx -10 lifts them off the ground and LowerArm rx -20 / -35 bends the forearms up into the air, so the hands float 0.8 (left) and 1.05 (right) studs above the floor (side view f34-f50: the blue forearm stands up above the chest). The right knee is also held up (thigh -15, knee 30). Nothing reads as limp, and the arms are near mirror images (rz 70 / -60). Lay everything down: swing the upper arms a few degrees toward the floor (UpperArm rx > 0), straighten the elbows and bend them in the floor plane with LowerArm rz instead of rx, use clearly different spreads left and right, and let the legs fall flat and slightly splayed, keeping the splay at 0 until the fall. Dry-run FK: every arm and leg part ends within 0.02 studs of the floor.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": 62
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": 62
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": 3.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": -38
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 34,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 50,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 34,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rz",
+     "frame": 50,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": -2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": -2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 28,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 34,
+     "value": 7
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 50,
+     "value": 7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 34,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 50,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 28,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 34,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 50,
+     "value": -14
+    }
+   ]
+  },
+  {
+   "id": "death-impact-03",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    18,
+    40
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "The fall has no weight. LowerTorso.rx goes 10 -> -60 over f18-f28 (7 deg/frame) and then only -60 -> -90 over f28-f34 (5 deg/frame) on an eased curve, so the body slows down as it nears the ground and is laid on the floor instead of hitting it; whole-body speed peaks at f30 and has faded to 20 deg/frame by f33. Nothing reacts to the landing either: the spine and head simply arrive (UpperTorso -10 -> 0, Head -20 -> 0). Make it accelerate into the ground and land two frames earlier: hold the topple back at f28 (-48), then go straight (LINEAR) to flat at f32, 10.5 deg/frame, with the root's backward slide arriving on the same frame. Keep the chest curled and the chin tucked on the way down (UpperTorso and Head rx > 0), let the shoulders slam and the chest rebound (f32 -> f34 -> settle f38), and let the head whip back to the floor a frame after the shoulders, bounce once and settle (f33 -> f36 -> f40).",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rx",
+     "frame": 28,
+     "value": -48,
+     "interpolation": "LINEAR"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "rx",
+     "frame": 32,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "lz",
+     "frame": 32,
+     "value": -0.6
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 28,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 32,
+     "value": -3
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 34,
+     "value": 9
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 30,
+     "value": 18
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 33,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 36,
+     "value": 7
+    }
+   ]
+  },
+  {
+   "id": "death-overlap-04",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    50
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "Everything moves on the same four frames: lockstep at f6 (7/11 bones), f18 (9/11), f28 (8/11) and f34 (11/11), overlap_score 0.079, and LeftUpperArm.rx / RightUpperArm.rx are identical curves (twinning). The whole body therefore reaches the floor pose on the single frame f34 and stops dead, like a posed mannequin being set down. Offset the limbs so they trail the torso by different amounts: the arms fling and land 2-5 frames late, forearms after upper arms and right after left, and the legs 3-4 frames late, so the knees are still up when the back hits at f32 and the feet flop down by f37-f38. Dry run: lockstep frames 0, overlap_score 1.0, no twinned channels.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": "LeftUpperArm",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LeftLowerArm",
+     "offset": 4
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightUpperArm",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "RightLowerArm",
+     "offset": 5
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot"
+     ],
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "offset": 4
+    }
+   ]
+  }
+ ]
+}

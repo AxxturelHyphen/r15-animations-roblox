@@ -1,0 +1,99 @@
+[kick-support-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 5, "value": -0.06}
+set_pose LowerTorso.lz @ 5: -0.09 -> -0.06
+[kick-support-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 9, "value": 0.12}
+set_pose LowerTorso.lz @ 9: -0.15 -> 0.12
+[kick-support-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 16, "value": -0.02}
+set_pose LowerTorso.lz @ 16: 0.09 -> -0.02
+[kick-support-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 5, "value": -18.0}
+set_pose LeftUpperLeg.rx @ 5: -12.09 -> -18.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 5, "value": 17}
+set_pose LeftLowerLeg.rx @ 5: 17.91 -> 17.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 5, "value": 1.0}
+set_pose LeftFoot.rx @ 5: 0.00 -> 1.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 9, "value": -13.0}
+set_pose LeftUpperLeg.rx @ 9: -10.00 -> -13.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 9, "value": 20}
+set_pose LeftLowerLeg.rx @ 9: 20.00 -> 20.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 9, "value": -7.0}
+set_pose LeftFoot.rx @ 9: 0.93 -> -7.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 16, "value": -16.0}
+set_pose LeftUpperLeg.rx @ 16: -13.52 -> -16.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 16, "value": 16}
+set_pose LeftLowerLeg.rx @ 16: 18.70 -> 16.00
+[kick-support-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 16, "value": -0.0}
+set_pose LeftFoot.rx @ 16: -5.19 -> -0.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 0, "value": 11}
+set_pose RightLowerLeg.rx @ 0: 15.00 -> 11.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 30, "value": 11}
+set_pose RightLowerLeg.rx @ 30: 15.00 -> 11.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -21}
+set_pose RightFoot.rx @ 0: -15.00 -> -21.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 30, "value": -21}
+set_pose RightFoot.rx @ 30: -15.00 -> -21.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 22, "value": 9}
+set_pose RightUpperLeg.rx @ 22: 5.00 -> 9.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 22, "value": 12}
+set_pose RightLowerLeg.rx @ 22: 20.00 -> 12.00
+[kick-ground-02] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 22, "value": -21}
+set_pose RightFoot.rx @ 22: -10.00 -> -21.00
+[kick-ground-02] {"op": "add_breakdown", "bone": "RightFoot", "ch": "rx", "frame": 2, "value": -42}
+set_pose RightFoot.rx @ 2: -10.37 -> -42.00
+[kick-ground-02] {"op": "add_breakdown", "bone": "RightLowerLeg", "ch": "rx", "frame": 2, "delta": 12}
+set_pose RightLowerLeg.rx @ 2: 36.67 -> 48.67
+[kick-ground-02] {"op": "add_breakdown", "bone": "RightFoot", "ch": "rx", "frame": 20, "value": -38}
+set_pose RightFoot.rx @ 20: -12.87 -> -38.00
+[kick-ground-02] {"op": "add_breakdown", "bone": "RightLowerLeg", "ch": "rx", "frame": 20, "delta": 14}
+set_pose RightLowerLeg.rx @ 20: 29.83 -> 43.83
+[kick-balance-03] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 5, "value": 0.18}
+set_pose LowerTorso.lx @ 5: 0.00 -> 0.18
+[kick-balance-03] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 16, "value": 0.18}
+set_pose LowerTorso.lx @ 16: 0.11 -> 0.18
+[kick-balance-03] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 22, "value": 0.0}
+set_pose LowerTorso.lx @ 22: 0.11 -> 0.00
+[kick-balance-03] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 5, "value": -6.3}
+set_pose LeftUpperLeg.rz @ 5: 0.00 -> -6.30
+[kick-balance-03] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 16, "value": -6.3}
+set_pose LeftUpperLeg.rz @ 16: -3.71 -> -6.30
+[kick-balance-03] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 22, "value": 0.0}
+set_pose LeftUpperLeg.rz @ 22: -3.82 -> 0.00
+[kick-balance-03] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 5, "value": 6.3}
+set_pose LeftFoot.rz @ 5: 0.00 -> 6.30
+[kick-balance-03] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 16, "value": 6.3}
+set_pose LeftFoot.rz @ 16: 3.71 -> 6.30
+[kick-balance-03] {"op": "set_pose", "bone": "LeftFoot", "ch": "rz", "frame": 22, "value": 0.0}
+set_pose LeftFoot.rz @ 22: 3.82 -> 0.00
+[kick-impact-04] {"op": "add_breakdown", "bone": "RightLowerLeg", "ch": "rx", "key_frame": 9, "overshoot": 5, "settle_frames": 3}
+overshoot RightLowerLeg.rx @ 9: 5.00 -> -0.00, settles by 12
+[kick-impact-04] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 9, "value": -94}
+set_pose RightUpperLeg.rx @ 9: -85.00 -> -94.00
+[kick-impact-04] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 9, "value": -22}
+set_pose UpperTorso.rx @ 9: -15.00 -> -22.00
+[kick-impact-04] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 9, "value": 20}
+set_pose Head.rx @ 9: 15.00 -> 20.00
+[kick-arms-05] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 9, "value": 12}
+set_pose RightUpperArm.rx @ 9: -20.00 -> 12.00
+[kick-arms-05] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 9, "value": -55}
+set_pose RightLowerArm.rx @ 9: -80.00 -> -55.00
+[kick-arms-05] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 9, "value": -62}
+set_pose LeftUpperArm.rx @ 9: -30.00 -> -62.00
+[kick-arms-05] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rz", "frame": 9, "value": 20}
+set_pose LeftUpperArm.rz @ 9: 30.00 -> 20.00
+[kick-arms-05] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 9, "value": -112}
+set_pose LeftLowerArm.rx @ 9: -90.00 -> -112.00
+[kick-arms-05] {"op": "offset_overlap", "bones": "RightUpperArm", "ch": ["rx", "rz"], "offset": 1}
+offset_overlap RightUpperArm.rx by +1 frames
+offset_overlap RightUpperArm.rz by +1 frames
+[kick-arms-05] {"op": "offset_overlap", "bones": "RightLowerArm", "ch": "rx", "offset": 3}
+offset_overlap RightLowerArm.rx by +3 frames
+[kick-arms-05] {"op": "offset_overlap", "bones": "LeftUpperArm", "ch": ["rx", "rz"], "offset": 2}
+offset_overlap LeftUpperArm.rx by +2 frames
+offset_overlap LeftUpperArm.rz by +2 frames
+[kick-arms-05] {"op": "offset_overlap", "bones": "LeftLowerArm", "ch": "rx", "offset": 3}
+offset_overlap LeftLowerArm.rx by +3 frames
+[kick-arms-05] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 2}
+offset_overlap Head.rx by +2 frames
+[kick-arms-05] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "rx", "offset": 1}
+offset_overlap UpperTorso.rx by +1 frames
+[kick-ground-02] {"op": "plant_feet", "mode": "all", "step": 2, "parts": "feet"}
+plant_feet [0,30] step 2 mode all: 16 keys, max correction 0.069 studs
+applied 48 ops, skipped 0; saved work/kick/iter_1.blend

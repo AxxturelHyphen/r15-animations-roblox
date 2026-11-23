@@ -1,0 +1,215 @@
+{
+  "run": 3,
+  "would_play_again": "no",
+  "one_line_pitch_to_sam": "It's not a game, it's a test place on a baseplate: the sword fights look good and you take a nap when you die, but there's no sound, no kill counter and nothing to do.",
+  "moments": [
+    {
+      "moment_id": "M01",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Spawning on a bare grey baseplate is the first thing they tell Sam, as proof it is not a real game."
+    },
+    {
+      "moment_id": "M02",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The run looked clean in the moment but nothing happened with it, so it faded."
+    },
+    {
+      "moment_id": "M04",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Crouch was declared useless in ten seconds and never came up again."
+    },
+    {
+      "moment_id": "M05",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Remembered only as the tower with nothing on top where Kai wanted a chest."
+    },
+    {
+      "moment_id": "M06",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The flailing arms were funny, but landing with no fall damage made it a one-time joke."
+    },
+    {
+      "moment_id": "M07",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The pool was pleasant, had nothing at the bottom, and left no story to tell."
+    },
+    {
+      "moment_id": "M08",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Sitting on the bench led to six seconds of silence and an 'ok'."
+    },
+    {
+      "moment_id": "M10",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Punching air was just the first button press, overwritten by the sword."
+    },
+    {
+      "moment_id": "M11",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Punching the dummy blurred into the general memory of jumping it."
+    },
+    {
+      "moment_id": "M12",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "positive",
+      "why": "Kai recalls that mashing gives a combo and that the fighting looks good, without specifics."
+    },
+    {
+      "moment_id": "M13",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The kick was a brief discovery that the sword immediately made irrelevant."
+    },
+    {
+      "moment_id": "M14",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Block survives only as 'there's a block button', since they never could tell if it worked."
+    },
+    {
+      "moment_id": "M15",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Pressing 1 to equip is plumbing; they remember the sword, not drawing it."
+    },
+    {
+      "moment_id": "M16",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The sword lunge is what made the fights good and what Robin calls broken."
+    },
+    {
+      "moment_id": "M17",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "The dummy lying down and popping back in their faces was a surprise, and Kai still knows it takes seven hits for nothing."
+    },
+    {
+      "moment_id": "M18",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The first-to-five with a self-counted countdown and the spawn-kill argument is their main shared story."
+    },
+    {
+      "moment_id": "M19",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The roll-over-and-nap death is the biggest laugh of the night and the only thing both call funny."
+    },
+    {
+      "moment_id": "M20",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Robin remembers being invincible; Kai remembers it as boring to hit a silent wall."
+    },
+    {
+      "moment_id": "M30",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Waving at the dummy got no reaction, so there was nothing to remember."
+    },
+    {
+      "moment_id": "M31",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Dancing in total silence was a quick giggle that mostly sticks because of what happened next."
+    },
+    {
+      "moment_id": "M32",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Working through the emote list was Robin ticking boxes while Kai waited."
+    },
+    {
+      "moment_id": "M33",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Emotes that did nothing were a small confusion that got dropped."
+    },
+    {
+      "moment_id": "M34",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Being slashed mid-dance and going straight from dancing to napping got a real laugh from both."
+    },
+    {
+      "moment_id": "M40",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Robin remembers saying 'hello sir' to the creepy breathing guy before they realised it was a dummy."
+    },
+    {
+      "moment_id": "M41",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Running to the void and realising the baseplate was the whole game was the big letdown."
+    },
+    {
+      "moment_id": "M42",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "No kill counter, score, sound or goal is the complaint they repeat most and the reason they quit."
+    }
+  ]
+}

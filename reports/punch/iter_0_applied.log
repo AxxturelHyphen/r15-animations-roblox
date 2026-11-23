@@ -1,0 +1,37 @@
+[punch-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -25}
+set_pose RightFoot.rx @ 0: 0.00 -> -25.00
+[punch-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 8, "value": -17}
+set_pose RightFoot.rx @ 8: 15.00 -> -17.00
+[punch-feet-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -25}
+set_pose RightFoot.rx @ 24: 0.00 -> -25.00
+[punch-antic-02] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 5, "value": -25}
+set_pose UpperTorso.ry @ 5: -15.00 -> -25.00
+[punch-antic-02] {"op": "set_pose", "bone": "LowerTorso", "ch": "ry", "frame": 5, "value": -15}
+set_pose LowerTorso.ry @ 5: -10.00 -> -15.00
+[punch-antic-02] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 5, "value": -25}
+set_pose RightUpperArm.rx @ 5: -40.00 -> -25.00
+[punch-impact-03] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 8, "value": -100}
+set_pose RightUpperArm.rx @ 8: -90.00 -> -100.00
+[punch-impact-03] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 12, "value": -96}
+set_pose RightUpperArm.rx @ 12: -90.00 -> -96.00
+[punch-impact-03] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 8, "value": 0}
+set_pose RightLowerArm.rx @ 8: -5.00 -> 0.00
+[punch-impact-03] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 12, "value": -12}
+set_pose RightLowerArm.rx @ 12: -5.00 -> -12.00
+[punch-impact-03] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 8, "value": 16}
+set_pose UpperTorso.rx @ 8: 10.00 -> 16.00
+[punch-impact-03] {"op": "add_breakdown", "bone": "UpperTorso", "ch": "ry", "key_frame": 8, "overshoot": 6, "settle_frames": 3}
+overshoot UpperTorso.ry @ 8: 25.00 -> 31.00, settles by 11
+[punch-overlap-04] {"op": "offset_overlap", "bones": "LowerTorso", "ch": "ry", "offset": -1}
+offset_overlap LowerTorso.ry by -1 frames
+[punch-overlap-04] {"op": "offset_overlap", "bones": "RightLowerArm", "ch": "rx", "offset": 1}
+offset_overlap RightLowerArm.rx by +1 frames
+[punch-overlap-04] {"op": "offset_overlap", "bones": "Head", "ch": "ry", "offset": 1}
+offset_overlap Head.ry by +1 frames
+[punch-overlap-04] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "rx", "frame": 8, "value": -38}
+set_pose LeftUpperArm.rx @ 8: -55.00 -> -38.00
+[punch-overlap-04] {"op": "set_pose", "bone": "LeftLowerArm", "ch": "rx", "frame": 8, "value": -125}
+set_pose LeftLowerArm.rx @ 8: -115.00 -> -125.00
+[punch-feet-01] {"op": "plant_feet", "range": [0, 24], "step": 2, "mode": "all", "smooth": 0.5}
+plant_feet [0,24] step 2 mode all: 13 keys, max correction 0.104 studs
+applied 18 ops, skipped 0; saved work/punch/iter_1.blend

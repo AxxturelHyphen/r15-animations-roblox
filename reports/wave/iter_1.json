@@ -1,0 +1,41 @@
+{
+ "animation": "wave",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Iteration-0 problems are fixed. From F009 the forearm stands up over the elbow (upper arm -125, forearm centred on -40) and swings out at F014, F024 and F034: three clear waves, with the hand trailing 1 frame behind the forearm and staying well outside the head (F019-F021, F029-F031 are the closest frames, no contact). The raise overshoots to -133 at F008 and settles by F012, the head leads at F006, the chest and left arm now move, and the clip returns to idle at F048. All metrics are zero, overlap 1.0; the two logged clamps were no-ops at exactly -60. Nothing new was introduced. Only polish remains: the wrist flick is small.",
+ "findings": [
+  {
+   "id": "wave-wrist-flick-small",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    10,
+    40
+   ],
+   "bones": [
+    "RightHand"
+   ],
+   "observation": "RightHand.rz only reaches +12/-15 (keys F015-F035), so at the 3/4 camera distance the hand reads as nearly rigid on the forearm in F014-F036; the wave is carried almost entirely by the 40-degree forearm swing. A slightly larger flick would sell the drag. Optional polish.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": "RightHand",
+     "ch": "rz",
+     "range": [
+      10,
+      40
+     ],
+     "factor": 1.4,
+     "pivot": "rest"
+    }
+   ]
+  }
+ ]
+}

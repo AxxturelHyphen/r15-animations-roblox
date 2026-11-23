@@ -1,0 +1,386 @@
+{
+ "animation": "dance",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 5,
+  "timing": 5,
+  "transitions": 5,
+  "appeal": 4
+ },
+ "summary": "The loop seam itself is clean (frame 64 equals frame 0, every seam key is a flat extremum, speed 5.9 deg/frame on both sides, no seam metric), but the groove is mechanical. The hip sway is a pure root translation, so both planted feet skate 0.3 studs side to side all loop; the soles sink 0.07 studs on every beat; both legs are mirror-identical; the chest leans the same way the hips shift (a plank, no counter-line); and every part hits its extremes on the same frames (overlap_score 0.0) with the forearms frozen at -90.",
+ "findings": [
+  {
+   "id": "dance-feet-skate",
+   "category": "transition",
+   "severity": "high",
+   "frames": [
+    0,
+    64
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "RightUpperLeg",
+    "LeftFoot",
+    "RightFoot"
+   ],
+   "observation": "LowerTorso.lx swings +0.15 (F000/F032) to -0.15 (F016/F048) and no leg channel compensates (legs only have rx), so the whole character including both feet translates sideways: metrics show one contact segment 0-64 per foot with mean_speed 0.0232 studs/frame (0.3 studs per 16 frames) while planted. Visible in the 3/4 view as the feet drifting across the floor tiles between F000 and F016. Fix: lean both legs against the hip shift (hips left = leg ends to the character's right = UpperLeg.rz < 0, about atan(0.15/1.47) = 5.8 deg) and roll the feet back flat with the opposite Foot.rz.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 0,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 0,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 0,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 0,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 16,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 16,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 16,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 16,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 32,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 32,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 32,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 32,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rz",
+     "frame": 48,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rz",
+     "frame": 48,
+     "value": -5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rz",
+     "frame": 48,
+     "value": 5.8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rz",
+     "frame": 48,
+     "value": -5.8
+    }
+   ]
+  },
+  {
+   "id": "dance-foot-penetration-weak-bounce",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    0,
+    64
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "metrics: 58 foot-penetration frames; both feet are 0.070 studs under the floor on every down-beat (F000, F016, F032, F048, F064; side view F013-F019 and F029-F035 shows the sole below the floor line). The root drops 0.15 studs but thigh -20 / knee 35 only shortens the leg about 0.08. The bounce also reads small for a 'bouncy groove'. Fix: deepen the knee action 1.4x (thigh -28, knee 49, foot -21 still cancel to a flat foot) so the legs really absorb about 0.15 studs, then re-plant the root on the floor.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "ch": "rx",
+     "range": [
+      0,
+      64
+     ],
+     "factor": 1.4,
+     "pivot": "rest"
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2
+    }
+   ]
+  },
+  {
+   "id": "dance-twinned-legs-plank-torso",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    64
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "UpperTorso"
+   ],
+   "observation": "metrics twinning: Upper/LowerLeg and Foot rx are mirror-identical for the whole loop, so the hip sway never becomes a weight shift, and all four beats are the same pose. UpperTorso.rz is -8 (top tips to the character's LEFT) exactly when the hips are shifted LEFT (F000/F032) and +8 when they are right (F016/F048): hips and chest go the same way, the body tilts as one plank and there is no opposing hip/shoulder line. Fix: on each beat sink further into the unweighted leg (right leg when hips are left at 0/32/64, left leg at 16/48; foot keys untouched so that foot rolls onto its toe by about 4 deg), and reverse the chest tilt so the shoulders counter the hips.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "RightUpperLeg",
+      "RightLowerLeg"
+     ],
+     "ch": "rx",
+     "range": [
+      0,
+      0
+     ],
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "RightUpperLeg",
+      "RightLowerLeg"
+     ],
+     "ch": "rx",
+     "range": [
+      32,
+      32
+     ],
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "RightUpperLeg",
+      "RightLowerLeg"
+     ],
+     "ch": "rx",
+     "range": [
+      64,
+      64
+     ],
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg"
+     ],
+     "ch": "rx",
+     "range": [
+      16,
+      16
+     ],
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg"
+     ],
+     "ch": "rx",
+     "range": [
+      48,
+      48
+     ],
+     "factor": 1.2,
+     "pivot": "rest"
+    },
+    {
+     "op": "scale_amplitude",
+     "bones": "UpperTorso",
+     "ch": "rz",
+     "factor": -0.8,
+     "pivot": "rest"
+    }
+   ]
+  },
+  {
+   "id": "dance-lockstep-frozen-forearms",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    0,
+    64
+   ],
+   "bones": [
+    "UpperTorso",
+    "Head",
+    "LeftUpperArm",
+    "RightUpperArm",
+    "LeftLowerArm",
+    "RightLowerArm"
+   ],
+   "observation": "metrics: overlap_score 0.0, lockstep on frames 8/16/24/32/40/48/56 (up to 11 of 13 bones keyed together). Head nod, chest tilt, arm pumps and knee bounce all peak on the same frame, so nothing drags or follows through (curves.png: every curve is the same phase-locked sine). Left/RightLowerArm.rx is a constant -90 (motion range 0): the pumps come from the shoulder only and the elbows look welded (F000-F064, side view: the forearm-upper-arm angle never changes). Fix: open the elbow to -65 when the arm is back and close it to about -95 when it punches forward, then offset chest, head, upper arms and forearms progressively later than the hips; finally re-close the seam and make every curve cyclic so the offsets wrap cleanly.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 16,
+     "value": -65
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 48,
+     "value": -65
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -65
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 16,
+     "value": -95
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -65
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 48,
+     "value": -95
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "UpperTorso",
+     "offset": 2
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "Head",
+     "offset": 3
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm",
+      "RightUpperArm"
+     ],
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftLowerArm",
+      "RightLowerArm"
+     ],
+     "offset": 3
+    },
+    {
+     "op": "smooth_transition",
+     "bones": "all",
+     "mode": "loop_seam"
+    }
+   ]
+  }
+ ]
+}

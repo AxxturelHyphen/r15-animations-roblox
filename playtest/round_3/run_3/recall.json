@@ -1,0 +1,207 @@
+{
+  "run": 3,
+  "would_play_again": "maybe",
+  "one_line_pitch_to_sam": "It's a baseplate with really good fighting animations and a bench that launches you to space, but it's only twenty minutes of game.",
+  "moments": [
+    {
+      "moment_id": "M01",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "Remembered only as 'it's a baseplate', a running joke and a complaint."
+    },
+    {
+      "moment_id": "M02",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Running looked clean but Kai didn't care and nothing happened."
+    },
+    {
+      "moment_id": "M10",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Silent punch at nothing was a small letdown, instantly overwritten."
+    },
+    {
+      "moment_id": "M18",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "First hit felt good but got absorbed into the fights that followed."
+    },
+    {
+      "moment_id": "M12",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Kai read the sign and broke Robin's block; Kai is proud, Robin is sick of the same combo."
+    },
+    {
+      "moment_id": "M13",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Only the kick off the tower survives, as the setup for the landing."
+    },
+    {
+      "moment_id": "M15",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Pulling out the sword was just a key press."
+    },
+    {
+      "moment_id": "M16",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "22 damage only comes up as the number that makes 44 sound outrageous."
+    },
+    {
+      "moment_id": "M19",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "'Slashed into a nap' wording and Kai's 5-3 win with the automatic cheer; set 2 dragged."
+    },
+    {
+      "moment_id": "M30",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Silent laugh emote fizzled both times."
+    },
+    {
+      "moment_id": "M14",
+      "mentioned": true,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Block remembered as annoying, the parry as a fluke they could not repeat."
+    },
+    {
+      "moment_id": "M20",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Folded into 'Robin just held block', no separate memory."
+    },
+    {
+      "moment_id": "M31",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "The feed said 'Robin danced on Kai' and Kai said delete the game."
+    },
+    {
+      "moment_id": "M04",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "44 sneak attack from behind: Robin's proudest moment and Kai's grudge."
+    },
+    {
+      "moment_id": "M42",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "negative",
+      "why": "No shop, no map, no unlocks; 'it's just this' is why it lasted twenty minutes."
+    },
+    {
+      "moment_id": "M08",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Launched to space into the pool with a record that names who you beat; loudest moment."
+    },
+    {
+      "moment_id": "M07",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Nothing in the pool and you can't fight in it."
+    },
+    {
+      "moment_id": "M05",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Climb times traded by tenths; Robin lost interest and nobody laughed."
+    },
+    {
+      "moment_id": "M06",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Surprise Iron Man landing after being kicked off the tower."
+    },
+    {
+      "moment_id": "M35",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": true,
+      "sentiment": "positive",
+      "why": "Both got 'left hanging' in the feed back to back; best shared laugh, then they nailed it."
+    },
+    {
+      "moment_id": "M33",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "No flex or griddy was a shrug."
+    },
+    {
+      "moment_id": "M34",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Dance stopping when you walk is invisible."
+    },
+    {
+      "moment_id": "M41",
+      "mentioned": true,
+      "retold_with_detail": true,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "'Fell off the world' line was funny but the minute of grey running is the punchline."
+    },
+    {
+      "moment_id": "M40",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Dummy just stood there."
+    },
+    {
+      "moment_id": "M17",
+      "mentioned": false,
+      "retold_with_detail": false,
+      "wants_to_do_again": false,
+      "sentiment": "neutral",
+      "why": "Kai set a dummy record with nobody watching and it felt like nothing."
+    }
+  ]
+}

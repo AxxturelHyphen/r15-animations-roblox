@@ -1,0 +1,76 @@
+{
+ "animation": "crouch_idle",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. All 52 iteration-0 ops applied with no skips or clamps and the render matches the dry run. Sheets 1-4: the soles are level and on the floor line in every side-view cell (lowest foot z -0.000 to +0.009, 0 penetration frames, foot drift 0.00 studs, so the feet stay pinned through the weight shift). The breathing now goes through the legs: hips drop 0.04 to F036 while knees fold 93 to 97 and the chest leans to 28 four frames later (compare F000 and F040 side views). The weight shift reads in the 3/4 view (hips toward the orange leg around F018, toward the blue around F054) with the chest tipping against it. The head looks left (F014) then right (F050, face visible in the side view on F040-F060), and the arms are no longer mirror copies. Whole-body speed stays between 1.85 and 3.35 deg/frame (was 0.04 at the seam), no dead holds, and F072 matches F000 with no seam metric. No regressions found. The motion is deliberately small, which suits a sneak idle. Only low-severity polish remains.",
+ "findings": [
+  {
+   "id": "cidle-r2-1-even-head-scan",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    14,
+    50
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "The head pans from +10 (F014) to -12 (F050) at an even rate with no pause at either side, so it reads as a slow sweep rather than a look, a hold and a look the other way. Holding the left look a few frames longer would sharpen it. Polish only.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 22,
+     "value": 9.5
+    }
+   ]
+  },
+  {
+   "id": "cidle-r2-2-rigid-hands",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    0,
+    72
+   ],
+   "bones": [
+    "LeftHand",
+    "RightHand"
+   ],
+   "observation": "The hands have no keys and stay locked to the forearms for the whole loop. A few degrees of wrist motion trailing the forearm breath would finish the arms.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftHand",
+     "ch": "rx",
+     "frame": 46,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 52,
+     "value": 5
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftHand",
+      "RightHand"
+     ],
+     "ch": "rx",
+     "mode": "loop_seam"
+    }
+   ]
+  }
+ ]
+}

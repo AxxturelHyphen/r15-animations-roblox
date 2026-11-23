@@ -1,0 +1,149 @@
+{
+ "animation": "death",
+ "iteration": 2,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 5,
+  "appeal": 6
+ },
+ "summary": "Not approved. What holds from earlier rounds: no part passes through the floor on any of the 51 frames, the held final pose is flat on the back and limp with every part within 0.03 studs of the ground, the limbs are staggered (lockstep 0, no twinning), and the fall now sits down before it rolls back. One medium problem remains, and it comes from my own round-1 and round-2 keys: from f28 to f36 the body is propped on a foot or on the head, so the hips and back hover 0.2-0.3 studs above the floor through the landing and only settle on f37-f38. The fix in this report (3 spine/head keys, 12 leg keys, plant_feet parts=all) is verified by an in-memory dry run on iter_2 but has not been applied or rendered; it should be treated as an open item until someone reviews the result. The f45-f50 dead hold is the intended final hold.",
+ "findings": [
+  {
+   "id": "death-hover-01",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    27,
+    37
+   ],
+   "bones": [
+    "LowerTorso",
+    "UpperTorso",
+    "Head",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "The sit-then-roll now reads in outline (hips sink over f24-f27, the back rolls down f28-f31, flat on f32, legs out by f37-f38) and nothing goes through the floor, but the body does not actually rest on the floor while it lands; it is propped up by one foot or by the head. Measured on iter_2: the pelvis never touches the ground between f28 and f36. Its lowest point is 0.20-0.26 studs up through the roll (f28-f31, resting on the left foot), and after the body is flat it is still 0.22-0.32 up at f32-f35 and 0.18 at f36, with the upper torso at 0.18-0.33 and the head 0.12-0.47 up at f33-f35; everything only reaches the floor on f37-f38. In the side view f33-f35 there is a visible strip of background under the whole lying body, which then sinks. So the impact frame has no contact (on f32 only the back of the head touches) and the corpse floats for about 5 frames. Two causes, both from my own earlier fixes: (1) the round-2 leg keys at f31 / f32 hold the knees 100 deg bent with the thighs only 40-48 deg up, so the shins point steeply down and, as the legs unfold toward f37 / f38, the left foot is pushed below the body and plant_feet lifts everything onto it; (2) the round-1 impact keys tip the chest (UpperTorso -3 at f32) and the head (rx -7 at f33) backward past flat, so the head becomes the lowest point and props the body up. Fix: let the feet leave the ground as the back goes down. Use slightly different sit keys at f27 / f28 so the hips land with the feet (solved so that hips and sole touch together), fold the knees up toward the chest on f31 / f32 (thigh -75 / -82, knee 92 / 98, so the shin is never steeper than the thigh and the feet are in the air), keep the chest at its resting 4 deg on f32 and the head-back key at -4 so the rebound and head bounce only go upward, then re-rest the body. Dry run on iter_2: the pelvis is on the floor from f28 to the end (lowest point 0.00-0.01 on every frame), the upper back arrives on f32 (0.00), the head touches on f32, bounces 0.08-0.16 over f33-f35 and settles, the feet stay 0.06-0.64 up until they drop on f36-f38, the final pose is unchanged, 0 penetration, 0 lockstep, self-overlap at most 0.10 studs in the fold, accel spikes down from 10 to 5.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 28,
+     "value": 6
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 32,
+     "value": 4
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 33,
+     "value": -4
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 27,
+     "value": -88
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 27,
+     "value": 102
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 27,
+     "value": 30
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 28,
+     "value": -84
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 28,
+     "value": 105
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 28,
+     "value": 27
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 31,
+     "value": -75
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 31,
+     "value": 92
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 31,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 32,
+     "value": -82
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 32,
+     "value": 98
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 32,
+     "value": 8
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 1,
+     "parts": "all"
+    }
+   ]
+  }
+ ]
+}

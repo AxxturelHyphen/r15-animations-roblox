@@ -1,0 +1,29 @@
+[death-sit-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 27, "value": -78}
+set_pose LeftUpperLeg.rx @ 27: -41.76 -> -78.00
+[death-sit-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 27, "value": 105}
+set_pose LeftLowerLeg.rx @ 27: 87.44 -> 105.00
+[death-sit-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 27, "value": 21}
+set_pose LeftFoot.rx @ 27: -41.76 -> 21.00
+[death-sit-01] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 31, "value": -40}
+set_pose LeftUpperLeg.rx @ 31: -30.00 -> -40.00
+[death-sit-01] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 31, "value": 100}
+set_pose LeftLowerLeg.rx @ 31: 60.00 -> 100.00
+[death-sit-01] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 31, "value": 30}
+set_pose LeftFoot.rx @ 31: -30.00 -> 30.00
+[death-sit-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 28, "value": -85}
+set_pose RightUpperLeg.rx @ 28: -39.45 -> -85.00
+[death-sit-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 28, "value": 106}
+set_pose RightLowerLeg.rx @ 28: 81.76 -> 106.00
+[death-sit-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 28, "value": 20}
+set_pose RightFoot.rx @ 28: -41.76 -> 20.00
+[death-sit-01] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 32, "value": -48}
+set_pose RightUpperLeg.rx @ 32: -40.00 -> -48.00
+[death-sit-01] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 32, "value": 100}
+set_pose RightLowerLeg.rx @ 32: 70.00 -> 100.00
+[death-sit-01] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 32, "value": 22}
+set_pose RightFoot.rx @ 32: -30.00 -> 22.00
+[death-sit-01] {"op": "plant_feet", "mode": "all", "step": 1, "parts": "all"}
+plant_feet [0,50] step 1 mode all: 51 keys, max correction 0.706 studs
+clamp LeftFoot.rx @ 21: -45.0 -> -45.0 (limit (-45, 55))
+clamp RightFoot.rx @ 22: -45.0 -> -45.0 (limit (-45, 55))
+applied 13 ops, skipped 0; saved work/death/iter_2.blend

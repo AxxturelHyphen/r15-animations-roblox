@@ -1,0 +1,95 @@
+[hf-hands-never-meet] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 10, "value": 22}
+set_pose UpperTorso.ry @ 10: 10.00 -> 22.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 10, "value": 5}
+set_pose UpperTorso.rx @ 10: 8.00 -> 5.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "UpperTorso", "ch": "ry", "frame": 16, "value": 12}
+set_pose UpperTorso.ry @ 16: 6.00 -> 12.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "Head", "ch": "rx", "frame": 10, "value": -10}
+set_pose Head.rx @ 10: -6.00 -> -10.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "Head", "ch": "ry", "frame": 10, "value": -14}
+set_pose Head.ry @ 10: -4.00 -> -14.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "Head", "ch": "rz", "frame": 10, "value": -8}
+set_pose Head.rz @ 10: 0.00 -> -8.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 10, "value": -113.5}
+set_pose RightUpperArm.rx @ 10: -125.00 -> -113.50
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 10, "value": 22}
+set_pose RightUpperArm.ry @ 10: 0.00 -> 22.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 10, "value": -28.5}
+set_pose RightUpperArm.rz @ 10: -10.00 -> -28.50
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 10, "value": -50}
+set_pose RightLowerArm.rx @ 10: -8.00 -> -50.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 10, "value": -35}
+set_pose RightHand.rx @ 10: -15.00 -> -35.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rx", "frame": 13, "value": -116.5}
+set_pose RightUpperArm.rx @ 13: -111.53 -> -116.50
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 13, "value": 28}
+set_pose RightUpperArm.ry @ 13: 20.66 -> 28.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 13, "value": -18}
+set_pose RightUpperArm.rz @ 13: -25.42 -> -18.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 22, "value": 6}
+set_pose RightUpperArm.ry @ 22: 12.77 -> 6.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 13, "value": -62}
+set_pose RightLowerArm.rx @ 13: -19.33 -> -62.00
+[hf-hands-never-meet] {"op": "set_pose", "bone": "RightHand", "ch": "rx", "frame": 13, "value": -12}
+set_pose RightHand.rx @ 13: -5.47 -> -12.00
+[hf-hands-never-meet] {"op": "smooth_transition", "bones": ["RightUpperArm", "RightLowerArm", "RightHand"], "ch": "rx", "mode": "remove_interior", "range": [13, 15]}
+remove_interior RightUpperArm.rx (13,15): removed 1 keys
+remove_interior RightLowerArm.rx (13,15): removed 1 keys
+remove_interior RightHand.rx (13,15): removed 1 keys
+[hf-windup-hand-in-head] {"op": "set_pose", "bone": "RightUpperArm", "ch": "rz", "frame": 6, "value": 10}
+set_pose RightUpperArm.rz @ 6: -30.00 -> 10.00
+[hf-windup-hand-in-head] {"op": "set_pose", "bone": "RightLowerArm", "ch": "rx", "frame": 6, "value": -95}
+set_pose RightLowerArm.rx @ 6: -70.00 -> -95.00
+[hf-feet-through-floor] {"op": "smooth_transition", "bones": ["LeftUpperLeg"], "ch": "rx", "mode": "remove_interior", "range": [11, 29]}
+remove_interior LeftUpperLeg.rx (11,29): removed 1 keys
+[hf-feet-through-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 6, "value": -20}
+set_pose LeftUpperLeg.rx @ 6: -5.00 -> -20.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 6, "value": 44}
+set_pose LeftLowerLeg.rx @ 6: 7.78 -> 44.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 6, "value": -24}
+set_pose LeftFoot.rx @ 6: 0.00 -> -24.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 10, "value": -5}
+set_pose LeftUpperLeg.rx @ 10: -12.00 -> -5.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 10, "value": 9}
+set_pose LeftLowerLeg.rx @ 10: 12.00 -> 9.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 10, "value": -4}
+set_pose LeftFoot.rx @ 10: -22.22 -> -4.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 6, "value": -18}
+set_pose RightUpperLeg.rx @ 6: 3.89 -> -18.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 6, "value": 40}
+set_pose RightLowerLeg.rx @ 6: 0.00 -> 40.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 6, "value": -22}
+set_pose RightFoot.rx @ 6: 0.00 -> -22.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 10, "value": -2}
+set_pose RightUpperLeg.rx @ 10: 6.00 -> -2.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 10, "value": 5}
+set_pose RightLowerLeg.rx @ 10: 37.04 -> 5.00
+[hf-feet-through-floor] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 10, "value": -3}
+set_pose RightFoot.rx @ 10: -20.37 -> -3.00
+[hf-slap-not-crisp] {"op": "set_easing", "bones": ["RightUpperArm", "RightLowerArm"], "ch": ["rx", "ry", "rz"], "range": [10, 10], "interpolation": "BEZIER", "handle": "VECTOR"}
+set_easing RightUpperArm.rx [10,10] BEZIER/VECTOR/AUTO on 1 keys
+set_easing RightUpperArm.ry [10,10] BEZIER/VECTOR/AUTO on 1 keys
+set_easing RightUpperArm.rz [10,10] BEZIER/VECTOR/AUTO on 1 keys
+set_easing RightLowerArm.rx [10,10] BEZIER/VECTOR/AUTO on 1 keys
+[hf-lockstep-keys] {"op": "offset_overlap", "bones": ["Head", "RightHand"], "offset": 1}
+offset_overlap Head.rx by +1 frames
+offset_overlap Head.ry by +1 frames
+offset_overlap Head.rz by +1 frames
+offset_overlap RightHand.rx by +1 frames
+[hf-lockstep-keys] {"op": "offset_overlap", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "offset": -1}
+offset_overlap LeftUpperLeg.rx by -1 frames
+offset_overlap LeftLowerLeg.rx by -1 frames
+offset_overlap LeftFoot.rx by -1 frames
+offset_overlap RightUpperLeg.rx by -1 frames
+offset_overlap RightLowerLeg.rx by -1 frames
+offset_overlap RightFoot.rx by -1 frames
+[hf-left-arm-passive] {"op": "scale_amplitude", "bones": ["LeftUpperArm"], "ch": "rx", "factor": 2, "pivot": "rest"}
+scale_amplitude LeftUpperArm.rx [0,30] x2 about rest
+[hf-left-arm-passive] {"op": "offset_overlap", "bones": ["LeftUpperArm"], "offset": 2}
+offset_overlap LeftUpperArm.rx by +2 frames
+offset_overlap LeftUpperArm.rz by +2 frames
+[hf-slap-not-crisp] {"op": "retime", "bones": "all", "range": [0, 6], "scale": 1.5, "ripple": true}
+retime bones=all [0,6] scale 1.5 shift +0 ripple=True -> frame_end 33
+[hf-feet-through-floor] {"op": "plant_feet", "range": [0, 33], "step": 1, "mode": "all"}
+plant_feet [0,33] step 1 mode all: 34 keys, max correction 0.040 studs
+applied 40 ops, skipped 0; saved work/high_five/iter_1.blend

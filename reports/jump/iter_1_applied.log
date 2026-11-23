@@ -1,0 +1,5 @@
+[jump-7-landing-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 22, "value": -0.08}
+set_pose LowerTorso.lz @ 22: -0.29 -> -0.08
+[jump-7-landing-slide] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 26, "value": -0.3}
+set_pose LowerTorso.lz @ 26: -0.38 -> -0.30
+applied 2 ops, skipped 0; saved work/jump/iter_2.blend

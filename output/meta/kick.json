@@ -1,0 +1,15 @@
+{
+ "name": "kick",
+ "iteration": 1,
+ "looped": false,
+ "priority": "Action",
+ "length": 1.0,
+ "authoredSpeed": null,
+ "markers": [
+  {
+   "name": "Hit",
+   "value": "",
+   "time": 0.3
+  }
+ ]
+}

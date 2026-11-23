@@ -1,0 +1,14 @@
+{
+ "animation": "salute",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The hand reaches the brow: on the F007-F032 hold the hand centre is at world (-1.02 to -1.05, 0.0, 4.82-4.83), fingertips against the right temple at brow height with a 0.02-0.04 stud gap to the head (was at jaw height, 0.11-0.15 inside the head and 0.18 inside the chest). It never enters the head on any half frame, including the F006-F008 arrival (gap 0.02-0.06) and the release, and the forearm is clear of the chest. Both views read clearly as a salute (F006-F033). The body comes to attention by F003-F004 before the hand lands at F006-F007, the elbow rebound at F008-F011 gives a contact accent, and the body holds attention until F034 while the arm leaves at F032. Residuals, left deliberately: the elbow sits above the shoulder because the R15 arm cannot reach the brow otherwise; dead_holds still reports F015-F024 (9 frames at 0.19-0.36 deg/frame), which is the slow breath in a hold that is meant to be crisp; lockstep 1 at F034 is the body relaxing together after the arm has gone; on the way up the hand arcs slightly above brow height (z 5.1 at F005) before settling down onto it.",
+ "findings": []
+}

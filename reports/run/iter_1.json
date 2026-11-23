@@ -1,0 +1,152 @@
+{
+ "animation": "run",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 6,
+  "appeal": 7
+ },
+ "summary": "Big improvement: no floor penetration (from 21 frames), a readable contact / absorb / push-off / flight sequence (F000, F003-F004, F006-F007, F008-F009), a 105 deg recovery, pumping elbows and no lockstep. One medium problem is left: the supporting foot skates during push-off and the root rises unevenly into the flight. Everything else is polish (knee accel of 11 deg/frame^2 at toe-off and contact is acceptable for a run).",
+ "findings": [
+  {
+   "id": "run-5-pushoff-skate",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    5,
+    9
+   ],
+   "bones": [
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "LowerTorso"
+   ],
+   "observation": "During push-off the planted toe slides back twice as fast as the rest of the stance: the contact point moves 0.19 studs/frame while the foot is flat (F001-F004 left, F011-F014 right) but 0.41 on F006/F016 and 0.25 on F007/F017 (metrics: stance speed std 0.059, 2 foot_slide_segments). The thigh sweeps 9 deg/frame from F005 to F007 while the foot also whips from 8 to 30 deg of pitch about the ankle. The root also rises unevenly (+0.09, +0.14, +0.05, +0.01 over F004-F008), and the trailing toe is only 0.05 above the floor on F008/F018, so the flight shows on a single frame per step. Fix: a shorter, slower hip extension through push-off (thigh 2 at frame 5, 17 at frame 7), a softer toe roll (ankle -21 at 6, -13 at 7), a slightly higher flight arc, and the stance root re-planted.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 5,
+     "value": 2
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 7,
+     "value": 17
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 7,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -21
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 7,
+     "value": -13
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 15,
+     "value": 2
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 17,
+     "value": 17
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 17,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -21
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 17,
+     "value": -13
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 8,
+     "value": 0.19
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 9,
+     "value": 0.12
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 18,
+     "value": 0.19
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 19,
+     "value": 0.12
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      7
+     ],
+     "step": 1,
+     "mode": "all"
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      10,
+      17
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  }
+ ]
+}

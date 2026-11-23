@@ -1,0 +1,41 @@
+{
+ "animation": "fall",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 7,
+  "timing": 7,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved. The arms now trace loops (hands swing about 1 stud forward and back as well as up and down), forearms, shins, head and feet are staggered, and the chest counter-twists; metrics are all 0 with overlap 1.0, the seam is closed and no parts intersect on any frame. It reads as a loose flailing fall on sheets F000-F024. One low polish item remains.",
+ "findings": [
+  {
+   "id": "fall-1-right-foot-snap",
+   "category": "timing",
+   "severity": "low",
+   "frames": [
+    0,
+    8
+   ],
+   "bones": [
+    "RightFoot"
+   ],
+   "observation": "RightFoot.rx goes 25 -> 38 in the first 4 frames and then takes 20 frames to drift back (curves.png), so the right foot flicks faster than anything else in the clip. It is below the pop threshold and hard to see at game distance. Moving the peak to frame 8 would even it out.",
+   "fix": [
+    {
+     "op": "retime",
+     "bones": "RightFoot",
+     "ch": "rx",
+     "range": [
+      4,
+      4
+     ],
+     "shift": 4,
+     "ripple": false
+    }
+   ]
+  }
+ ]
+}

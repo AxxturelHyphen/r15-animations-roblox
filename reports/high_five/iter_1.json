@@ -1,0 +1,53 @@
+{
+ "animation": "high_five",
+ "iteration": 1,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved: no high or medium issue remains, and iter_1 matches the iteration-0 dry run number for number (40 ops applied, 0 skipped, 33 frames, Clap on F013). Reviewed on both sheets and measured on iter_1.blend. Contact at the game's 3.7-stud spacing: on F013 the hand centre is at (x +0.07, 1.31 forward, z 4.76, head centre is 4.55); the two right hands just touch (they first meet at 3.73 studs, so at 3.7 they overlap by 0.01 studs, 0.1% of the hand volume) and neither hand reaches the partner's forearm or head on any frame. The slap is crisp: hand travel 0.40, 0.89, 1.09, 1.05 studs/frame on F010-F013, then 0.24 on F014 as it rebounds up and back. In the sheets it reads as intended: knees bend and the hand cocks behind the head F004-F009 (hand beside the head, 0% inside it on every wind-up frame), chest turns in and the hand lands in front of the face at head height F013, rebound F014-F017, arm drops F018-F030, neutral on F000 and F033. Floor: lowest foot point 0.000..+0.020 on all 34 frames, foot centres within 0.03 studs of their marks. Metrics: lockstep 0, overlap_score 1.0, penetration 0, slide 0, joint limits 0; the 7 accel spikes and 5 velocity corners are all the contact frame and the wrist snap, as designed. Brow graze on the rebound: confirmed and small. On F013-F018 the forearm and hand corners are inside the character's own head box by at most 0.10 studs (2.6% of sample points at worst, F015); in the 3/4 view the hand simply sits in front of the face and no intersection is visible. One optional polish finding below removes most of it, plus a 0.06-stud brush between the two lowering hands on F020; it is not needed for approval and was dry-run on iter_1 (contact pose, marker and all metrics unchanged).",
+ "findings": [
+  {
+   "id": "hf-rebound-brow-graze",
+   "category": "awkward_pose",
+   "severity": "low",
+   "frames": [
+    13,
+    20
+   ],
+   "bones": [
+    "Head",
+    "RightLowerArm",
+    "RightHand"
+   ],
+   "observation": "F013-F018: on the rebound the hand and forearm corners sit up to 0.10 studs inside the character's own head box (0.9% of sample points on F013, 2.0% F014, 2.6% F015, 1.7% F016, 1.2% F017, 0.3% F018). Not visible as clipping in the sheets, but it is a real intersection near the brow. F020: at 3.7 studs the two lowering hands brush each other (0.06 studs, 0.9% of the hand volume) because the arm drops with the elbow still opening. Optional fix: tip and tilt the head a little further away from the arm at its F014 key (rx -10 -> -16 = chin up, rz -8 -> -12 = tilt to its left) and keep the elbow 18 deg more bent on F021 so the hand comes back toward its owner before it drops. Dry run on iter_1: head overlap at most 0.9% of sample points and 0.07 deep on F013-F016, none from F017; no hand-to-hand contact after F014; contact on F013 unchanged (hand at 0.07, 1.31 forward, 4.76, hands meet at 3.73 studs), Clap still on F013, metrics unchanged.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 14,
+     "value": -16
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 14,
+     "value": -12
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 21,
+     "delta": -18
+    }
+   ]
+  }
+ ]
+}

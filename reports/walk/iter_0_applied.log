@@ -1,0 +1,122 @@
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 0, "value": 0}
+set_pose LeftFoot.rx @ 0: -15.00 -> 0.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 4, "value": 0}
+set_pose LeftFoot.rx @ 4: 0.00 -> 0.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 8, "value": -5}
+set_pose LeftFoot.rx @ 8: 3.89 -> -5.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 12, "value": -14}
+set_pose LeftFoot.rx @ 12: 5.00 -> -14.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 16, "value": -20}
+set_pose LeftFoot.rx @ 16: 15.00 -> -20.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 20, "value": -30}
+set_pose LeftFoot.rx @ 20: -14.37 -> -30.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 24, "value": -28}
+set_pose LeftFoot.rx @ 24: -5.00 -> -28.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 28, "value": -18}
+set_pose LeftFoot.rx @ 28: -12.50 -> -18.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 16, "value": 0}
+set_pose RightFoot.rx @ 16: -15.00 -> 0.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 20, "value": 0}
+set_pose RightFoot.rx @ 20: 0.00 -> 0.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 24, "value": -5}
+set_pose RightFoot.rx @ 24: 3.89 -> -5.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 28, "value": -14}
+set_pose RightFoot.rx @ 28: 5.00 -> -14.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 0, "value": -20}
+set_pose RightFoot.rx @ 0: 15.00 -> -20.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 4, "value": -30}
+set_pose RightFoot.rx @ 4: -14.37 -> -30.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 8, "value": -28}
+set_pose RightFoot.rx @ 8: -5.00 -> -28.00
+[walk-1-foot-roll] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 12, "value": -18}
+set_pose RightFoot.rx @ 12: -12.50 -> -18.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 24, "value": -30}
+set_pose LeftUpperLeg.rx @ 24: -10.00 -> -30.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 8, "value": -30}
+set_pose RightUpperLeg.rx @ 8: -10.00 -> -30.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 16, "value": 20}
+set_pose LeftLowerLeg.rx @ 16: 10.00 -> 20.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 20, "value": 68}
+set_pose LeftLowerLeg.rx @ 20: 40.00 -> 68.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 24, "value": 75}
+set_pose LeftLowerLeg.rx @ 24: 50.00 -> 75.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 28, "value": 52}
+set_pose LeftLowerLeg.rx @ 28: 15.00 -> 52.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 0, "value": 20}
+set_pose RightLowerLeg.rx @ 0: 10.00 -> 20.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 4, "value": 68}
+set_pose RightLowerLeg.rx @ 4: 40.00 -> 68.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 8, "value": 75}
+set_pose RightLowerLeg.rx @ 8: 50.00 -> 75.00
+[walk-2-swing-clearance] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 12, "value": 52}
+set_pose RightLowerLeg.rx @ 12: 15.00 -> 52.00
+[walk-3-foot-slide] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 4, "value": -15.5}
+set_pose LeftUpperLeg.rx @ 4: -16.91 -> -15.50
+[walk-3-foot-slide] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 20, "value": -15.5}
+set_pose RightUpperLeg.rx @ 20: -14.63 -> -15.50
+[walk-3-foot-slide] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 4, "value": 12}
+set_pose LeftLowerLeg.rx @ 4: 15.00 -> 12.00
+[walk-3-foot-slide] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 20, "value": 12}
+set_pose RightLowerLeg.rx @ 20: 15.00 -> 12.00
+[walk-3-foot-slide] {"op": "smooth_transition", "bones": ["LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"], "ch": "rx", "mode": "loop_seam"}
+loop_seam LeftUpperLeg.rx: closed + cyclic handles
+loop_seam LeftLowerLeg.rx: closed + cyclic handles
+loop_seam LeftFoot.rx: closed + cyclic handles
+loop_seam RightUpperLeg.rx: closed + cyclic handles
+loop_seam RightLowerLeg.rx: closed + cyclic handles
+loop_seam RightFoot.rx: closed + cyclic handles
+[walk-3-foot-slide] {"op": "set_easing", "bones": "LeftUpperLeg", "ch": "rx", "range": [0, 15], "interpolation": "LINEAR", "handle": "VECTOR"}
+set_easing LeftUpperLeg.rx [0,15] LINEAR/VECTOR/AUTO on 3 keys
+[walk-3-foot-slide] {"op": "set_easing", "bones": "RightUpperLeg", "ch": "rx", "range": [16, 31], "interpolation": "LINEAR", "handle": "VECTOR"}
+set_easing RightUpperLeg.rx [16,31] LINEAR/VECTOR/AUTO on 3 keys
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 8, "value": 0.07}
+set_pose LowerTorso.lx @ 8: 0.00 -> 0.07
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "lx", "frame": 24, "value": -0.07}
+set_pose LowerTorso.lx @ 24: 0.02 -> -0.07
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "rz", "frame": 8, "value": 2.5}
+set_pose LowerTorso.rz @ 8: 0.00 -> 2.50
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "LowerTorso", "ch": "rz", "frame": 24, "value": -2.5}
+set_pose LowerTorso.rz @ 24: 0.65 -> -2.50
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 10, "value": -2.5}
+set_pose UpperTorso.rz @ 10: 0.00 -> -2.50
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "UpperTorso", "ch": "rz", "frame": 26, "value": 2.5}
+set_pose UpperTorso.rz @ 26: -0.46 -> 2.50
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 8, "value": -5}
+set_pose LeftUpperLeg.rz @ 8: 0.00 -> -5.00
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rz", "frame": 24, "value": 5}
+set_pose LeftUpperLeg.rz @ 24: -1.30 -> 5.00
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 8, "value": -5}
+set_pose RightUpperLeg.rz @ 8: 0.00 -> -5.00
+[walk-4-no-weight-shift] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rz", "frame": 24, "value": 5}
+set_pose RightUpperLeg.rz @ 24: -1.30 -> 5.00
+[walk-4-no-weight-shift] {"op": "smooth_transition", "bones": ["LowerTorso", "UpperTorso", "LeftUpperLeg", "RightUpperLeg"], "ch": ["lx", "rz"], "mode": "loop_seam"}
+loop_seam LowerTorso.lx: closed + cyclic handles
+loop_seam LowerTorso.rz: closed + cyclic handles
+loop_seam UpperTorso.rz: closed + cyclic handles
+loop_seam LeftUpperLeg.rz: closed + cyclic handles
+loop_seam RightUpperLeg.rz: closed + cyclic handles
+[walk-5-lockstep] {"op": "smooth_transition", "bones": "UpperTorso", "ch": "rx", "range": [0, 32], "mode": "remove_interior"}
+remove_interior UpperTorso.rx (0,32): removed 1 keys
+[walk-5-lockstep] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 5, "value": 6}
+set_pose UpperTorso.rx @ 5: 4.00 -> 6.00
+[walk-5-lockstep] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 13, "value": 3}
+set_pose UpperTorso.rx @ 13: 5.58 -> 3.00
+[walk-5-lockstep] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 21, "value": 6}
+set_pose UpperTorso.rx @ 21: 3.38 -> 6.00
+[walk-5-lockstep] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 29, "value": 3}
+set_pose UpperTorso.rx @ 29: 4.37 -> 3.00
+[walk-5-lockstep] {"op": "smooth_transition", "bones": "UpperTorso", "ch": "rx", "mode": "loop_seam"}
+loop_seam UpperTorso.rx: closed + cyclic handles
+[walk-5-lockstep] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "ry", "offset": 1}
+offset_overlap UpperTorso.ry by +1 frames
+[walk-5-lockstep] {"op": "offset_overlap", "bones": ["LeftUpperArm", "RightUpperArm"], "ch": "rx", "offset": 1}
+offset_overlap LeftUpperArm.rx by +1 frames
+offset_overlap RightUpperArm.rx by +1 frames
+[walk-5-lockstep] {"op": "offset_overlap", "bones": ["LeftLowerArm", "RightLowerArm"], "ch": "rx", "offset": 3}
+offset_overlap LeftLowerArm.rx by +3 frames
+offset_overlap RightLowerArm.rx by +3 frames
+[walk-5-lockstep] {"op": "offset_overlap", "bones": "Head", "ch": "ry", "offset": 2}
+offset_overlap Head.ry by +2 frames
+[walk-6-root-height] {"op": "plant_feet", "range": [0, 32], "step": 1, "mode": "all"}
+plant_feet [0,32] step 1 mode all: 33 keys, max correction 0.087 studs
+applied 55 ops, skipped 0; saved work/walk/iter_1.blend

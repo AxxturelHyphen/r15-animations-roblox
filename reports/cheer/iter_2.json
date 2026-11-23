@@ -1,0 +1,14 @@
+{
+ "animation": "cheer",
+ "iteration": 2,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 7,
+  "appeal": 7
+ },
+ "summary": "Approved. All three iteration-1 problems are fixed. Crouch skate: foot centre y stays within -0.147..-0.176 for the whole clip and is flat at -0.15 through F000-F012 (was a 0.2-stud slide). Hover: lowest foot z is within +-0.001 on every frame, floating 0, penetration 0 (the LowerTorso.ly bump at F034-F036 is gone). Lockstep: overlap_score is 0.814; the chest now trails the hips by a frame. The head clipping stays fixed (closest forearm vertex 1.36 studs from the head centre on F025-F026; F019-F022 and F031-F035 show the forearms vertical outside the head). What the metrics still show is not a visible defect: the 2 lockstep frames (6 and 12) come from the per-frame arm keys the smoothing pass wrote on F006-F016 coinciding with the leg keys, not from parts stopping together; the 6 accel spikes (10-12.6, down from 15) and 6 small velocity corners are the 6-frame arm thrust, which should snap; the leg twinning is a symmetric two-footed crouch. Not changed, by design: the clip ends in the V pose as the spec asks, so it relies on the engine fade-out to return to idle.",
+ "findings": []
+}

@@ -1,0 +1,9 @@
+{
+ "name": "block",
+ "iteration": 2,
+ "looped": true,
+ "priority": "Action",
+ "length": 1.0,
+ "authoredSpeed": null,
+ "markers": []
+}

@@ -1,0 +1,37 @@
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "LeftUpperArm", "ch": "rx", "factor": 1.2, "pivot": "rest"}
+scale_amplitude LeftUpperArm.rx [0,40] x1.2 about rest
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rx", "factor": 1.2727, "pivot": "rest"}
+scale_amplitude RightUpperArm.rx [0,40] x1.2727 about rest
+[clap-hands-never-meet] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 4, "value": -11}
+set_pose LeftUpperArm.ry @ 4: 0.00 -> -11.00
+[clap-hands-never-meet] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 36, "value": -11}
+set_pose LeftUpperArm.ry @ 36: -0.38 -> -11.00
+[clap-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 4, "value": 12}
+set_pose RightUpperArm.ry @ 4: 0.00 -> 12.00
+[clap-hands-never-meet] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 36, "value": 12}
+set_pose RightUpperArm.ry @ 36: 0.41 -> 12.00
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "LeftUpperArm", "ch": "rz", "factor": 0, "pivot": 11, "range": [4, 36]}
+scale_amplitude LeftUpperArm.rz [4,36] x0 about 11
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": "rz", "factor": 0, "pivot": -8, "range": [4, 36]}
+scale_amplitude RightUpperArm.rz [4,36] x0 about -8
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "LeftLowerArm", "ch": "rx", "factor": 0.5, "pivot": -8}
+scale_amplitude LeftLowerArm.rx [0,40] x0.5 about -8
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "RightLowerArm", "ch": "rx", "factor": 0.3846, "pivot": -8}
+scale_amplitude RightLowerArm.rx [0,40] x0.3846 about -8
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "LeftLowerArm", "ch": "rz", "factor": 0.72, "pivot": -85, "range": [4, 36]}
+scale_amplitude LeftLowerArm.rz [4,36] x0.72 about -85
+[clap-hands-never-meet] {"op": "scale_amplitude", "bones": "RightLowerArm", "ch": "rz", "factor": 1.2, "pivot": -25, "range": [4, 36]}
+scale_amplitude RightLowerArm.rz [4,36] x1.2 about -25
+[clap-body-dead-under-arms] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 14, "value": 3.5}
+set_pose UpperTorso.rx @ 14: 5.00 -> 3.50
+[clap-body-dead-under-arms] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 19, "value": 6.5}
+set_pose UpperTorso.rx @ 19: 3.73 -> 6.50
+[clap-body-dead-under-arms] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 24, "value": 3.5}
+set_pose UpperTorso.rx @ 24: 6.44 -> 3.50
+[clap-body-dead-under-arms] {"op": "set_pose", "bone": "UpperTorso", "ch": "rx", "frame": 29, "value": 6.5}
+set_pose UpperTorso.rx @ 29: 4.25 -> 6.50
+[clap-body-dead-under-arms] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 1}
+offset_overlap Head.rx by +1 frames
+[clap-body-dead-under-arms] {"op": "smooth_transition", "bones": "LowerTorso", "ch": "ly", "mode": "remove_interior", "range": [0, 40]}
+remove_interior LowerTorso.ly (0,40): removed 3 keys
+applied 18 ops, skipped 0; saved work/clap/iter_1.blend

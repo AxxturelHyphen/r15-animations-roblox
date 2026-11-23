@@ -1,0 +1,13 @@
+[swim-1-shoulder-twist-snap] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 0, "value": 35}
+set_pose LeftUpperArm.ry @ 0: 0.00 -> 35.00
+[swim-1-shoulder-twist-snap] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 10, "value": 0}
+set_pose LeftUpperArm.ry @ 10: 17.50 -> 0.00
+[swim-1-shoulder-twist-snap] {"op": "set_pose", "bone": "LeftUpperArm", "ch": "ry", "frame": 20, "value": 35}
+set_pose LeftUpperArm.ry @ 20: 0.00 -> 35.00
+[swim-1-shoulder-twist-snap] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 0, "value": -35}
+set_pose RightUpperArm.ry @ 0: 0.00 -> -35.00
+[swim-1-shoulder-twist-snap] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 20, "value": -35}
+set_pose RightUpperArm.ry @ 20: 0.00 -> -35.00
+[swim-1-shoulder-twist-snap] {"op": "set_pose", "bone": "RightUpperArm", "ch": "ry", "frame": 30, "value": 0}
+set_pose RightUpperArm.ry @ 30: -35.00 -> 0.00
+applied 6 ops, skipped 0; saved work/swim/iter_2.blend

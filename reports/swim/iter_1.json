@@ -1,0 +1,73 @@
+{
+ "animation": "swim",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 8,
+  "timing": 7,
+  "transitions": 7,
+  "appeal": 7
+ },
+ "summary": "The stroke is now a real crawl. Verified on the rig: the recovering hand rises from 1.95 at the hip (F020) to 3.78 above the back (F030) and enters at about 3.2, while the other hand pulls underneath (0.30 at F030); the head/forearm intersections are gone (no intersections on any frame), the roll peaks mid-recovery and the breath holds. One regression from my own fix keeps it from approval: the shoulder twist that sets up the recovery snaps on and off.",
+ "findings": [
+  {
+   "id": "swim-1-shoulder-twist-snap",
+   "category": "transition",
+   "severity": "medium",
+   "frames": [
+    0,
+    40
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "RightUpperArm"
+   ],
+   "observation": "metrics: 8 accel spikes of 11-12 deg/frame^2, all on UpperArm.ry (left at frames 21, 24, 36, 39; right at 1, 4, 16, 19). The ry keys I added go 0 -> 85 in 5 frames at the start of each recovery and 85 -> 0 in 5 frames at entry (curves.png: a square-shouldered plateau). At those moments the arm lies along the body, so ry is almost pure twist: the square arm blocks spin about 85 deg in 5 frames as the hand leaves the hip and again as it enters (front view F020-F024 orange, F036-F039 orange; F000-F004 and F016-F019 blue). Fix: pre-load the twist. ry is set to +/-35 at the entry and exit keys (frames 0/40 and 20) and returned to 0 at the middle of the pull (left frame 10, right frame 30), so the fast part of the ramp shrinks from 85 to 50 deg. Dry-run on iteration 1: no accel spikes remain, no intersections on any frame, the recovery arc is unchanged (left hand 2.62 at F025, 3.78 at F030, 3.43 at F035), and the pull still passes under the body (hand x +0.90 at F010) with a slight outward sweep at catch and exit.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 0,
+     "value": 35
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 10,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "ry",
+     "frame": 20,
+     "value": 35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 0,
+     "value": -35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 20,
+     "value": -35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 30,
+     "value": 0
+    }
+   ]
+  }
+ ]
+}

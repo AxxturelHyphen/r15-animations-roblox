@@ -1,0 +1,55 @@
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 6, "value": -40}
+set_pose LeftFoot.rx @ 6: -30.00 -> -40.00
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 9, "value": 28}
+set_pose LeftFoot.rx @ 9: 40.00 -> 28.00
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 23, "value": -40}
+set_pose LeftFoot.rx @ 23: -30.00 -> -40.00
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 6, "value": -40}
+set_pose RightFoot.rx @ 6: -30.00 -> -40.00
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 9, "value": 28}
+set_pose RightFoot.rx @ 9: 40.00 -> 28.00
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 23, "value": -40}
+set_pose RightFoot.rx @ 23: -30.00 -> -40.00
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 6, "value": -0.36}
+set_pose LowerTorso.lz @ 6: -0.30 -> -0.36
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 9, "value": 0.2}
+set_pose LowerTorso.lz @ 9: 0.00 -> 0.20
+[jump-1-crouch-feet] {"op": "set_pose", "bone": "LowerTorso", "ch": "lz", "frame": 23, "value": -0.38}
+set_pose LowerTorso.lz @ 23: -0.25 -> -0.38
+[jump-2-tuck] {"op": "set_pose", "bone": "LeftUpperLeg", "ch": "rx", "frame": 13, "value": -52}
+set_pose LeftUpperLeg.rx @ 13: -40.00 -> -52.00
+[jump-2-tuck] {"op": "set_pose", "bone": "LeftLowerLeg", "ch": "rx", "frame": 13, "value": 96}
+set_pose LeftLowerLeg.rx @ 13: 80.00 -> 96.00
+[jump-2-tuck] {"op": "set_pose", "bone": "LeftFoot", "ch": "rx", "frame": 13, "value": 8}
+set_pose LeftFoot.rx @ 13: 20.00 -> 8.00
+[jump-2-tuck] {"op": "set_pose", "bone": "RightUpperLeg", "ch": "rx", "frame": 13, "value": -42}
+set_pose RightUpperLeg.rx @ 13: -40.00 -> -42.00
+[jump-2-tuck] {"op": "set_pose", "bone": "RightLowerLeg", "ch": "rx", "frame": 13, "value": 84}
+set_pose RightLowerLeg.rx @ 13: 80.00 -> 84.00
+[jump-2-tuck] {"op": "set_pose", "bone": "RightFoot", "ch": "rx", "frame": 13, "value": 12}
+set_pose RightFoot.rx @ 13: 20.00 -> 12.00
+[jump-2-tuck] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 14, "value": 0.35}
+set_pose LowerTorso.ly @ 14: 0.00 -> 0.35
+[jump-3-twinning-lockstep] {"op": "offset_overlap", "bones": ["LeftUpperArm", "RightUpperArm"], "ch": ["rx", "rz"], "offset": -1}
+offset_overlap LeftUpperArm.rx by -1 frames
+offset_overlap LeftUpperArm.rz by -1 frames
+offset_overlap RightUpperArm.rx by -1 frames
+offset_overlap RightUpperArm.rz by -1 frames
+[jump-3-twinning-lockstep] {"op": "scale_amplitude", "bones": "RightUpperArm", "ch": ["rx", "rz"], "factor": 0.92, "pivot": "rest"}
+scale_amplitude RightUpperArm.rx [0,30] x0.92 about rest
+scale_amplitude RightUpperArm.rz [0,30] x0.92 about rest
+[jump-3-twinning-lockstep] {"op": "offset_overlap", "bones": "LeftLowerArm", "ch": "rx", "offset": 1}
+offset_overlap LeftLowerArm.rx by +1 frames
+[jump-3-twinning-lockstep] {"op": "offset_overlap", "bones": "RightLowerArm", "ch": "rx", "offset": 2}
+offset_overlap RightLowerArm.rx by +2 frames
+[jump-3-twinning-lockstep] {"op": "offset_overlap", "bones": "UpperTorso", "ch": "rx", "offset": 1}
+offset_overlap UpperTorso.rx by +1 frames
+[jump-3-twinning-lockstep] {"op": "offset_overlap", "bones": "Head", "ch": "rx", "offset": 2}
+offset_overlap Head.rx by +2 frames
+[jump-4-landing-too-fast] {"op": "retime", "bones": "all", "range": [21, 23], "scale": 2, "ripple": true}
+retime bones=all [21,23] scale 2 shift +0 ripple=True -> frame_end 32
+[jump-5-takeoff-pop] {"op": "retime", "bones": "all", "range": [8, 9], "shift": 1, "ripple": true}
+retime bones=all [8,9] scale 1 shift +1 ripple=True -> frame_end 33
+[jump-6-plant] {"op": "plant_feet", "step": 1, "mode": "contact", "tolerance": 0.05}
+plant_feet [0,33] step 1 mode contact: 27 keys, max correction 0.465 studs
+applied 25 ops, skipped 0; saved work/jump/iter_1.blend

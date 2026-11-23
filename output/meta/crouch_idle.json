@@ -1,0 +1,9 @@
+{
+ "name": "crouch_idle",
+ "iteration": 1,
+ "looped": true,
+ "priority": "Idle",
+ "length": 2.4,
+ "authoredSpeed": null,
+ "markers": []
+}

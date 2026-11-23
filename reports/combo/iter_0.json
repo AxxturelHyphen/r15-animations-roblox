@@ -1,0 +1,436 @@
+{
+ "animation": "combo",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 5,
+  "timing": 4,
+  "transitions": 3,
+  "appeal": 5
+ },
+ "summary": "The choreography is right (jab, cross with hip turn, hook, recover to the start guard) and the torso twist is well layered, but the lower body is not attached to the ground: the legs never move, so the twisting pelvis drags both feet about 0.37 studs across the floor, and the rear foot is 0.33-0.46 studs under it for the whole clip. The punches ease into their hit frames instead of snapping and have no contact hold, and the head turns away from the target on the cross and the hook. All fixes keep the hits on frames 6, 16 and 30. Accel spikes on the forearms are the punches themselves and are intentional.",
+ "findings": [
+  {
+   "id": "combo-feet-01",
+   "category": "transition",
+   "severity": "high",
+   "frames": [
+    0,
+    48
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "Neither foot is grounded. (1) Penetration on all 49 frames: the rear right foot is keyed rx 0 on a shin that leans 25 deg back (thigh 15 + knee 10), so its toes point 25 deg down and sit 0.33 studs under the floor, 0.46 at f16 where the heel-lift key adds another 15 deg (the onion skin shows the blue foot below the ground line); the left foot is 0.09 under. (2) Both feet skate: the legs have motion_range 0 while LowerTorso.ry swings -5 / +15 / -20, so the rigid legs are carried round the root and the feet draw arcs on the floor - LeftFoot centre (0.50,-0.38) at f0 -> (0.58,-0.24) at f16 -> (0.34,-0.53) at f30, RightFoot (-0.50,0.48) -> (-0.62,0.38) -> (-0.31,0.62), about 0.37 studs each (watch the feet against the checker in the 3/4 cells f12-f30). Fix without losing the hip drive: counter-rotate both thighs on the pelvis-twist frames (UpperLeg ry = -LowerTorso ry) so the feet keep pointing forward, re-pose thigh/ankle so each ankle stays over its spot while its hip socket swings +/-0.13-0.17 studs (soles flat: thigh + knee + foot = 0 on the left; the rear foot keeps a 5 deg raised heel), and on the cross (f16) let the rear knee drive in with the heel 12 deg up instead of the toes going through the floor. Then lead the pelvis and legs by one frame so the hips start each punch, and re-ground the root. Dry run: 0 penetration frames, both feet within 0.03 studs of the floor on every frame, foot centres stay within 0.02 (left) / 0.05 (right) studs.",
+   "fix": [
+    {
+     "op": "offset_channel",
+     "bones": "RightFoot",
+     "ch": "rx",
+     "delta": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 6,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 6,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": -13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -18.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 16,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 16,
+     "value": -15
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 11
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 16,
+     "value": 32
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 16,
+     "value": -31
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 24,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 24,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": -13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -1.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 13.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 24,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -18.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "ry",
+     "frame": 30,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "ry",
+     "frame": 30,
+     "value": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": -9
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 9
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 30,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 30,
+     "value": -16
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "offset": -1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": "LowerTorso",
+     "ch": "ry",
+     "offset": -1
+    },
+    {
+     "op": "plant_feet",
+     "mode": "all",
+     "step": 2,
+     "parts": "feet"
+    }
+   ]
+  },
+  {
+   "id": "combo-snap-02",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    36
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm"
+   ],
+   "observation": "The three hits arrive soft. Each punch is a single eased Bezier segment that is slowest exactly where it should be fastest: the jab extends over all of f0-f6 and the elbow is already decelerating at f5 (f5, f6 and f7 look alike), the cross takes f11-f16, and the hook drifts out over f24-f30 (whole-body speed only 21-33 deg/frame, the slowest of the three). None of them holds its contact pose: the key on the hit frame is immediately followed by the retraction, so the pose the game fires its hit event on is on screen for one frame. Fix, keeping the hits on f6 / f16 / f30: a small coil at f3 and a straight (LINEAR) 3-frame extension for the jab; move the cross's wind-up key from f11 to f13 and the hook's from f24 to f27 so both travel in 3 frames; and add a one-to-two-frame contact hold after each hit (f7, f17, f32) before the arm comes back.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -46
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -116,
+     "interpolation": "LINEAR"
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 7,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 7,
+     "value": 0
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 7,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 17,
+     "value": -90
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 17,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 17,
+     "value": -7
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -85
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperArm",
+     "ch": "rz",
+     "frame": 32,
+     "value": 78
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 32,
+     "value": -90
+    },
+    {
+     "op": "set_easing",
+     "bones": "RightLowerArm",
+     "ch": "rx",
+     "range": [
+      11,
+      11
+     ],
+     "interpolation": "LINEAR",
+     "handle": "VECTOR"
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm"
+     ],
+     "range": [
+      11,
+      11
+     ],
+     "shift": 2,
+     "ripple": false
+    },
+    {
+     "op": "retime",
+     "bones": [
+      "LeftUpperArm",
+      "LeftLowerArm"
+     ],
+     "range": [
+      24,
+      24
+     ],
+     "shift": 3,
+     "ripple": false
+    }
+   ]
+  },
+  {
+   "id": "combo-head-03",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    6,
+    36
+   ],
+   "bones": [
+    "Head"
+   ],
+   "observation": "The head does not stay on the target. The body turns 40 deg left for the cross (LowerTorso 15 + UpperTorso 25 at f16) and 50 deg right for the hook (f30), but the head only counters by -20 / +25, so the face ends up 20 deg off to the left at f16 and 25 deg off to the right at f30 (3/4 cells f28-f33: the face has turned away from where the fist is going), and it does not counter the jab at all. Counter-rotate the neck by nearly the full body twist on each hit (Head ry opposite in sign to the torso ry) so the eyes stay forward while the shoulders turn underneath.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 6,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 16,
+     "value": -36
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 24,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 30,
+     "value": 46
+    }
+   ]
+  }
+ ]
+}

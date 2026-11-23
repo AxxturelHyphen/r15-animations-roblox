@@ -1,0 +1,14 @@
+{
+ "animation": "death",
+ "iteration": 3,
+ "verdict": "approved",
+ "scores": {
+  "fluidity": 8,
+  "posing": 8,
+  "timing": 8,
+  "transitions": 8,
+  "appeal": 7
+ },
+ "summary": "Approved, no findings. The hover is gone and iter_3 matches the dry run frame for frame. Measured on iter_3 (lowest point of each part per frame): the pelvis reaches the floor on f28 and stays there to the end (0.00 on f28-f35, 0.01 afterwards); the upper back rolls down behind it (0.34 at f28, 0.26, 0.18, 0.09, then 0.00 on f32); the head touches on f32 (0.01), bounces 0.08 / 0.16 / 0.14 over f33-f35 and settles by f38; the feet leave the ground as the back goes down (0.06-0.64 studs up on f29-f35) and drop on f36-f38. Nothing is below the floor on any of the 51 frames (body_penetration 0), and the held pose f38-f50 has every part within 0.03 studs of the ground. In the sheets the fall now reads as intended: recoil f0-f6, stagger and knee buckle f8-f23 with the weight on the right leg, hips dropping f24-f27, seated impact on f28, roll onto the back f28-f31 with the knees folding up, flat on f32 with a chest rebound and head bounce, legs flopping out f33-f38, head lolling to the side f38-f45, then the hold. There is no strip of background under the body in the side view at f32-f36 any more. Metrics: lockstep 0, overlap_score 1.0, no twinning, no joint-limit violations; the 5 accel spikes and 3 velocity corners are the two ground contacts (LowerTorso.ly at the seated impact on f24-f28, LowerTorso.rx and Head.rx as the back and head land on f32-f33) and read as impacts, not pops; the dead hold f45-f50 is the intended final hold. Below reporting level, left as is: the left foot rides 0.09-0.15 studs off the floor during f20-f27 while the right leg carries the buckle, the crouch is a little slow through f16-f23 (17-20 deg/frame), and the folded legs overlap the torso and each other by at most 0.10 studs on f27-f29. The spec's head turn is expressed as a sideways loll (Head rz) because any ry turn on a head lying flat buries a corner of the head in the floor.",
+ "findings": []
+}

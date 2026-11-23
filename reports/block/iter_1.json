@@ -1,0 +1,118 @@
+{
+ "animation": "block",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 5,
+  "timing": 7,
+  "transitions": 9,
+  "appeal": 6
+ },
+ "summary": "Round-1 fixes verified: the guard now covers the face, the hold breathes with staggered timing, the feet are planted with no penetration or slide, and the loop seam is clean. One medium problem remains, and it is a regression from my own re-pose: the hands and forearms intersect the head by up to 0.27 studs for the whole loop. One targeted re-pose moves the guard clear of the head.",
+ "findings": [
+  {
+   "id": "block-clip-01",
+   "category": "awkward_pose",
+   "severity": "medium",
+   "frames": [
+    0,
+    30
+   ],
+   "bones": [
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "RightUpperArm",
+    "RightLowerArm",
+    "Head"
+   ],
+   "observation": "Regression from my own round-1 guard. The forearms now cover the face (fixed: the 3/4 cells no longer show it), the loop breathes (dead_holds 0, speed 2-5.5 deg/frame, seam clean) and both feet sit on the floor (0 penetration frames). But the guard was pulled in too tight: a box-overlap check on iter_1 shows both hands 0.25-0.27 studs INSIDE the head (LeftHand deepest at f23, RightHand at f0) and the forearms 0.17-0.18 inside it, on every frame, and the forearms 0.19 into the chest. It is hidden in the 3/4 view because the hands are in front of the face, but in the side view f0-f30 the blue forearm is drawn across the front third of the head with no gap, and it will show from any in-game camera to the side or behind. Cause: the head (1.2 wide, pushed 0.5-0.6 studs forward by the 10-15 deg lean plus 10-13 deg nod) occupies the space the hands were placed in. Fix: move the guard forward and open it: raise the upper arms a little (rx more negative), use less inward swing (ry toward 0: left -30 -> -15, right 36 -> 15) and more inward roll of the forearms instead (left rz 20 -> 40, right -14 -> -30), open both elbows to -60 at rest / -65 at the peak of the breath, and ease the chin tuck by 3 deg. The offsets keep the breathing curves and their staggered timing. Dry run on iter_1: hand/forearm-to-head overlap gone (none above 0.03 studs), forearm-to-chest down to 0.06-0.09, hands 0.3 studs in front of the face at mouth-to-eye height so the eyes look over the guard, all metrics still 0, seam still clean.",
+   "fix": [
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperArm",
+     "ch": "rx",
+     "delta": -5
+    },
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperArm",
+     "ch": "ry",
+     "delta": 15
+    },
+    {
+     "op": "offset_channel",
+     "bones": "LeftUpperArm",
+     "ch": "rz",
+     "delta": 20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -60.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -60
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -65
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperArm",
+     "ch": "rx",
+     "delta": -11
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperArm",
+     "ch": "ry",
+     "delta": -21
+    },
+    {
+     "op": "offset_channel",
+     "bones": "RightUpperArm",
+     "ch": "rz",
+     "delta": -16
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 0,
+     "value": -60.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 3,
+     "value": -60
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 18,
+     "value": -65
+    },
+    {
+     "op": "offset_channel",
+     "bones": "Head",
+     "ch": "rx",
+     "delta": -3
+    }
+   ]
+  }
+ ]
+}

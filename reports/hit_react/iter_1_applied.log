@@ -1,0 +1,7 @@
+[hit-bob-01] {"op": "smooth_transition", "bones": "LowerTorso", "ch": "ly", "mode": "remove_interior", "range": [0, 20]}
+remove_interior LowerTorso.ly (0,20): removed 19 keys
+[hit-bob-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 0, "value": 0}
+set_pose LowerTorso.ly @ 0: 0.00 -> 0.00
+[hit-bob-01] {"op": "set_pose", "bone": "LowerTorso", "ch": "ly", "frame": 20, "value": 0}
+set_pose LowerTorso.ly @ 20: 0.00 -> 0.00
+applied 3 ops, skipped 0; saved work/hit_react/iter_2.blend

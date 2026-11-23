@@ -1,0 +1,56 @@
+{
+  "name": "R15AnimationForge",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "AnimationPack": {
+        "$path": "roblox/src/shared",
+        "KeyframeSequences": {
+          "$path": "output/rbxmx"
+        },
+        "Remotes": {
+          "$className": "Folder",
+          "Attack": {
+            "$className": "RemoteEvent"
+          },
+          "Block": {
+            "$className": "RemoteEvent"
+          },
+          "PlayAnimation": {
+            "$className": "RemoteEvent"
+          },
+          "Feedback": {
+            "$className": "RemoteEvent"
+          },
+          "State": {
+            "$className": "RemoteEvent"
+          },
+          "Social": {
+            "$className": "RemoteEvent"
+          }
+        }
+      }
+    },
+    "ServerScriptService": {
+      "AnimationPackServer": {
+        "$path": "roblox/src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "$path": "roblox/src/character"
+      },
+      "StarterPlayerScripts": {
+        "$path": "roblox/src/client"
+      }
+    },
+    "StarterPack": {
+      "$path": "roblox/src/tools"
+    },
+    "Workspace": {
+      "$properties": {
+        "PlayerCharacterDestroyBehavior": "Enabled"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+ "animation": "punch",
+ "iteration": 1,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 7,
+  "posing": 6,
+  "timing": 7,
+  "transitions": 7,
+  "appeal": 6
+ },
+ "summary": "Iteration-0 problems are fixed: no foot penetration, a readable coil at f4-5, a 3-frame strike (67/132/117 deg per frame) into a moving hold, fist at chin height, hips-chest-elbow now sequenced (overlap 1.0). The accel spikes and velocity corners are all on the strike start/stop (f5-9) and read as the intended snap, not pops. One regression blocks approval: the root now drifts upward and the whole character hovers through the strike.",
+ "findings": [
+  {
+   "id": "punch-float-01",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    4,
+    17
+   ],
+   "bones": [
+    "LowerTorso",
+    "RightFoot"
+   ],
+   "observation": "Both feet are off the floor on f4-17 (both_feet_airborne_frames; lowest foot z 0.11 at f4 rising to 0.27-0.28 at f11-13; visible gap under the feet in the side view f8-f15). LowerTorso ly climbs from -0.03 to +0.27 at f12 although the legs never move, so the correct height is constant: the per-frame value that grounds the lowest foot is -0.03 on every frame (within 0.04). This was introduced by the iteration-0 plant_feet pass (it reported a max correction of 0.104 but the keys ramp to +0.27), so plant_feet is not used here. The rear foot is also 0.07 above the floor at f0/f24 with the front foot grounded; 5 deg less ankle compensation puts its toe down.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": "LowerTorso",
+     "ch": "ly",
+     "mode": "remove_interior",
+     "range": [
+      0,
+      24
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 0,
+     "value": -0.03
+    },
+    {
+     "op": "set_pose",
+     "bone": "LowerTorso",
+     "ch": "ly",
+     "frame": 24,
+     "value": -0.03
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 0,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 8,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 24,
+     "value": -20
+    }
+   ]
+  }
+ ]
+}
