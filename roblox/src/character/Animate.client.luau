@@ -12,12 +12,17 @@ local UserInputService = game:GetService("UserInputService")
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local AnimationController = require(pack:WaitForChild("AnimationController"))
 local AnimationMeta = require(pack:WaitForChild("AnimationMeta"))
+local Feedback = require(pack:WaitForChild("Feedback"))
+local remotes = pack:WaitForChild("Remotes")
+local stateRemote = remotes:WaitForChild("State") :: RemoteEvent
+local socialRemote = remotes:WaitForChild("Social") :: RemoteEvent
 
 local character = script.Parent
 local humanoid = character:WaitForChild("Humanoid") :: Humanoid
 local controller = AnimationController.new(humanoid)
 
 local EMOTES: { [string]: boolean } = {
+	highfive = true, -- two-player: matched on the server (Social.server.luau)
 	wave = true,
 	dance = true,
 	cheer = true,
@@ -43,6 +48,15 @@ local standingWalkSpeed = humanoid.WalkSpeed
 local groundSpeed = 0
 local currentEmote: string? = nil
 local jumpStartedAt = -math.huge
+local fallStartY: number? = nil -- highest point of the current airborne stretch
+
+local rootPart = character:WaitForChild("HumanoidRootPart") :: BasePart
+
+local function airborneHeight(): number
+	local start = fallStartY
+	fallStartY = nil
+	return if start then start - rootPart.Position.Y else 0
+end
 
 -- Playback speed so the feet match the ground speed the cycle was authored for.
 local function cycleSpeed(name: string, speed: number): number
@@ -99,6 +113,7 @@ local function setCrouching(on: boolean)
 		return
 	end
 	crouching = on
+	stateRemote:FireServer("crouch", on)
 	if on then
 		stopEmote()
 	end
@@ -186,6 +201,41 @@ humanoid.Died:Connect(function()
 	controller:playAction("death", 0.1, 1)
 end)
 
+-- Track how far we fell: a big fall onto the ground gets a superhero landing, into water a splash.
+humanoid.StateChanged:Connect(function(_old: Enum.HumanoidStateType, new: Enum.HumanoidStateType)
+	if mode == "dead" then
+		return
+	end
+	if new == Enum.HumanoidStateType.Freefall or new == Enum.HumanoidStateType.Jumping then
+		local y = rootPart.Position.Y
+		if fallStartY == nil or y > (fallStartY :: number) then
+			fallStartY = y
+		end
+	elseif new == Enum.HumanoidStateType.Landed then
+		local height = airborneHeight()
+		if height >= Feedback.HEAVY_LANDING_STUDS then
+			controller:playAction("land_heavy", 0.05, 1)
+			socialRemote:FireServer("landing", height)
+		end
+	elseif new == Enum.HumanoidStateType.Swimming then
+		local height = airborneHeight()
+		if height > 2 then
+			socialRemote:FireServer("splash", height)
+		end
+	elseif new == Enum.HumanoidStateType.Running or new == Enum.HumanoidStateType.Climbing
+		or new == Enum.HumanoidStateType.Seated then
+		fallStartY = nil
+	end
+end)
+
+-- Keep the peak height updated while airborne (jumps rise before they fall).
+game:GetService("RunService").Heartbeat:Connect(function()
+	local start = fallStartY
+	if start and rootPart.Position.Y > start then
+		fallStartY = rootPart.Position.Y
+	end
+end)
+
 UserInputService.InputBegan:Connect(function(input: InputObject, processed: boolean)
 	if processed then
 		return
@@ -195,13 +245,60 @@ UserInputService.InputBegan:Connect(function(input: InputObject, processed: bool
 	end
 end)
 
+local EMOTE_LIST = "highfive (with a friend), wave, dance, cheer, point, laugh, clap, salute"
+
+local function systemMessage(text: string)
+	if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+		local channels = TextChatService:FindFirstChild("TextChannels")
+		local system = channels and channels:FindFirstChild("RBXSystem")
+		if system and system:IsA("TextChannel") then
+			system:DisplaySystemMessage(text)
+		end
+	else
+		pcall(function()
+			game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = text })
+		end)
+	end
+end
+
+-- Join a friend's dance in time: match the playback position of a nearby dancer.
+local function syncDance(track: AnimationTrack)
+	for _, other in workspace:GetDescendants() do
+		if other:IsA("Animator") and not other:IsDescendantOf(character) then
+			local model = other:FindFirstAncestorOfClass("Model")
+			local otherRoot = model and model:FindFirstChild("HumanoidRootPart")
+			if otherRoot and otherRoot:IsA("BasePart") and (otherRoot.Position - rootPart.Position).Magnitude <= 16 then
+				for _, t in other:GetPlayingAnimationTracks() do
+					if t.Animation and t.Animation.Name == "dance" then
+						track.TimePosition = t.TimePosition
+						return
+					end
+				end
+			end
+		end
+	end
+end
+
 local function playEmote(name: string)
-	if not EMOTES[name] or mode ~= "ground" or groundSpeed > MOVE_THRESHOLD or crouching then
+	if not EMOTES[name] then
+		systemMessage(`No emote called "{name}". Try: {EMOTE_LIST}`)
+		return
+	end
+	if mode ~= "ground" or groundSpeed > MOVE_THRESHOLD or crouching then
 		return
 	end
 	stopEmote()
-	if controller:playAction(name, 0.2, 1) then
+	if name == "highfive" then
+		socialRemote:FireServer("emote", name) -- the server matches two players and plays it on both
+		return
+	end
+	local track = controller:playAction(name, 0.2, 1)
+	if track then
 		currentEmote = name
+		if name == "dance" then
+			syncDance(track)
+		end
+		socialRemote:FireServer("emote", name) -- taunts after a KO, dance parties
 	end
 end
 

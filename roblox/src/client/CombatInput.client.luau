@@ -14,6 +14,7 @@ local UserInputService = game:GetService("UserInputService")
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local AnimationController = require(pack:WaitForChild("AnimationController"))
 local AnimationMeta = require(pack:WaitForChild("AnimationMeta"))
+local Feedback = require(pack:WaitForChild("Feedback"))
 local remotes = pack:WaitForChild("Remotes")
 local attackRemote = remotes:WaitForChild("Attack") :: RemoteEvent
 local blockRemote = remotes:WaitForChild("Block") :: RemoteEvent
@@ -84,6 +85,9 @@ local function attack(s: CharacterState, name: string)
 	end
 	wireMarkers(track, name)
 	s.controller:playAction(name, 0.08, 1)
+	if name == "sword_slash" then
+		Feedback.playSound("slash")
+	end
 	local meta = AnimationMeta[name]
 	s.busyUntil = os.clock() + (if meta then meta.length * 0.8 else 0.6)
 end
@@ -158,6 +162,11 @@ local function onCharacter(character: Model)
 	}
 	humanoid.Died:Connect(function()
 		state = nil
+	end)
+	character.ChildAdded:Connect(function(child)
+		if child:IsA("Tool") and child.Name == "Sword" then
+			Feedback.playSound("unsheath")
+		end
 	end)
 end
 

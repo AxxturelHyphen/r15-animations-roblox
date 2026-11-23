@@ -18,6 +18,15 @@
           },
           "PlayAnimation": {
             "$className": "RemoteEvent"
+          },
+          "Feedback": {
+            "$className": "RemoteEvent"
+          },
+          "State": {
+            "$className": "RemoteEvent"
+          },
+          "Social": {
+            "$className": "RemoteEvent"
           }
         }
       }

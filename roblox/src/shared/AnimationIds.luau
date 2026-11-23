@@ -35,6 +35,9 @@ local AnimationIds: { [string]: number } = {
 	laugh = 0,
 	clap = 0,
 	salute = 0,
+	-- social / juice
+	high_five = 0,
+	land_heavy = 0,
 }
 
 return AnimationIds

@@ -20,6 +20,8 @@ MARKERS = {
         ("Hit3", ("extreme", "LeftUpperArm", "rz", "max", (0.5, 0.8))),
     ],
     "sword_slash": [("Hit", ("speed_peak", "RightUpperArm", "rx", (0.25, 0.6)))],
+    "high_five": [("Clap", ("extreme", "RightLowerArm", "rx", "max", (0.2, 0.45)))],
+    "land_heavy": [("Impact", ("extreme", "LowerTorso", "ly", "min", (0.0, 0.3)))],
     "walk": [("Footstep", ("footsteps",))],
     "run": [("Footstep", ("footsteps",))],
     "crouch_walk": [("Footstep", ("footsteps",))],

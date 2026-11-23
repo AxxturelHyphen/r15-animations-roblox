@@ -17,6 +17,7 @@ ALL_ANIMATIONS = [
     "block", "kick", "combo", "death",
     "point", "laugh", "clap", "salute",
     "crouch_idle", "crouch_walk",
+    "high_five", "land_heavy",
 ]
 SETS = {
     "locomotion": ["idle", "walk", "run", "jump"],
@@ -26,6 +27,7 @@ SETS = {
     "combat_2": ["block", "kick", "combo", "death"],
     "emotes_2": ["point", "laugh", "clap", "salute"],
     "crouch": ["crouch_idle", "crouch_walk"],
+    "social": ["high_five", "land_heavy"],
 }
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORK = os.path.join(ROOT, "work")

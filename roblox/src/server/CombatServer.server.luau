@@ -9,15 +9,22 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local AnimationMeta = require(pack:WaitForChild("AnimationMeta"))
+local Feedback = require(pack:WaitForChild("Feedback"))
 local ReplicatedPlay = require(pack:WaitForChild("ReplicatedPlay"))
+local GameState = require(script.Parent:WaitForChild("GameState"))
 local remotes = pack:WaitForChild("Remotes")
 local attackRemote = remotes:WaitForChild("Attack") :: RemoteEvent
 local blockRemote = remotes:WaitForChild("Block") :: RemoteEvent
+local stateRemote = remotes:WaitForChild("State") :: RemoteEvent
+local feedbackRemote = remotes:WaitForChild("Feedback") :: RemoteEvent
 
-type HitSpec = { damage: number, range: number, width: number }
+-- knockback: horizontal studs/s away from the attacker, plus lift (studs/s up). Kicks and the combo finisher
+-- launch people, so you can kick a friend off the tower or into the pool.
+type HitSpec = { damage: number, range: number, width: number, knockback: number?, lift: number?, heavy: boolean? }
 
 -- Keyed by animation, then hit marker (markers come from animations/markers.py).
 local ATTACKS: { [string]: { [string]: HitSpec } } = {
@@ -25,22 +32,26 @@ local ATTACKS: { [string]: { [string]: HitSpec } } = {
 	combo = {
 		Hit1 = { damage = 7, range = 4.5, width = 4 },
 		Hit2 = { damage = 9, range = 4.5, width = 4 },
-		Hit3 = { damage = 14, range = 4.5, width = 5 },
+		Hit3 = { damage = 14, range = 4.5, width = 5, knockback = 38, lift = 22, heavy = true },
 	},
-	kick = { Hit = { damage = 15, range = 5.5, width = 4 } },
-	sword_slash = { Hit = { damage = 22, range = 7, width = 6 } },
+	kick = { Hit = { damage = 15, range = 5.5, width = 4, knockback = 52, lift = 28, heavy = true } },
+	sword_slash = { Hit = { damage = 22, range = 7, width = 6, knockback = 18, lift = 8, heavy = true } },
 }
 local SWORD_ONLY = { sword_slash = true }
 local MIN_ATTACK_GAP = 0.18 -- seconds between two attack starts, whatever the attack
 local MARKER_TOLERANCE = 0.3 -- seconds of latency slack around each marker's expected time
 local COMBO_UPGRADE_WINDOW = 0.6 -- a punch may be cancelled into the combo this soon after it starts
 local BLOCK_DAMAGE_FACTOR = 0.2
+local PARRY_WINDOW = 0.25 -- raising the guard this soon before a hit parries it
+local SNEAK_MULTIPLIER = 2
 
 type AttackState = { animation: string, startedAt: number, nextMarker: number }
 
 local current: { [Player]: AttackState } = {}
 local lastStart: { [Player]: number } = {}
 local blocking: { [Model]: true } = {}
+local blockStartedAt: { [Model]: number } = {}
+local crouching: { [Player]: boolean } = {}
 
 local function hitMarkers(animation: string): { { name: string, time: number } }
 	local meta = AnimationMeta[animation]
@@ -145,10 +156,75 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 		end
 	end
 	for victim, model in victims do
+		local victimRoot = model:FindFirstChild("HumanoidRootPart")
+		local victimPlayer = Players:GetPlayerFromCharacter(model)
+		local contact = if victimRoot and victimRoot:IsA("BasePart")
+			then victimRoot.Position:Lerp(root.Position, 0.35) + Vector3.new(0, 1, 0)
+			else root.Position + root.CFrame.LookVector * 2
 		local isBlocking = blocking[model] == true
-		victim:TakeDamage(if isBlocking then spec.damage * BLOCK_DAMAGE_FACTOR else spec.damage)
-		if not isBlocking and victim.Health > 0 then
+		local isParry = isBlocking and os.clock() - (blockStartedAt[model] or -math.huge) <= PARRY_WINDOW
+		local isSneak = false
+		if crouching[player] and victimRoot and victimRoot:IsA("BasePart") then
+			-- Behind the victim: the attacker is on the opposite side of where the victim faces.
+			local toAttacker = (root.Position - victimRoot.Position) * Vector3.new(1, 0, 1)
+			if toAttacker.Magnitude > 0.1 and victimRoot.CFrame.LookVector:Dot(toAttacker.Unit) < -0.3 then
+				isSneak = true
+			end
+		end
+
+		local kind: Feedback.HitKind = if isParry then "parry"
+			elseif isBlocking then "blocked"
+			elseif isSneak then "sneak"
+			elseif spec.heavy then "heavy"
+			else "normal"
+		local damage = if isParry then 0
+			elseif isBlocking then spec.damage * BLOCK_DAMAGE_FACTOR
+			elseif isSneak then spec.damage * SNEAK_MULTIPLIER
+			else spec.damage
+
+		if damage > 0 then
+			GameState.tagHit(victim, player, if isSneak then "sneak" else animationName)
+			if victimPlayer == nil and model.Name == "TrainingDummy" then
+				GameState.onDummyDamage(player, damage)
+			end
+			victim:TakeDamage(damage)
+		end
+		feedbackRemote:FireAllClients("hit", {
+			position = contact,
+			amount = math.floor(damage + 0.5),
+			kind = kind,
+			attacker = character,
+			victim = model,
+		})
+
+		if isParry then
+			-- The attacker is thrown off balance.
+			ReplicatedPlay.action(humanoid, "hit_react")
+			current[player] = nil
+		elseif not isBlocking and victim.Health > 0 then
 			ReplicatedPlay.action(victim, "hit_react")
+			local push = spec.knockback
+			if push and victimRoot and victimRoot:IsA("BasePart") then
+				local away = (victimRoot.Position - root.Position) * Vector3.new(1, 0, 1)
+				local dir = if away.Magnitude > 0.1 then away.Unit else root.CFrame.LookVector
+				local velocity = dir * push + Vector3.new(0, spec.lift or 0, 0)
+				if victimPlayer then
+					-- Player characters are simulated by their own client, so it applies the push.
+					feedbackRemote:FireClient(victimPlayer, "knockback", { velocity = velocity })
+				else
+					-- Server-owned NPC: hold the velocity briefly so the Humanoid doesn't brake it to zero.
+					local started = os.clock()
+					local connection: RBXScriptConnection
+					connection = RunService.Heartbeat:Connect(function()
+						local t = os.clock() - started
+						if t > 0.3 or not victimRoot.Parent then
+							connection:Disconnect()
+							return
+						end
+						victimRoot.AssemblyLinearVelocity = velocity - Vector3.new(0, workspace.Gravity * t, 0)
+					end)
+				end
+			end
 		end
 	end
 end)
@@ -159,9 +235,20 @@ blockRemote.OnServerEvent:Connect(function(player: Player, active: unknown)
 		return
 	end
 	if active then
+		if not blocking[character] then
+			blockStartedAt[character] = os.clock()
+		end
 		blocking[character] = true
 	else
 		blocking[character] = nil
+	end
+end)
+
+-- Clients report crouch (for sneak attacks). Worst case a cheater claims to crouch: that still requires
+-- hitting the target from behind, which the server checks.
+stateRemote.OnServerEvent:Connect(function(player: Player, key: unknown, value: unknown)
+	if key == "crouch" and typeof(value) == "boolean" then
+		crouching[player] = value
 	end
 end)
 
@@ -197,7 +284,9 @@ local function onPlayer(player: Player)
 	end)
 	player.CharacterRemoving:Connect(function(character)
 		blocking[character] = nil
+		blockStartedAt[character] = nil
 		current[player] = nil
+		crouching[player] = nil
 	end)
 	if player.Character then
 		task.spawn(onCharacter, player, player.Character)
@@ -212,6 +301,7 @@ end
 Players.PlayerRemoving:Connect(function(player: Player)
 	current[player] = nil
 	lastStart[player] = nil
+	crouching[player] = nil
 	if player.Character then
 		blocking[player.Character] = nil
 	end
