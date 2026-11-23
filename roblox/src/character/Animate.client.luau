@@ -109,8 +109,8 @@ local function crouchWalkSpeed(): number
 end
 
 local function setCrouching(on: boolean)
-	if on and mode ~= "ground" then
-		return
+	if on == crouching or (on and mode ~= "ground") then
+		return -- unchanged: no remote spam from Climbing/Swimming events
 	end
 	crouching = on
 	stateRemote:FireServer("crouch", on)
@@ -261,15 +261,18 @@ local function systemMessage(text: string)
 	end
 end
 
--- Join a friend's dance in time: match the playback position of a nearby dancer.
+-- Join a friend's dance in time: match the playback position of a nearby player who is dancing.
 local function syncDance(track: AnimationTrack)
-	for _, other in workspace:GetDescendants() do
-		if other:IsA("Animator") and not other:IsDescendantOf(character) then
-			local model = other:FindFirstAncestorOfClass("Model")
-			local otherRoot = model and model:FindFirstChild("HumanoidRootPart")
-			if otherRoot and otherRoot:IsA("BasePart") and (otherRoot.Position - rootPart.Position).Magnitude <= 16 then
-				for _, t in other:GetPlayingAnimationTracks() do
-					if t.Animation and t.Animation.Name == "dance" then
+	local danceId = track.Animation and track.Animation.AnimationId
+	for _, other in Players:GetPlayers() do
+		local model = other.Character
+		if model and model ~= character then
+			local otherRoot = model:FindFirstChild("HumanoidRootPart")
+			local otherHumanoid = model:FindFirstChildOfClass("Humanoid")
+			local animator = otherHumanoid and otherHumanoid:FindFirstChildOfClass("Animator")
+			if animator and otherRoot and otherRoot:IsA("BasePart") and (otherRoot.Position - rootPart.Position).Magnitude <= 16 then
+				for _, t in animator:GetPlayingAnimationTracks() do
+					if t.Animation and t.Animation.AnimationId == danceId then
 						track.TimePosition = t.TimePosition
 						return
 					end

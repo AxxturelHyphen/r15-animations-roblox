@@ -50,6 +50,11 @@ local function sign(name: string, cframe: CFrame, size: Vector2, text: string, t
 	label.TextColor3 = Color3.fromRGB(240, 240, 245)
 	label.Font = Enum.Font.GothamBold
 	label.TextSize = textSize
+	label.TextScaled = true -- shrink to fit, up to textSize
+	local limit = Instance.new("UITextSizeConstraint")
+	limit.MaxTextSize = textSize
+	limit.MinTextSize = 10
+	limit.Parent = label
 	label.TextWrapped = true
 	label.TextXAlignment = Enum.TextXAlignment.Left
 	label.TextYAlignment = Enum.TextYAlignment.Top
@@ -90,11 +95,11 @@ if spawnLocation == nil then
 	s.Parent = arena
 end
 
--- Signs face the spawn (their Front face points toward +Z, where players arrive from).
-sign("ControlsSign", CFrame.new(-8, 4, 8) * CFrame.Angles(0, math.rad(200), 0), Vector2.new(9, 6),
+-- Signs face the spawn: a part's Front face is its -Z side, which CFrame.lookAt points at the target.
+sign("ControlsSign", CFrame.lookAt(Vector3.new(-8, 4, 8), Vector3.new(0, 4, 0)), Vector2.new(9, 6),
 	"CONTROLS\nClick: punch (click again fast: combo)\nQ: kick (knocks people flying)\nHold F: block (tap right before a hit: PARRY)\nC: crouch (hit from behind: SNEAK ATTACK x2)\n1: sword\n/e highfive with a friend, /e dance, laugh, ...",
 	26)
-local boardLabel = sign("RecordsBoard", CFrame.new(8, 4, 8) * CFrame.Angles(0, math.rad(160), 0), Vector2.new(9, 6), "RECORDS", 28)
+local boardLabel = sign("RecordsBoard", CFrame.lookAt(Vector3.new(8, 4, 8), Vector3.new(0, 4, 0)), Vector2.new(9, 6), "RECORDS", 28)
 GameState.setBoard(boardLabel)
 
 -- Climb race: touch the start pad, climb, ring the bell ------------------------------------------
@@ -112,8 +117,13 @@ bell.Shape = Enum.PartType.Ball
 bell.Material = Enum.Material.Metal
 
 local climbStart: { [Player]: number } = {}
+local MIN_CLIMB_SECONDS = 1.8 -- faster than physically possible on a 24-stud truss
+local function playerFromPart(hit: BasePart): Player?
+	local model = hit:FindFirstAncestorOfClass("Model")
+	return if model then Players:GetPlayerFromCharacter(model) else nil
+end
 startPad.Touched:Connect(function(hit)
-	local player = Players:GetPlayerFromCharacter(hit.Parent)
+	local player = playerFromPart(hit)
 	if player and climbStart[player] == nil then
 		climbStart[player] = os.clock()
 		GameState.announce("Climb race! Ring the bell at the top", player)
@@ -122,13 +132,24 @@ startPad.Touched:Connect(function(hit)
 	end
 end)
 bell.Touched:Connect(function(hit)
-	local player = Players:GetPlayerFromCharacter(hit.Parent)
+	local player = playerFromPart(hit)
 	local started = player and climbStart[player]
-	if player and started then
-		climbStart[player] = nil
-		feedbackRemote:FireAllClients("sound", { name = "record", position = bell.Position })
-		GameState.submit("climb", player, os.clock() - started)
+	if player == nil or started == nil then
+		return
 	end
+	-- Server-side checks: really at the bell, and not impossibly fast.
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	local elapsed = os.clock() - started
+	if root == nil or not root:IsA("BasePart") or (root.Position - bell.Position).Magnitude > 6 or elapsed < MIN_CLIMB_SECONDS then
+		return
+	end
+	climbStart[player] = nil
+	feedbackRemote:FireAllClients("sound", { name = "record", position = bell.Position })
+	GameState.submit("climb", player, elapsed)
+end)
+Players.PlayerRemoving:Connect(function(player: Player)
+	climbStart[player] = nil
 end)
 
 -- Pool with a splash zone ---------------------------------------------------------------------
@@ -162,7 +183,8 @@ local launchPrompt = prompt(lever, "Launch!", "Bench")
 local LAUNCH_FLIGHT_TIME = 1.4 -- seconds to the pool centre; peaks about 49 studs up
 launchPrompt.Triggered:Connect(function(puller: Player)
 	local occupant = seat.Occupant
-	local rider = occupant and Players:GetPlayerFromCharacter(occupant.Parent)
+	local riderModel = occupant and occupant:FindFirstAncestorOfClass("Model")
+	local rider = riderModel and Players:GetPlayerFromCharacter(riderModel)
 	if occupant == nil or rider == nil then
 		GameState.announce("Someone has to sit on the bench first", puller)
 		return
@@ -171,6 +193,11 @@ launchPrompt.Triggered:Connect(function(puller: Player)
 	if root == nil or not root:IsA("BasePart") then
 		return
 	end
+	-- Disable the seat for the launch so the rider isn't re-seated before the push arrives.
+	seat.Disabled = true
+	task.delay(2.5, function()
+		seat.Disabled = false
+	end)
 	local weld = seat:FindFirstChild("SeatWeld")
 	if weld then
 		weld:Destroy()
@@ -208,8 +235,13 @@ local function spawnDummy()
 	humanoid.NameDisplayDistance = 60
 	dummy:PivotTo(DUMMY_CFRAME)
 	dummy.Parent = arena
+	local dummyRoot = dummy:FindFirstChild("HumanoidRootPart")
+	if dummyRoot and dummyRoot:IsA("BasePart") then
+		-- Keep physics on the server, so server-side knockback isn't overwritten by a nearby client.
+		dummyRoot:SetNetworkOwner(nil)
+	end
 	currentDummy = humanoid
-	GameState.watch(humanoid, "the Training Dummy")
+	GameState.watch(humanoid, "the Training Dummy", false)
 	ReplicatedPlay.base(humanoid, "idle")
 	humanoid.Died:Connect(function()
 		ReplicatedPlay.action(humanoid, "death", true)
@@ -225,7 +257,26 @@ local challengePrompt = prompt(challengePad, "10 s damage challenge", "Training 
 challengePrompt.Triggered:Connect(function(player: Player)
 	local dummy = currentDummy
 	if dummy and dummy.Parent and dummy.Health > 0 then
-		GameState.startChallenge(player, dummy)
+		GameState.startChallenge(player, function()
+			return currentDummy
+		end)
+	end
+end)
+
+-- Kicks knock the dummy away; walk it back home once it has settled for a moment.
+task.spawn(function()
+	while arena.Parent do
+		task.wait(1)
+		local dummy = currentDummy
+		local model = dummy and dummy.Parent
+		local root = model and model:FindFirstChild("HumanoidRootPart")
+		if dummy and dummy.Health > 0 and model and model:IsA("Model") and root and root:IsA("BasePart") then
+			local lastHit = dummy:GetAttribute("LastHitAt")
+			local settled = typeof(lastHit) ~= "number" or os.clock() - lastHit > 2
+			if settled and (root.Position - DUMMY_CFRAME.Position).Magnitude > 3 then
+				model:PivotTo(DUMMY_CFRAME)
+			end
+		end
 	end
 end)
 

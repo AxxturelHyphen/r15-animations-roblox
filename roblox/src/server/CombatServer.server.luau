@@ -43,6 +43,8 @@ local MARKER_TOLERANCE = 0.3 -- seconds of latency slack around each marker's ex
 local COMBO_UPGRADE_WINDOW = 0.6 -- a punch may be cancelled into the combo this soon after it starts
 local BLOCK_DAMAGE_FACTOR = 0.2
 local PARRY_WINDOW = 0.25 -- raising the guard this soon before a hit parries it
+local PARRY_COOLDOWN = 1.0 -- only one parry-eligible guard raise per second (no toggle-spam parries)
+local MAX_SNEAK_SPEED = 5 -- studs/s: sneak attacks need real crouch speed (WalkSpeed isn't replicated)
 local SNEAK_MULTIPLIER = 2
 
 type AttackState = { animation: string, startedAt: number, nextMarker: number }
@@ -51,6 +53,9 @@ local current: { [Player]: AttackState } = {}
 local lastStart: { [Player]: number } = {}
 local blocking: { [Model]: true } = {}
 local blockStartedAt: { [Model]: number } = {}
+local parryEligible: { [Model]: boolean } = {}
+local parryReadyAt: { [Model]: number } = {}
+local lastBlockToggle: { [Player]: number } = {}
 local crouching: { [Player]: boolean } = {}
 
 local function hitMarkers(animation: string): { { name: string, time: number } }
@@ -133,6 +138,11 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 	if root == nil or not root:IsA("BasePart") then
 		return
 	end
+	-- Attacking ends your own spawn shield.
+	local ownShield = character:FindFirstChildOfClass("ForceField")
+	if ownShield then
+		ownShield:Destroy()
+	end
 	local tool = character:FindFirstChildOfClass("Tool")
 	local holdingSword = tool ~= nil and tool.Name == "Sword"
 	if (SWORD_ONLY[animationName] == true) ~= holdingSword then
@@ -156,15 +166,20 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 		end
 	end
 	for victim, model in victims do
+		if model:FindFirstChildOfClass("ForceField") then
+			continue -- spawn shield: no damage, no knockback, no hit feedback
+		end
 		local victimRoot = model:FindFirstChild("HumanoidRootPart")
 		local victimPlayer = Players:GetPlayerFromCharacter(model)
 		local contact = if victimRoot and victimRoot:IsA("BasePart")
 			then victimRoot.Position:Lerp(root.Position, 0.35) + Vector3.new(0, 1, 0)
 			else root.Position + root.CFrame.LookVector * 2
 		local isBlocking = blocking[model] == true
-		local isParry = isBlocking and os.clock() - (blockStartedAt[model] or -math.huge) <= PARRY_WINDOW
+		local isParry = isBlocking and parryEligible[model] == true
+			and os.clock() - (blockStartedAt[model] or -math.huge) <= PARRY_WINDOW
 		local isSneak = false
-		if crouching[player] and victimRoot and victimRoot:IsA("BasePart") then
+		local attackerSpeed = (root.AssemblyLinearVelocity * Vector3.new(1, 0, 1)).Magnitude
+		if crouching[player] and attackerSpeed <= MAX_SNEAK_SPEED and victimRoot and victimRoot:IsA("BasePart") then
 			-- Behind the victim: the attacker is on the opposite side of where the victim faces.
 			local toAttacker = (root.Position - victimRoot.Position) * Vector3.new(1, 0, 1)
 			if toAttacker.Magnitude > 0.1 and victimRoot.CFrame.LookVector:Dot(toAttacker.Unit) < -0.3 then
@@ -188,6 +203,9 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 				GameState.onDummyDamage(player, damage)
 			end
 			victim:TakeDamage(damage)
+			if victimPlayer == nil and model.Name == "TrainingDummy" and GameState.challengeActive() then
+				victim.Health = math.max(victim.Health, 1)
+			end
 		end
 		feedbackRemote:FireAllClients("hit", {
 			position = contact,
@@ -198,6 +216,7 @@ attackRemote.OnServerEvent:Connect(function(player: Player, animationName: unkno
 		})
 
 		if isParry then
+			parryEligible[model] = false -- one parry per guard raise
 			-- The attacker is thrown off balance.
 			ReplicatedPlay.action(humanoid, "hit_react")
 			current[player] = nil
@@ -234,9 +253,16 @@ blockRemote.OnServerEvent:Connect(function(player: Player, active: unknown)
 	if character == nil or typeof(active) ~= "boolean" then
 		return
 	end
+	local now = os.clock()
 	if active then
+		if now - (lastBlockToggle[player] or -math.huge) < 0.2 then
+			return -- at most 5 guard raises a second (releases are never dropped)
+		end
+		lastBlockToggle[player] = now
 		if not blocking[character] then
-			blockStartedAt[character] = os.clock()
+			blockStartedAt[character] = now
+			parryEligible[character] = now >= (parryReadyAt[character] or 0)
+			parryReadyAt[character] = now + PARRY_COOLDOWN
 		end
 		blocking[character] = true
 	else
@@ -285,6 +311,8 @@ local function onPlayer(player: Player)
 	player.CharacterRemoving:Connect(function(character)
 		blocking[character] = nil
 		blockStartedAt[character] = nil
+		parryEligible[character] = nil
+		parryReadyAt[character] = nil
 		current[player] = nil
 		crouching[player] = nil
 	end)
@@ -302,6 +330,7 @@ Players.PlayerRemoving:Connect(function(player: Player)
 	current[player] = nil
 	lastStart[player] = nil
 	crouching[player] = nil
+	lastBlockToggle[player] = nil
 	if player.Character then
 		blocking[player.Character] = nil
 	end

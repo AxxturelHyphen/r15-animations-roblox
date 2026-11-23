@@ -24,6 +24,7 @@ local rivalry: { [string]: number } = {} -- "killer>victim" -> KOs
 local highFives = 0
 local lastKO: { [Player]: { victim: string, at: number } } = {}
 local boardLabel: TextLabel? = nil
+local lastRecordAnnounce: { [string]: number } = {}
 
 type Challenge = { startedAt: number, total: number }
 local challenges: { [Player]: Challenge } = {}
@@ -94,18 +95,24 @@ function GameState.submit(key: string, player: Player, value: number): boolean
 		return false
 	end
 	local current = records[key]
-	local better = current == nil or (if spec.lowerIsBetter then value < current.value else value > current.value)
-	if better then
-		local previous = current and current.holder
+	if current == nil or (if spec.lowerIsBetter then value < current.value else value > current.value) then
+		local previous = if current then current.holder else nil
 		records[key] = { value = value, holder = player.DisplayName }
-		local beat = if previous and previous ~= player.DisplayName then ` (beat {previous}!)` else ""
-		GameState.announce(`NEW RECORD! {spec.label}: {formatValue(key, value)}{beat}`)
-		feedbackRemote:FireAllClients("sound", { name = "record" })
 		GameState.refreshBoard()
-	else
-		GameState.announce(`{spec.label}: {formatValue(key, value)} (record {formatValue(key, current.value)} by {current.holder})`, player)
+		-- Throttle global callouts per record, so nobody can spam everyone's screen.
+		local now = os.clock()
+		if now - (lastRecordAnnounce[key] or -math.huge) >= 3 then
+			lastRecordAnnounce[key] = now
+			local beat = if previous and previous ~= player.DisplayName then ` (beat {previous}!)` else ""
+			GameState.announce(`NEW RECORD! {spec.label}: {formatValue(key, value)}{beat}`)
+			feedbackRemote:FireAllClients("sound", { name = "record" })
+		else
+			GameState.announce(`NEW RECORD! {spec.label}: {formatValue(key, value)}`, player)
+		end
+		return true
 	end
-	return better
+	GameState.announce(`{spec.label}: {formatValue(key, value)} (record {formatValue(key, current.value)} by {current.holder})`, player)
+	return false
 end
 
 function GameState.addHighFive(a: Player, b: Player)
@@ -141,14 +148,18 @@ function GameState.lastKO(player: Player): { victim: string, at: number }?
 	return lastKO[player]
 end
 
-local function onDied(humanoid: Humanoid, victimName: string)
+local function onDied(humanoid: Humanoid, victimName: string, isPlayer: boolean)
 	local root = humanoid.Parent and humanoid.Parent:FindFirstChild("HumanoidRootPart")
 	local byId = humanoid:GetAttribute("LastHitBy")
 	local at = humanoid:GetAttribute("LastHitAt")
 	local how = humanoid:GetAttribute("LastHitHow")
 	local killer = if typeof(byId) == "number" then Players:GetPlayerByUserId(byId) else nil
 	feedbackRemote:FireAllClients("sound", { name = "ko", position = if root and root:IsA("BasePart") then root.Position else nil })
-	if killer and typeof(at) == "number" and os.clock() - at < 6 then
+	if killer and typeof(at) == "number" and os.clock() - at < 6 and not isPlayer then
+		-- The dummy: a feed line only (no KO, rivalry or taunt window, so it can't be farmed).
+		local template = HOW_TEXT[if typeof(how) == "string" then how else ""] or "sent %s to nap"
+		GameState.feed(`{killer.DisplayName} {string.format(template, victimName)}`)
+	elseif killer and typeof(at) == "number" and os.clock() - at < 6 then
 		local stats = killer:FindFirstChild("leaderstats")
 		local kos = stats and stats:FindFirstChild("KOs")
 		if kos and kos:IsA("IntValue") then
@@ -160,28 +171,32 @@ local function onDied(humanoid: Humanoid, victimName: string)
 		local template = HOW_TEXT[if typeof(how) == "string" then how else ""] or "sent %s to nap"
 		GameState.feed(`{killer.DisplayName} {string.format(template, victimName)}`)
 		GameState.refreshBoard()
-	elseif root and root:IsA("BasePart") and root.Position.Y < -20 then
+	elseif root == nil or (root:IsA("BasePart") and root.Position.Y < -20) then
+		-- Parts below FallenPartsDestroyHeight are destroyed, so a missing root means a fall.
 		GameState.feed(`{victimName} fell off the world`)
 	else
 		GameState.feed(`{victimName} took a nap`)
 	end
 end
 
-function GameState.watch(humanoid: Humanoid, victimName: string)
+function GameState.watch(humanoid: Humanoid, victimName: string, isPlayer: boolean)
 	humanoid.Died:Connect(function()
-		onDied(humanoid, victimName)
+		onDied(humanoid, victimName, isPlayer)
 	end)
 end
 
 -- Dummy challenge -------------------------------------------------------------------------------
 
-function GameState.startChallenge(player: Player, dummy: Humanoid): boolean
+-- getDummy returns the current dummy (it is replaced after every death).
+function GameState.startChallenge(player: Player, getDummy: () -> Humanoid?): boolean
 	if challenges[player] then
 		return false
 	end
 	challenges[player] = { startedAt = os.clock(), total = 0 }
-	dummy.Health = dummy.MaxHealth
-	GameState.announce(`GO! Hit the dummy as hard as you can for {Feedback.CHALLENGE_SECONDS} seconds`, player)
+	local dummy = getDummy()
+	if dummy then
+		dummy.Health = dummy.MaxHealth
+	end
 	feedbackRemote:FireClient(player, "countdown", { seconds = Feedback.CHALLENGE_SECONDS })
 	task.delay(Feedback.CHALLENGE_SECONDS, function()
 		local c = challenges[player]
@@ -189,11 +204,17 @@ function GameState.startChallenge(player: Player, dummy: Humanoid): boolean
 		if c and player.Parent then
 			GameState.submit("challenge", player, c.total)
 		end
-		if dummy.Parent and dummy.Health > 0 then
-			dummy.Health = dummy.MaxHealth
+		local current = getDummy()
+		if current and current.Parent and current.Health > 0 then
+			current.Health = current.MaxHealth
 		end
 	end)
 	return true
+end
+
+-- While any challenge runs, the dummy is kept alive so scores aren't capped by its respawn.
+function GameState.challengeActive(): boolean
+	return next(challenges) ~= nil
 end
 
 function GameState.onDummyDamage(player: Player, amount: number)
@@ -217,7 +238,7 @@ local function setupPlayer(player: Player)
 	stats.Parent = player
 	local function onCharacter(character: Model)
 		local humanoid = character:WaitForChild("Humanoid") :: Humanoid
-		GameState.watch(humanoid, player.DisplayName)
+		GameState.watch(humanoid, player.DisplayName, true)
 	end
 	player.CharacterAdded:Connect(onCharacter)
 	if player.Character then

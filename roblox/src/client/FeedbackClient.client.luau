@@ -193,44 +193,80 @@ local function particleBurst(position: Vector3, color: Color3, count: number, sp
 end
 
 -- Hit-stop and camera shake --------------------------------------------------------------------
+-- Reference-counted per track, so overlapping hit-stops (one swing hitting two targets, fast hits)
+-- never save a speed of 0 and leave a clip frozen.
+local frozenCount: { [AnimationTrack]: number } = {}
+local frozenSpeed: { [AnimationTrack]: number } = {}
+local stoppedThisFrame: { [Instance]: boolean } = {}
+
 local function hitStop(model: Instance?, seconds: number)
-	local humanoid = model and model:FindFirstChildOfClass("Humanoid")
+	if model == nil or stoppedThisFrame[model] then
+		return
+	end
+	stoppedThisFrame[model] = true
+	task.defer(function()
+		stoppedThisFrame[model] = nil
+	end)
+	local humanoid = model:FindFirstChildOfClass("Humanoid")
 	local animator = humanoid and humanoid:FindFirstChildOfClass("Animator")
 	if animator == nil then
 		return
 	end
-	local frozen: { [AnimationTrack]: number } = {}
-	for _, track in animator:GetPlayingAnimationTracks() do
-		frozen[track] = track.Speed
-		track:AdjustSpeed(0)
+	local tracks = animator:GetPlayingAnimationTracks()
+	for _, track in tracks do
+		local count = frozenCount[track] or 0
+		if count == 0 then
+			frozenSpeed[track] = track.Speed
+			track:AdjustSpeed(0)
+		end
+		frozenCount[track] = count + 1
 	end
 	task.delay(seconds, function()
-		for track, speed in frozen do
-			if track.IsPlaying then
-				track:AdjustSpeed(speed)
+		for _, track in tracks do
+			local count = (frozenCount[track] or 1) - 1
+			if count <= 0 then
+				frozenCount[track] = nil
+				local speed = frozenSpeed[track]
+				frozenSpeed[track] = nil
+				if track.IsPlaying and speed then
+					track:AdjustSpeed(speed)
+				end
+			else
+				frozenCount[track] = count
 			end
 		end
 	end)
 end
 
+-- Camera shake through Humanoid.CameraOffset: the camera never accumulates drift.
 local shakeUntil, shakeStrength = 0, 0
 local function shake(strength: number, seconds: number)
 	shakeStrength = math.max(shakeStrength, strength)
 	shakeUntil = math.max(shakeUntil, os.clock() + seconds)
 end
-RunService:BindToRenderStep("ArenaCameraShake", Enum.RenderPriority.Camera.Value + 1, function()
-	local now = os.clock()
-	if now >= shakeUntil then
-		shakeStrength = 0
+RunService.RenderStepped:Connect(function()
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid == nil then
 		return
 	end
-	local camera = workspace.CurrentCamera
-	local s = shakeStrength * ((shakeUntil - now) / 0.25)
-	camera.CFrame = camera.CFrame * CFrame.Angles(math.rad((math.random() - 0.5) * s), math.rad((math.random() - 0.5) * s), 0)
+	local now = os.clock()
+	if now >= shakeUntil then
+		if shakeStrength ~= 0 then
+			shakeStrength = 0
+			humanoid.CameraOffset = Vector3.zero
+		end
+		return
+	end
+	local s = shakeStrength * 0.12 * ((shakeUntil - now) / 0.25)
+	humanoid.CameraOffset = Vector3.new((math.random() - 0.5) * s, (math.random() - 0.5) * s, 0)
 end)
 
 -- Velocity on your own character (knockback, bench launch) --------------------------------------
+local velocityToken = 0
 local function holdVelocity(velocity: Vector3, duration: number)
+	velocityToken += 1
+	local token = velocityToken -- a newer push (knockback during a launch) cancels the older one
 	local character = player.Character
 	local root = character and character:FindFirstChild("HumanoidRootPart")
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -243,7 +279,7 @@ local function holdVelocity(velocity: Vector3, duration: number)
 	connection = RunService.Heartbeat:Connect(function()
 		local t = os.clock() - started
 		local state = humanoid:GetState()
-		if t > duration or not root.Parent or humanoid.Health <= 0
+		if token ~= velocityToken or t > duration or not root.Parent or humanoid.Health <= 0
 			or (t > 0.15 and (state == Enum.HumanoidStateType.Swimming or state == Enum.HumanoidStateType.Landed)) then
 			connection:Disconnect()
 			return
@@ -292,7 +328,11 @@ feedbackRemote.OnClientEvent:Connect(function(kind: string, data: any)
 	elseif kind == "launch" then
 		holdVelocity(data.velocity :: Vector3, (data.duration :: number) + 0.6)
 	elseif kind == "splash" then
-		local size = math.clamp((data.size :: number) / 10, 0.6, 5)
+		local raw = data.size :: number
+		if raw ~= raw then
+			return -- NaN guard
+		end
+		local size = math.clamp(raw / 10, 0.6, 5)
 		Feedback.playSound("splash", data.position)
 		particleBurst((data.position :: Vector3) + Vector3.new(0, 1, 0), Color3.fromRGB(190, 225, 255), math.floor(20 * size), 18 * size, 1.2)
 		if size >= 2 then
@@ -319,7 +359,7 @@ feedbackRemote.OnClientEvent:Connect(function(kind: string, data: any)
 		local seconds = data.seconds :: number
 		task.spawn(function()
 			for i = seconds, 1, -1 do
-				callout(tostring(i), Feedback.Colors.heavy)
+				callout(if i == seconds then `GO! {i}` else tostring(i), Feedback.Colors.heavy)
 				task.wait(1)
 			end
 			callout("TIME!", Feedback.Colors.record)

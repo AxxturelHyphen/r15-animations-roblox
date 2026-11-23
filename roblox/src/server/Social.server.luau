@@ -7,6 +7,7 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 
 local pack = ReplicatedStorage:WaitForChild("AnimationPack")
 local Feedback = require(pack:WaitForChild("Feedback"))
@@ -30,6 +31,50 @@ local EMOTE_TAUNT_TEXT: { [string]: string } = {
 
 local pendingHighFive: { [Player]: number } = {}
 local dancingSince: { [Player]: number } = {}
+local lastFeedLine: { [Player]: number } = {}
+local lastLanding: { [Player]: number } = {}
+local lastDanceParty = -math.huge
+
+-- Server-side height tracking: the highest root Y in the last few seconds, used to check fall heights
+-- that clients report for splashes and landings.
+type Peak = { y: number, at: number }
+local peaks: { [Player]: Peak } = {}
+RunService.Heartbeat:Connect(function()
+	local now = os.clock()
+	for _, p in Players:GetPlayers() do
+		local character = p.Character
+		local root = character and character:FindFirstChild("HumanoidRootPart")
+		if root and root:IsA("BasePart") then
+			local y = root.Position.Y
+			local peak = peaks[p]
+			if peak == nil or y >= peak.y or now - peak.at > 3 then
+				peaks[p] = { y = y, at = now }
+			end
+		end
+	end
+end)
+
+local function verifiedFall(player: Player, claimed: number, root: BasePart): number?
+	if claimed ~= claimed then
+		return nil -- NaN
+	end
+	local peak = peaks[player]
+	if peak == nil then
+		return nil
+	end
+	local maxFall = peak.y - root.Position.Y + 3
+	return math.floor(math.clamp(math.min(claimed, maxFall), 0, 60))
+end
+
+-- One feed line per player every 3 s (taunts and dance parties), so nobody floods the feed.
+local function feedFrom(player: Player, text: string)
+	local now = os.clock()
+	if now - (lastFeedLine[player] or -math.huge) < 3 then
+		return
+	end
+	lastFeedLine[player] = now
+	GameState.feed(text)
+end
 local lastReport: { [Player]: number } = {}
 
 local function rootOf(player: Player): BasePart?
@@ -65,8 +110,16 @@ end
 local function doHighFive(a: Player, b: Player)
 	local ra, rb = rootOf(a), rootOf(b)
 	local ha, hb = humanoidOf(a), humanoidOf(b)
-	if not (ra and rb and ha and hb) then
+	local ca, cb = a.Character, b.Character
+	if not (ra and rb and ha and hb and ca and cb) then
 		return
+	end
+	-- Only standing players: no snapping someone out of a seat, a ladder or the water.
+	for _, h in { ha, hb } do
+		local state = h:GetState()
+		if h.Sit or state == Enum.HumanoidStateType.Climbing or state == Enum.HumanoidStateType.Swimming then
+			return
+		end
 	end
 	-- Square them up: face each other about 3.5 studs apart, so the right hands meet.
 	local mid = (ra.Position + rb.Position) / 2
@@ -74,8 +127,8 @@ local function doHighFive(a: Player, b: Player)
 	local dir = if axis.Magnitude > 0.1 then axis.Unit else Vector3.new(0, 0, -1)
 	local posA = Vector3.new(mid.X, ra.Position.Y, mid.Z) - dir * 1.75
 	local posB = Vector3.new(mid.X, rb.Position.Y, mid.Z) + dir * 1.75
-	ra.Parent:PivotTo(CFrame.lookAt(posA, posA + dir))
-	rb.Parent:PivotTo(CFrame.lookAt(posB, posB - dir))
+	ca:PivotTo(CFrame.lookAt(posA, posA + dir))
+	cb:PivotTo(CFrame.lookAt(posB, posB - dir))
 	ReplicatedPlay.action(ha, "high_five")
 	ReplicatedPlay.action(hb, "high_five")
 	task.delay(markerTime("high_five", "Clap"), function()
@@ -140,33 +193,46 @@ socialRemote.OnServerEvent:Connect(function(player: Player, kind: unknown, value
 						table.insert(crew, other.DisplayName)
 					end
 				end
-				if #crew >= 2 then
-					GameState.feed(`Dance party! {table.concat(crew, " + ")}`)
+				if #crew >= 2 and now - lastDanceParty > 8 then
+					lastDanceParty = now
+					feedFrom(player, `Dance party! {table.concat(crew, " + ")}`)
 				end
 			end
 			local ko = GameState.lastKO(player)
 			if ko and now - ko.at <= Feedback.TAUNT_WINDOW then
-				GameState.feed(`{player.DisplayName} {EMOTE_TAUNT_TEXT[value]} {ko.victim}`)
+				feedFrom(player, `{player.DisplayName} {EMOTE_TAUNT_TEXT[value]} {ko.victim}`)
 			end
 		end
 	elseif kind == "splash" and typeof(value) == "number" then
-		local height = math.clamp(value, 0, 60)
 		local arena = workspace:FindFirstChild("AnimationTestArena")
 		local pool = arena and arena:FindFirstChild("PoolZone")
+		if pool == nil or not pool:IsA("BasePart") then
+			return -- no pool in this place
+		end
 		-- Only count splashes inside the pool zone.
-		if pool and pool:IsA("BasePart") then
-			local localPos = pool.CFrame:PointToObjectSpace(root.Position)
-			local half = pool.Size / 2 + Vector3.new(2, 6, 2)
-			if math.abs(localPos.X) > half.X or math.abs(localPos.Y) > half.Y or math.abs(localPos.Z) > half.Z then
-				return
-			end
+		local localPos = pool.CFrame:PointToObjectSpace(root.Position)
+		local half = pool.Size / 2 + Vector3.new(2, 6, 2)
+		if math.abs(localPos.X) > half.X or math.abs(localPos.Y) > half.Y or math.abs(localPos.Z) > half.Z then
+			return
+		end
+		local height = verifiedFall(player, value, root)
+		if height == nil then
+			return
 		end
 		feedbackRemote:FireAllClients("splash", { position = root.Position, size = height })
 		if height >= 6 then
 			GameState.submit("splash", player, height)
 		end
-	elseif kind == "landing" and typeof(value) == "number" and value >= Feedback.HEAVY_LANDING_STUDS then
-		feedbackRemote:FireAllClients("landing", { position = root.Position - Vector3.new(0, 2.8, 0), height = math.min(value, 80) })
+	elseif kind == "landing" and typeof(value) == "number" then
+		if now - (lastLanding[player] or -math.huge) < 1 then
+			return
+		end
+		local height = verifiedFall(player, value, root)
+		if height == nil or height < Feedback.HEAVY_LANDING_STUDS then
+			return
+		end
+		lastLanding[player] = now
+		feedbackRemote:FireAllClients("landing", { position = root.Position - Vector3.new(0, 2.8, 0), height = height })
 	end
 end)
 
@@ -174,4 +240,7 @@ Players.PlayerRemoving:Connect(function(player: Player)
 	pendingHighFive[player] = nil
 	lastReport[player] = nil
 	dancingSince[player] = nil
+	lastFeedLine[player] = nil
+	lastLanding[player] = nil
+	peaks[player] = nil
 end)
