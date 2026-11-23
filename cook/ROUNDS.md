@@ -52,3 +52,12 @@ Focus: the complaint and forgotten lists from round 1. One system per cause, the
 - Jump (M03): a heavy landing after a big fall gets a superhero-landing animation (new clip `land_heavy`) and a thud.
 - Emotes (M30, M32, M33): a two-player high-five (new clip `high_five`, or "left hanging"), dance sync, a hint listing emotes on an unknown `/e`, and a taunt window after a KO.
 - Spawn and edges (M01, M41): 3 s spawn shield, a sign at spawn with the controls and the board, and a kill-feed line for falling off the world.
+
+Changes (commits 57297d1, then the review fixes):
+- New: `Feedback.luau`, `GameState.luau`, `Social.server.luau`, `FeedbackClient.client.luau`. Rewritten: `TestArena`. Extended: `CombatServer`, `Animate`, `CombatInput`. New remotes: Feedback, State, Social.
+- New clips `high_five` and `land_heavy` are in the Fable critic loop (round 0 review running).
+- An independent code review found 20 issues, all fixed. The worst: stacked hit-stops could freeze clips; parry could be spammed by toggling block; records could be faked; dummy kills farmed KOs; the signs faced away from spawn.
+
+Measured: `roblox/check_project.py`: the 25 shipped clips pass; high_five and land_heavy are pending export (expected).
+Not checked: anything in Studio (no Roblox here); luau-analyze and rojo build (downloads blocked).
+Simulation round 2: 3 fresh session agents running, with the round-2 inventory only.
