@@ -1,0 +1,443 @@
+{
+ "animation": "high_five",
+ "iteration": 0,
+ "verdict": "needs_work",
+ "scores": {
+  "fluidity": 5,
+  "posing": 3,
+  "timing": 5,
+  "transitions": 6,
+  "appeal": 4
+ },
+ "summary": "Not usable as a two-player high five yet: the hands cannot meet. On the Clap frame (F010) each right hand is 0.91 studs to its owner's right of the line between the players, so the two hands are 1.82 studs apart sideways, and 2.14 studs forward, which is past the meeting plane at 3.5 studs and inside the partner's head at 3 studs. The wind-up also puts the hand inside the character's own head (F005-F007), and both feet are under the floor for most of the clip (25 foot-penetration frames, worst -0.13). The start and end poses are neutral and the Clap marker resolves to the contact key (F010). Fixes, all checked in a dry run of these exact ops (33 frames after the retime, Clap on F013): the contact pose is re-aimed so the hand centre lands on the centre line (x +0.07) 1.31 studs forward at z 4.76, the two hands first touch at 3.73 studs apart (4% overlap at 3.5, 0.14 short each at 4.0, about a third of the hand volume overlapping at 3.0, so 3.5-3.75 studs is the spacing to aim for in the game); the wind-up hand clears the head; feet stay within 0.00..+0.02 of the floor with no slide; the hand arrives at 1.05 studs/frame and stops dead, then rebounds. Dry-run metrics: lockstep 0, overlap_score 1.0, foot penetration 0, slide 0, joint limits 0; 7 accel spikes and 5 velocity corners, all on the contact frame and the wrist snap, which are intended. Left for the next round to judge on renders: on the 4 rebound frames after contact the hand and forearm pass within a few hundredths of a stud of the brow (3-5% of sample points inside the head box, at most 0.10 deep), and the hand stays in front of the face for about 6 frames.",
+ "findings": [
+  {
+   "id": "hf-hands-never-meet",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    8,
+    14
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "UpperTorso",
+    "Head"
+   ],
+   "observation": "F010 (the Clap frame): forward kinematics puts the right hand centre at (x -0.91, 2.14 forward, z 4.87). The partner plays the same clip rotated 180 deg, so their hand is at x +0.91: the two hands are 1.82 studs apart sideways (a 1.0-stud air gap between 0.8-wide hands) and never touch at any distance. The hand also reaches 2.14 studs forward with a straight arm (elbow -8): at 3.5 studs apart each hand is 0.4 studs PAST the meeting plane, and at 3 studs it is inside the partner's head (0.2 deep). In the sheet F009-F014 this reads as a straight-armed wave beside the head, not a slap at a shared point. Fix, solved with FK: turn the chest further into the slap (UpperTorso.ry 10 -> 22 = right shoulder forward, lean 8 -> 5 so the head stays back), swing the upper arm across with the new RightUpperArm.ry channel (+22 = toward the character's left) and rz -28.5, bend the elbow to -50 and cock the wrist back (-35) so the fingers point up, and have the head look past the arm (ry -14, rz -8 = tilt to its left). Dry run: at contact the hand centre is at (x +0.07, 1.31 forward, z 4.76 = head centre height 4.55 + 0.2); the two hands first touch at 3.73 studs apart, overlap 4% of their volume at 3.5 and miss by 0.14 each at 4.0. After contact the hand must not coast on through the partner (F010-F014 now: upper arm -125 -> -110): key a rebound 3 frames later, up and back to the right (elbow -62, wrist relaxing to -12), and delete the old F014 keys.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 10,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "rx",
+     "frame": 10,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "UpperTorso",
+     "ch": "ry",
+     "frame": 16,
+     "value": 12
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rx",
+     "frame": 10,
+     "value": -10
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "ry",
+     "frame": 10,
+     "value": -14
+    },
+    {
+     "op": "set_pose",
+     "bone": "Head",
+     "ch": "rz",
+     "frame": 10,
+     "value": -8
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 10,
+     "value": -113.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 10,
+     "value": 22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 10,
+     "value": -28.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 10,
+     "value": -50
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 10,
+     "value": -35
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rx",
+     "frame": 13,
+     "value": -116.5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 13,
+     "value": 28
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 13,
+     "value": -18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "ry",
+     "frame": 22,
+     "value": 6
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 13,
+     "value": -62
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightHand",
+     "ch": "rx",
+     "frame": 13,
+     "value": -12
+    },
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm",
+      "RightHand"
+     ],
+     "ch": "rx",
+     "mode": "remove_interior",
+     "range": [
+      13,
+      15
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hf-windup-hand-in-head",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    5,
+    7
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "Head"
+   ],
+   "observation": "F005-F007: at the top of the wind-up the hand and forearm are inside the head. With the upper arm raised to rx -150, RightUpperArm.rz -30 no longer means 'out to the side': past 90 deg of raise the same sign tips the arm INWARD, so the hand centre sits at x -0.52, z 5.16 while the head spans x -0.55..0.65, z 3.84..5.04. Measured: 20% of the hand volume and 14% of the forearm are inside the head box on F006 (0.25 studs deep), 13% / 7% on F005, 10% / 10% on F007; the 3/4 view shows the blue hand merged with the top of the head. Fix: rz +10 at the wind-up key puts the hand beside and behind the head (x -1.62, 1.12 behind, z 5.0 in the dry run, 0% overlap on every wind-up frame), and a deeper elbow cock (-70 -> -95) gives the slap more travel.",
+   "fix": [
+    {
+     "op": "set_pose",
+     "bone": "RightUpperArm",
+     "ch": "rz",
+     "frame": 6,
+     "value": 10
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerArm",
+     "ch": "rx",
+     "frame": 6,
+     "value": -95
+    }
+   ]
+  },
+  {
+   "id": "hf-feet-through-floor",
+   "category": "awkward_pose",
+   "severity": "high",
+   "frames": [
+    3,
+    22
+   ],
+   "bones": [
+    "LowerTorso",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "F003-F022: both feet are below the floor (metrics.feet: LeftFoot -0.06..-0.11 on F003-F007, RightFoot below -0.05 on 20 frames F003-F022, worst -0.13 on F006). Cause: LowerTorso.ly dips 0.08 on F006 while both knees are straight, so the dip simply pushes the feet through the floor; and RightUpperLeg.rx +6 on F010 with no knee or ankle key tips the right toe down. The legs also scissor while 'planted': the left foot slides 0.19 forward and the right 0.17 back by F010 (thigh -12 / +6 with no root travel), and the F020 thigh key keeps the left foot drifting during the recovery. Fix: make the dip a real knee bend at the wind-up (left thigh -20 / knee 44 / ankle -24, right -18 / 40 / -22: the feet stay flat and under the hips, and the left and right values differ so the legs do not twin), extend the legs into the slap on F010 (nearly straight, so the body rises about 0.1 into the contact), drop the F020 thigh key, then let plant_feet re-key the root height from the legs. Dry run: lowest foot point within 0.00..+0.02 of the floor on every frame, root dip -0.10 at the wind-up, foot centres move less than 0.04 studs over the whole clip.",
+   "fix": [
+    {
+     "op": "smooth_transition",
+     "bones": [
+      "LeftUpperLeg"
+     ],
+     "ch": "rx",
+     "mode": "remove_interior",
+     "range": [
+      11,
+      29
+     ]
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": -20
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 44
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -24
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": -5
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 9
+    },
+    {
+     "op": "set_pose",
+     "bone": "LeftFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": -4
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": -18
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 6,
+     "value": 40
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 6,
+     "value": -22
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightUpperLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": -2
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightLowerLeg",
+     "ch": "rx",
+     "frame": 10,
+     "value": 5
+    },
+    {
+     "op": "set_pose",
+     "bone": "RightFoot",
+     "ch": "rx",
+     "frame": 10,
+     "value": -3
+    },
+    {
+     "op": "plant_feet",
+     "range": [
+      0,
+      33
+     ],
+     "step": 1,
+     "mode": "all"
+    }
+   ]
+  },
+  {
+   "id": "hf-slap-not-crisp",
+   "category": "timing",
+   "severity": "medium",
+   "frames": [
+    0,
+    14
+   ],
+   "bones": [
+    "RightUpperArm",
+    "RightLowerArm"
+   ],
+   "observation": "F000-F006: the arm goes from hanging to fully cocked (150 deg) in 6 frames with no slow-in (accel spike 16.7 deg/frame^2 on RightUpperArm.rx at F001 and F005), so the anticipation reads as a twitch and there is no moment to register the wind-up before the slap. F006-F010: the slap itself is the right length (4 frames) but every arm key is AUTO_CLAMPED, so the hand eases INTO the contact (it is slowing down on F009-F010) and then keeps drifting forward and down for 4 more frames: a push, not a slap. Fix: stretch the wind-up from 6 to 9 frames (ripple, so the contact moves from F010 to F013 and the clip becomes 33 frames; the Clap marker follows because it is resolved from the RightLowerArm.rx maximum, and F013 stays inside its 0.2-0.45 window = F007-F015), and give the contact keys of the upper arm and forearm VECTOR handles so the hand arrives at full speed and stops dead. Dry run, hand travel per frame into the contact: 0.40, 0.89, 1.09, 1.05 studs, then 0.24 on the first rebound frame. The velocity corner this leaves on the contact frame is intended.",
+   "fix": [
+    {
+     "op": "set_easing",
+     "bones": [
+      "RightUpperArm",
+      "RightLowerArm"
+     ],
+     "ch": [
+      "rx",
+      "ry",
+      "rz"
+     ],
+     "range": [
+      10,
+      10
+     ],
+     "interpolation": "BEZIER",
+     "handle": "VECTOR"
+    },
+    {
+     "op": "retime",
+     "bones": "all",
+     "range": [
+      0,
+      6
+     ],
+     "scale": 1.5,
+     "ripple": true
+    }
+   ]
+  },
+  {
+   "id": "hf-lockstep-keys",
+   "category": "stiff",
+   "severity": "medium",
+   "frames": [
+    6,
+    10
+   ],
+   "bones": [
+    "Head",
+    "RightHand",
+    "LeftUpperArm",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot"
+   ],
+   "observation": "F006 and F010: 8 of 10 and 10 of 10 bones are keyed on the same two frames (metrics.lockstep_key_frames, overlap_score 0.28), so the head, wrist, left arm and legs all start and stop with the right arm. Fix: let the legs lead by a frame (the push comes from the floor), and let the head and the wrist arrive a frame late and the left arm two frames late. The chest and the right arm stay on the contact frame so the solved contact pose is exact. Dry run: no lockstep frames, overlap_score 1.0.",
+   "fix": [
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "Head",
+      "RightHand"
+     ],
+     "offset": 1
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperLeg",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "RightUpperLeg",
+      "RightLowerLeg",
+      "RightFoot"
+     ],
+     "offset": -1
+    }
+   ]
+  },
+  {
+   "id": "hf-left-arm-passive",
+   "category": "stiff",
+   "severity": "low",
+   "frames": [
+    6,
+    16
+   ],
+   "bones": [
+    "LeftUpperArm"
+   ],
+   "observation": "F006-F016: the left arm only swings 10-15 deg back while the chest turns 36 deg, so it looks pinned to the body. Double its swing so it counterbalances the slap, and delay it two frames so it follows the chest.",
+   "fix": [
+    {
+     "op": "scale_amplitude",
+     "bones": [
+      "LeftUpperArm"
+     ],
+     "ch": "rx",
+     "factor": 2,
+     "pivot": "rest"
+    },
+    {
+     "op": "offset_overlap",
+     "bones": [
+      "LeftUpperArm"
+     ],
+     "offset": 2
+    }
+   ]
+  }
+ ]
+}
